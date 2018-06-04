@@ -1,0 +1,225 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="pavlov__bwchange.list">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">pavlov_bwchange.change</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="account"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="pavlov__bwchange.form">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">pavlov_bwchange.change</field>
+      <field name="arch" type="xml">
+        <form string="Bandwidth Change Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="account" string="Account"/>
+              <field name="description" string="Description"/>
+            </group>
+            <separator string="Property Circuit Details" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="actual_transport" string="Actual Transport (Mbps)" />
+                <field name="circuit_paid_by" string="Circuit Paid By" widget="selection" />
+                <field name="sold_transport" string="Sold Transport Speed/DIA Download (OffNet Mbps)" />
+                <field name="dia_upload" string="DIA Upload (OffNet Mbps)" />
+                <field name="tesseractive_service" string="Tesseractive Service?" />
+                <field name="tesseractiv_speed" string="Tesseractiv Speed (OnNet Mbps) *If Applicable" />
+                <field name="websnap" string="Websnap?" />
+                <field name="circuit_landdate" string="Circuit Land Date" />
+                <field name="circuit_id" string="Circuit ID" />
+              </group>
+            <separator string="Current MDF Equipment (Filled by NOC)" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="router" string="Router" widget="selection" />
+                <field name="mikrotik" string="MikroTik" widget="selection" />
+                <field name="distro_switch" string="Distrution Switch (Between Buildings)" widget="selection" />
+                <field name="user_switch" string="Site User Switch Port Speed" widget="selection" />
+                <field name="core_switch" string="Internal Core Switch (Site Backbone)" widget="selection" />
+                <field name="trunked" string="Trunked?" />
+                <field name="verified_by" string="Verified By" />
+                <field name="verified_date" string ="Verified Date" />
+              </group>
+            <separator string="User/Unit Experience (Contracted Info)" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="actual_transport" string="Actual Transport (Mbps)" />
+                <field name="websnap_download" string="Websnap Download Speed (Mbps)" />
+                <field name="package_download" string="User/Unit Package Download Speed (Mbps)" />
+                <field name="package_upload" string="User/Unit Package Upload Speed (Mbps)" />
+                <field name="unregistered_tesseractiv" string="Unregistered Tesserativ (Mbps)" />
+                <field name="unregistered_websnap" string="Unregistered WebSnap (Mbps)" />
+                <field name="unregistered_download" string="Unregistered Download (Mbps)" />
+                <field name="unregistered_upload" string="Unregistered Upload (Mbps)" />
+                <field name="reason_for_change" string="Reason for Package Change" />
+              </group>
+            <separator string="Contract Information" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="contract_signed_date" string="Contract Signed Date" />
+              </group>
+            <notebook>
+              <page string="Description">
+                <field name="description" string="Description"/>
+              </page>
+              <page string="Instructions">
+                This is where instructions can go
+                1. do This
+                2. then do This
+                3. finish by doing this
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="pavlov__bwchange.search">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">pavlov_bwchange.change</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="description"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="pavlov__bwchange.action_window">
+      <field name="name">Bandwidth Changes</field>
+      <field name="res_model">pavlov_bwchange.change</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="pavlov__bwchange.action_server">
+      <field name="name">Pavlov_BWChange server</field>
+      <field name="model_id" ref="pavlov_bwchange.change"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+  -->
+<!-- ######################## BandwidthChangeDeviceSpeedSelection FORMS ######################## -->
+<record model="ir.ui.view" id="pavlov_bwchange_devicespeedselection_list">
+  <field name="name">Device Speed Selections</field>
+  <field name="model">pavlov_bwchange.devicespeedselection</field>
+  <field name="arch" type="xml">
+    <tree>
+      <field name="name"/>
+    </tree>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_devicespeedselection_form">
+  <field name="name">Device Speed Selections</field>
+  <field name="model">pavlov_bwchange.devicespeedselection</field>
+  <field name="arch" type="xml">
+    <form string="Device Speed Selections Form">
+      <sheet>
+        <div class="oe_title">
+          <label for="name" class="oe_edit_only" string="Name" />
+          <h1><field name="name" /></h1>
+        </div>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_devicespeedselection_search">
+  <field name="name">Device Speed Selections</field>
+  <field name="model">pavlov_bwchange.devicespeedselection</field>
+  <field name="arch" type="xml">
+    <search>
+      <field name="name"/>
+    </search>
+  </field>
+</record>
+
+<!-- actions opening views on models -->
+<record model="ir.actions.act_window" id="pavlov_bwchange_devicespeedselection_action_window">
+  <field name="name">Device Speed Selections</field>
+  <field name="res_model">pavlov_bwchange.devicespeedselection</field>
+  <field name="view_mode">tree,form</field>
+</record>
+
+<!-- ######################## BandwidthChangeOwnerSelection FORMS ######################## -->
+<record model="ir.ui.view" id="pavlov_bwchange_ownerselection_list">
+  <field name="name">Owner Selections</field>
+  <field name="model">pavlov_bwchange.ownerselection</field>
+  <field name="arch" type="xml">
+    <tree>
+      <field name="name"/>
+    </tree>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_ownerselection_form">
+  <field name="name">Owner Selections</field>
+  <field name="model">pavlov_bwchange.ownerselection</field>
+  <field name="arch" type="xml">
+    <form string="Device Speed Selections Form">
+      <sheet>
+        <div class="oe_title">
+          <label for="name" class="oe_edit_only" string="Name" />
+          <h1><field name="name" /></h1>
+        </div>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_ownerselection_search">
+  <field name="name">Owner Selections</field>
+  <field name="model">pavlov_bwchange.ownerselection</field>
+  <field name="arch" type="xml">
+    <search>
+      <field name="name"/>
+    </search>
+  </field>
+</record>
+
+<!-- actions opening views on models -->
+<record model="ir.actions.act_window" id="pavlov_bwchange_ownerselection_action_window">
+  <field name="name">Owner Selections</field>
+  <field name="res_model">pavlov_bwchange.ownerselection</field>
+  <field name="view_mode">tree,form</field>
+</record>
+
+<!-- ########################### MENU ITEMS ############################### -->
+    <!-- Top menu item -->
+    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_root"/>
+
+    <!-- menu categories -->
+    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_1" parent="pavlov__bwchange.menu_root"/>
+    <menuitem name="Configuration" id="pavlov__bwchange.menu_2" parent="pavlov__bwchange.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_1_list" parent="pavlov__bwchange.menu_1"
+              action="pavlov__bwchange.action_window"/>
+    <menuitem name="Device Speed Selections" id="pavlov__bwchange.menu_2_list" parent="pavlov__bwchange.menu_2"
+              action="pavlov_bwchange_devicespeedselection_action_window"/>
+    <menuitem name="Owner Selections" id="pavlov__bwchange.menu_3_list" parent="pavlov__bwchange.menu_2"
+              action="pavlov_bwchange_ownerselection_action_window"/>
+    <!--
+    <menuitem name="Server to list" id="pavlov__bwchange" parent="pavlov__bwchange.menu_2"
+              action="pavlov__bwchange.action_server"/>
+  -->
+
+  </data>
+</odoo>
