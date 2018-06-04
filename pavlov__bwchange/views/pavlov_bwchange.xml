@@ -1,6 +1,8 @@
 <odoo>
   <data>
     <!-- explicit list view definition -->
+
+    <!-- Bandwidth Change List View-->
     <record model="ir.ui.view" id="pavlov__bwchange.list">
       <field name="name">Bandwidth Changes</field>
       <field name="model">pavlov_bwchange.change</field>
@@ -13,11 +15,15 @@
       </field>
     </record>
 
+    <!-- Bandwidth Change Form View -->
     <record model="ir.ui.view" id="pavlov__bwchange.form">
       <field name="name">Bandwidth Changes</field>
       <field name="model">pavlov_bwchange.change</field>
       <field name="arch" type="xml">
         <form string="Bandwidth Change Form">
+          <header>
+            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
+          </header>
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Name" />
@@ -25,6 +31,7 @@
             </div>
             <group>
               <field name="account" string="Account"/>
+              <field name="priority" widget="priority" />
               <field name="description" string="Description"/>
             </group>
             <separator string="Property Circuit Details" colspan="2" />
@@ -82,6 +89,7 @@
       </field>
     </record>
 
+    <!-- Bandwidth Change Search View -->
     <record model="ir.ui.view" id="pavlov__bwchange.search">
       <field name="name">Bandwidth Changes</field>
       <field name="model">pavlov_bwchange.change</field>
@@ -93,11 +101,63 @@
       </field>
     </record>
 
+    <!-- Bandwidth Change KanBan View -->
+    <record model="ir.ui.view" id="view_pavlov_bwchange_kanban">
+        <field name="name">pavlov_bwchange.change.kanban</field>
+        <field name="model">pavlov_bwchange.change</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                              oe_kanban_global_click_edit oe_semantic_html_override
+                                              oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                <field name="state"/>
+                                <br/>
+                                Account:
+                                <field name="account"/>
+                                <br/>
+                                Circuit Land Date:
+                                <field name="circuit_landdate"/>
+                                <br/>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="priority" widget="priority" groups="base.group_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="pavlov__bwchange.action_window">
       <field name="name">Bandwidth Changes</field>
       <field name="res_model">pavlov_bwchange.change</field>
-      <field name="view_mode">tree,form</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
     <!-- server action to the one above -->
@@ -160,7 +220,7 @@
 
 <!-- ######################## BandwidthChangeOwnerSelection FORMS ######################## -->
 <record model="ir.ui.view" id="pavlov_bwchange_ownerselection_list">
-  <field name="name">Owner Selections</field>
+  <field name="name">Ownership</field>
   <field name="model">pavlov_bwchange.ownerselection</field>
   <field name="arch" type="xml">
     <tree>
@@ -170,7 +230,7 @@
 </record>
 
 <record model="ir.ui.view" id="pavlov_bwchange_ownerselection_form">
-  <field name="name">Owner Selections</field>
+  <field name="name">Ownership</field>
   <field name="model">pavlov_bwchange.ownerselection</field>
   <field name="arch" type="xml">
     <form string="Device Speed Selections Form">
@@ -185,7 +245,7 @@
 </record>
 
 <record model="ir.ui.view" id="pavlov_bwchange_ownerselection_search">
-  <field name="name">Owner Selections</field>
+  <field name="name">Ownership</field>
   <field name="model">pavlov_bwchange.ownerselection</field>
   <field name="arch" type="xml">
     <search>
@@ -196,8 +256,51 @@
 
 <!-- actions opening views on models -->
 <record model="ir.actions.act_window" id="pavlov_bwchange_ownerselection_action_window">
-  <field name="name">Owner Selections</field>
+  <field name="name">Ownership</field>
   <field name="res_model">pavlov_bwchange.ownerselection</field>
+  <field name="view_mode">tree,form</field>
+</record>
+
+<!-- ######################## BandwidthChangeStageSelection FORMS ######################## -->
+<record model="ir.ui.view" id="pavlov_bwchange_stageselection_list">
+  <field name="name">Stages</field>
+  <field name="model">pavlov_bwchange.stageselection</field>
+  <field name="arch" type="xml">
+    <tree>
+      <field name="name"/>
+    </tree>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_stageselection_form">
+  <field name="name">Stages</field>
+  <field name="model">pavlov_bwchange.stageselection</field>
+  <field name="arch" type="xml">
+    <form string="Stage Selections Form">
+      <sheet>
+        <div class="oe_title">
+          <label for="name" class="oe_edit_only" string="Name" />
+          <h1><field name="name" /></h1>
+        </div>
+      </sheet>
+    </form>
+  </field>
+</record>
+
+<record model="ir.ui.view" id="pavlov_bwchange_stageselection_search">
+  <field name="name">Stages</field>
+  <field name="model">pavlov_bwchange.stageselection</field>
+  <field name="arch" type="xml">
+    <search>
+      <field name="name"/>
+    </search>
+  </field>
+</record>
+
+<!-- actions opening views on models -->
+<record model="ir.actions.act_window" id="pavlov_bwchange_stageselection_action_window">
+  <field name="name">Stages</field>
+  <field name="res_model">pavlov_bwchange.stageselection</field>
   <field name="view_mode">tree,form</field>
 </record>
 
@@ -216,6 +319,8 @@
               action="pavlov_bwchange_devicespeedselection_action_window"/>
     <menuitem name="Owner Selections" id="pavlov__bwchange.menu_3_list" parent="pavlov__bwchange.menu_2"
               action="pavlov_bwchange_ownerselection_action_window"/>
+    <menuitem name="Stages" id="pavlov__bwchange.menu_4_list" parent="pavlov__bwchange.menu_2"
+              action="pavlov_bwchange_stageselection_action_window"/>
     <!--
     <menuitem name="Server to list" id="pavlov__bwchange" parent="pavlov__bwchange.menu_2"
               action="pavlov__bwchange.action_server"/>
