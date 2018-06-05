@@ -6,7 +6,7 @@ from odoo import models, fields, api
 class BandwidthChange(models.Model):
      _name = 'pavlov_bwchange.change'
      #Inherit the chatter (Mail) model to allow for message, notes and tracking
-     #_inherits = {'res.partner': 'partner_id'}
+     _inherits = {'res.partner': 'partner_id'}
      _inherit = ['mail.thread']
 #Stages
      @api.model
@@ -14,7 +14,7 @@ class BandwidthChange(models.Model):
         stage_ids = self.env['pavlov_bwchange.stageselection'].search([])
         return stage_ids
      stage = fields.Many2one('pavlov_bwchange.stageselection', string="Stage", group_expand='_read_group_stage_ids')
-     state = fields.Selection([('new', 'New'),('progress', 'In progress'),('finished', 'Done')],default='new')
+     state = fields.Selection([('new', 'New'),('progress', 'In progress'),('finished', 'Done')],default='new',track_visibility='always')
      priority = fields.Selection([('low', 'Low'),('medium', 'Medium'),('high', 'High'),('urgent', 'Urgent')],default='low')
 #General
      name = fields.Char(string="Title", required=True)
