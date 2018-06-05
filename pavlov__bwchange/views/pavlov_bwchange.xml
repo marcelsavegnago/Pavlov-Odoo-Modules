@@ -77,10 +77,14 @@
               </group>
             <notebook>
               <page string="Instructions">
-                This is where instructions can go
-                1. do This
-                2. then do This
-                3. finish by doing this
+                This is where example instructions can go. Hard coded currently but more time can be spent on making this more dynamic if needed.
+                <br/>
+                1. Do This
+                <br/>
+                2. Then do This
+                <br/>
+                3. Finish by doing this
+                <br/>
               </page>
             </notebook>
           </sheet>
