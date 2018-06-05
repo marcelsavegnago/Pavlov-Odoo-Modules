@@ -67,6 +67,8 @@
                 <field name="unregistered_websnap" string="Unregistered WebSnap (Mbps)" />
                 <field name="unregistered_download" string="Unregistered Download (Mbps)" />
                 <field name="unregistered_upload" string="Unregistered Upload (Mbps)" />
+              </group>
+              <group>
                 <field name="reason_for_change" string="Reason for Package Change" />
               </group>
             <separator string="Contract Information" colspan="2" />

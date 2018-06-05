@@ -14,9 +14,9 @@ class BandwidthChange(models.Model):
         stage_ids = self.env['pavlov_bwchange.stageselection'].search([])
         return stage_ids
      stage = fields.Many2one('pavlov_bwchange.stageselection', string="Stage", group_expand='_read_group_stage_ids')
+#General
      state = fields.Selection([('new', 'New'),('progress', 'In progress'),('finished', 'Done')],default='new',track_visibility='always')
      priority = fields.Selection([('low', 'Low'),('medium', 'Medium'),('high', 'High'),('urgent', 'Urgent')],default='low')
-#General
      name = fields.Char(string="Title", required=True)
      account = fields.Many2one('res.partner', string="Account")
      eta = fields.Date(string="ETA", required=False)
@@ -39,7 +39,7 @@ class BandwidthChange(models.Model):
      core_switch = fields.Many2one('pavlov_bwchange.devicespeedselection', string="Internal Core Switch (Site Backbone)")
      user_switch = fields.Many2one('pavlov_bwchange.devicespeedselection', string="Site User Switch Port Speed")
      trunked = fields.Boolean(string="Trunked?")
-     verified_by = fields.Char(string="Verified By")
+     verified_by = fields.Many2one('res.users', string="Verified By")
      verified_date = fields.Date(string ="Verified Date")
 #User/Unit Experience (Contracted Info)
      websnap_download = fields.Float(string="Websnap Download Speed (Mbps)", store=True)
@@ -49,7 +49,7 @@ class BandwidthChange(models.Model):
      unregistered_websnap = fields.Float(string="Unregistered WebSnap (Mbps)", store=True)
      unregistered_download = fields.Float(string="Unregistered Download (Mbps)", store=True)
      unregistered_upload = fields.Float(string="Unregistered Upload (Mbps)", store=True)
-     reason_for_change = fields.Char(string="Reason for Package Change")
+     reason_for_change = fields.Text(string="Reason for Package Change")
 #Contract Information
      contract_signed_date = fields.Date(string="Contract Signed Date")
 
