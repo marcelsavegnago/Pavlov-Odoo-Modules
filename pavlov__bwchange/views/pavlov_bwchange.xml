@@ -314,7 +314,7 @@
 
 <!-- ########################### MENU ITEMS ############################### -->
     <!-- Top menu item -->
-    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_root"/>
+    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_root" web_icon="pavlov_bw_change,static/description/icon.png" sequence="51"/>
 
     <!-- menu categories -->
     <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_1" parent="pavlov__bwchange.menu_root"/>
