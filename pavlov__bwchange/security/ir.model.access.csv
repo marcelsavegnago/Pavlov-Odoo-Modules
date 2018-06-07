@@ -1,2 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_pavlov__bwchange_pavlov__bwchange,pavlov__bwchange.pavlov__bwchange,model_pavlov__bwchange_pavlov__bwchange,,1,0,0,0
+access_bwchange_manager,bandwidth change manager,model_pavlov_bwchange_change,group_manager,1,1,1,1
+access_bwchange_devicespeedselection_manager,device speed selection manager,model_pavlov_bwchange_devicespeedselection,group_manager,1,1,1,1
+access_bwchange_ownerselection_manager,owner selection manager,model_pavlov_bwchange_ownerselection,group_manager,1,1,1,1
+access_bwchange_stageselection_manager,stage selection manager,model_pavlov_bwchange_stageselection,group_manager,1,1,1,1
+access_bwchange_user,bandwidth change user,model_pavlov_bwchange_change,group_user,1,0,0,0
+access_bwchange_devicespeedselection_user,device speed selection user,model_pavlov_bwchange_devicespeedselection,group_user,1,0,0,0
+access_bwchange_ownerselection_user,owner selection user,model_pavlov_bwchange_ownerselection,group_user,1,0,0,0
+access_bwchange_stageselection_user,stage selection user,model_pavlov_bwchange_stageselection,group_user,1,0,0,0
+access_bwchange_allusers,bandwidth change all users,model_pavlov_bwchange_change,,1,0,0,0

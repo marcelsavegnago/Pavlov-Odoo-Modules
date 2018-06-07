@@ -1,0 +1,9 @@
+<odoo>
+  <!-- This holds the security groups -->
+        <record id="group_manager" model="res.groups">
+            <field name="name">Bandwidth Changes / Manager</field>
+        </record>
+        <record id="group_user" model="res.groups">
+            <field name="name">Bandwidth Changes / User</field>
+        </record>
+</odoo>
