@@ -6,8 +6,8 @@ from odoo import models, fields, api
 class BandwidthChange(models.Model):
      _name = 'pavlov_bwchange.change'
      #Inherit the chatter (Mail) model to allow for message, notes and tracking
-     _inherits = {'res.partner': 'partner_id'}
-     _inherit = ['mail.thread']
+#     _inherits = {'res.partner': 'partner_id'}
+#     _inherit = ['mail.thread']
 #Stages
      @api.model
      def _read_group_stage_ids(self,stages,domain,order):
