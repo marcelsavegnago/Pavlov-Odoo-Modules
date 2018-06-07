@@ -42,22 +42,5 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-<!-- ########################### MENU ITEMS ############################### -->
-    <!-- Top menu item -->
-<!--    <menuitem name="BW Changes" id="pavlov__bwchange.menu_root" web_icon="pavlov__bwchange,static/description/icon.png" sequence="51"/>
-
-    <!-- menu categories
-    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_1" parent="pavlov__bwchange.menu_root"/>
-    <menuitem name="Configuration" id="pavlov__bwchange.menu_2" parent="pavlov__bwchange.menu_root"/>
-
-    <!-- actions
-    <menuitem name="Bandwidth Changes" id="pavlov__bwchange.menu_1_list" parent="pavlov__bwchange.menu_1"
-              action="pavlov__bwchange.action_window"/>
-    <menuitem name="Device Speed Selections" id="pavlov__bwchange.menu_2_list" parent="pavlov__bwchange.menu_2"
-              action="pavlov_bwchange_devicespeedselection_action_window"/>
-    <menuitem name="Owner Selections" id="pavlov__bwchange.menu_3_list" parent="pavlov__bwchange.menu_2"
-              action="pavlov_bwchange_ownerselection_action_window"/>
-    <menuitem name="Stages" id="pavlov__bwchange.menu_4_list" parent="pavlov__bwchange.menu_2"
-              action="pavlov_bwchange_stageselection_action_window"/> -->
   </data>
 </odoo>
