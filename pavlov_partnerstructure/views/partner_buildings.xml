@@ -3,19 +3,18 @@
     <!-- explicit list view definition -->
 
     <!-- Buildings List View-->
-    <record model="ir.ui.view" id="pavlov_partnerstructure_buildings.list">
+    <record model="ir.ui.view" id="pavlov_partnerstructure.list">
       <field name="name">Buildings</field>
       <field name="model">pavlov_partnerstructure.buildings</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree default_order='name desc'>
           <field name="name"/>
-          <field name="account"/>
         </tree>
       </field>
     </record>
 
     <!-- Buildings Form View -->
-    <record model="ir.ui.view" id="pavlov_partnerstructure_buildings.form">
+    <record model="ir.ui.view" id="pavlov_partnerstructure.form">
       <field name="name">Buildings</field>
       <field name="model">pavlov_partnerstructure.buildings</field>
       <field name="arch" type="xml">
@@ -34,11 +33,20 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="pavlov_partnerstructure_buildings.action_window">
+    <record model="ir.actions.act_window" id="pavlov_partnerstructure.action_window">
       <field name="name">Buildings</field>
       <field name="res_model">pavlov_partnerstructure.buildings</field>
       <field name="view_mode">tree,form</field>
     </record>
+    <!-- ########################### MENU ITEMS ############################### -->
+        <!-- Top menu item -->
+<!--        <menuitem name="Partner Structure" id="pavlov__partnerstructure.menu_root" web_icon="pavlov__partnerstructure,static/description/icon.png" sequence="51"/>
 
+
+        <menuitem name="Configuration" id="pavlov__partnerstructure.menu_1" parent="pavlov__partnerstructure.menu_root"/>
+
+
+        <menuitem name="Buildings" id="pavlov__partnerstructure.menu_1_list" parent="pavlov__partnerstructure.menu_1"
+                  action="pavlov__partnerstructure_buildings.action_window"/> -->
   </data>
 </odoo>

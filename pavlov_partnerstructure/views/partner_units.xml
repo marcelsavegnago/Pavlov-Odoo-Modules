@@ -3,20 +3,19 @@
     <!-- explicit list view definition -->
 
     <!-- units List View-->
-    <record model="ir.ui.view" id="partner_units.list">
+    <record model="ir.ui.view" id="pavlov_partnerstructure.list">
       <field name="name">units</field>
       <field name="model">pavlov_partnerstructure.units</field>
       <field name="arch" type="xml">
-        <tree>
+        <tree default_order='name desc'>
           <field name="name"/>
-          <field name="account"/>
           <field name="floor"/>
         </tree>
       </field>
     </record>
 
     <!-- units Form View -->
-    <record model="ir.ui.view" id="partner_units.form">
+    <record model="ir.ui.view" id="pavlov_partnerstructure.form">
       <field name="name">units</field>
       <field name="model">pavlov_partnerstructure.units</field>
       <field name="arch" type="xml">
@@ -36,7 +35,7 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="partner_units.action_window">
+    <record model="ir.actions.act_window" id="pavlov_partnerstructure.action_window">
       <field name="name">units</field>
       <field name="res_model">pavlov_partnerstructure.units</field>
       <field name="view_mode">tree,form</field>

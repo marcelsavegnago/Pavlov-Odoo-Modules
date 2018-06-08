@@ -3,10 +3,10 @@
     'name': "Pavlov Partner Structure",
 
     'summary': """
-        Pavlov Media Partner Buildings, Floors, Units, Rooms""",
+        Pavlov Media Partner Buildings, Floors, Units""",
 
     'description': """
-        This module adds Buildings, Floors, Units and Rooms to the partner models for Pavlov Media
+        This module adds Buildings, Floors and Units to the partner models for Pavlov Media
     """,
 
     'author': "Pavlov Media",
@@ -23,14 +23,12 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
         'views/partner_buildings.xml',
         'views/partner_floors.xml',
         'views/partner_units.xml',
-        'views/partner_rooms.xml',
         'views/res_partner.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
+        #'security/security.xml',
+        #'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

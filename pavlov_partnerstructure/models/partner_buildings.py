@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 #Main Bandwidth Change Records Model
 class partner_buildings(models.Model):

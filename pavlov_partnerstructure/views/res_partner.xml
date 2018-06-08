@@ -1,0 +1,35 @@
+<odoo>
+
+  <!-- Add bandwidth change fields to existing view -->
+  <record model="ir.ui.view" id="partner_form">
+  <!--  <field name="name">partner.bandwidth_change</field> -->
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//field[@name='category_id']" position="after">
+              <field name="contacts_building" string="Building" attrs="{'invisible': [('is_company','=',True)]}" domain="[('account', '=', parent_id)]"/>
+              <field name="contacts_floor" string="Floor" attrs="{'invisible': [('is_company','=',True)]}" domain="[('account', '=', parent_id),('building', '=', contacts_building)]"/>
+              <field name="contacts_unit" string="Unit" attrs="{'invisible': [('is_company','=',True)]}" domain="[('account', '=', parent_id),('floor', '=', contacts_floor)]"/>
+              <field name="contacts_room" string="Room" attrs="{'invisible': [('is_company','=',True)]}"/>
+          </xpath>
+          <xpath expr="//page[@name='internal_notes']" position="after">
+              <page name="building_structure" string="Building Structure" attrs="{'invisible': [('is_company','=',False)]}">
+                <group>
+                  <field name="buildings" string="Buildings"/>
+                  <field name="floors" string="Floors"/>
+                  <field name="units" string="Units"/>
+                </group>
+              </page>
+          </xpath>
+      </data>
+    </field>
+  </record>
+
+<record model="ir.actions.act_window" id="contact_list_action">
+    <field name="name">Contacts</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+</odoo>
