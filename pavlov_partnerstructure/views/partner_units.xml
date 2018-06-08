@@ -7,7 +7,7 @@
       <field name="name">units</field>
       <field name="model">pavlov_partnerstructure.units</field>
       <field name="arch" type="xml">
-        <tree default_order='name desc'>
+        <tree default_order='name'>
           <field name="name"/>
           <field name="floor"/>
         </tree>

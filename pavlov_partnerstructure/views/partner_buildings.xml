@@ -7,7 +7,7 @@
       <field name="name">Buildings</field>
       <field name="model">pavlov_partnerstructure.buildings</field>
       <field name="arch" type="xml">
-        <tree default_order='name desc'>
+        <tree default_order='name'>
           <field name="name"/>
         </tree>
       </field>

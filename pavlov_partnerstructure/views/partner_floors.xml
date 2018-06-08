@@ -7,7 +7,7 @@
       <field name="name">Floors</field>
       <field name="model">pavlov_partnerstructure.floors</field>
       <field name="arch" type="xml">
-        <tree default_order='name desc'>
+        <tree default_order='name'>
           <field name="name"/>
           <field name="building"/>
         </tree>
@@ -27,7 +27,7 @@
             </div>
             <group>
               <field name="account" string="Account"/>
-              <field name="building"/>
+              <field name="building" string="Building"/>
             </group>
           </sheet>
         </form>
