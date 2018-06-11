@@ -19,9 +19,11 @@
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field eval="2" name="priority"/>
         <field name="arch" type="xml">
-            <field name="partner_id" position="after">
-              <field name="milestone" />
-            </field>
+          <data>
+            <xpath expr="//field[@name='user_id']" position="after">
+                  <field name="milestone" string="Milestone" context="{'default_project': project_id}"/>
+            </xpath>
+          </data>
         </field>
     </record>
 
