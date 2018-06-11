@@ -9,8 +9,8 @@
       <field name="arch" type="xml">
         <tree default_order='name'>
           <field name="name" string="Title" />
-          <field name="start_date" string="Start Date"/>
-          <field name="end_date" string="End Date"/>
+          <field name="target_date" string="Target Date"/>
+          <field name="actual_date" string="Actual Date"/>
           <field name="percent_complete" string="Percent Complete"/>
         </tree>
       </field>
@@ -28,8 +28,8 @@
               <h1><field name="name" /></h1>
             </div>
             <group>
-              <field name="start_date" string="Start Date"/>
-              <field name="end_date" string="End Date"/>
+              <field name="target_date" string="Target Date"/>
+              <field name="actual_date" string="Actual Date"/>
               <field name="percent_complete" string="Percent Complete"/>
               <field name="projects" string="Projects"/>
               <field name="project_tasks" string="Project Tasks"/>

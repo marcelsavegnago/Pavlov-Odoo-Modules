@@ -6,8 +6,8 @@ class ProjectMilestone(models.Model):
 
 #General
      name = fields.Char(string="Title", required=True)
-     start_date = fields.Date(string="Start Date", required=True)
-     end_date = fields.Date(string="End Date", required=True)
+     target_date = fields.Date(string="Target Date", required=True)
+     actual_date = fields.Date(string="Actual Date", required=True)
      percent_complete = fields.Integer(string="Percent Complete")
 
      projects = fields.Many2many('project.project', 'milestones', string="Projects")

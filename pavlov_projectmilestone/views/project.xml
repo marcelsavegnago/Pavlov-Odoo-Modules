@@ -6,9 +6,15 @@
          <field name="inherit_id" ref="project.edit_project"/>
          <field name="type">form</field>
          <field name="arch" type="xml">
-             <field name="user_id" position="after">
-                 <field name="milestones"/>
-             </field>
+           <data>
+             <xpath expr="//page[@name='settings']" position="after">
+               <page name="milestones" string="Milestones">
+                 <group>
+                   <field name="milestones" string="Milestones" context="{'default_project': active_id}"/>
+                 </group>
+               </page>
+             </xpath>
+           </data>
          </field>
      </record>
 
