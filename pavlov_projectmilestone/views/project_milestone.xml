@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Milestones List View-->
+    <record model="ir.ui.view" id="milestones_list_view">
+      <field name="name">Milestones List</field>
+      <field name="model">pavlov_projectmilestone.milestones</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name" string="Title" />
+          <field name="start_date" string="Start Date"/>
+          <field name="end_date" string="End Date"/>
+          <field name="percent_complete" string="Percent Complete"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Milestones Form View -->
+    <record model="ir.ui.view" id="milestones_form_view">
+      <field name="name">Milestones Form</field>
+      <field name="model">pavlov_projectmilestone.milestones</field>
+      <field name="arch" type="xml">
+        <form string="Partner Buildings Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="start_date" string="Start Date"/>
+              <field name="end_date" string="End Date"/>
+              <field name="percent_complete" string="Percent Complete"/>
+              <field name="projects" string="Projects"/>
+              <field name="project_tasks" string="Project Tasks"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Buildings Search View
+    <record model="ir.ui.view" id="buildings_search_view">
+      <field name="name">Buildings Search</field>
+      <field name="model">pavlov_partnerstructure.buildings</field>
+      <field name="arch" type="xml">
+        <search string="Partner Buildings Search">
+          <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
+        </search>
+      </field>
+    </record> -->
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="pavlov_projectmilestone.action_window">
+      <field name="name">Milestones</field>
+      <field name="res_model">pavlov_projectmilestone.milestones</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>
