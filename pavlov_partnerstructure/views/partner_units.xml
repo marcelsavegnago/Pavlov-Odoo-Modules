@@ -10,6 +10,7 @@
         <tree default_order='name'>
           <field name="name" string="Unit Name"/>
           <field name="floor" string="Floor"/>
+          <field name="building" string="Building"/>
           <field name="account" string="Account"/>
         </tree>
       </field>
@@ -29,6 +30,7 @@
             <group>
               <field name="account" string="Account"/>
               <field name="floor" domain="[('account', '=', account)]"/>
+              <field name="building" string="Building"/>
             </group>
           </sheet>
         </form>
