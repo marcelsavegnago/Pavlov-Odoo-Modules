@@ -28,10 +28,40 @@
     </field>
   </record>
 
-<record model="ir.actions.act_window" id="contact_list_action">
-    <field name="name">Contacts</field>
-    <field name="res_model">res.partner</field>
+  <record model="ir.actions.act_window" id="contact_list_action_buildings">
+    <field name="name">Building Structures</field>
+    <field name="res_model">pavlov_partnerstructure.buildings</field>
     <field name="view_mode">tree,form</field>
   </record>
+  <record model="ir.actions.act_window" id="contact_list_action_floors">
+    <field name="name">Building Structures</field>
+    <field name="res_model">pavlov_partnerstructure.floors</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+  <record model="ir.actions.act_window" id="contact_list_action_units">
+    <field name="name">Building Structures</field>
+    <field name="res_model">pavlov_partnerstructure.units</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+  <menuitem name="Building Structures"
+          id="menu_partner_id_category"
+          parent="contacts.res_partner_menu_config"/>
+
+  <menuitem name="Buildings"
+          action="contact_list_action_buildings"
+          id="menu_partner_id_category_menu2"
+          parent="menu_partner_id_category"/>
+
+  <menuitem name="Floors"
+          action="contact_list_action_floors"
+          id="menu_partner_id_category_menu3"
+          parent="menu_partner_id_category"/>
+
+  <menuitem name="Units"
+          action="contact_list_action_units"
+          id="menu_partner_id_category_menu4"
+          parent="menu_partner_id_category"/>
 
 </odoo>
