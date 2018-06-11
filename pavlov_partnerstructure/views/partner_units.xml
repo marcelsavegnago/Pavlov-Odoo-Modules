@@ -3,20 +3,21 @@
     <!-- explicit list view definition -->
 
     <!-- units List View-->
-    <record model="ir.ui.view" id="pavlov_partnerstructure.list">
-      <field name="name">units</field>
+    <record model="ir.ui.view" id="units_list_view">
+      <field name="name">Units List</field>
       <field name="model">pavlov_partnerstructure.units</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
-          <field name="name"/>
-          <field name="floor"/>
+          <field name="name" string="Unit Name"/>
+          <field name="floor" string="Floor"/>
+          <field name="account" string="Account"/>
         </tree>
       </field>
     </record>
 
     <!-- units Form View -->
-    <record model="ir.ui.view" id="pavlov_partnerstructure.form">
-      <field name="name">units</field>
+    <record model="ir.ui.view" id="units_form_view">
+      <field name="name">Units Form</field>
       <field name="model">pavlov_partnerstructure.units</field>
       <field name="arch" type="xml">
         <form string="Partner units Form">
@@ -27,10 +28,22 @@
             </div>
             <group>
               <field name="account" string="Account"/>
-              <field name="floor"/>
+              <field name="floor" domain="[('account', '=', account)]"/>
             </group>
           </sheet>
         </form>
+      </field>
+    </record>
+
+    <!-- Units Search View -->
+    <record model="ir.ui.view" id="units_search_view">
+      <field name="name">Units Search</field>
+      <field name="model">pavlov_partnerstructure.units</field>
+      <field name="arch" type="xml">
+        <search string="Partner Units Search">
+          <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
+          <filter name="group_floor" string="Floors" icon="terp-partner" context="{'group_by':'floor'}"/>
+        </search>
       </field>
     </record>
 
