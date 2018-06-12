@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Pavlov Project Milestones",
+    'name': "Project Milestones",
 
     'summary': """
-        Pavlov Media Project Milestones""",
+        Project Milestones""",
 
     'description': """
-        This module adds Milestones to the Project model for Pavlov Media
+        This module adds Milestones to the Project model.
     """,
 
     'author': "Pavlov Media",
@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail', 'project'],
+    'depends': ['base', 'project'],
 
     # always loaded
     'data': [

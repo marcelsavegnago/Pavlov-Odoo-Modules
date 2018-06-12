@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 #Main Bandwidth Change Records Model
 class ProjectMilestone(models.Model):
-     _name = 'pavlov_projectmilestone.milestones'
+     _name = 'project_milestones.milestones'
 
 #General
      name = fields.Char(string="Title", required=True)
@@ -12,3 +12,5 @@ class ProjectMilestone(models.Model):
 
      projects = fields.Many2one('project.project', string="Projects")
      project_tasks = fields.One2many('project.task', 'milestone', string="Project Tasks")
+     fold = fields.Boolean()
+     sequence = fields.Integer()
