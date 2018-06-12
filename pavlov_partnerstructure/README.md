@@ -26,6 +26,7 @@ Images
 Contributors
 
 * Patrick Wilson <pwilson@pavlovmedia.com>
+
 Do not contact contributors directly about support or help with technical issues.
 
 Maintainer
