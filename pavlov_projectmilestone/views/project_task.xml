@@ -21,7 +21,7 @@
         <field name="arch" type="xml">
           <data>
             <xpath expr="//field[@name='user_id']" position="after">
-                  <field name="milestone" string="Milestone" context="{'default_project': project_id}"/>
+                  <field name="milestone" string="Milestone" domain="[('projects', '=', project_id)]" context="{'default_project': project_id}"/>
             </xpath>
           </data>
         </field>
