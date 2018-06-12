@@ -1,4 +1,5 @@
 Partner Structure
+
 This module adds buildings, floors and units models to the partner module. It also adds a text field for room. The records can be created for companies, and are selectable on individuals.
 
 Usage
