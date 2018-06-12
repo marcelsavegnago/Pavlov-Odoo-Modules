@@ -6,9 +6,9 @@ class ProjectMilestone(models.Model):
 
 #General
      name = fields.Char(string="Title", required=True)
-     target_date = fields.Date(string="Target Date", required=True)
-     actual_date = fields.Date(string="Actual Date", required=True)
+     target_date = fields.Date(string="Target Date", required=False)
+     actual_date = fields.Date(string="Actual Date", required=False)
      percent_complete = fields.Integer(string="Percent Complete")
 
-     projects = fields.Many2many('project.project', 'milestones', string="Projects")
+     projects = fields.Many2one('project.project', string="Projects")
      project_tasks = fields.One2many('project.task', 'milestone', string="Project Tasks")

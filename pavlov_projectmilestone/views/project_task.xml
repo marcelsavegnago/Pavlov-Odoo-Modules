@@ -7,9 +7,9 @@
           <field name="user_id" position="after">
             <field name="milestone"/>
           </field>
-<!--           <filter name="milestone" position="after">
-           <filter string="Milestone" name="milestone" context="{'group_by':'milestone'}"/>
-          </filter>-->
+          <filter name="project" position="before">
+           <filter string="Milestones" name="milestones" context="{'group_by':'milestone'}"/>
+          </filter>
         </field>
     </record>
 
@@ -38,4 +38,18 @@
             </field>
         </field>
     </record>
+
+    <record id="view_task_milestone_kanban" model="ir.ui.view">
+        <field name="name">project.task.milestone.kanban</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+        <data>
+          <xpath expr="//div[@class='o_kanban_record_body']" position="after">
+              <span class="o_label">Milestone: </span>
+              <span class="o_value"><field name="milestone"/></span>
+          </xpath>
+         </data>
+        </field>
+     </record>
 </odoo>

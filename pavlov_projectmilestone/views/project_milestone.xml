@@ -8,6 +8,8 @@
       <field name="model">pavlov_projectmilestone.milestones</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
+          <field name="projects" string="Projects"/>
+          <field name="project_tasks" string="Project Tasks"/>
           <field name="name" string="Title" />
           <field name="target_date" string="Target Date"/>
           <field name="actual_date" string="Actual Date"/>

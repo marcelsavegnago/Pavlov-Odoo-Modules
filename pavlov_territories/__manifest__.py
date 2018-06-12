@@ -25,6 +25,7 @@
     'data': [
         'views/partner_salesterritories.xml',
         'views/partner_serviceterritories.xml',
+        'views/res_partner.xml',
         #'security/security.xml',
         #'security/ir.model.access.csv',
     ],

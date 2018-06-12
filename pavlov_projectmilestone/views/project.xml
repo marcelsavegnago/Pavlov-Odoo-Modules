@@ -18,7 +18,7 @@
          </field>
      </record>
 
-    <record id="view_project_project_filter" model="ir.ui.view">
+<!--    <record id="view_project_project_filter" model="ir.ui.view">
          <field name="name">project.project.milestone.select</field>
          <field name="model">project.project</field>
          <field name="inherit_id" ref="project.view_project_project_filter"/>
@@ -28,10 +28,10 @@
                   <field name="milestones"/>
                </field>
                <xpath expr="//search" position="inside">
-            <!--      <filter string="Milestones" context="{'group_by':'milestones'}"/> -->
+                 <filter string="Milestones" context="{'group_by':'milestones'}"/>
                </xpath>
          </field>
-     </record>
+     </record>-->
 
      <record id="view_project" model="ir.ui.view">
          <field name="name">project.project.milestone.tree</field>
@@ -45,5 +45,19 @@
               </field>
          </field>
      </record>
+
+     <record id="view_project_milestone_kanban" model="ir.ui.view">
+         <field name="name">project.project.milestone.kanban</field>
+         <field name="model">project.project</field>
+         <field name="inherit_id" ref="project.view_project_kanban"/>
+         <field name="arch" type="xml">
+         <data>
+           <xpath expr="//div[@class='o_primary']" position="after">
+               <span class="o_label">Milestones: </span>
+               <span class="o_value"><field name="milestones"/></span>
+           </xpath>
+          </data>
+         </field>
+      </record>
 
 </odoo>
