@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Sales Terrotories List View-->
+    <record model="ir.ui.view" id="sales_territories_list_view">
+      <field name="name">Sales Terrotories</field>
+      <field name="model">sales_territories.salesterritories</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name" string="Title" />
+          <field name="customers" string="Customers" />
+          <field name="salespersons" string="Sales People" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Sales Terrotories Form View -->
+    <record model="ir.ui.view" id="salesterritories_form_view">
+      <field name="name">Sales Territories</field>
+      <field name="model">sales_territories.salesterritories</field>
+      <field name="arch" type="xml">
+        <form string="Sales Territories Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="customers" string="Customers" />
+              <field name="salespersons" string="Salepersons" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="sales_territories.action_window">
+      <field name="name">Sales Territories</field>
+      <field name="res_model">sales_territories.salesterritories</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  </data>
+</odoo>

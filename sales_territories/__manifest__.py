@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Pavlov Territories",
+    'name': "Sales Territories",
 
     'summary': """
-        Pavlov Media Territories""",
+        Sales Territories""",
 
     'description': """
-        This module adds Sales and Service Territories to the Partner model for Pavlov Media
+        This module adds Sales Territories to the Partner model.
     """,
 
     'author': "Pavlov Media",
@@ -19,13 +19,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail'],
+    'depends': ['base', 'sale_management'],
 
     # always loaded
     'data': [
-        'views/partner_salesterritories.xml',
-        'views/partner_serviceterritories.xml',
+        'views/sales_territories.xml',
         'views/res_partner.xml',
+        'views/res_users.xml'
         #'security/security.xml',
         #'security/ir.model.access.csv',
     ],
