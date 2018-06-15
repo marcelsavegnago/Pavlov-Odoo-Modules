@@ -1,0 +1,21 @@
+<odoo>
+
+  <!-- Add bandwidth change fields to existing view -->
+  <record model="ir.ui.view" id="partner_form">
+  <!--  <field name="name">partner.bandwidth_change</field> -->
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//page[@name='internal_notes']" position="after">
+              <page name="agreement" string="Agreement">
+                <group colspan="2" col="2">
+                  <field name="name" string="Agreements" context="{'default_account': active_id}"/>
+                </group>
+              </page>
+          </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

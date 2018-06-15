@@ -1,0 +1,72 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Agreement Sections List View-->
+    <record model="ir.ui.view" id="partner_agreement_section_list_view">
+      <field name="name">Agreement Section List</field>
+      <field name="model">partner_agreement.section</field>
+      <field name="arch" type="xml">
+        <tree default_order='agreement, sequence'>
+          <field name="agreement" string="Agreement"/>
+          <field name="parent_id" string="Parent Section"/>
+          <field name="sequence" string="Sequence"/>
+          <field name="name" string="Section Name" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Agreement Sections Form View -->
+    <record model="ir.ui.view" id="partner_agreement_section_form_view">
+      <field name="name">Agreement Section Form</field>
+      <field name="model">partner_agreement.section</field>
+      <field name="arch" type="xml">
+        <form string="Agreements Section Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Section Name" />
+              <h1><field name="name" string="Section Name" /></h1>
+            </div>
+            <group colspan="2" col="4">
+              <field name="agreement" string="Agreement"/>
+              <field name="parent_id" string="Parent Section"/>
+            </group>
+            <group>
+              <field name='content' string="Content"/>
+            </group>
+            <notebook>
+              <page string="Clauses">
+                <field name="clauses" string="Clauses"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Agreement Section Search View -->
+    <record model="ir.ui.view" id="partner_agreement_section_search_view">
+      <field name="name">Agreement Section Search</field>
+      <field name="model">partner_agreement.section</field>
+      <field name="arch" type="xml">
+        <search string="Agreement Section Search">
+          <filter name="group_agreement" string="Agreements" icon="terp-partner" context="{'group_by':'agreement'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="partner_agreement_action_section">
+      <field name="name">Agreement Sections</field>
+      <field name="res_model">partner_agreement.section</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Sections"
+      id="partner_agreement_sections_menu_1"
+      parent="partner_agreement.menu_2"
+      action="partner_agreement_action_section"/>
+  </data>
+</odoo>

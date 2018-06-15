@@ -7,7 +7,7 @@
     <field name="arch" type="xml">
       <data>
           <xpath expr="//field[@name='tz']" position="after">
-              <field name="salesterritories" string="Sales Territories"/>
+              <field name="salesterritories" string="Sales Territories" widget="many2many_tags"/>
           </xpath>
       </data>
     </field>

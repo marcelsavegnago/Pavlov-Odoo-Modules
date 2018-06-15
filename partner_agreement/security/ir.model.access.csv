@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_agreement_allusers,agreement all users,model_partner_agreement_agreement,,1,1,1,1
+access_agreement_section_allusers,section all users,model_agreement_section,,1,1,1,1
+access_agreement_segment_allusers,segment all users,model_agreement_segment,,1,1,1,1
+access_agreement_serviceprofile_allusers,serviceprofile all users,model_agreement_serviceprofile,,1,1,1,1

@@ -27,8 +27,8 @@
               <h1><field name="name" /></h1>
             </div>
             <group>
+              <field name="salespersons" string="Salepersons" widget="many2many_tags" />
               <field name="customers" string="Customers" />
-              <field name="salespersons" string="Salepersons" />
             </group>
           </sheet>
         </form>
@@ -41,6 +41,11 @@
       <field name="res_model">sales_territories.salesterritories</field>
       <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem name="Sales Territories"
+          action="sales_territories.action_window"
+          id="menu_sales_territories_menu"
+          parent="sale.menu_sale_config"/>
 
   </data>
 </odoo>

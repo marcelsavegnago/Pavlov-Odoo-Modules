@@ -1,0 +1,62 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Agreement Service Profiles List View-->
+    <record model="ir.ui.view" id="partner_agreement_clause_list_view">
+      <field name="name">Agreement Service Profiles List</field>
+      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name" string="Profile Name"/>
+          <field name="account" string="Account"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Agreement Service Profiles Form View -->
+    <record model="ir.ui.view" id="partner_agreement_clause_form_view">
+      <field name="name">Agreement Service Profiles Form</field>
+      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="arch" type="xml">
+        <form string="Agreements Service Profiles Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Profile Name" />
+              <h1><field name="name" string="Profile Name"/></h1>
+            </div>
+            <group>
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+  <!-- Agreement Service Profiles Search View -->
+    <record model="ir.ui.view" id="partner_agreement_serviceprofile_search_view">
+      <field name="name">Agreement serviceprofile Search</field>
+      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="arch" type="xml">
+        <search string="Agreement serviceprofile Search">
+          <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
+          <filter name="group_agreement" string="Agreements" icon="terp-partner" context="{'group_by':'agreement'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="partner_agreement_action_serviceprofile">
+      <field name="name">Agreement Service Profiles</field>
+      <field name="res_model">partner_agreement.serviceprofile</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Service Profiles"
+      id="partner_agreement_serviceprofile_menu_1"
+      parent="partner_agreement.menu_2"
+      action="partner_agreement_action_serviceprofile"/>
+  </data>
+</odoo>

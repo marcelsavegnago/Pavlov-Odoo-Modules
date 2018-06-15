@@ -1,6 +1,4 @@
 <odoo>
   <!-- This holds the security groups -->
-        <!--<record id="group_manager" model="res.groups">
-            <field name="name">Bandwidth Changes / Manager</field>
-        </record>-->
+
 </odoo>

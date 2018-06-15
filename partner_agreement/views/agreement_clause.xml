@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Agreement clause List View-->
+    <record model="ir.ui.view" id="partner_agreement_clause_list_view">
+      <field name="name">Agreement Clause List</field>
+      <field name="model">partner_agreement.clause</field>
+      <field name="arch" type="xml">
+        <tree default_order='agreement, sequence'>
+          <field name="sequence" string="Sequence" widget="handle"/>
+          <field name="agreement" string="Agreement"/>
+          <field name="name" string="Clause Name"/>
+          <field name="section" string="Section"/>
+          <field name="parent_id" string="Parent Clause"/>
+          <field name="content" string="Content"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Agreement clause Form View -->
+    <record model="ir.ui.view" id="partner_agreement_clause_form_view">
+      <field name="name">Agreement clause Form</field>
+      <field name="model">partner_agreement.clause</field>
+      <field name="arch" type="xml">
+        <form string="Agreements Clause Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Clause Name" />
+              <h1><field name="name" string="Clause Name"/></h1>
+            </div>
+            <group>
+              <field name="agreement" string="Agreement"/>
+              <field name="section" string="Section" domain="[('agreement', '=', agreement)]"/>
+              <field name="parent_id" string="Parent Clause" domain="[('agreement', '=', agreement),('section', '=', section)]"/>
+              <field name="content" string="Content" widget="html"/>
+            </group>
+            <notebook>
+              <page string="Dynamic Placeholder Generator">
+                <group>
+
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Agreement clause Search View -->
+    <record model="ir.ui.view" id="agreement_clause_search_view">
+      <field name="name">Agreement Clause Search</field>
+      <field name="model">partner_agreement.clause</field>
+      <field name="arch" type="xml">
+        <search string="Agreement Clause Search">
+          <filter name="group_agreement" string="Agreements" icon="terp-partner" context="{'group_by':'agreement'}"/>
+          <filter name="group_section" string="Sections" icon="terp-partner" context="{'group_by':'section'}"/>
+          <filter name="group_parent_clause" string="Parent Clause" icon="terp-partner" context="{'group_by':'parent_id'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="partner_agreement_action_clause">
+        <field name="name">Agreement Clauses</field>
+        <field name="res_model">partner_agreement.clause</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+
+    <!-- Menu Items -->
+    <menuitem
+        name="Clauses"
+        id="partner_agreement_clauses_menu_1"
+        parent="partner_agreement.menu_2"
+        action="partner_agreement_action_clause"/>
+  </data>
+</odoo>

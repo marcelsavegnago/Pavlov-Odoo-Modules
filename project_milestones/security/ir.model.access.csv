@@ -1,5 +1,1 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_buildings_allusers,buildings all users,model_pavlov_partnerstructure_buildings,,1,1,1,1
-access_floors_allusers,floors all users,model_pavlov_partnerstructure_floors,,1,1,1,1
-access_units_allusers,units all users,model_pavlov_partnerstructure_units,,1,1,1,1
-access_rooms_allusers,rooms all users,model_pavlov_partnerstructure_rooms,,1,1,1,1
