@@ -22,7 +22,7 @@
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Status Name" />
-              <h1><field name="name" string="Status Name" /></h1>
+              <h1><field name="name" string="Status Name" help="Enter the name of this status."/></h1>
             </div>
             <group>
 

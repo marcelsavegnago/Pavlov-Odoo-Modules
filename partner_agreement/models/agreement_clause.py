@@ -3,15 +3,14 @@ from odoo import models, fields
 #Main Agreement clause Records Model
 class AgreementClause(models.Model):
      _name = 'partner_agreement.clause'
-     _order = 'sequence'
+     _order = 'clause_sequence'
 
 #General
      name = fields.Char(string="Title", required=True)
-     sequence = fields.Integer(string="Sequence")
-     agreement = fields.Many2one('partner_agreement.agreement', string="Agreement")
-     section = fields.Many2one('partner_agreement.section', string="Section")
+     clause_sequence = fields.Integer(string="Sequence")
+     agreement = fields.Many2one('partner_agreement.agreement', string="Agreement", ondelete="cascade")
+     section = fields.Many2one('partner_agreement.section', string="Section", ondelete="cascade")
      content = fields.Html(string="Clause Content")
-     parent_id = fields.Many2one('partner_agreement.clause', string="Parent Clause")
 
 #Used for the dynamic placeholder generator
      model_id = fields.Many2one('ir.model', string="Applies to")

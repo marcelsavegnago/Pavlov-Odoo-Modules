@@ -8,8 +8,8 @@
       <field name="model">partner_agreement.subtype</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
-          <field name="agreement_type" string="Agreement Type"/>
           <field name="name" string="Sub-Type Name"/>
+          <field name="agreement_type" string="Agreement Type"/>
         </tree>
       </field>
     </record>
@@ -22,11 +22,11 @@
         <form string="Agreements Sub Type Form">
           <sheet>
             <div class="oe_title">
-              <label for="name" class="oe_edit_only" string="Sub-Type Name" />
+              <label for="name" class="oe_edit_only" string="Sub-Type Name" help="Enter the name of this agreement sub-type." />
               <h1><field name="name" string="Sub-Type Name" /></h1>
             </div>
             <group>
-              <field name="agreement_type" string="Agreement Type"/>
+              <field name="agreement_type" string="Agreement Type" required="True" help="Select the agreement type this sub-type is related to."/>
             </group>
           </sheet>
         </form>

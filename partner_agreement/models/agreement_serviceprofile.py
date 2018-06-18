@@ -7,4 +7,4 @@ class AgreementServiceProfile(models.Model):
 #General
      name = fields.Char(string="Title", required=True)
      account = fields.Many2one('res.partner', string="Account")
-     agreement = fields.Many2one('partner_agreement.agreement', string="Agreement")
+     agreement = fields.Many2one('partner_agreement.agreement', string="Agreement", ondelete="cascade")

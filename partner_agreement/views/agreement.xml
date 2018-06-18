@@ -25,39 +25,38 @@
               <label for="name" class="oe_edit_only" string="Agreement Name" />
               <h1><field name="name" string="Agreement Name" /></h1>
             </div>
+            <header>
+              <button string="New Version" type="object" name="create_new_version"/>
+            </header>
             <group colspan="2" col="6">
-              <field name="agreementtemplate" string="Agreement Template" attrs="{'invisible': [('is_template','=',True)]}"/>
-              <field name="type" string="Agreement Type"/>
-              <field name="is_template" string="Is a Template?"/>
-              <field name="version" string="Version"/>
-              <field name="subtype" string="Sub-Type" domain="[('type', '=', type)]"/>
-              <field name="parent_agreement" string="Master Agreement"/>
-              <field name="revision" string="Revision"/>
-              <field name="account" string="Account"/>
-              <field name="account_manager" string="Account Manager"/>
-              <field name="description" string="Description"/>
-              <field name="status" string="Status" widget='selection'/>
-              <field name="start_date" string="Start Date"/>
-              <field name="end_date" string="End Date"/>
+              <field name="account" string="Account" required="True" help="Select the customer or vendor account this agreement is related to."/>
+              <field name="type" string="Agreement Type" widget="selection" help="Select the type of agreement."/>
+              <field name="status" string="Status" widget="selection" requried="True" help="Select the current status of the agreement."/>
+              <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" help="Link this agreement to a parent agreement. For example if this agreement is an amendment to another agreement. This list will only show other agreements related to the same account."/>
+              <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]" help="Select the sub-type of this agreement. Sub-Types are related to agreement types."/>
+              <field name="account_manager" string="Account Manager" help="Select the user who manages this agreement."/>
+              <field name="description" string="Description" help="Description of the agreement"/>
+              <field name="start_date" string="Start Date" requried="True" help="When the agreement starts."/>
+              <field name="end_date" string="End Date" requried="True" help="When the agreement ends."/>
+              <field name="is_template" string="Is a Template?" help="Make this agreement a template."/>
             </group>
               <notebook>
                   <page string="Sections">
-                    <group colspan="2" col="2" default_order='sequence'>
+                    <group colspan="2" col="2" default_order='section_sequence'>
                         <field name="sections">
-                        <tree default_order='sequence'>
-                            <field name="sequence" string="Sequence" widget="handle"/>
-                            <field name="parent_id" string="Parent Section"/>
+                        <tree default_order='section_sequence'>
+                            <field name="section_sequence" string="Sequence" widget="handle"/>
                             <field name="name" string="Section Name" />
                         </tree>
                         </field>
                     </group>
                   </page>
                   <page string="Clauses">
-                    <group colspan="2" col="2" default_order='parent_id, section, sequence'>
+                    <group colspan="2" col="2" default_order='section, clause_sequence'>
                         <field name="clauses">
-                        <tree default_order='sequence'>
-                            <field name="sequence" string="Sequence" widget="handle"/>
-                            <field name="parent_id" string="Parent Clause"/>
+                        <tree default_order='section, clause_sequence'>
+                            <field name="clause_sequence" string="Sequence" widget="handle"/>
+                            <field name="section" string="Section"/>
                             <field name="name" string="Clause Name" />
                         </tree>
                         </field>
@@ -69,6 +68,7 @@
                     <field name="serviceprofiles"/>
                   </page>
               </notebook>
+                      Version: <field name="version" string="Version" readonly="True"/>.<field name="revision" string="Revision" readonly="True"/>
           </sheet>
         </form>
       </field>

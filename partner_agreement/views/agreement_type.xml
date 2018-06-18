@@ -23,10 +23,10 @@
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Type" />
-              <h1><field name="name" string="Type Name"/></h1>
+              <h1><field name="name" string="Type Name" help="Enter the name of the agreement type."/></h1>
             </div>
             <group>
-              <field name="agreement_subtypes" string="Sub-Types" />
+              <field name="agreement_subtypes" string="Sub-Types" help="List of agreement sub-types."/>
             </group>
           </sheet>
         </form>

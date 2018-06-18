@@ -3,7 +3,7 @@
     <!-- explicit list view definition -->
 
     <!-- Agreement Service Profiles List View-->
-    <record model="ir.ui.view" id="partner_agreement_clause_list_view">
+    <record model="ir.ui.view" id="partner_agreement_serviceprofile_list_view">
       <field name="name">Agreement Service Profiles List</field>
       <field name="model">partner_agreement.serviceprofile</field>
       <field name="arch" type="xml">
@@ -15,7 +15,7 @@
     </record>
 
     <!-- Agreement Service Profiles Form View -->
-    <record model="ir.ui.view" id="partner_agreement_clause_form_view">
+    <record model="ir.ui.view" id="partner_agreement_serviceprofile_form_view">
       <field name="name">Agreement Service Profiles Form</field>
       <field name="model">partner_agreement.serviceprofile</field>
       <field name="arch" type="xml">
@@ -23,7 +23,7 @@
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Profile Name" />
-              <h1><field name="name" string="Profile Name"/></h1>
+              <h1><field name="name" string="Profile Name" help="Enter the name of the service profile."/></h1>
             </div>
             <group>
 

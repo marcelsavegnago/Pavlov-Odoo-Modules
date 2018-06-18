@@ -2,23 +2,22 @@
   <data>
     <!-- explicit list view definition -->
 
-    <!-- Agreement clause List View-->
+    <!-- Agreement Clause List View-->
     <record model="ir.ui.view" id="partner_agreement_clause_list_view">
       <field name="name">Agreement Clause List</field>
       <field name="model">partner_agreement.clause</field>
       <field name="arch" type="xml">
-        <tree default_order='agreement, sequence'>
-          <field name="sequence" string="Sequence" widget="handle"/>
+        <tree default_order='agreement, clause_sequence'>
+          <field name="clause_sequence" string="Sequence" widget="handle"/>
           <field name="agreement" string="Agreement"/>
           <field name="name" string="Clause Name"/>
           <field name="section" string="Section"/>
-          <field name="parent_id" string="Parent Clause"/>
-          <field name="content" string="Content"/>
+          <field name="content" string="Content" widget="html"/>
         </tree>
       </field>
     </record>
 
-    <!-- Agreement clause Form View -->
+    <!-- Agreement Clause Form View -->
     <record model="ir.ui.view" id="partner_agreement_clause_form_view">
       <field name="name">Agreement clause Form</field>
       <field name="model">partner_agreement.clause</field>
@@ -30,9 +29,10 @@
               <h1><field name="name" string="Clause Name"/></h1>
             </div>
             <group>
+              <field name="clause_sequence" string="Sequence"/>
               <field name="agreement" string="Agreement"/>
+          <!--     <field name='section_parent_id' string="Parent Section" readonly="True"/> -->
               <field name="section" string="Section" domain="[('agreement', '=', agreement)]"/>
-              <field name="parent_id" string="Parent Clause" domain="[('agreement', '=', agreement),('section', '=', section)]"/>
               <field name="content" string="Content" widget="html"/>
             </group>
             <notebook>
@@ -47,7 +47,7 @@
       </field>
     </record>
 
-    <!-- Agreement clause Search View -->
+    <!-- Agreement Clause Search View -->
     <record model="ir.ui.view" id="agreement_clause_search_view">
       <field name="name">Agreement Clause Search</field>
       <field name="model">partner_agreement.clause</field>
@@ -55,8 +55,20 @@
         <search string="Agreement Clause Search">
           <filter name="group_agreement" string="Agreements" icon="terp-partner" context="{'group_by':'agreement'}"/>
           <filter name="group_section" string="Sections" icon="terp-partner" context="{'group_by':'section'}"/>
-          <filter name="group_parent_clause" string="Parent Clause" icon="terp-partner" context="{'group_by':'parent_id'}"/>
         </search>
+      </field>
+    </record>
+
+    <!-- Agreement Clause Pivot View -->
+    <record model="ir.ui.view" id="agreement_clause_pivot_view">
+      <field name="name">Agreement Clause Pivot</field>
+      <field name="model">partner_agreement.clause</field>
+      <field name="arch" type="xml">
+        <pivot string="Agreement Clause Pivot">
+          <field name="agreement" type="row" />
+          <field name="section" type="row" />
+          <field name="name" type="row" />
+        </pivot>
       </field>
     </record>
 
@@ -64,7 +76,7 @@
     <record model="ir.actions.act_window" id="partner_agreement_action_clause">
         <field name="name">Agreement Clauses</field>
         <field name="res_model">partner_agreement.clause</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,pivot,form</field>
       </record>
 
     <!-- Menu Items -->

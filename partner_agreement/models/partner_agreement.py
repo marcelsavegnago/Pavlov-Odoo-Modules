@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 #Main Agreement Records Model
 class Agreement(models.Model):
@@ -7,7 +7,6 @@ class Agreement(models.Model):
 #General
      name = fields.Char(string="Title", required=True)
      account = fields.Many2one('res.partner', string="Account")
-     agreementtemplate = fields.Many2one('partner_agreement.agreement', string="Agreement Template")
      is_template = fields.Boolean(string="Is a Template?")
      version = fields.Integer(string="Version")
      revision = fields.Integer(string="Revision")
