@@ -11,6 +11,7 @@ class AgreementClause(models.Model):
      agreement = fields.Many2one('partner_agreement.agreement', string="Agreement", ondelete="cascade")
      section = fields.Many2one('partner_agreement.section', string="Section", ondelete="cascade")
      content = fields.Html(string="Clause Content")
+     active = fields.Boolean(string="Active", default=True, help="If unchecked, it will allow you to hide the agreement without removing it.")
 
 #Used for the dynamic placeholder generator
      model_id = fields.Many2one('ir.model', string="Applies to")

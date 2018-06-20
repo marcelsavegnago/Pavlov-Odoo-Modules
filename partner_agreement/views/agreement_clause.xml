@@ -13,6 +13,7 @@
           <field name="name" string="Clause Name"/>
           <field name="section" string="Section"/>
           <field name="content" string="Content" widget="html"/>
+          <field name="active" invisible="1"/>
         </tree>
       </field>
     </record>
@@ -29,7 +30,6 @@
               <h1><field name="name" string="Clause Name"/></h1>
             </div>
             <group>
-              <field name="clause_sequence" string="Sequence"/>
               <field name="agreement" string="Agreement"/>
           <!--     <field name='section_parent_id' string="Parent Section" readonly="True"/> -->
               <field name="section" string="Section" domain="[('agreement', '=', agreement)]"/>
@@ -38,10 +38,10 @@
             <notebook>
               <page string="Dynamic Placeholder Generator">
                 <group>
-
                 </group>
               </page>
             </notebook>
+              Sequence #<field name="clause_sequence"/>
           </sheet>
         </form>
       </field>
@@ -84,6 +84,7 @@
         name="Clauses"
         id="partner_agreement_clauses_menu_1"
         parent="partner_agreement.menu_2"
+        sequence="32"
         action="partner_agreement_action_clause"/>
   </data>
 </odoo>

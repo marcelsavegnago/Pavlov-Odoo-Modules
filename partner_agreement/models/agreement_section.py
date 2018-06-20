@@ -11,3 +11,4 @@ class AgreementSection(models.Model):
      agreement = fields.Many2one('partner_agreement.agreement', string="Agreement", ondelete="cascade")
      clauses = fields.One2many('partner_agreement.clause', 'section', string="Clauses")
      content = fields.Html(string="Section Content")
+     active = fields.Boolean(string="Active", default=True, help="If unchecked, it will allow you to hide the agreement without removing it.")

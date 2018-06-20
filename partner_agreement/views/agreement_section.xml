@@ -11,6 +11,7 @@
           <field name="agreement" string="Agreement"/>
           <field name="section_sequence" string="Sequence"/>
           <field name="name" string="Section Name" />
+          <field name="active" invisible="1"/>
         </tree>
       </field>
     </record>
@@ -26,9 +27,8 @@
               <label for="name" class="oe_edit_only" string="Section Name" />
               <h1><field name="name" string="Section Name" /></h1>
             </div>
-            <group colspan="2" col="4">
+            <group>
               <field name="agreement" string="Agreement"/>
-              <field name="section_sequence" string="Sequence"/>
             </group>
             <group>
               <field name='content' string="Content"/>
@@ -67,6 +67,7 @@
       name="Sections"
       id="partner_agreement_sections_menu_1"
       parent="partner_agreement.menu_2"
+      sequence="31"
       action="partner_agreement_action_section"/>
 
   </data>

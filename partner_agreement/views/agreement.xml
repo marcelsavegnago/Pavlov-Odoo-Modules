@@ -2,7 +2,7 @@
   <data>
     <!-- explicit list view definition -->
 
-    <!-- Buildings List View-->
+    <!-- Agreement List View-->
     <record model="ir.ui.view" id="partner_agreement_list_view">
       <field name="name">Agreement List</field>
       <field name="model">partner_agreement.agreement</field>
@@ -10,77 +10,158 @@
         <tree default_order='name'>
           <field name="name" string="Agreement Name"/>
           <field name="account" string="Account"/>
+          <field name="type" string="Agreement Type" />
+          <field name="subtype" string="Sub-Type" />
+          <field name="active" invisible="1"/>
         </tree>
       </field>
     </record>
 
-    <!-- Buildings Form View -->
+    <!-- Agreement Form View -->
     <record model="ir.ui.view" id="partner_agreement_form_view">
       <field name="name">Agreement Form</field>
       <field name="model">partner_agreement.agreement</field>
       <field name="arch" type="xml">
         <form string="Agreements Form">
+          <header>
+            <button string="New Version" type="object" name="create_new_version" class="oe_highlight" attrs="{'invisible': [('state', '=', 'active')]}" />
+            <button string="New Agreement" type="object" name="create_new_agreement" class="oe_highlight" attrs="{'invisible': [('is_template', '=', False)]}" />
+            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
+          </header>
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Agreement Name" />
-              <h1><field name="name" string="Agreement Name" /></h1>
+              <h1>
+                <field name="name" string="Agreement Name" />
+              </h1>
             </div>
-            <header>
-              <button string="New Version" type="object" name="create_new_version"/>
-            </header>
             <group colspan="2" col="6">
-              <field name="account" string="Account" required="True" help="Select the customer or vendor account this agreement is related to."/>
-              <field name="type" string="Agreement Type" widget="selection" help="Select the type of agreement."/>
-              <field name="status" string="Status" widget="selection" requried="True" help="Select the current status of the agreement."/>
-              <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" help="Link this agreement to a parent agreement. For example if this agreement is an amendment to another agreement. This list will only show other agreements related to the same account."/>
-              <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]" help="Select the sub-type of this agreement. Sub-Types are related to agreement types."/>
-              <field name="account_manager" string="Account Manager" help="Select the user who manages this agreement."/>
-              <field name="description" string="Description" help="Description of the agreement"/>
-              <field name="start_date" string="Start Date" requried="True" help="When the agreement starts."/>
-              <field name="end_date" string="End Date" requried="True" help="When the agreement ends."/>
-              <field name="is_template" string="Is a Template?" help="Make this agreement a template."/>
+              <field name="account" string="Account" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="account_manager" string="Account Manager" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="stage" string="Stage" widget="selection" requried="True" />
+              <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" />
+              <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="type" string="Agreement Type" widget="selection" />
+              <field name="description" string="Description" />
+              <field name="end_date" string="End Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]" />
+              <field name="create_date" readonly="True" />
+              <field name="create_uid" readonly="True" />
+              <field name="is_template" string="Is a Template?" />
+              <field name="active" invisible="1"/>
             </group>
               <notebook>
-                  <page string="Sections">
+                  <page string="Contract Document">
                     <group colspan="2" col="2" default_order='section_sequence'>
-                        <field name="sections">
+                        <field name="sections" context="{'default_agreement': active_id}">
                         <tree default_order='section_sequence'>
                             <field name="section_sequence" string="Sequence" widget="handle"/>
                             <field name="name" string="Section Name" />
                         </tree>
                         </field>
                     </group>
-                  </page>
-                  <page string="Clauses">
                     <group colspan="2" col="2" default_order='section, clause_sequence'>
-                        <field name="clauses">
+                        <field name="clauses" context="{'default_agreement': active_id}">
                         <tree default_order='section, clause_sequence'>
                             <field name="clause_sequence" string="Sequence" widget="handle"/>
                             <field name="section" string="Section"/>
                             <field name="name" string="Clause Name" />
                         </tree>
                         </field>
-                    </group>
+                      </group>
                   </page>
                   <page string="Products">
                   </page>
                   <page colspan="2" col="4" string="Service Profiles">
                     <field name="serviceprofiles"/>
                   </page>
+                  <page colspan="2" col="4" string="OLD Versions">
+                    <field name="previous_version_agreements" string="Previouse Versions" context="{'active':False}">
+                      <tree default_order='version desc'>
+                        <field name="name"/>
+                        <field name="version"/>
+                        <field name="revision"/>
+                      </tree>
+                    </field>
+                  </page>
               </notebook>
+              <footer>
                       Version: <field name="version" string="Version" readonly="True"/>.<field name="revision" string="Revision" readonly="True"/>
+              </footer>
           </sheet>
         </form>
       </field>
     </record>
 
-    <!-- Buildings Search View -->
+    <!-- Agreement Kanban View -->
+    <record id="view_project_agreement_kanban" model="ir.ui.view">
+        <field name="name">Agreement Kanban</field>
+        <field name="model">partner_agreement.agreement</field>
+        <field name="arch" type="xml">
+          <kanban default_group_by="stage">
+               <field name="color"/>
+               <field name="account_manager"/>
+               <templates>
+               <t t-name="kanban-box">
+                   <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
+                       <div class="oe_kanban_content">
+                           <div class="o_kanban_record_top">
+                               <div class="o_kanban_record_headings">
+                                   <strong class="o_kanban_record_title"><field name="name"/></strong><br/>
+                                   <div class="o_kanban_record_subtitle text-muted">
+                                       <field name="account" invisible="context.get('default_account', False)"/>
+                                       <t t-if="record.start_date.raw_value and record.start_date.raw_value lt (new Date())" t-set="red">oe_kanban_text_red</t>
+                                       <div t-attf-class="#{red || ''}"><i><field name="start_date"/></i></div>
+                                   </div>
+                               </div>
+
+                               <div class="o_dropdown_kanban dropdown" groups="base.group_user">
+                                   <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                                       <span class="fa fa-ellipsis-v" aria-hidden="true"/>
+                                   </a>
+                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                       <li t-if="widget.editable"><a type="edit">Edit Task</a></li>
+                                       <li class="divider"/>
+                                       <li class="dropdown-header">Record's Colour</li>
+                                       <li>
+                                           <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                       </li>
+                                   </ul>
+                               </div>
+                           </div>
+
+                           <div class="o_kanban_record_body">
+                             <field name="type"/> - <field name="subtype"/>
+                           </div>
+
+                           <div class="o_kanban_record_bottom">
+                               <div class="oe_kanban_bottom_left">
+                                  V: <field name="version"/>
+                               </div>
+                               <div class="oe_kanban_bottom_right">
+                                   <img t-att-src="kanban_image('res.users', 'image_small', record.account_manager.raw_value)" t-att-title="record.account_manager.value" width="36" height="36" class="oe_kanban_avatar"/>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="oe_clear"/>
+                   </div>
+               </t>
+               </templates>
+           </kanban>
+        </field>
+     </record>
+
+    <!-- Agreement Search View -->
     <record model="ir.ui.view" id="partner_agreement_search_view">
       <field name="name">Agreement Search</field>
       <field name="model">partner_agreement.agreement</field>
       <field name="arch" type="xml">
         <search string="Agreement Search">
+          <filter name="filter_non_template" string="Non-Templates" domain="[('active','=',True),('is_template', '=', False)]"/>
+          <filter name="filter_inactive" string="Archived" domain="[('active','=',False)]"/>
+          <filter name="filter_templates" string="Templates" domain="[('active','=',True),('is_template', '=', True)]"/>
           <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
+          <filter name="group_status" string="Status" icon="terp-partner" context="{'group_by':'state'}"/>
         </search>
       </field>
     </record>
@@ -89,9 +170,16 @@
     <record model="ir.actions.act_window" id="partner_agreement_agreement">
       <field name="name">Agreements</field>
       <field name="res_model">partner_agreement.agreement</field>
-      <field name="view_mode">tree,form</field>
+      <field name="context">{"search_default_filter_non_template":1}</field>
+      <field name="view_mode">kanban,tree,form</field>
     </record>
 
+    <record model="ir.actions.act_window" id="partner_agreement_agreement_templates">
+      <field name="name">Agreements</field>
+      <field name="res_model">partner_agreement.agreement</field>
+      <field name="context">{"search_default_filter_templates":1}</field>
+      <field name="view_mode">tree,kanban,form</field>
+    </record>
     <!-- ########################### MENU ITEMS ############################### -->
         <!-- Top menu item -->
         <menuitem name="Agreements" id="partner_agreement.menu_root" web_icon="partner_agreement,static/description/icon.png" sequence="51"/>
@@ -101,15 +189,23 @@
           name="Agreements"
           id="partner_agreement.menu_1"
           parent="partner_agreement.menu_root"
+          sequence="10"
           action="partner_agreement_agreement"/>
+        <menuitem
+          name="Templates"
+          id="partner_agreement.menu_4"
+          parent="partner_agreement.menu_root"
+          sequence="20"
+          action="partner_agreement_agreement_templates"/>
         <menuitem
           name="Agreement Parts"
           id="partner_agreement.menu_2"
+          sequence="30"
           parent="partner_agreement.menu_root"/>
         <menuitem
           name="Configuration"
           id="partner_agreement.menu_3"
+          sequence="40"
           parent="partner_agreement.menu_root"/>
-
   </data>
 </odoo>

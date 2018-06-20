@@ -10,6 +10,7 @@
         <tree default_order='name'>
           <field name="name" string="Profile Name"/>
           <field name="account" string="Account"/>
+          <field name="active" invisible="1"/>
         </tree>
       </field>
     </record>
@@ -57,6 +58,7 @@
       name="Service Profiles"
       id="partner_agreement_serviceprofile_menu_1"
       parent="partner_agreement.menu_2"
+      sequence="33"
       action="partner_agreement_action_serviceprofile"/>
   </data>
 </odoo>
