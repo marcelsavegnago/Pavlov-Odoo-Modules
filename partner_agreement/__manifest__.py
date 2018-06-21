@@ -32,8 +32,8 @@
         'views/agreement_type.xml',
         'views/agreement_subtype.xml',
         'views/res_partner.xml',
-        #'security/security.xml',
-        #'security/ir.model.access.csv',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [
