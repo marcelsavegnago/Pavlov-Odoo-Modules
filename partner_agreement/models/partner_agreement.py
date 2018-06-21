@@ -19,12 +19,11 @@ class Agreement(models.Model):
      type = fields.Many2one('partner_agreement.type', string="Agreement Type", help="Select the type of agreement.")
      subtype = fields.Many2one('partner_agreement.subtype', string="Agreement Sub-type", help="Select the sub-type of this agreement. Sub-Types are related to agreement types.")
 
-     account_manager = fields.Many2one('res.users', string="Account Manager", help="Select the user who manages this agreement.")
+     assigned_to = fields.Many2one('res.users', string="Account Manager", help="Select the user who manages this agreement.")
      parent_agreement = fields.Many2one('partner_agreement.agreement', string="Parent Agreement", help="Link this agreement to a parent agreement. For example if this agreement is an amendment to another agreement. This list will only show other agreements related to the same account.")
 
      sections = fields.One2many('partner_agreement.section', 'agreement', string="Sections", copy=True)
      clauses = fields.One2many('partner_agreement.clause', 'agreement', string="Clauses", copy=True)
-     serviceprofiles = fields.One2many('partner_agreement.serviceprofile', 'agreement', string="Service Profiles", copy=True)
      previous_version_agreements = fields.One2many('partner_agreement.agreement', 'parent_agreement', string="Child Agreements", copy=False, domain=[('active', '=', False)])
 
      state = fields.Selection([('draft', 'Draft'),('progress', 'In progress'),('active', 'Active')], default='draft', track_visibility='always')

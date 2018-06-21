@@ -37,7 +37,7 @@
             </div>
             <group colspan="2" col="6">
               <field name="account" string="Account" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="account_manager" string="Account Manager" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="assigned_to" string="Assigned To" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
               <field name="stage" string="Stage" widget="selection" requried="True" />
               <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" />
               <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
@@ -76,9 +76,6 @@
                   </page>
                   <page string="Products">
                   </page>
-                  <page colspan="2" col="4" string="Service Profiles">
-                    <field name="serviceprofiles"/>
-                  </page>
                   <page colspan="2" col="4" string="OLD Versions">
                     <field name="previous_version_agreements" string="Previouse Versions" context="{'active':False}">
                       <tree default_order='version desc'>
@@ -104,7 +101,7 @@
         <field name="arch" type="xml">
           <kanban default_group_by="stage">
                <field name="color"/>
-               <field name="account_manager"/>
+               <field name="assigned_to"/>
                <templates>
                <t t-name="kanban-box">
                    <div t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_card oe_kanban_global_click">
@@ -143,7 +140,7 @@
                                   V: <field name="version"/>
                                </div>
                                <div class="oe_kanban_bottom_right">
-                                   <img t-att-src="kanban_image('res.users', 'image_small', record.account_manager.raw_value)" t-att-title="record.account_manager.value" width="36" height="36" class="oe_kanban_avatar"/>
+                                   <img t-att-src="kanban_image('res.users', 'image_small', record.assigned_to.raw_value)" t-att-title="record.assigned_to.value" width="36" height="36" class="oe_kanban_avatar"/>
                                </div>
                            </div>
                        </div>

@@ -1,0 +1,19 @@
+<odoo>
+
+  <record model="ir.ui.view" id="partner_agreement_form_view">
+    <field name="model">partner_agreement.agreement</field>
+    <field name="inherit_id" ref="partner_agreement_form_view"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//page[@name='products']" position="after">
+              <page name="serviceprofiles" string="Service Profiles">
+                <group colspan="2" col="2">
+                  <field name="name" string="Service Profiles" context="{'default_account': active_id}"/>
+                </group>
+              </page>
+          </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

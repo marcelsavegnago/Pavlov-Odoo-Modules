@@ -6,9 +6,9 @@
     <field name="arch" type="xml">
       <data>
           <xpath expr="//page[@name='internal_notes']" position="after">
-              <page name="agreement" string="Agreements">
+              <page name="serviceprofiles" string="Service Profiles">
                 <group colspan="2" col="2">
-                  <field name="name" string="Agreements" context="{'default_account': active_id}"/>
+                  <field name="name" string="Service Profiles" context="{'default_account': active_id}"/>
                 </group>
               </page>
           </xpath>

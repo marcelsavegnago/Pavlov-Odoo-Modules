@@ -2,7 +2,7 @@ from odoo import models, fields
 
 #Main Agreement Service Profile Records Model
 class AgreementServiceProfile(models.Model):
-     _name = 'partner_agreement.serviceprofile'
+     _name = 'partner_agreement_serviceprofile.serviceprofile'
 
 #General
      name = fields.Char(string="Title", required=True)
