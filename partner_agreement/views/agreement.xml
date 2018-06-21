@@ -52,6 +52,10 @@
             </group>
               <notebook>
                   <page string="Contract Document">
+                    <div> <!-- class="oe_right oe_button_box" -->
+                      <button name="%(partner_agreement_contract_document_preview)d" string="Preview" type="action" class="oe_highlight"/>
+                      <button name="%(partner_agreement_contract_document)d" string="Print" type="action" class="oe_highlight"/>
+                    </div>
                     <group colspan="2" col="2" default_order='section_sequence'>
                         <field name="sections" context="{'default_agreement': active_id}">
                         <tree default_order='section_sequence'>

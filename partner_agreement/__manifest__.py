@@ -23,6 +23,7 @@
 
     # always loaded
     'data': [
+        'views/reports.xml',
         'views/agreement.xml',
         'views/agreement_clause.xml',
         'views/agreement_section.xml',
@@ -31,7 +32,6 @@
         'views/agreement_type.xml',
         'views/agreement_subtype.xml',
         'views/res_partner.xml',
-        'views/reports.xml',
         #'security/security.xml',
         #'security/ir.model.access.csv',
     ],
