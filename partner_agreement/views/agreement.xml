@@ -51,7 +51,7 @@
               <field name="active" invisible="1"/>
             </group>
               <notebook>
-                  <page string="Contract Document">
+                  <page name="contract_document" string="Contract Document">
                     <div> <!-- class="oe_right oe_button_box" -->
                       <button name="%(partner_agreement_contract_document_preview)d" string="Preview" type="action" class="oe_highlight"/>
                       <button name="%(partner_agreement_contract_document)d" string="Print" type="action" class="oe_highlight"/>
@@ -74,9 +74,13 @@
                         </field>
                       </group>
                   </page>
-                  <page string="Products">
+                  <page name="products" string="Products">
+                    <group>
+                      <field name="sale_order" string="Sales Order" domain="[('partner_id', '=', account)]"/>
+                    </group>
+                    <field name="products" string="Products" />
                   </page>
-                  <page colspan="2" col="4" string="OLD Versions">
+                  <page colspan="2" col="4" name="old_versions" string="OLD Versions">
                     <field name="previous_version_agreements" string="Previouse Versions" context="{'active':False}">
                       <tree default_order='version desc'>
                         <field name="name"/>
@@ -121,7 +125,7 @@
                                        <span class="fa fa-ellipsis-v" aria-hidden="true"/>
                                    </a>
                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                       <li t-if="widget.editable"><a type="edit">Edit Task</a></li>
+                                       <li t-if="widget.editable"><a type="edit">Edit</a></li>
                                        <li class="divider"/>
                                        <li class="dropdown-header">Record's Colour</li>
                                        <li>

@@ -3,9 +3,9 @@
     <!-- explicit list view definition -->
 
     <!-- Agreement Service Profiles List View-->
-    <record model="ir.ui.view" id="partner_agreement_serviceprofile_list_view">
+    <record model="ir.ui.view" id="agreement_serviceprofile_list_view">
       <field name="name">Agreement Service Profiles List</field>
-      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="model">agreement_serviceprofile.serviceprofile</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
           <field name="name" string="Profile Name"/>
@@ -16,9 +16,9 @@
     </record>
 
     <!-- Agreement Service Profiles Form View -->
-    <record model="ir.ui.view" id="partner_agreement_serviceprofile_form_view">
+    <record model="ir.ui.view" id="agreement_serviceprofile_form_view">
       <field name="name">Agreement Service Profiles Form</field>
-      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="model">agreement_serviceprofile.serviceprofile</field>
       <field name="arch" type="xml">
         <form string="Agreements Service Profiles Form">
           <sheet>
@@ -26,18 +26,22 @@
               <label for="name" class="oe_edit_only" string="Profile Name" />
               <h1><field name="name" string="Profile Name" help="Enter the name of the service profile."/></h1>
             </div>
-            <group>
-
-            </group>
+            <notebook>
+              <page name="products" string="Products">
+                <group>
+                  <field name="products" string="Products" />
+                </group>
+              </page>
+              </notebook>
           </sheet>
         </form>
       </field>
     </record>
 
   <!-- Agreement Service Profiles Search View -->
-    <record model="ir.ui.view" id="partner_agreement_serviceprofile_search_view">
+    <record model="ir.ui.view" id="agreement_serviceprofile_search_view">
       <field name="name">Agreement serviceprofile Search</field>
-      <field name="model">partner_agreement.serviceprofile</field>
+      <field name="model">agreement_serviceprofile.serviceprofile</field>
       <field name="arch" type="xml">
         <search string="Agreement serviceprofile Search">
           <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
@@ -47,18 +51,18 @@
     </record>
 
     <!-- Actions opening views on models -->
-    <record model="ir.actions.act_window" id="partner_agreement_action_serviceprofile">
+    <record model="ir.actions.act_window" id="agreement_action_serviceprofile">
       <field name="name">Agreement Service Profiles</field>
-      <field name="res_model">partner_agreement.serviceprofile</field>
+      <field name="res_model">agreement_serviceprofile.serviceprofile</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu Items -->
     <menuitem
       name="Service Profiles"
-      id="partner_agreement_serviceprofile_menu_1"
+      id="agreement_serviceprofile_menu_1"
       parent="partner_agreement.menu_2"
       sequence="33"
-      action="partner_agreement_action_serviceprofile"/>
+      action="agreement_action_serviceprofile"/>
   </data>
 </odoo>

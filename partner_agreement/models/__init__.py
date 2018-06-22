@@ -5,3 +5,4 @@ from . import agreement_stage
 from . import agreement_type
 from . import agreement_subtype
 from . import res_partner
+from . import product_template

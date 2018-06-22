@@ -1,0 +1,16 @@
+<odoo>
+
+  <record model="ir.ui.view" id="helpdesk_ticket_form">
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//field[@name='priority']" position="before">
+                  <field name="entitlement" string="Entitlement" domain="[('account', '=', partner_id)]"/>
+                  <field name="equipments" string="Equipment" widget="many2many_tags" domain="[('entitlement', '=', entitlement)]"/>
+          </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

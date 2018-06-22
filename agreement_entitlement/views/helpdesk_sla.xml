@@ -1,0 +1,21 @@
+<odoo>
+
+  <record model="ir.ui.view" id="helpdesk_sla_form">
+    <field name="model">helpdesk.sla</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_sla_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='description']" position="after">
+          <notebook>
+            <page name="entitlements" string="Entitlements">
+              <group colspan="2" col="2">
+                <field name="entitlements" string="Entitlements" context="{'default_account': active_id}"/>
+              </group>
+            </page>
+          </notebook>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

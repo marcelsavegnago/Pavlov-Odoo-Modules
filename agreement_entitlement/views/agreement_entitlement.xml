@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- Agreement Entitlements List View-->
+    <record model="ir.ui.view" id="agreement_entitlement_list_view">
+      <field name="name">Agreement Entitlements List</field>
+      <field name="model">agreement_entitlement.entitlement</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="account" string="Account"/>
+          <field name="name" string="Entitlement Name"/>
+          <field name="helpdesk_sla" string="SLA"/>
+          <field name="active" invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Agreement Entitlements Form View -->
+    <record model="ir.ui.view" id="agreement_entitlement_form_view">
+      <field name="name">Agreement Entitlements Form</field>
+      <field name="model">agreement_entitlement.entitlement</field>
+      <field name="arch" type="xml">
+        <form string="Agreements Entitlements Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Entitlement Name" />
+              <h1><field name="name" string="Entitlement Name" help="Enter the name of the Entitlement."/></h1>
+            </div>
+            <group>
+              <field name="agreement" string="Agreement" />
+              <field name="account" string="Account"/>
+              <field name="helpdesk_sla" string="SLA"/>
+              <field name="active" invisible="1"/>
+            </group>
+            <notebook>
+              <page name="equipment" string="Equipment">
+                <group>
+                  <field name="equipments" string="Equipment" />
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+  <!-- Agreement Entitlements Search View -->
+    <record model="ir.ui.view" id="agreement_entitlement_search_view">
+      <field name="name">Agreement Entitlement Search</field>
+      <field name="model">agreement_entitlement.entitlement</field>
+      <field name="arch" type="xml">
+        <search string="Agreement entitlement Search">
+          <filter name="group_account" string="Accounts" icon="terp-partner" context="{'group_by':'account'}"/>
+          <filter name="group_agreement" string="Agreements" icon="terp-partner" context="{'group_by':'agreement'}"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="agreement_action_entitlement">
+      <field name="name">Agreement Entitlements</field>
+      <field name="res_model">agreement_entitlement.entitlement</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Entitlements"
+      id="agreement_entitlement_menu_1"
+      parent="partner_agreement.menu_2"
+      sequence="33"
+      action="agreement_action_entitlement"/>
+  </data>
+</odoo>
