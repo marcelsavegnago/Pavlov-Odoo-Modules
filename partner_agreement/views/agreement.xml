@@ -35,20 +35,33 @@
                 <field name="name" string="Agreement Name" />
               </h1>
             </div>
-            <group colspan="2" col="6">
+            <group string="General" colspan="2" col="4">
               <field name="account" string="Account" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="assigned_to" string="Assigned To" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
               <field name="stage" string="Stage" widget="selection" requried="True" />
               <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" />
-              <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="type" string="Agreement Type" widget="selection" />
+              <field name="assigned_to" string="Assigned To" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
               <field name="description" string="Description" />
-              <field name="end_date" string="End Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="type" string="Agreement Type" widget="selection" />
+              <field name="is_template" string="Is a Template?" />
               <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]" />
               <field name="create_date" readonly="True" />
               <field name="create_uid" readonly="True" />
-              <field name="is_template" string="Is a Template?" />
               <field name="active" invisible="1"/>
+            </group>
+            <group string="Details" colspan="2" col="4">
+              <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="company_signed_by"/>
+              <field name="end_date" string="End Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="customer_signed_by"/>
+              <field name="company_signed_date"/>
+            </group>
+            <group string="Terms" colspan="2" col="4">
+              <field name="term"/>
+              <field name="expiration_notice"/>
+              <field name="change_notice"/>
+              <field name="special_terms"/>
+              <field name="payment_term"/>
+              <field name="contract_value"/>
             </group>
               <notebook>
                   <page name="contract_document" string="Contract Document">
@@ -78,7 +91,15 @@
                     <group>
                       <field name="sale_order" string="Sales Order" domain="[('partner_id', '=', account)]"/>
                     </group>
-                    <field name="products" string="Products" />
+                    <group>
+                      <field name="products" string="Products" />
+                    </group>
+                    <group>
+                      <field name="products" string="Products" />
+                    </group>
+                    <group>
+                      <!--<field name="order_lines" />-->
+                    </group>
                   </page>
                   <page colspan="2" col="4" name="old_versions" string="OLD Versions">
                     <field name="previous_version_agreements" string="Previouse Versions" context="{'active':False}">
