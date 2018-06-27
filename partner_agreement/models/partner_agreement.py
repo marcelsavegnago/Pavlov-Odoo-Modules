@@ -32,7 +32,7 @@ class Agreement(models.Model):
      customer_signed_by = fields.Many2one('res.partner', string="Customer Signed By", help="Contact on the account that signed the agreement/contract.")
      parent_agreement = fields.Many2one('partner_agreement.agreement', string="Parent Agreement", help="Link this agreement to a parent agreement. For example if this agreement is an amendment to another agreement. This list will only show other agreements related to the same account.")
 
-     #order_lines = fields.One2many(related='sale_order.sale_order_line')
+     order_lines = fields.One2many(related='sale_order.order_line')
      sections = fields.One2many('partner_agreement.section', 'agreement', string="Sections", copy=True)
      clauses = fields.One2many('partner_agreement.clause', 'agreement', string="Clauses", copy=True)
      previous_version_agreements = fields.One2many('partner_agreement.agreement', 'parent_agreement', string="Child Agreements", copy=False, domain=[('active', '=', False)])

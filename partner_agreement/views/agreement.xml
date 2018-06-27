@@ -91,14 +91,11 @@
                     <group>
                       <field name="sale_order" string="Sales Order" domain="[('partner_id', '=', account)]"/>
                     </group>
-                    <group>
-                      <field name="products" string="Products" />
+                    <group string="Service Products Order Lines">
+                      <field name="order_lines" domain="[('product_id.type', '=', 'service')]"/>
                     </group>
-                    <group>
-                      <field name="products" string="Products" />
-                    </group>
-                    <group>
-                      <!--<field name="order_lines" />-->
+                    <group string="Consumable Products Order Lines">
+                      <field name="order_lines"/>
                     </group>
                   </page>
                   <page colspan="2" col="4" name="old_versions" string="OLD Versions">
