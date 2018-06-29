@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields
 
 class Agreement(models.Model):
 
@@ -6,6 +6,8 @@ class Agreement(models.Model):
 
     primary_circuit = fields.Many2one('partner_agreement.agreement', string="Primary Circuit")
     backup_circuit = fields.Many2one('partner_agreement.agreement', string="Backup Circuit")
+
+    circuit_segments = fields.One2many('agreement_circuits.segment', 'name', string="Segments")
 
     tsp_code = fields.Char(string="TSP Code")
     linking_tag = fields.Char(string="Linking Tag")
@@ -24,3 +26,4 @@ class Agreement(models.Model):
     as_number = fields.Char(string="AS Number")
     vlan = fields.Char(string="VLAN")
     spacer = fields.Char(string="Spacer")
+    circuit_agreement = fields.Boolean(string='Is Circuit Agreement', related='type.circuit_type')

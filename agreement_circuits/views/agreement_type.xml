@@ -1,0 +1,13 @@
+<odoo>
+  <record model="ir.ui.view" id="agreement_type_form">
+    <field name="model">partner_agreement.type</field>
+    <field name="inherit_id" ref="partner_agreement.partner_agreement_type_form_view"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//field[@name='agreement_subtypes']" position="before">
+                  <field name="circuit_type"/>
+          </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

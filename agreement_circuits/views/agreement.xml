@@ -6,32 +6,55 @@
     <field name="arch" type="xml">
       <data>
           <xpath expr="//page[@name='old_versions']" position="after">
-              <page string="Circuit Info">
-                <group colspan="2" col="6">
+              <page string="Circuit Info" attrs="{'invisible':[('circuit_agreement', '=', False)]}">
+                <group colspan="2" col="4">
                   <field name="infrastructure"/>
                   <field name="protection"/>
-                  <field name="ip_address"/>
                   <field name="primary_circuit"/>
                   <field name="fiber_count"/>
-                  <field name="interface"/>
                   <field name="backup_circuit"/>
                   <field name="fiber_type"/>
-                  <field name="as_number"/>
                   <field name="tsp_code"/>
                   <field name="channelized"/>
-                  <field name="vlan"/>
                   <field name="linking_tag"/>
                   <field name="port_speed"/>
-                  <field name="spacer" attrs="{'invisible':['|',('active','=',True),('active','=',False)]}"/>
                   <field name="alternate_id"/>
                   <field name="burst_speed"/>
-                  <field name="spacer" attrs="{'invisible':['|',('active','=',True),('active','=',False)]}"/>
-                  <field name="spacer" attrs="{'invisible':['|',('active','=',True),('active','=',False)]}"/>
+                  <field name="spacer" invisible="1"/>
                   <field name="speed_cir"/>
-                  <field name="spacer" attrs="{'invisible':['|',('active','=',True),('active','=',False)]}"/>
-                  <field name="spacer" attrs="{'invisible':['|',('active','=',True),('active','=',False)]}"/>
+                  <field name="spacer" invisible="1"/>
                   <field name="ninetyfive_usage"/>
                 </group>
+                <group>
+                  <field name="ip_address"/>
+                  <field name="interface"/>
+                  <field name="as_number"/>
+                  <field name="vlan"/>
+                </group>
+                <notebook>
+                  <page string="Diagram">
+                    <field name="circuit_segments" widget="selection"/>
+                    <notebook>
+                      <page string="Endpoints">
+                      </page>
+                      <page string="Demarc">
+                      </page>
+                      <page string="Comments">
+                      </page>
+                    </notebook>
+                  </page>
+                  <page string="Notes">
+                  </page>
+                  <page string="Documents">
+                  </page>
+                  <page string="Capacity">
+                  </page>
+                  <page string="Alias">
+                  </page>
+                  <page string="Features">
+                  </page>
+                </notebook>
+                <field name="circuit_agreement" invisible="1"/>
               </page>
           </xpath>
       </data>

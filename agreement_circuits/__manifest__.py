@@ -11,6 +11,7 @@
         Requires:
         - Sales
         - Partner Agreements
+        - Maintenance (Equipment)
     """,
 
     'author': "Pavlov Media",
@@ -23,11 +24,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail', 'partner_agreement', 'sale_management'],
+    'depends': ['base','mail', 'partner_agreement', 'sale_management', 'maintenance'],
 
     # always loaded
     'data': [
         'views/agreement.xml',
+        'views/agreement_type.xml',
+        'views/circuit_segment.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],
