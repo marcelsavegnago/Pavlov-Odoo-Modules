@@ -6,7 +6,7 @@
         string="Contract Document"
         name="partner_agreement.report_agreement_document"
         file="partner_agreement.report_agreement_document"
-        report_type="qweb-pdf" />
+        report_type="qweb-pdf"/>
 
     <report
         id="partner_agreement_contract_document_preview"
@@ -14,7 +14,7 @@
         string="Contract Document Preview"
         name="partner_agreement.report_agreement_document"
         file="partner_agreement.report_agreement_document"
-        report_type="qweb-html" />
+        report_type="qweb-html"/>
 
         <template id="report_agreement_document">
           <t t-name="partner_agreement.report_agreement_document">

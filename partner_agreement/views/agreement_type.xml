@@ -22,11 +22,11 @@
         <form string="Agreements Type Form">
           <sheet>
             <div class="oe_title">
-              <label for="name" class="oe_edit_only" string="Type" />
-              <h1><field name="name" string="Type Name" help="Enter the name of the agreement type."/></h1>
+              <label for="name" class="oe_edit_only" string="Type"/>
+              <h1><field name="name" string="Type Name"/></h1>
             </div>
             <group>
-              <field name="agreement_subtypes" string="Sub-Types" help="List of agreement sub-types."/>
+              <field name="agreement_subtypes" string="Sub-Types"/>
             </group>
           </sheet>
         </form>
@@ -45,6 +45,7 @@
       name="Types"
       id="partner_agreement_type_menu_1"
       parent="partner_agreement.menu_3"
+      sequence="42"
       action="partner_agreement_action_type"/>
   </data>
 </odoo>

@@ -10,8 +10,8 @@
         <tree default_order='name'>
           <field name="name" string="Agreement Name"/>
           <field name="account" string="Account"/>
-          <field name="type" string="Agreement Type" />
-          <field name="subtype" string="Sub-Type" />
+          <field name="type" string="Agreement Type"/>
+          <field name="subtype" string="Sub-Type"/>
           <field name="active" invisible="1"/>
         </tree>
       </field>
@@ -24,82 +24,116 @@
       <field name="arch" type="xml">
         <form string="Agreements Form">
           <header>
-            <button string="New Version" type="object" name="create_new_version" class="oe_highlight" attrs="{'invisible': [('state', '=', 'active')]}" />
-            <button string="New Agreement" type="object" name="create_new_agreement" class="oe_highlight" attrs="{'invisible': [('is_template', '=', False)]}" />
-            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
+            <button string="New Version" type="object" name="create_new_version" class="oe_highlight" attrs="{'invisible': [('state', '=', 'active')]}"/>
+            <button string="New Agreement" type="object" name="create_new_agreement" class="oe_highlight" attrs="{'invisible': [('is_template', '=', False)]}"/>
+            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}"/>
           </header>
           <sheet>
             <div class="oe_title">
-              <label for="name" class="oe_edit_only" string="Agreement Name" />
+              <label for="name" class="oe_edit_only" string="Agreement Name"/>
               <h1>
-                <field name="name" string="Agreement Name" />
+                <field name="name" string="Agreement Name"/>
               </h1>
             </div>
             <group string="General" colspan="2" col="4">
-              <field name="account" string="Account" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="stage" string="Stage" widget="selection" requried="True" />
-              <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]" />
+              <field name="contract_id"/>
+              <field name="stage" string="Stage" widget="selection" requried="True"/>
+              <field name="account" string="Account" domain="[('customer', '=', True)]" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="parent_agreement" string="Master Agreement" domain="[('account', '=', account)]"/>
+              <field name="vendor" string="Vendor" domain="[('supplier', '=', True)]"/>
+              <field name="type" string="Type" widget="selection"/>
               <field name="assigned_to" string="Assigned To" attrs="{'invisible': [('is_template', '=', True)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="description" string="Description" />
-              <field name="type" string="Agreement Type" widget="selection" />
-              <field name="is_template" string="Is a Template?" />
-              <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]" />
-              <field name="create_date" readonly="True" />
-              <field name="create_uid" readonly="True" />
+              <field name="subtype" string="Sub-Type" widget="selection" domain="[('agreement_type', '=', type)]"/>
+              <field name="is_template" string="Is a Template?"/>
               <field name="active" invisible="1"/>
             </group>
-            <group string="Details" colspan="2" col="4">
-              <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="company_signed_by"/>
-              <field name="end_date" string="End Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
-              <field name="customer_signed_by"/>
-              <field name="company_signed_date"/>
+            <group>
+              <field name="description" string="Description"/>
             </group>
             <group string="Terms" colspan="2" col="4">
-              <field name="term"/>
+              <field name="start_date" string="Start Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="customer_term"/>
+              <field name="end_date" string="End Date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
+              <field name="payment_term"/>
+              <field name="renewal_type" widget="selection"/>
+              <field name="auto_increase_percent"/>
               <field name="expiration_notice"/>
               <field name="change_notice"/>
-              <field name="special_terms"/>
-              <field name="payment_term"/>
+              <field name="vendor_term"/>
+            </group>
+            <group string="Details" colspan="2" col="4">
+              <field name="total_company_mrc"/>
+              <field name="total_customer_mrc"/>
+              <field name="total_company_nrc"/>
+              <field name="total_customer_nrc"/>
               <field name="contract_value"/>
+              <field name="currency_id"/>
+              <field name="termination_requested"/>
+              <field name="termination_date"/>
+            </group>
+            <group>
+              <field name="special_terms"/>
             </group>
               <notebook>
                   <page name="contract_document" string="Contract Document">
-                    <div> <!-- class="oe_right oe_button_box" -->
+                    <div>
                       <button name="%(partner_agreement_contract_document_preview)d" string="Preview" type="action" class="oe_highlight"/>
                       <button name="%(partner_agreement_contract_document)d" string="Print" type="action" class="oe_highlight"/>
                     </div>
+                    <group colspan="2" col="4">
+                      <field name="customer_signed_date"/>
+                      <field name="company_signed_date"/>
+                      <field name="customer_signed_by" domain="[('parent_id', '=', account)]"/>
+                      <field name="company_signed_by"/>
+                    </group>
                     <group colspan="2" col="2" default_order='section_sequence'>
-                        <field name="sections" context="{'default_agreement': active_id}">
-                        <tree default_order='section_sequence'>
-                            <field name="section_sequence" string="Sequence" widget="handle"/>
-                            <field name="name" string="Section Name" />
-                        </tree>
-                        </field>
+                      <field name="sections" string="Contract Sections" context="{'default_agreement': active_id}">
+                      <tree default_order='section_sequence'>
+                          <field name="section_sequence" string="Sequence" widget="handle"/>
+                          <field name="name" string="Section Name"/>
+                      </tree>
+                      </field>
                     </group>
                     <group colspan="2" col="2" default_order='section, clause_sequence'>
-                        <field name="clauses" context="{'default_agreement': active_id}">
+                        <field name="clauses" string="Contract Clauses" context="{'default_agreement': active_id}">
                         <tree default_order='section, clause_sequence'>
                             <field name="clause_sequence" string="Sequence" widget="handle"/>
                             <field name="section" string="Section"/>
-                            <field name="name" string="Clause Name" />
+                            <field name="name" string="Clause Name"/>
                         </tree>
                         </field>
                       </group>
                   </page>
-                  <page name="products" string="Products">
+                  <page name="products" string="MRC and NRC Products">
                     <group>
                       <field name="sale_order" string="Sales Order" domain="[('partner_id', '=', account)]"/>
                     </group>
+                    <group colspan="2" col="4">
+                      <field name="total_company_mrc"/>
+                      <field name="total_customer_mrc"/>
+                    </group>
                     <group string="Service Products Order Lines">
-                      <field name="order_lines" domain="[('product_id.type', '=', 'service')]"/>
+                      <field name="order_lines_services"/>
+                    </group>
+                    <group colspan="2" col="4">
+                      <field name="total_company_nrc"/>
+                      <field name="total_customer_nrc"/>
                     </group>
                     <group string="Consumable Products Order Lines">
-                      <field name="order_lines"/>
+                      <field name="order_lines_consumables"/>
                     </group>
                   </page>
-                  <page colspan="2" col="4" name="old_versions" string="OLD Versions">
-                    <field name="previous_version_agreements" string="Previouse Versions" context="{'active':False}">
+                  <page colspan="2" col="4" name="child_agreements" string="Child Agreements">
+                    <field name="child_agreements" string="Child Agreements">
+                      <tree default_order='version desc'>
+                        <field name="name"/>
+                        <field name="version"/>
+                        <field name="revision"/>
+                      </tree>
+                    </field>
+                  </page>
+                  <page colspan="2" col="4" name="old_versions" string="Revisions">
+                    <field name="previous_version_agreements" string="Previouse Versions">
                       <tree default_order='version desc'>
                         <field name="name"/>
                         <field name="version"/>
@@ -110,6 +144,9 @@
               </notebook>
               <footer>
                       Version: <field name="version" string="Version" readonly="True"/>.<field name="revision" string="Revision" readonly="True"/>
+                      |   Created By: <field name="create_uid" readonly="True"/>
+                      |   Created On: <field name="create_date" readonly="True"/>
+
               </footer>
           </sheet>
         </form>

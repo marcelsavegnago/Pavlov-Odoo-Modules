@@ -5,3 +5,4 @@ access_agreement_clause_allusers,clause all users,model_partner_agreement_clause
 access_agreement_stage_allusers,stage all users,model_partner_agreement_stage,,1,1,1,1
 access_agreement_type_allusers,type all users,model_partner_agreement_type,,1,1,1,1
 access_agreement_subtype_allusers,subtype all users,model_partner_agreement_subtype,,1,1,1,1
+access_agreement_renewaltype_allusers,renewaltype all users,model_partner_agreement_renewaltype,,1,1,1,1
