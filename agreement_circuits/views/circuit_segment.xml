@@ -64,6 +64,28 @@
                   </group>
                 </group>
               </page>
+              <page string="Contact Information">
+                <group colspan="2" col="2">
+                  <group string="A Endpoint">
+                    <field name="a_site_contact" domain="[('is_company','=',False)]"/>
+                    <field name="a_phone" readonly="1"/>
+                    <field name="a_cell" readonly="1"/>
+                    <field name="a_fax" readonly="1"/>
+                    <field name="a_email" readonly="1"/>
+                    <field name="a_secondary_contact" domain="[('is_company','=',False)]"/>
+                    <field name="a_secondary_phone" readonly="1"/>
+                  </group>
+                  <group string="Z Endpoint">
+                    <field name="z_site_contact" domain="[('is_company','=',False)]"/>
+                    <field name="z_phone" readonly="1"/>
+                    <field name="z_cell" readonly="1"/>
+                    <field name="z_fax" readonly="1"/>
+                    <field name="z_email" readonly="1"/>
+                    <field name="z_secondary_contact" domain="[('is_company','=',False)]"/>
+                    <field name="z_secondary_phone" readonly="1"/>
+                  </group>
+                </group>
+              </page>
               <page string="Demarc">
                 <group colspan="2" col="2">
                   <group string="A Endpoint">
@@ -78,8 +100,21 @@
                   </group>
                 </group>
               </page>
+              <page string="LOA/CFA">
+                <group colspan="2" col="2">
+                  <group string="A Endpoint">
+                    <field name="a_loa_cfa"/>
+                  </group>
+                  <group string="Z Endpoint">
+                    <field name="z_loa_cfa"/>
+                  </group>
+                </group>
+              </page>
               <page string="Comments">
                 <field name="comments"/>
+              </page>
+              <page string="Documents">
+
               </page>
             </notebook>
           </sheet>
