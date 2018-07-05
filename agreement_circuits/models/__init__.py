@@ -14,3 +14,10 @@ from . import equipment_pluggable
 from . import equipment_pluggabletype
 from . import equipment_mediatype
 from . import equipment_status
+from . import equipment_portdefinition
+from . import equipment_model
+from . import equipment_slot
+from . import equipment_rack
+from . import equipment_cage
+from . import equipment_panel
+from . import equipment_paneltype

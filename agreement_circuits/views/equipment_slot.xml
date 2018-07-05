@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_slot_list_view">
+      <field name="name">Slots List</field>
+      <field name="model">equipment.slot</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Slots Name"/>
+          <field name="port_label"/>
+          <field name="slot_type"/>
+          <field name="sub_slots"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_slot_form_view">
+      <field name="name">Slots Form</field>
+      <field name="model">equipment.slot</field>
+      <field name="arch" type="xml">
+        <form string="Slots Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+            <group>
+              <field name="name"/>
+              <field name="port_label"/>
+              <field name="slot_type"/>
+              <field name="sub_slots"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_slot_action">
+      <field name="name">Slots</field>
+      <field name="res_model">equipment.slot</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Slots"
+      id="agreement_slots_menu"
+      parent="partner_agreement_equipment_library_sub_menu"
+      action="equipment_slot_action"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Slots"
+      id="equipment_slots_menu"
+      parent="partner_agreement_equipment_library_sub_menu"
+      action="equipment_slot_action"/>
+
+  </data>
+</odoo>

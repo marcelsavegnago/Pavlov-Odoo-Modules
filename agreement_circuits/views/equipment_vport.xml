@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_vport_list_view">
+      <field name="name">Virtual Ports List</field>
+      <field name="model">equipment.vport</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Virtual Port Name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_vport_form_view">
+      <field name="name">Virtual Ports Form</field>
+      <field name="model">equipment.vport</field>
+      <field name="arch" type="xml">
+        <form string="Virtual Ports Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_vport_action">
+      <field name="name">Virtual Ports</field>
+      <field name="res_model">equipment.vport</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="All Virtual Ports"
+      id="agreement_vports_menu"
+      parent="partner_agreement_equipment_sub_menu"
+      action="equipment_vport_action"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="All Virtual Ports"
+      id="equipment_vports_menu"
+      parent="equipment_equipment_sub_menu"
+      action="equipment_vport_action"/>
+
+  </data>
+</odoo>

@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_status_list_view">
+      <field name="name">Status List</field>
+      <field name="model">equipment.status</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Status Name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_status_form_view">
+      <field name="name">Status Form</field>
+      <field name="model">equipment.status</field>
+      <field name="arch" type="xml">
+        <form string="Status Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+            <group>
+              <field name="status_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_status_action">
+      <field name="name">Status</field>
+      <field name="res_model">equipment.status</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Status"
+      id="agreement_statuss_menu"
+      parent="partner_agreement_equipment_library_sub_menu"
+      action="equipment_status_action"
+      sequence="50"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Status"
+      id="equipment_statuss_menu"
+      parent="equipment_equipment_library_sub_menu"
+      action="equipment_status_action"
+      sequence="50"/>
+
+  </data>
+</odoo>

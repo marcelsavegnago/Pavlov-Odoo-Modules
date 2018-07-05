@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_mediatype_list_view">
+      <field name="name">Media Types List</field>
+      <field name="model">equipment.mediatype</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Media Type Name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_mediatype_form_view">
+      <field name="name">Media Types Form</field>
+      <field name="model">equipment.mediatype</field>
+      <field name="arch" type="xml">
+        <form string="Media Types Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_mediatype_action">
+      <field name="name">Mediat Types</field>
+      <field name="res_model">equipment.mediatype</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Media Types"
+      id="agreement_mediatypes_menu"
+      parent="partner_agreement_equipment_library_sub_menu"
+      action="equipment_mediatype_action"
+      sequence="55"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Media Types"
+      id="equipment_mediatypes_menu"
+      parent="equipment_equipment_library_sub_menu"
+      action="equipment_mediatype_action"
+      sequence="55"/>
+
+  </data>
+</odoo>

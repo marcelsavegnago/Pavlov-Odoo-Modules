@@ -7,7 +7,7 @@ class Agreement(models.Model):
     primary_circuit = fields.Many2one('partner_agreement.agreement', string="Primary Circuit")
     backup_circuit = fields.Many2one('partner_agreement.agreement', string="Backup Circuit")
 
-    circuit_segments = fields.One2many('agreement_circuits.segment', 'name', string="Segments")
+    circuit_segments = fields.One2many('agreement_circuits.segment', 'parent', string="Segments")
 
     tsp_code = fields.Char(string="TSP Code")
     linking_tag = fields.Char(string="Linking Tag")

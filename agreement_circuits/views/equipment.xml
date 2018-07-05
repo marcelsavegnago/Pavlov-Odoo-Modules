@@ -6,12 +6,64 @@
     <field name="arch" type="xml">
       <data>
           <xpath expr="//field[@name='maintenance_team_id']" position="before">
-            <field name="customer" string="Customer"/>
-            <field name="entitlement" string="Entitlement"/>
-            <field name="product" string="Product"/>
+
           </xpath>
       </data>
     </field>
   </record>
 
+  <!-- Maintenance/Equipment Menu Items-->
+  <menuitem
+    name="Circuits"
+    id="equipment_circuit_main_menu"
+    parent="maintenance.menu_maintenance_title"
+    sequence="29"/>
+
+    <menuitem
+      name="Circuits"
+      id="equipment_circuits_menu1"
+      parent="equipment_circuit_main_menu"
+      sequence="10"
+      action="partner_agreement_agreement_circuits"/>
+
+  <menuitem
+    name="DCIM Infrastructure"
+    id="equipment_dcim_main_menu"
+    parent="maintenance.menu_maintenance_title"
+    sequence="30"/>
+
+  <menuitem
+    name="Equipment"
+    id="equipment_equipment_sub_menu"
+    parent="equipment_dcim_main_menu"
+    sequence="10"/>
+
+    <menuitem
+      name="Equipment Library"
+      id="equipment_equipment_library_sub_menu"
+      parent="equipment_equipment_sub_menu"
+      sequence="10"/>
+    <menuitem
+      name="Spares"
+      id="equipment_equipment_spares_sub_menu"
+      parent="equipment_equipment_sub_menu"
+      sequence="15"/>
+
+    <menuitem
+      name="Panels"
+      id="equipment_equipment_panels_sub_menu"
+      parent="equipment_equipment_sub_menu"
+      sequence="20"/>
+
+    <menuitem
+      name="Cages"
+      id="equipment_equipment_cages_sub_menu"
+      parent="equipment_equipment_sub_menu"
+      sequence="25"/>
+
+    <menuitem
+      name="Racks"
+      id="equipment_equipment_racks_sub_menu"
+      parent="equipment_equipment_sub_menu"
+      sequence="30"/>
 </odoo>

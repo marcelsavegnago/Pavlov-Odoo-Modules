@@ -1,0 +1,58 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_slottype_list_view">
+      <field name="name">Slot Types List</field>
+      <field name="model">equipment.slottype</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Slot Type Name"/>
+          <field name="allow_connections"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_slottype_form_view">
+      <field name="name">Slot Types Form</field>
+      <field name="model">equipment.slottype</field>
+      <field name="arch" type="xml">
+        <form string="Slot Types Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+            <group>
+              <field name="allow_connections"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_slottype_action">
+      <field name="name">Slot Types</field>
+      <field name="res_model">equipment.slottype</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Slot Types"
+      id="agreement_slottypes_menu"
+      parent="partner_agreement_equipment_library_sub_menu"
+      action="equipment_slottype_action"
+      sequence="30"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Slot Types"
+      id="equipment_slottypes_menu"
+      parent="equipment_equipment_library_sub_menu"
+      action="equipment_slottype_action"
+      sequence="30"/>
+
+  </data>
+</odoo>

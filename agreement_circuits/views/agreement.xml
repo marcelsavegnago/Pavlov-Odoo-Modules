@@ -1,5 +1,4 @@
 <odoo>
-
   <record model="ir.ui.view" id="agreement_form">
     <field name="model">partner_agreement.agreement</field>
     <field name="inherit_id" ref="partner_agreement.partner_agreement_form_view"/>
@@ -33,15 +32,16 @@
                 </group>
                 <notebook>
                   <page string="Diagram">
-                    <field name="circuit_segments" widget="selection"/>
-                    <notebook>
+                    <field name="circuit_segments"/>
+
+                  <!--  <notebook>
                       <page string="Endpoints">
                       </page>
                       <page string="Demarc">
                       </page>
                       <page string="Comments">
                       </page>
-                    </notebook>
+                    </notebook>-->
                   </page>
                   <page string="Notes">
                   </page>
@@ -60,4 +60,81 @@
       </data>
     </field>
   </record>
+
+  <!-- Adding a new filter to the agreement search view -->
+  <record id="partner_agreement_search_view2" model="ir.ui.view">
+    <field name="name">Agreement Search</field>
+    <field name="model">partner_agreement.agreement</field>
+    <field name="type">search</field>
+    <field name="inherit_id" ref="partner_agreement.partner_agreement_search_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="/search/filter[1]" position="after">
+        <filter name="filter_partner_agreement_type_circuit_type" string="Circuit Agreements" domain="[('type.circuit_type', '=', True)]"/>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- Purpose of this is to only show the agreements that have type "circuit type" -->
+  <record model="ir.actions.act_window" id="partner_agreement_agreement_circuits">
+    <field name="name">Circuit Agreements</field>
+    <field name="res_model">partner_agreement.agreement</field>
+    <field name="context">{"search_default_filter_partner_agreement_type_circuit_type":True}</field>
+    <field name="view_mode">tree</field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Circuits"
+    id="partner_agreement_circuits_main_menu"
+    parent="partner_agreement.menu_root"
+    sequence="59"/>
+
+    <menuitem
+      name="Circuits"
+      id="partner_agreement_circuits_menu1"
+      parent="partner_agreement_circuits_main_menu"
+      sequence="10"
+      action="partner_agreement_agreement_circuits"/>
+
+  <menuitem
+    name="DCIM Infrastructure"
+    id="partner_agreement_dcim_main_menu"
+    parent="partner_agreement.menu_root"
+    sequence="60"/>
+
+    <menuitem
+      name="Equipment"
+      id="partner_agreement_equipment_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
+      sequence="10"/>
+
+      <menuitem
+        name="Equipment Library"
+        id="partner_agreement_equipment_library_sub_menu"
+        parent="partner_agreement_equipment_sub_menu"
+        sequence="10"/>
+
+      <menuitem
+        name="Spares"
+        id="partner_agreement_equipment_spares_sub_menu"
+        parent="partner_agreement_dcim_main_menu"
+        sequence="15"/>
+
+      <menuitem
+        name="Panels"
+        id="partner_agreement_equipment_panels_sub_menu"
+        parent="partner_agreement_dcim_main_menu"
+        sequence="20"/>
+
+      <menuitem
+        name="Cages"
+        id="partner_agreement_equipment_cages_sub_menu"
+        parent="partner_agreement_dcim_main_menu"
+        sequence="25"/>
+
+      <menuitem
+        name="Racks"
+        id="partner_agreement_equipment_racks_sub_menu"
+        parent="partner_agreement_dcim_main_menu"
+        sequence="30"/>
 </odoo>

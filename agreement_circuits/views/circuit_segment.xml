@@ -9,6 +9,10 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name" string="Segment Name"/>
+          <field name="a_endpoint" string="A Endpoint"/>
+          <field name="circuit_type"/>
+          <field name="z_endpoint" string="Z Endpoint"/>
+          <field name="parent" string="Agreement"/>
         </tree>
       </field>
     </record>
@@ -24,15 +28,16 @@
               <label for="name" class="oe_edit_only" string="Segment Name"/>
               <h1><field name="name" string="Segment Name"/></h1>
             </div>
+            <field name="parent"/>
             <group colspan="2" col="4">
-              <field name="a_carrier"/>
-              <field name="z_carrier"/>
+              <field name="a_carrier" domain="[('supplier', '=', True)]"/>
+              <field name="z_carrier" domain="[('supplier', '=', True)]"/>
             </group>
             <group colspan="2" col="4">
              <field name="internal_circuit_id"/>
              <field name="pricing_type"/>
-             <field name="circle_type"/>
-             <field name="min_mrc"/>                     
+             <field name="circuit_type"/>
+             <field name="min_mrc"/>
              <field name="spacer" invisible="1"/>
              <field name="price_per_mb"/>
              <field name="spacer" invisible="1"/>
@@ -40,10 +45,27 @@
            </group>
             <notebook>
               <page string="Endpoints">
-
+                <group colspan="2" col="2">
+                  <group string="A Endpoint">
+                   <field name="a_endpoint" domain="[('is_company','=',True)]"/>
+                   <field name="a_endpoint_address"/>
+                  </group>
+                  <group string="Z Endpoint">
+                   <field name="z_endpoint" domain="[('is_company','=',True)]"/>
+                   <field name="z_endpoint_address"/>
+                  </group>
+                </group>
+                <group colspan="2" col="2" string="Facilities">
+                  <group>
+                    <field name="a_facility" domain="[('is_company','=',True)]"/>
+                  </group>
+                  <group>
+                    <field name="z_facility" domain="[('is_company','=',True)]"/>
+                  </group>
+                </group>
               </page>
               <page string="Demarc">
-                <group colspan="2" col="4">
+                <group colspan="2" col="2">
                   <group string="A Endpoint">
                     <field name="a_endpoint_handoff"/>
                     <field name="a_endpoint_demarc"/>
@@ -83,12 +105,20 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Items -->
+    <!-- Agreement Menu Items -->
     <menuitem
       name="Circuit Segments"
-      id="circuit_segment_menu_1"
-      parent="partner_agreement.menu_3"
-      sequence="45"
+      id="partner_agreement_circuit_segment_menu_1"
+      parent="partner_agreement_circuits_main_menu"
+      sequence="20"
+      action="circuit_action_segment"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Circuit Segments"
+      id="equipment_circuit_segment_menu_1"
+      parent="equipment_circuit_main_menu"
+      sequence="20"
       action="circuit_action_segment"/>
 
   </data>

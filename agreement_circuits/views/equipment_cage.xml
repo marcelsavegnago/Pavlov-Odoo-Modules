@@ -1,0 +1,76 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_cage_list_view">
+      <field name="name">Cages List</field>
+      <field name="model">equipment.cage</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Cage Name"/>
+          <field name="site"/>
+          <field name="location"/>
+          <field name="client"/>
+          <field name="depth"/>
+          <field name="width"/>
+          <field name="racks"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_cage_form_view">
+      <field name="name">Cages Form</field>
+      <field name="model">equipment.cage</field>
+      <field name="arch" type="xml">
+        <form string="cages Form">
+          <sheet>
+            <group colspan="2" col="4">
+              <field name="name"/>
+              <field name="depth"/>
+              <field name="site"/>
+              <field name="width"/>
+              <field name="location"/>
+              <field name="height"/>
+              <field name="client" domain="[('supplier', '=', False)]"/>
+              <field name="door_side"/>
+              <field name="aka"/>
+              <field name="audit_complete"/>
+            </group>
+            <group>
+              <field name="description"/>
+            </group>
+            <notebook>
+              <page string="Racks">
+                <field name="racks"/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_cage_action">
+      <field name="name">cages</field>
+      <field name="res_model">equipment.cage</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Cage List"
+      id="agreement_cages_menu"
+      parent="partner_agreement_equipment_cages_sub_menu"
+      action="equipment_cage_action"
+      sequence="25"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Cage List"
+      id="equipment_cages_menu"
+      parent="equipment_equipment_cages_sub_menu"
+      action="equipment_cage_action"
+      sequence="10"/>
+
+  </data>
+</odoo>
