@@ -74,9 +74,9 @@
     <menuitem
       name="Panel List"
       id="equipment_panels_menu"
-      parent="equipment_dcim_main_menu"
+      parent="equipment_equipment_panels_sub_menu"
       action="equipment_panel_action"
-      sequence="25"/>
+      sequence="20"/>
 
   </data>
 </odoo>

@@ -40,11 +40,22 @@
               <field name="num_daughter_cards" attrs="{'invisible': [('type','!=','mother_card')]}"/>
               <field name="daughter_card_label_start" attrs="{'invisible': [('type','!=','mother_card')]}"/>
               <field name="size"/>
-              <field name="port_definitions"/>
               <field name="is_spare"/>
+              <field name="port_definitions"/>
             </group>
           </sheet>
         </form>
+      </field>
+    </record>
+
+    <!-- Search View -->
+    <record model="ir.ui.view" id="card_search_view">
+      <field name="name">Card Search</field>
+      <field name="model">equipment.card</field>
+      <field name="arch" type="xml">
+        <search string="Card Search">
+          <filter name="filter_spares" string="Spare Cards" domain="[('is_spare','=',True)]"/>
+        </search>
       </field>
     </record>
 
@@ -55,33 +66,40 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+    <record model="ir.actions.act_window" id="equipment_card_spare_action">
+      <field name="name">Spare Cards</field>
+      <field name="res_model">equipment.card</field>
+      <field name="context">{"search_default_filter_spares":1}</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
     <!-- Agreement Menu Items -->
     <menuitem
-      name="Cards"
+      name="Cards List"
       id="agreement_cards_menu"
       parent="partner_agreement_equipment_library_sub_menu"
       action="equipment_card_action"
       sequence="20"/>
 
     <menuitem
-      name="Spares"
-      id="agreement_cards_menu"
+      name="Spare Cards List"
+      id="agreement_cards_spare_menu"
       parent="partner_agreement_equipment_spares_sub_menu"
-      action="equipment_card_action"/>
+      action="equipment_card_spare_action"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
-      name="Cards"
+      name="Cards List"
       id="equipment_card_menu"
       parent="equipment_equipment_library_sub_menu"
       action="equipment_card_action"
       sequence="20"/>
 
     <menuitem
-      name="Spares"
-      id="agreement_cards_menu"
+      name="Spare Cards List"
+      id="equipment_cards_spare_menu"
       parent="equipment_equipment_spares_sub_menu"
-      action="equipment_card_action"/>
+      action="equipment_card_spare_action"/>
 
   </data>
 </odoo>
