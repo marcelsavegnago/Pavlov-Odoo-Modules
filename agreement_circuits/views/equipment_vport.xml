@@ -38,14 +38,16 @@
     <menuitem
       name="All Virtual Ports"
       id="agreement_vports_menu"
-      parent="partner_agreement_equipment_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
+      sequence="70"
       action="equipment_vport_action"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
       name="All Virtual Ports"
       id="equipment_vports_menu"
-      parent="equipment_equipment_sub_menu"
+      parent="equipment_dcim_main_menu"
+      sequence="70"
       action="equipment_vport_action"/>
 
   </data>

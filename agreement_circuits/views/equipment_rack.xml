@@ -60,17 +60,17 @@
     <menuitem
       name="Rack List"
       id="agreement_racks_menu"
-      parent="partner_agreement_equipment_racks_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
       action="equipment_rack_action"
-      sequence="25"/>
+      sequence="50"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
       name="Racks List"
       id="equipment_racks_menu"
-      parent="equipment_equipment_racks_sub_menu"
+      parent="equipment_dcim_main_menu"
       action="equipment_rack_action"
-      sequence="10"/>
+      sequence="50"/>
 
   </data>
 </odoo>

@@ -102,39 +102,22 @@
     parent="partner_agreement.menu_root"
     sequence="60"/>
 
-    <menuitem
-      name="Equipment"
-      id="partner_agreement_equipment_sub_menu"
-      parent="partner_agreement_dcim_main_menu"
-      sequence="10"/>
+      <menuitem
+        name="Equipment List"
+        id="partner_agreement_equipment_list_menu"
+        parent="partner_agreement_dcim_main_menu"
+        sequence="10"
+        action="maintenance.hr_equipment_action"/>
 
       <menuitem
         name="Equipment Library"
         id="partner_agreement_equipment_library_sub_menu"
-        parent="partner_agreement_equipment_sub_menu"
-        sequence="10"/>
+        parent="partner_agreement_dcim_main_menu"
+        sequence="80"/>
 
       <menuitem
-        name="Spares"
-        id="partner_agreement_equipment_spares_sub_menu"
-        parent="partner_agreement_dcim_main_menu"
-        sequence="15"/>
-
-      <menuitem
-        name="Panels"
-        id="partner_agreement_equipment_panels_sub_menu"
-        parent="partner_agreement_dcim_main_menu"
-        sequence="20"/>
-
-      <menuitem
-        name="Cages"
-        id="partner_agreement_equipment_cages_sub_menu"
-        parent="partner_agreement_dcim_main_menu"
-        sequence="25"/>
-
-      <menuitem
-        name="Racks"
-        id="partner_agreement_equipment_racks_sub_menu"
-        parent="partner_agreement_dcim_main_menu"
-        sequence="30"/>
+       name="Configuration"
+       id="partner_agreement_configuration_sub_menu"
+       parent="partner_agreement_dcim_main_menu"
+       sequence="90"/>
 </odoo>

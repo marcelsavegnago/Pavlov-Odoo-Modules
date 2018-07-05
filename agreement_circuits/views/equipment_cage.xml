@@ -60,17 +60,17 @@
     <menuitem
       name="Cage List"
       id="agreement_cages_menu"
-      parent="partner_agreement_equipment_cages_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
       action="equipment_cage_action"
-      sequence="25"/>
+      sequence="40"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
       name="Cage List"
       id="equipment_cages_menu"
-      parent="equipment_equipment_cages_sub_menu"
+      parent="equipment_dcim_main_menu"
       action="equipment_cage_action"
-      sequence="10"/>
+      sequence="40"/>
 
   </data>
 </odoo>

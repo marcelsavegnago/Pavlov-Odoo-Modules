@@ -30,40 +30,24 @@
     name="DCIM Infrastructure"
     id="equipment_dcim_main_menu"
     parent="maintenance.menu_maintenance_title"
-    sequence="30"/>
+    sequence="60"/>
 
-  <menuitem
-    name="Equipment"
-    id="equipment_equipment_sub_menu"
-    parent="equipment_dcim_main_menu"
-    sequence="10"/>
+    <menuitem
+      name="Equipment List"
+      id="equipment_equipment_list_menu"
+      parent="equipment_dcim_main_menu"
+      sequence="10"
+      action="maintenance.hr_equipment_action"/>
 
     <menuitem
       name="Equipment Library"
       id="equipment_equipment_library_sub_menu"
-      parent="equipment_equipment_sub_menu"
-      sequence="10"/>
-    <menuitem
-      name="Spares"
-      id="equipment_equipment_spares_sub_menu"
-      parent="equipment_equipment_sub_menu"
-      sequence="15"/>
+      parent="equipment_dcim_main_menu"
+      sequence="80"/>
 
     <menuitem
-      name="Panels"
-      id="equipment_equipment_panels_sub_menu"
-      parent="equipment_equipment_sub_menu"
-      sequence="20"/>
-
-    <menuitem
-      name="Cages"
-      id="equipment_equipment_cages_sub_menu"
-      parent="equipment_equipment_sub_menu"
-      sequence="25"/>
-
-    <menuitem
-      name="Racks"
-      id="equipment_equipment_racks_sub_menu"
-      parent="equipment_equipment_sub_menu"
-      sequence="30"/>
+      name="Configuration"
+      id="equipment_configuration_sub_menu"
+      parent="equipment_dcim_main_menu"
+      sequence="90"/>
 </odoo>

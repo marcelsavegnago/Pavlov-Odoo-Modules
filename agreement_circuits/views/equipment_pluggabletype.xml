@@ -38,7 +38,7 @@
     <menuitem
       name="Pluggable Types"
       id="agreement_pluggablestype_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_pluggabletype_action"
       sequence="45"/>
 
@@ -46,7 +46,7 @@
     <menuitem
       name="Pluggable Types"
       id="equipment_pluggablestype_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_pluggabletype_action"
       sequence="45"/>
 

@@ -66,17 +66,17 @@
     <menuitem
       name="Panel List"
       id="agreement_panels_menu"
-      parent="partner_agreement_equipment_panels_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
       action="equipment_panel_action"
-      sequence="20"/>
+      sequence="30"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
       name="Panel List"
       id="equipment_panels_menu"
-      parent="equipment_equipment_panels_sub_menu"
+      parent="equipment_dcim_main_menu"
       action="equipment_panel_action"
-      sequence="20"/>
+      sequence="30"/>
 
   </data>
 </odoo>

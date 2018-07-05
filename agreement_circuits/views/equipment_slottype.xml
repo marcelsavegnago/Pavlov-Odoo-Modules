@@ -42,7 +42,7 @@
     <menuitem
       name="Slot Types"
       id="agreement_slottypes_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_slottype_action"
       sequence="30"/>
 
@@ -50,7 +50,7 @@
     <menuitem
       name="Slot Types"
       id="equipment_slottypes_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_slottype_action"
       sequence="30"/>
 

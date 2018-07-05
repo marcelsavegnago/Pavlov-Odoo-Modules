@@ -52,7 +52,7 @@
     <menuitem
       name="Models"
       id="agreement_models_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_models_action"
       sequence="10"/>
 
@@ -60,7 +60,7 @@
     <menuitem
       name="Models"
       id="equipment_models_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_models_action"
       sequence="10"/>
 

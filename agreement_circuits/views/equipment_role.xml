@@ -38,7 +38,7 @@
     <menuitem
       name="Roles"
       id="agreement_roles_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_role_action"
       sequence="25"/>
 
@@ -46,7 +46,7 @@
     <menuitem
       name="Roles"
       id="equipment_roles_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_role_action"
       sequence="25"/>
 

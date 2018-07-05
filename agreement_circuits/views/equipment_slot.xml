@@ -54,7 +54,7 @@
     <menuitem
       name="Slots"
       id="equipment_slots_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="equipment_equipment_library_sub_menu"
       action="equipment_slot_action"/>
 
   </data>

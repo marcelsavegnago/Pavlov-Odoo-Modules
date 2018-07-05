@@ -38,7 +38,7 @@
     <menuitem
       name="Media Types"
       id="agreement_mediatypes_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_mediatype_action"
       sequence="55"/>
 
@@ -46,7 +46,7 @@
     <menuitem
       name="Media Types"
       id="equipment_mediatypes_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_mediatype_action"
       sequence="55"/>
 

@@ -77,29 +77,31 @@
     <menuitem
       name="Cards List"
       id="agreement_cards_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_dcim_main_menu"
       action="equipment_card_action"
       sequence="20"/>
 
     <menuitem
       name="Spare Cards List"
       id="agreement_cards_spare_menu"
-      parent="partner_agreement_equipment_spares_sub_menu"
-      action="equipment_card_spare_action"/>
+      parent="partner_agreement_dcim_main_menu"
+      action="equipment_card_spare_action"
+      sequence="25"/>
 
     <!-- Maintenance/Equipment Menu Items-->
     <menuitem
       name="Cards List"
       id="equipment_card_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_dcim_main_menu"
       action="equipment_card_action"
       sequence="20"/>
 
     <menuitem
       name="Spare Cards List"
       id="equipment_cards_spare_menu"
-      parent="equipment_equipment_spares_sub_menu"
-      action="equipment_card_spare_action"/>
+      parent="equipment_dcim_main_menu"
+      action="equipment_card_spare_action"
+      sequence="25"/>
 
   </data>
 </odoo>

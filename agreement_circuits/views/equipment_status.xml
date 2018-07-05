@@ -41,7 +41,7 @@
     <menuitem
       name="Status"
       id="agreement_statuss_menu"
-      parent="partner_agreement_equipment_library_sub_menu"
+      parent="partner_agreement_configuration_sub_menu"
       action="equipment_status_action"
       sequence="50"/>
 
@@ -49,7 +49,7 @@
     <menuitem
       name="Status"
       id="equipment_statuss_menu"
-      parent="equipment_equipment_library_sub_menu"
+      parent="equipment_configuration_sub_menu"
       action="equipment_status_action"
       sequence="50"/>
 
