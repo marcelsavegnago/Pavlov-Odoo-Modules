@@ -102,6 +102,13 @@
     parent="partner_agreement.menu_root"
     sequence="60"/>
 
+    <menuitem
+      name="Products"
+      id="partner_agreement_product_list_menu"
+      parent="partner_agreement_dcim_main_menu"
+      sequence="9"
+      action="stock.product_template_action_product"/>
+
       <menuitem
         name="Equipment List"
         id="partner_agreement_equipment_list_menu"

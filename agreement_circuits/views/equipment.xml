@@ -5,8 +5,87 @@
     <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
     <field name="arch" type="xml">
       <data>
-          <xpath expr="//field[@name='maintenance_team_id']" position="before">
-
+          <xpath expr="//field[@name='cost']" position="before">
+            <field name="image" widget="image" class="oe_avatar" readonly="1"/>
+          </xpath>
+          <xpath expr="//field[@name='model']" position="before">
+            <field name="manufacturer" readonly="1"/>
+            <field name="product" domain="[('dcim_equipment', '=', True)]"/>
+          </xpath>
+          <xpath expr="//field[@name='model']" position="after">
+            <field name="role"/>
+            <field name="status"/>
+            <field name="aka"/>
+            <field name="pec"/>
+            <field name="is_spare"/>
+          </xpath>
+          <xpath expr="//page[2]" position="after">
+              <page string="DCIM Config">
+                <group>
+                  <field name="dcim_product_type" readonly="1"/>
+                  <field name="slots" readonly="1"/>
+                </group>
+                  <!--#card equipment-->
+                  <notebook>
+                    <page string="Card">
+                      <group>
+                        <field name="default_port_status"/>
+                        <field name="card_type"/>
+                        <field name="num_daughter_cards"/>
+                        <field name="daughter_card_label_start"/>
+                        <field name="card_size"/>
+                      </group>
+                    </page>
+                    <!--#rack equipment-->
+                    <page string="Rack">
+                      <group>
+                        <field name="style"/>
+                        <field name="color"/>
+                        <field name="lockable"/>
+                        <field name="stackable"/>
+                        <field name="rear_mount"/>
+                        <field name="mounting_position"/>
+                        <field name="rack_units"/>
+                        <field name="width"/>
+                        <field name="depth"/>
+                        <field name="height"/>
+                        <field name="equipment_width"/>
+                        <field name="description"/>
+                      </group>
+                    </page>
+                    <!--#shelf equipment-->
+                    <page string="Shelf">
+                      <group>
+                        <field name="ru_size"/>
+                      </group>
+                    </page>
+                    <!--#pluggable equipment-->
+                    <page string="Pluggable">
+                      <group>
+                        <field name="pluggable_type"/>
+                      </group>
+                    </page>
+                    <!--#panel equipment-->
+                    <page string="Panel">
+                      <group>
+                        <field name="panel_type"/>
+                        <field name="port_count"/>
+                        <field name="nomenclature"/>
+                        <field name="rows_of_ports"/>
+                        <field name="installed"/>
+                        <field name="notes"/>
+                        <field name="is_carrier_panel"/>
+                      </group>
+                    </page>
+                    <!-- #cage equipment-->
+                    <page string="Cage">
+                      <group>
+                        <field name="audit_complete"/>
+                        <field name="door_side"/>
+                      </group>
+                    </page>
+                  </notebook>
+              </page>
           </xpath>
       </data>
     </field>
@@ -31,6 +110,13 @@
     id="equipment_dcim_main_menu"
     parent="maintenance.menu_maintenance_title"
     sequence="60"/>
+
+    <menuitem
+      name="Products"
+      id="equipment_product_list_menu"
+      parent="equipment_dcim_main_menu"
+      sequence="9"
+      action="stock.product_template_action_product"/>
 
     <menuitem
       name="Equipment List"

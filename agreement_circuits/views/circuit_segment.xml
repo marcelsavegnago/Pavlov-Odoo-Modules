@@ -57,10 +57,12 @@
                 </group>
                 <group colspan="2" col="2" string="Facilities">
                   <group>
-                    <field name="a_facility" domain="[('is_company','=',True)]"/>
+                    <field name="a_image" widget="image" readonly="1"/>
+                    <field name="a_facility" string="Equipment A"/>
                   </group>
                   <group>
-                    <field name="z_facility" domain="[('is_company','=',True)]"/>
+                    <field name="z_image" widget="image" readonly="1"/>
+                    <field name="z_facility" string="Equipment Z"/>
                   </group>
                 </group>
               </page>

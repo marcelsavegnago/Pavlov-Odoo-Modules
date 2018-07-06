@@ -13,3 +13,5 @@ class EquipmentPortDefinition(models.Model):
     media_types = fields.Many2many('equipment.mediatype', string="Media Types")
     protocols = fields.Many2many('equipment.portprotocol', string="Protocols")
     card = fields.Many2one('equipment.portdefinition', string="Card")
+    sequence = fields.Integer(string="Sequence")
+    product = fields.Many2one('product.template', string="Product")

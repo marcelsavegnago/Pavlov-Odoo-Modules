@@ -6,6 +6,7 @@
       <field name="model">equipment.portdefinition</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="sequence" widget="handle"/>
           <field name="name" string="Port Definition Name"/>
           <field name="port_count"/>
           <field name="nomenclature"/>
@@ -41,6 +42,7 @@
              <field name="media_types" widget="many2many_tags"/>
              <field name="protocols" widget="many2many_tags"/>
              <field name="card"/>
+             <field name="product"/>
            </group>
           </sheet>
         </form>

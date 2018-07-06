@@ -6,10 +6,12 @@
       <field name="model">equipment.slot</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="sequence" widget="handle"/>
           <field name="name" string="Slots Name"/>
           <field name="port_label"/>
           <field name="slot_type"/>
           <field name="sub_slots"/>
+          <field name="equipment"/>
         </tree>
       </field>
     </record>
@@ -21,15 +23,13 @@
       <field name="arch" type="xml">
         <form string="Slots Form">
           <sheet>
-            <div class="oe_title">
-              <label for="name" class="oe_edit_only" string="Name"/>
-              <h1><field name="name" string="Name"/></h1>
-            </div>
             <group>
+              <field name="sequence"/>
               <field name="name"/>
               <field name="port_label"/>
               <field name="slot_type"/>
               <field name="sub_slots"/>
+              <field name="equipment"/>
             </group>
           </sheet>
         </form>
