@@ -8,4 +8,4 @@ class Product(models.Model):
     dcim_equipment = fields.Boolean(string="Use in DCIM?")
     slots = fields.One2many('equipment.slot', 'product', string="Slots")
     port_definitions = fields.One2many('equipment.portdefinition', 'product', string="Port Definitions")
-    dcim_product_type = fields.Selection([('chassis','Chassis'),('rack','Rack'),('shelf','Shelf'),('card','Card'),('pluggable','Pluggable')], string="DCIM Equipment Type")
+    dcim_product_type = fields.Selection([('wireless','Wireless Device'),('chassis','Chassis'),('rack','Rack'),('shelf','Shelf'),('card','Card'),('pluggable','Pluggable'),('cage','Cage')], string="DCIM Equipment Type")

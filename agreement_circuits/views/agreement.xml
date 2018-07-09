@@ -32,8 +32,18 @@
                 </group>
                 <notebook>
                   <page string="Diagram">
-                    <field name="circuit_segments"/>
-
+                    <group>
+                      <field name="circuit_segments" mode="kanban" context="{'default_agreement': active_id}">
+                        <kanban>
+                          <field name="name" />
+                          <templates>
+                            <t t-name="kanban-box">
+                              <field name="name" />
+                            </t>
+                          </templates>
+                        </kanban>
+                      </field>
+                  </group>
                   <!--  <notebook>
                       <page string="Endpoints">
                       </page>

@@ -10,7 +10,7 @@
           </xpath>
           <xpath expr="//field[@name='version']" position="after">
             <field name="dcim_equipment"/>
-            <field name="dcim_product_type"/>
+            <field name="dcim_product_type" attrs="{'invisible': [('dcim_equipment','=',False)]}"/>
             <field name="slots" attrs="{'invisible':[('dcim_product_type', '!=', 'equipment')]}"/>
             <field name="port_definitions" attrs="{'invisible':[('dcim_product_type', '!=', 'card')]}"/>
           </xpath>
