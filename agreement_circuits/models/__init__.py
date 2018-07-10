@@ -1,5 +1,6 @@
 from . import agreement_type
 from . import circuit_segment
+from . import equipment_circuittype
 from . import equipment_mediatype
 from . import equipment_paneltype
 from . import equipment_phyport

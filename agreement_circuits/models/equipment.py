@@ -8,13 +8,13 @@ class Equipment(models.Model):
     manufacturer = fields.Many2one('res.partner', related="product.manufacturer", string="Manufacturer")
     image = fields.Binary(related="product.image_medium", string="Image")
     role = fields.Many2one('equipment.role', string="Role")
-    parent = fields.Many2one('maintenance.equipment', string="Equipment")
+    parent = fields.Many2one('maintenance.equipment', string="Equipment Dependency", help="Parent equipment this equipment depends on.")
     child_ids = fields.One2many('maintenance.equipment', 'parent', string="Child ID's")
     status = fields.Many2one('equipment.status', string="Status")
     aka = fields.Char(string="Aka")
     pec = fields.Char(string="PEC")
     is_spare = fields.Boolean(string="Is Spare?")
-    slots = fields.One2many('equipment.slot', 'equipment', related="product.slots", string="Slots")
+    slots = fields.One2many('equipment.slot', 'equipment', string="Slots")
     dcim_product_type = fields.Selection(related="product.dcim_product_type", string="Product Type")
     dcim_equipment = fields.Boolean(related="product.dcim_equipment", string="Is DCIM Equipment?")
     phyports = fields.One2many('equipment.phyport', 'equipment', string="Physical Ports")
@@ -22,6 +22,7 @@ class Equipment(models.Model):
     monitoring_id = fields.Char(string="Monitoring Device ID", help="The id of this device that is assigned via the external monitoring system")
     monitoring_url = fields.Char(string="Monitoring Device URL", help="The direct url to the device in the external monitoring system")
     monitoring_status = fields.Boolean(string="Monitoring Status", help="Shows up (green), off (red) status from external monitoring system")
+    rack = fields.Many2one('maintenance.equipment', string="Rack", help="Rack this equipment depends is installed in.")
 
     #card equipment
     default_port_status = fields.Selection([('faulty', 'Faulty'),('in_service', 'In Service'),('out_of_service', 'Out of Service'),('un_equipped', 'Un-Equipped')], string="Default Port Status")
@@ -30,6 +31,7 @@ class Equipment(models.Model):
     daughter_card_label_start = fields.Char(string="Label Start", help="Daughter Slot Label")
     card_size = fields.Selection([('one', '1 Slot'),('half', '1/2 Slot'),('fourth', '1/4 Slot'),('sixth', '1/6 Slot'),('two', '2 Slot'),('three', '3 Slot'),('four', '4 Slot')], string="Size")
     port_definitions = fields.One2many('equipment.portdefinition', 'card', string="Port Definitions")
+    slot = fields.Many2one('equipment.slot', string="Slot")
     #rack equipment
     style = fields.Selection([('two_post_open_frame', '2 Post Open Frame'),('four_post_open_frame', '4 Post Open Frame'),('enclosed', 'Enclosed')], string="Style")
     color = fields.Selection([('aqua', 'Aqua'),('black', 'Black'),('blue', 'Blue')], string="Color")

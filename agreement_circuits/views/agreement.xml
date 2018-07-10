@@ -4,7 +4,7 @@
     <field name="inherit_id" ref="partner_agreement.partner_agreement_form_view"/>
     <field name="arch" type="xml">
       <data>
-          <xpath expr="//page[@name='old_versions']" position="after">
+          <xpath expr="//page[@name='contract_document']" position="before">
               <page string="Circuit Info" attrs="{'invisible':[('circuit_agreement', '=', False)]}">
                 <group colspan="2" col="4">
                   <field name="infrastructure"/>
@@ -32,26 +32,94 @@
                 </group>
                 <notebook>
                   <page string="Diagram">
-                    <group>
                       <field name="circuit_segments" mode="kanban" context="{'default_agreement': active_id}">
                         <kanban>
-                          <field name="name" />
                           <templates>
                             <t t-name="kanban-box">
-                              <field name="name" />
+                              <div class="oe_kanban_card">
+                              <a type="open" align="center">
+                                  <field name="name"/>
+                                </a>
+                                <div class="oe_kanban_content">
+                                  <div class="o_kanban_record_body" align="center">
+                                    <table style="width:100%">
+                                      <tr>
+                                        <td align="center">
+                                          <strong><field name="a_carrier"/> - <field name="z_carrier"/></strong><br/>
+                                          <field name="circuit_type"/><br/>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                    <table style="width:100%">
+                                      <tr>
+                                        <th>Endpoint A</th>
+                                        <th>   </th>
+                                        <th>Endpoint Z</th>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#dddddd" align="center"><field name="a_endpoint"/></td>
+                                        <td></td>
+                                        <td bgcolor="#dddddd" align="center"><field name="z_endpoint"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#dddddd" align="center"><field name="a_endpoint_street"/></td>
+                                        <td></td>
+                                        <td bgcolor="#dddddd" align="center"><field name="z_endpoint_street"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#dddddd" align="center"><field name="a_endpoint_city"/></td>
+                                        <td></td>
+                                        <td bgcolor="#dddddd" align="center"><field name="z_endpoint_city"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td bgcolor="#dddddd" align="center"><field name="a_endpoint_state"/></td>
+                                        <td></td>
+                                        <td bgcolor="#dddddd" align="center"><field name="z_endpoint_state"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center"> _______________ </td>
+                                        <td> </td>
+                                        <td align="center"> _______________ </td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center"><field name="a_facility"/></td>
+                                        <td></td>
+                                        <td align="center"><field name="z_facility"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center"><field name="a_image" widget="image"/></td>
+                                        <td></td>
+                                        <td align="center"><field name="z_image" widget="image"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td align="center">
+                                          <field name="a_facility_manufacturer"/><br/>
+                                          <field name="a_facility_model"/><br/><br/>
+                                          Slot: <field name="a_slot"/><br/>
+                                          Card: <field name="a_card"/><br/>
+                                          Port: <field name="a_port"/><br/>
+                                          Protocol: <field name="a_port_protocol"/><br/>
+                                          Rack: <field name="a_rack"/><br/>
+                                        </td>
+                                        <td></td>
+                                        <td align="center">
+                                          <field name="z_facility_manufacturer"/><br/>
+                                          <field name="z_facility_model"/><br/><br/>
+                                          Slot: <field name="z_slot"/><br/>
+                                          Card: <field name="z_card"/><br/>
+                                          Port: <field name="z_port"/><br/>
+                                          Protocol: <field name="z_port_protocol"/><br/>
+                                          Rack: <field name="z_rack"/><br/>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
                             </t>
                           </templates>
                         </kanban>
                       </field>
-                  </group>
-                  <!--  <notebook>
-                      <page string="Endpoints">
-                      </page>
-                      <page string="Demarc">
-                      </page>
-                      <page string="Comments">
-                      </page>
-                    </notebook>-->
                   </page>
                   <page string="Notes">
                   </page>

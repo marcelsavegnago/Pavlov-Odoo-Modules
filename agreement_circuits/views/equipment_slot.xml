@@ -12,6 +12,7 @@
           <field name="slot_type"/>
           <field name="sub_slots"/>
           <field name="equipment"/>
+          <field name="cards"/>
         </tree>
       </field>
     </record>
@@ -30,6 +31,7 @@
               <field name="slot_type"/>
               <field name="sub_slots"/>
               <field name="equipment"/>
+              <field name="cards"/>
             </group>
           </sheet>
         </form>

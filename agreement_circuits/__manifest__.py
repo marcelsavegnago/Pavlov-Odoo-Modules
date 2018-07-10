@@ -32,6 +32,7 @@
         'views/agreement.xml',
         'views/circuit_segment.xml',
         'views/equipment_mediatype.xml',
+        'views/equipment_circuittype.xml',
         'views/equipment_paneltype.xml',
         'views/equipment_phyport.xml',
         'views/equipment_pluggabletype.xml',

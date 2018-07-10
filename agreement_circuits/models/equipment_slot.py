@@ -10,3 +10,4 @@ class EquipmentSlot(models.Model):
     equipment = fields.Many2one('maintenance.equipment', string="Equipment")
     sequence = fields.Integer(string="Sequence")
     product = fields.Many2one('product.template', string="Product")
+    cards = fields.One2many('maintenance.equipment', 'slot', string="Cards")

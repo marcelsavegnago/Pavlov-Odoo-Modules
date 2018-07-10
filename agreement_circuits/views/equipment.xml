@@ -33,7 +33,8 @@
               <notebook>
                 <page string="Chassis" attrs="{'invisible': [('dcim_product_type','!=','chassis')]}">
                   <group>
-                    <field name="slots" readonly="1"/>
+                    <field name="rack"/>
+                    <field name="slots"/>
                   </group>
                 </page>
                 <page string="Card" attrs="{'invisible': [('dcim_product_type','!=','card')]}">
@@ -49,6 +50,7 @@
                     <field name="card_size"/>
                     <field name="is_spare"/>
                     <field name="port_definitions"/>
+                    <field name="slot" domain="[('equipment','=',parent)]"/>
                   </group>
                 </page>
                 <!--#rack equipment-->
@@ -76,6 +78,7 @@
                 <!--#shelf equipment-->
                 <page string="Shelf" attrs="{'invisible': [('dcim_product_type','!=','shelf')]}">
                   <group>
+                    <field name="rack"/>
                     <field name="manufacturer" readonly="1"/>
                     <field name="pec"/>
                     <field name="ru_size"/>
@@ -104,7 +107,7 @@
                   </group>
                   <group colspan="2" col="4">
                     <field name="panel_type"/>
-                    <!--<field name="rack"/>-->
+                    <field name="rack"/>
                     <field name="port_count"/>
                     <field name="rows_of_ports"/>
                     <field name="nomenclature"/>
@@ -133,8 +136,16 @@
                 <!-- #wireless equipment-->
                 <page string="Wireless" attrs="{'invisible': [('dcim_product_type','!=','wireless')]}">
                   <group colspan="2" col="4">
-
                   </group>
+                </page>
+                <page string="Ports">
+                  <group colspan="2" col="4">
+                    <field name="phyports"/>
+                    <field name="vports"/>
+                  </group>
+                </page>
+                <page string="Child Equipment">
+                    <field name="child_ids"/>
                 </page>
               </notebook>
           </page>

@@ -1,0 +1,54 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="equipment_circuittype_list_view">
+      <field name="name">Circuit TypesList</field>
+      <field name="model">equipment.circuittype</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" string="Circuit Type Name"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="equipment_circuittype_form_view">
+      <field name="name">Circuit TypesForm</field>
+      <field name="model">equipment.circuittype</field>
+      <field name="arch" type="xml">
+        <form string="Circuit Types Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name" string="Name"/></h1>
+            </div>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="equipment_circuittype_action">
+      <field name="name">Circuit Types</field>
+      <field name="res_model">equipment.circuittype</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Agreement Menu Items -->
+    <menuitem
+      name="Circuit Types"
+      id="agreement_circuittypes_menu"
+      parent="partner_agreement_configuration_sub_menu"
+      action="equipment_circuittype_action"
+      sequence="54"/>
+
+    <!-- Maintenance/Equipment Menu Items-->
+    <menuitem
+      name="Circuit Types"
+      id="equipment_circuittypes_menu"
+      parent="equipment_configuration_sub_menu"
+      action="equipment_circuittype_action"
+      sequence="54"/>
+
+  </data>
+</odoo>
