@@ -45,6 +45,7 @@
         'views/equipment_vport.xml',
         'views/equipment.xml',
         'views/product.xml',
+        'views/res_partner.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],

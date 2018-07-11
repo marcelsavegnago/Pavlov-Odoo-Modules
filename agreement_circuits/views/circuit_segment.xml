@@ -66,19 +66,19 @@
                 <group colspan="2" col="2" string="Facilities">
                   <group>
                     <field name="a_image" widget="image" readonly="1"/>
-                    <field name="a_facility" string="Equipment A"/>
+                    <field name="a_facility" string="Equipment A" domain="[('customer', '=', a_endpoint)]"/>
                     <field name="a_slot" domain="[('equipment','=',a_facility)]"/>
                     <field name="a_card" domain="[('slot','=',a_slot)]"/>
-                    <field name="a_port" domain="[('equipment','=',a_card)]"/>
+                    <field name="a_port" domain="[('equipment','=',a_facility),('connected_to_equipment','=',False)]"/>
                     <field name="a_port_protocol"/>
                     <field name="a_rack"/>
                   </group>
                   <group>
                     <field name="z_image" widget="image" readonly="1"/>
-                    <field name="z_facility" string="Equipment Z"/>
+                    <field name="z_facility" string="Equipment Z" domain="[('customer', '=', z_endpoint)]"/>
                     <field name="z_slot" domain="[('equipment','=',z_facility)]"/>
                     <field name="z_card" domain="[('slot','=',z_slot)]"/>
-                    <field name="z_port" domain="[('equipment','=',z_card)]"/>
+                    <field name="z_port" domain="[('equipment','=',z_facility),('connected_to_equipment','=',False)]"/>
                     <field name="z_port_protocol"/>
                     <field name="z_rack"/>
                   </group>

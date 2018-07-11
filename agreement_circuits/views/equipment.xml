@@ -1,30 +1,51 @@
 <odoo>
+  <record model="ir.ui.view" id="equipment_list_form">
+    <field name="name">Equipment List</field>
+    <field name="model">maintenance.equipment</field>
+    <field name="arch" type="xml">
+     <tree>
+        <field name="monitoring_status" widget="toggle_button"/>
+        <field name="name"/>
+        <field name="product"/>
+        <field name="manufacturer" readonly="1"/>
+        <field name="model"/>
+        <field name="role"/>
+        <field name="location"/>
+        <field name="parent"/>
+        <field name="customer"/>
+        <field name="employee_id"/>
+        <field name="department_id"/>
+     </tree>
+    </field>
+  </record>
 
   <record model="ir.ui.view" id="maintenance_equipment_form">
     <field name="model">maintenance.equipment</field>
     <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
     <field name="arch" type="xml">
       <data>
+        <xpath expr="//field[@name='department_id']" position="after">
+          <field name="customer" attrs="{'invisible': [('equipment_assign_to','!=','other')]}"/>
+        </xpath>
           <xpath expr="//field[@name='cost']" position="before">
             <field name="image" widget="image" class="oe_avatar" readonly="1"/>
           </xpath>
           <xpath expr="//field[@name='model']" position="before">
             <field name="product"/>
             <field name="manufacturer" readonly="1"/>
+            <field name="role"/>
             <field name="dcim_equipment" invisible="1"/>
+            <field name="dcim_product_type" readonly="1"/>
           </xpath>
-          <xpath expr="//page[2]" position="after">
-            <page string="DCIM Information" attrs="{'invisible': [('dcim_equipment','!=',True)]}">
-              <group colspan="2" col="4">
-                <field name="product" domain="[('dcim_equipment', '=', True)]"/>
-                <field name="parent"/>
-                <field name="manufacturer" readonly="1"/>
+          <xpath expr="//page[2]/group[1]" position="after">
+              <group colspan="2" col="4" attrs="{'invisible': [('dcim_equipment','!=',True)]}">
+                <field name="parent" domain="[('customer','=',customer)]"/>
                 <field name="aka"/>
-                <field name="role"/>
-                <field name="pec"/>
+                <field name="port_connected_to" domain="[('equipment','=', parent),('connected_to_equipment','=', False)]" attrs="{'invisible': [('parent','=', False)]}"/>
                 <field name="status"/>
+                <field name="pec"/>
                 <field name="is_spare"/>
-                <field name="dcim_product_type" readonly="1"/>
+                <field name="topo_url" widget="url"/>
                 <field name="monitoring_id"/>
                 <field name="monitoring_status" widget="toggle_button"/>
                 <field name="monitoring_url" widget="url"/>
@@ -139,7 +160,7 @@
                   </group>
                 </page>
                 <page string="Ports">
-                  <group colspan="2" col="4">
+                  <group colspan="2" col="2">
                     <field name="phyports"/>
                     <field name="vports"/>
                   </group>
@@ -148,7 +169,6 @@
                     <field name="child_ids"/>
                 </page>
               </notebook>
-          </page>
         </xpath>
       </data>
     </field>
