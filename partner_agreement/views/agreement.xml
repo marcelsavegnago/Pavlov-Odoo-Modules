@@ -145,14 +145,14 @@
                       <field name="total_customer_mrc"/>
                     </group>
                     <group string="Service Products Order Lines">
-                      <field name="order_lines_services" domain="[('product_id.type', '=', 'service')]"/>
+                      <field name="order_lines_services" mode="tree,form" colspan="4" nolabel="1" domain="[('product_id.type', '=', 'service')]"/>
                     </group>
                     <group colspan="2" col="4">
                       <field name="total_company_nrc"/>
                       <field name="total_customer_nrc"/>
                     </group>
-                    <group string="Consumable Products Order Lines">
-                      <field name="order_lines_consumables"/>
+                    <group string="Non-Service Products Order Lines">
+                      <field name="order_lines_nonservices" nolabel="1"/>
                     </group>
                   </page>
                   <page colspan="2" col="4" name="child_agreements" string="Child Agreements">
