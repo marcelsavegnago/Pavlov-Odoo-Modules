@@ -8,8 +8,8 @@
       <field name="model">partner_agreement.renewaltype</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
-          <field name="name" string="Type Name"/>
-          <field name="description" string="Description"/>
+          <field name="name"/>
+          <field name="description"/>
         </tree>
       </field>
     </record>
@@ -23,10 +23,10 @@
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Type"/>
-              <h1><field name="name" string="Type Name"/></h1>
+              <h1><field name="name"/></h1>
             </div>
             <group>
-              <field name="description" string="Description"/>
+              <field name="description"/>
             </group>
           </sheet>
         </form>
