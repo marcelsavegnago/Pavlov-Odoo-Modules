@@ -27,7 +27,7 @@ class Agreement(models.Model):
      total_customer_mrc = fields.Monetary('Customer MRC', currency_field='currency_id', help="Total custemer monthly recurring costs.")
      total_company_nrc = fields.Monetary('Company NRC', currency_field='currency_id', help="Total company non-recurring costs.")
      total_customer_nrc = fields.Monetary('Customer NRC', currency_field='currency_id', help="Total custemer non-monthly recurring costs.")
-     increase_percent = fields.Many2one('agreement.increasetype', string="Increase Type", help="The amount that certain rates may increase.")
+     increase_type = fields.Many2one('partner_agreement.increasetype', string="Increase Type", help="The amount that certain rates may increase.")
      termination_requested = fields.Date(string="Termination Requested Date", help="Date that a request for termination was received.")
      termination_date = fields.Date(string="Termination Date", help="Date that the contract was terminated.")
      customer_address = fields.Char(related='customer.contact_address', string="Address")

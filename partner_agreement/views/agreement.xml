@@ -90,9 +90,9 @@
               <group name="paymentterm_right" string="Payment Terms">
                 <field name="customer_term" attrs="{'invisible': [('customer', '=', False)]}"/>
                 <field name="vendor_term" attrs="{'invisible': [('vendor', '=', False)]}"/>
-                <field name="payment_term"/>
+                <field name="payment_term" widget="selection"/>
                 <field name="renewal_type" widget="selection"/>
-                <field name="increase_percent"/>
+                <field name="increase_type" widget="selection"/>
               </group>
             </group>
             <group>
