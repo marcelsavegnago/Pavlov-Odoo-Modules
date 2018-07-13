@@ -37,8 +37,15 @@
             </group>
             <notebook>
               <page string="Dynamic Placeholder Generator">
+                THIS IS UNDER DEVELOPEMENT: The purpose of this section is to be able to create dynamic fields inside your content. 
                 <group>
-                </group>
+                  <field name="model_id"/>
+                  <field name="model_object_field" domain="[('model_id','=',model_id),('ttype','!=','one2many'),('ttype','!=','many2many')]"/>
+                  <field name="sub_object" readonly="1"/>
+                  <field name="sub_model_object_field" domain="[('model_id','=',sub_object),('ttype','!=','one2many'),('ttype','!=','many2many')]" attrs="{'readonly':[('sub_object','=',False)],'required':[('sub_object','!=',False)]}"/>
+                  <field name="null_value"/>
+                  <field name="copyvalue"/>
+                 </group>
               </page>
             </notebook>
               Sequence #<field name="clause_sequence"/>

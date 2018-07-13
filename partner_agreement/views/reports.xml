@@ -1,5 +1,4 @@
 <odoo>
-
    <report
         id="partner_agreement_contract_document"
         model="partner_agreement.agreement"
@@ -24,21 +23,21 @@
                   <div class="page">
                     <h3>!!! THIS IS JUST AN EXAMPLE REPORT TO SHOW HOW SECTIONS/CLAUSES CAN LOOK. MORE WORK IS NEEDED FOR FORMATTING</h3>
                     <table class="table table-condensed">
-                          <tbody class="section_tbody">
-                              <tr t-foreach="doc.sections" t-as="s">
-                                  <h3 t-field="s.name"/>
-                                  <span t-field="s.content"/>
-                                  <table class="table table-condensed">
-                                    <tbody class="clause_tbody">
-                                      <tr t-foreach="s.clauses" t-as="c">
-                                        <h4 t-field="c.name"/>
-                                        <span t-field="c.content"/>
-                                      </tr>
-                                    </tbody>
-                                    </table>
+                      <tbody class="section_tbody">
+                        <tr t-foreach="doc.sections" t-as="s">
+                          <h3 t-field="s.name"/>
+                          <span t-field="s.content"/>
+                          <table class="table table-condensed">
+                            <tbody class="clause_tbody">
+                              <tr t-foreach="s.clauses" t-as="c">
+                                <h4 t-field="c.name"/>
+                                <span t-field="c.content"/>
                               </tr>
-                          </tbody>
-                      </table>
+                            </tbody>
+                          </table>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </t>
               </t>
