@@ -67,14 +67,15 @@ class Agreement(models.Model):
      parent_agreement = fields.Many2one('partner_agreement.agreement', string="Parent Agreement", help="Link this agreement to a parent agreement. For example if this agreement is an amendment to another agreement. This list will only show other agreements related to the same account.")
      renewal_type = fields.Many2one('partner_agreement.renewaltype', string="Renewal Type", help="Describes what happens after the contract expires.")
 
-     order_lines_services = fields.One2many(related='sale_order.order_line')
-     order_lines_nonservices = fields.One2many(related='sale_order.order_line')
+     order_lines_services = fields.One2many(related='sale_order.order_line', string="Service Order Lines")
+     order_lines_nonservices = fields.One2many(related='sale_order.order_line', string="Non Service Order Lines")
      sections = fields.One2many('partner_agreement.section', 'agreement', string="Sections", copy=True)
      clauses = fields.One2many('partner_agreement.clause', 'agreement', string="Clauses", copy=True)
      previous_version_agreements = fields.One2many('partner_agreement.agreement', 'parent_agreement', string="Child Agreements", copy=False, domain=[('active', '=', False)])
      child_agreements = fields.One2many('partner_agreement.agreement', 'parent_agreement', string="Child Agreements", copy=False, domain=[('active', '=', True)])
      products = fields.Many2many('product.template', string="Products", copy=False)
      state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], default='draft', track_visibility='always')
+     notification_address = fields.Many2one('res.partner', string="Notification Address", help="The address to send notificaitons to, if different from customer address.(Address Type = Other)")
 
      #compute field functions
 

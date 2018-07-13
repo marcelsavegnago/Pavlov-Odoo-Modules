@@ -84,6 +84,7 @@
                 <field name="end_date" requried="True" attrs="{'required': [('is_template', '=', False)], 'readonly':[('is_template', '=', True)]}"/>
                 <field name="expiration_notice"/>
                 <field name="change_notice"/>
+                <field name="notification_address" domain="['|',('parent_id','=',customer),('parent_id','=',vendor)]"/>
                 <field name="termination_requested"/>
                 <field name="termination_date"/>
               </group>
@@ -145,7 +146,7 @@
                       <field name="total_customer_mrc"/>
                     </group>
                     <group string="Service Products Order Lines">
-                      <field name="order_lines_services" mode="tree,form" colspan="4" nolabel="1" domain="[('product_id.type', '=', 'service')]"/>
+                      <field name="order_lines_services" nolabel="1" context="{'search_default_filter_service_product_type':1}"/>
                     </group>
                     <group colspan="2" col="4">
                       <field name="total_company_nrc"/>
@@ -182,10 +183,9 @@
                 <field name="is_template"/>
               </group>
               <footer>
-                      Version: <field name="version" readonly="True"/>.<field name="revision" readonly="True"/>
-                      |   Created By: <field name="create_uid" readonly="True"/>
-                      |   Created On: <field name="create_date" readonly="True"/>
-
+                Version: <field name="version" readonly="True"/>.<field name="revision" readonly="True"/>
+                |  Created By: <field name="create_uid" readonly="True"/>
+                |  Created On: <field name="create_date" readonly="True"/>
               </footer>
           </sheet>
         </form>
@@ -262,6 +262,19 @@
           <filter name="group_customer" string="customers" icon="terp-partner" context="{'group_by':'customer'}"/>
           <filter name="group_status" string="Status" icon="terp-partner" context="{'group_by':'state'}"/>
         </search>
+      </field>
+    </record>
+
+    <!-- Adding a new filter to the order line search view -->
+    <record id="order_lines_search_view" model="ir.ui.view">
+      <field name="name">Order Lines Search</field>
+      <field name="model">sale.order.line</field>
+      <field name="type">search</field>
+      <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
+      <field name="arch" type="xml">
+        <xpath expr="/search/filter[1]" position="after">
+          <filter name="filter_service_product_type" string="Service Type" domain="[('type', '=', 'service')]"/>
+        </xpath>
       </field>
     </record>
 
