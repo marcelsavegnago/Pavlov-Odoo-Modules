@@ -7,7 +7,7 @@ class AgreementSection(models.Model):
 
 #General
      name = fields.Char(string="Title", required=True)
-     section_sequence = fields.Integer(string="Sequence", default=1)
+     section_sequence = fields.Integer(string="Sequence")
      agreement = fields.Many2one('partner_agreement.agreement', string="Agreement", ondelete="cascade")
      clauses = fields.One2many('partner_agreement.clause', 'section', string="Clauses")
      content = fields.Html(string="Section Content")
@@ -19,3 +19,9 @@ class AgreementSection(models.Model):
      sub_model_object_field = fields.Many2one('ir.model.fields', string="Sub-field", help="When a relationship field is selected as first field, this field lets you select the target field within the destination document model (sub-model).")
      null_value = fields.Char(string="Default Value", help="Optional value to use if the target field is empty.")
      copyvalue = fields.Char(string="Placeholder Expression", help="Final placeholder expression, to be copy-pasted in the desired template field.")
+
+     @api.model
+     def create(self, vals):
+        seq = self.env['ir.sequence'].next_by_code('agreement.section') or '/'
+        vals['section_sequence'] = seq
+        return super(AgreementSection, self).create(vals)

@@ -1,6 +1,12 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
+    <!-- Agreement Sections Sequences-->
+    <record id="seq_agreement_section" model="ir.sequence">
+      <field name="name">agreement_section_sequencer</field>
+      <field name="code">agreement.section</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
 
     <!-- Agreement Sections List View-->
     <record model="ir.ui.view" id="partner_agreement_section_list_view">
@@ -35,7 +41,13 @@
             </group>
             <notebook>
               <page string="Clauses">
-                <field name="clauses" string="Clauses"/>
+                <field name="clauses" string="Clauses" context="{'default_section': active_id,'default_agreement': agreement}">
+                  <tree>
+                    <field name="clause_sequence" widget="handle"/>
+                    <field name="name"/>
+                    <field name="content"/>
+                  </tree>
+                </field>
               </page>
               <page string="Dynamic Placeholder Generator">
                 THIS IS UNDER DEVELOPEMENT: The purpose of this section is to be able to create dynamic fields inside your content.
@@ -49,7 +61,7 @@
                  </group>
               </page>
             </notebook>
-             Sequence #<field name="section_sequence"/>
+             Sequence #<field name="section_sequence" readonly="1"/>
           </sheet>
         </form>
       </field>

@@ -1,6 +1,12 @@
 <odoo>
   <data>
-    <!-- explicit list view definition -->
+    <!-- Agreement Clauses Sequences-->
+    <record id="seq_agreement_clause" model="ir.sequence">
+      <field name="name">agreement_clause_sequencer</field>
+      <field name="code">agreement.clause</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
 
     <!-- Agreement Clause List View-->
     <record model="ir.ui.view" id="partner_agreement_clause_list_view">
@@ -37,7 +43,7 @@
             </group>
             <notebook>
               <page string="Dynamic Placeholder Generator">
-                THIS IS UNDER DEVELOPEMENT: The purpose of this section is to be able to create dynamic fields inside your content. 
+                THIS IS UNDER DEVELOPEMENT: The purpose of this section is to be able to create dynamic fields inside your content.
                 <group>
                   <field name="model_id"/>
                   <field name="model_object_field" domain="[('model_id','=',model_id),('ttype','!=','one2many'),('ttype','!=','many2many')]"/>
