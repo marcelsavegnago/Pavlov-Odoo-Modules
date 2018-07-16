@@ -76,7 +76,8 @@ class Agreement(models.Model):
      products = fields.Many2many('product.template', string="Products", copy=False)
      state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], default='draft', track_visibility='always')
      notification_address = fields.Many2one('res.partner', string="Notification Address", help="The address to send notificaitons to, if different from customer address.(Address Type = Other)")
-
+     signed_contract_filename = fields.Char(string="Filename")
+     signed_contract = fields.Binary(string="Signed Document")
      #compute field functions
 
      #Used for Kanban grouped_by view

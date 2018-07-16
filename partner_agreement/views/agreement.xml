@@ -118,6 +118,8 @@
                       <field name="company_signed_date"/>
                       <field name="customer_signed_by" domain="[('parent_id', '=', customer)]"/>
                       <field name="company_signed_by"/>
+                      <field name="signed_contract" filename="signed_contract_filename"/>
+                      <field name="signed_contract_filename" invisible="1"/>
                     </group>
                     <group colspan="2" col="2" default_order='section_sequence'>
                       <field name="sections" string="Contract Sections" context="{'default_agreement': active_id}">
@@ -173,6 +175,10 @@
                         <field name="revision"/>
                       </tree>
                     </field>
+                  </page>
+                  <page colspan="2" col="4" name="peformance" string="Performance">
+                    <p>This section is a place where finincial records will show the current performance of this agreement. </p>
+                    <p>Perhaps include invoices with total vs costs? </p>
                   </page>
               </notebook>
               <group colspan="2" col="4" string="Administration">

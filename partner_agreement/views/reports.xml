@@ -30,8 +30,10 @@
                           <table class="table table-condensed">
                             <tbody class="clause_tbody">
                               <tr t-foreach="s.clauses" t-as="c">
-                                <h4 t-field="c.name"/>
-                                <span t-field="c.content"/>
+                                <div id="clauses" style="padding:40px">
+                                  <h4 t-field="c.name"/>
+                                  <span t-field="c.content"/>
+                                </div>
                               </tr>
                             </tbody>
                           </table>
