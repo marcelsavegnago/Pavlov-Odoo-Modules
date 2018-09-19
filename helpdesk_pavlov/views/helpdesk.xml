@@ -7,8 +7,48 @@
     <field name="arch" type="xml">
       <data>
           <xpath expr="//field[@name='priority']" position="before">
-            <field name="origin" string="Origin" widget="selection"/>
-            <field name="severity" string="Severity" widget="selection"/>
+            <field name="origin" widget="selection"/>
+            <field name="severity" widget="selection"/>
+            <field name="location_onsite"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="before">
+            <field name="sitecode"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="service_location"/>
+            <field name="contact"/>
+          </xpath>
+          <xpath expr="//field[@name='description']" position="after">
+            <notebook>
+              <page colspan="2" col="4" string="Addresses">
+                <group string="Contact Information" colspan="2" col="4" attrs="{'invisible':[('contact','=',False)]}">
+                  <field name="contact" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_phone" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_street" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_mobile" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_street2" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_email" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_city" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="spacer" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_state" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="spacer" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                  <field name="contact_zip" attrs="{'readonly': True,'invisible':[('contact','=',False)]}"/>
+                </group>
+                <group string="Service Location Information" colspan="2" col="4" attrs="{'invisible':[('service_location','=',False)]}">
+                  <field name="service_location" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_phone" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_street" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_mobile" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_street2" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_email" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_city" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_website" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_state" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="spacer" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                  <field name="service_location_zip" attrs="{'readonly': True,'invisible':[('service_location','=',False)]}"/>
+                </group>
+              </page>
+           </notebook>
           </xpath>
       </data>
     </field>

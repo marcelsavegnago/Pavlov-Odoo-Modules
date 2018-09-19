@@ -29,5 +29,20 @@
       </field>
     </record>
 
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="helpdesk_action_severity">
+      <field name="name">Case Severities</field>
+      <field name="res_model">helpdesk.severity</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Case Severities"
+      id="helpdesk_severity_menu_1"
+      parent="helpdesk.helpdesk_menu_config"
+      sequence="3"
+      action="helpdesk_action_severity"/>
+
   </data>
 </odoo>

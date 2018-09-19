@@ -29,5 +29,20 @@
       </field>
     </record>
 
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="helpdesk_action_origin">
+      <field name="name">Case Origins</field>
+      <field name="res_model">helpdesk.origin</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Case Origins"
+      id="helpdesk_origin_menu_1"
+      parent="helpdesk.helpdesk_menu_config"
+      sequence="3"
+      action="helpdesk_action_origin"/>
+
   </data>
 </odoo>
