@@ -6,11 +6,6 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
-          <xpath expr="//field[@name='priority']" position="before">
-            <field name="origin" widget="selection"/>
-            <field name="severity" widget="selection"/>
-            <field name="location_onsite"/>
-          </xpath>
           <xpath expr="//field[@name='partner_id']" position="before">
             <field name="sitecode"/>
           </xpath>
@@ -18,41 +13,46 @@
             <field name="customer_type" invisible="1"/>
             <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
           </xpath>
+          <xpath expr="//field[@name='ticket_type_id']" position="before">
+            <field name="origin" widget="selection"/>
+          </xpath>
+          <xpath expr="//field[@name='ticket_type_id']" position="after">
+            <field name="topic" widget="selection"/>
+            <field name="location_onsite"/>
+          </xpath>
           <xpath expr="//field[@name='description']" position="after">
-            <field name="resolution"/>
-            <field name="review_reason"/>
-            <notebook>
-              <page string="Addresses">
-                <group string="Customer Information" colspan="2" col="4" attrs="{'readonly': True}">
-                  <field name="partner_id"/>
-                  <field name="customer_phone"/>
-                  <field name="customer_street"/>
-                  <field name="customer_mobile"/>
-                  <field name="customer_street2"/>
-                  <field name="customer_email"/>
-                  <field name="customer_city"/>
-                  <field name="spacer"/>
-                  <field name="customer_state"/>
-                  <field name="spacer"/>
-                  <field name="customer_zip"/>
+              <field name="resolution" placeholder="Resolution of the ticket..."/>
+              <field name="review_reason" placeholder="Ticket Review Reason..."/>
+              <group name="address_information">
+                  <group string="Customer Information" attrs="{'readonly': True}">
+                    <div class="o_address_format">
+                      <field name="partner_id"/>
+                        <field name="customer_street" placeholder="Street..." class="o_address_street"/>
+                        <field name="customer_street2" placeholder="Street 2..." class="o_address_street"/>
+                        <field name="customer_city" placeholder="City" class="o_address_city"/>
+                        <field name="customer_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                        <field name="customer_zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="customer_website" class="o_address_website" widget="url"/>
+                    </div>
+                    <field name="customer_phone" widget="phone"/>
+                    <field name="customer_mobile" widget="phone"/>
+                    <field name="customer_email" widget="email"/>
+                  </group>
+                  <group string="Parent Location Information" attrs="{'invisible':[('parent_location','=',False)]}">
+                    <div class="o_address_format">
+                        <field name="parent_location"/>
+                        <field name="parent_location_street" class="o_address_street"/>
+                        <field name="parent_location_street2" class="o_address_street"/>
+                        <field name="parent_location_city" class="o_address_city"/>
+                        <field name="parent_location_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                        <field name="parent_location_zip" class="o_address_zip"/>
+                        <field name="parent_location_website" class="o_address_website" widget="url"/>
+                    </div>
+                    <field name="parent_location_phone" string="Phone" widget="phone"/>
+                    <field name="parent_location_mobile" string="Mobile" widget="phone"/>
+                    <field name="parent_location_email" string="Email" widget="email"/>
+                  </group>
                 </group>
-                <group string="Parent Location Information" colspan="2" col="4" attrs="{'invisible':[('parent_location','=',False)]}">
-                  <field name="parent_location"/>
-                  <field name="parent_location_phone"/>
-                  <field name="parent_location_street"/>
-                  <field name="parent_location_mobile"/>
-                  <field name="parent_location_street2"/>
-                  <field name="parent_location_email"/>
-                  <field name="parent_location_city"/>
-                  <field name="parent_location_website"/>
-                  <field name="parent_location_state"/>
-                  <field name="spacer"/>
-                  <field name="parent_location_zip"/>
-                </group>
-              </page>
-              <page string="Service Calls">
-              </page>
-           </notebook>
           </xpath>
       </data>
     </field>

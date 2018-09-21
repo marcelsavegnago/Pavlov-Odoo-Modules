@@ -25,7 +25,7 @@
     'data': [
         'views/helpdesk_origin.xml',
         'views/helpdesk.xml',
-        'views/helpdesk_severity.xml',
+        'views/helpdesk_topic.xml',
         #'security/security.xml',
         #'security/ir.model.access.csv',
     ],

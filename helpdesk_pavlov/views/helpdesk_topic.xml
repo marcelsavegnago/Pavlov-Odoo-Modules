@@ -3,9 +3,9 @@
     <!-- explicit list view definition -->
 
     <!-- List View-->
-    <record model="ir.ui.view" id="helpdesk_severity_list_view">
-      <field name="name">Helpdesk Severity List View</field>
-      <field name="model">helpdesk.severity</field>
+    <record model="ir.ui.view" id="helpdesk_topic_list_view">
+      <field name="name">Helpdesk Topic List View</field>
+      <field name="model">helpdesk.topic</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
           <field name="name"/>
@@ -14,11 +14,11 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="helpdesk_severity_form_view">
-      <field name="name">Helpdesk Severity Form</field>
-      <field name="model">helpdesk.severity</field>
+    <record model="ir.ui.view" id="helpdesk_topic_form_view">
+      <field name="name">Helpdesk Topic Form</field>
+      <field name="model">helpdesk.topic</field>
       <field name="arch" type="xml">
-        <form string="Helpdesk Severity">
+        <form string="Helpdesk topic">
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Name" />
@@ -30,19 +30,19 @@
     </record>
 
     <!-- Actions opening views on models -->
-    <record model="ir.actions.act_window" id="helpdesk_action_severity">
-      <field name="name">Case Severities</field>
-      <field name="res_model">helpdesk.severity</field>
+    <record model="ir.actions.act_window" id="helpdesk_action_topic">
+      <field name="name">Case Topics</field>
+      <field name="res_model">helpdesk.topic</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu Items -->
     <menuitem
-      name="Case Severities"
-      id="helpdesk_severity_menu_1"
+      name="Case Topics"
+      id="helpdesk_topic_menu_1"
       parent="helpdesk.helpdesk_menu_config"
       sequence="3"
-      action="helpdesk_action_severity"/>
+      action="helpdesk_action_topic"/>
 
   </data>
 </odoo>

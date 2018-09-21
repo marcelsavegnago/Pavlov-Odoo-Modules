@@ -11,7 +11,7 @@ class Helpdesk(models.Model):
     linked_nodes = fields.Text(string="Linked Nodes")
 
     origin = fields.Many2one('helpdesk.origin', string="Origin", required=True)
-    severity = fields.Many2one('helpdesk.severity', string="Severity", required=True)
+    topic = fields.Many2one('helpdesk.topic', string="Topic", required=True)
     parent_location = fields.Many2one(related='partner_id.parent_id', string="Parent Location")
     customer_type = fields.Selection(related='partner_id.company_type', string="Customer Type")
 
@@ -28,6 +28,7 @@ class Helpdesk(models.Model):
     customer_phone = fields.Char(related='partner_id.phone', string="Phone")
     customer_mobile = fields.Char(related='partner_id.mobile', string="Mobile")
     customer_email = fields.Char(related='partner_id.email', string="Email")
+    customer_website = fields.Char(related='partner_id.website', string="Website")
 
     parent_location_street = fields.Char(related='parent_location.street', string="Street")
     parent_location_street2 = fields.Char(related='parent_location.street2', string="Street 2")
