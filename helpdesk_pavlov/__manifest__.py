@@ -23,7 +23,7 @@
 
     # always loaded
     'data': [
-        'views/helpdesk_origin.xml',
+        #'views/helpdesk_origin.xml',
         'views/helpdesk.xml',
         'views/helpdesk_topic.xml',
         #'security/security.xml',

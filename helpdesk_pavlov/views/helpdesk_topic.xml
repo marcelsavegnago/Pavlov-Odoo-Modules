@@ -31,14 +31,14 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="helpdesk_action_topic">
-      <field name="name">Case Topics</field>
+      <field name="name">Ticket Topics</field>
       <field name="res_model">helpdesk.topic</field>
       <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu Items -->
     <menuitem
-      name="Case Topics"
+      name="Ticket Topics"
       id="helpdesk_topic_menu_1"
       parent="helpdesk.helpdesk_menu_config"
       sequence="3"

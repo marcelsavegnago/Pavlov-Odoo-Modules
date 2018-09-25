@@ -6,22 +6,39 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
+        <xpath expr="//field[@name='team_id']" position="before">
+          <field name="id" string="Ticket #" attrs="{'readonly': True}"/>
+        </xpath>
+        <xpath expr="//field[@name='priority']" position="after">
+          <field name="parent_ticket" attrs="{'invisible':[('customer_type','=','company')]}" domain="[('close_date', '=', False),('partner_id', '=', parent_location)]"/>
+        </xpath>
           <xpath expr="//field[@name='partner_id']" position="before">
             <field name="sitecode"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="replace">
+            <field name="partner_id" string="Partner" attrs="{'required': True}"/>
+          </xpath>
+          <xpath expr="//field[@name='ticket_type_id']" position="replace">
+            <field name="ticket_type_id" string="Ticket Type" attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='partner_id']" position="after">
             <field name="customer_type" invisible="1"/>
             <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="before">
-            <field name="origin" widget="selection"/>
+            <field name="source_id" attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="after">
             <field name="topic" widget="selection"/>
-            <field name="location_onsite"/>
+            <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
+            <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
+          </xpath>
+          <xpath expr="//field[@name='description']" position="replace">
+            <field name="description" string="Description" placeholder="Description of the ticket..." attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='description']" position="after">
-              <field name="resolution" placeholder="Resolution of the ticket..."/>
+              <field name="resolution" placeholder="Resolution of the ticket..." attrs="{'required':[('close_date','!=', False)]}"/>
+              <field name="close_date" string="Close Date" attrs="{'readonly': True}"/>
               <field name="review_reason" placeholder="Ticket Review Reason..."/>
               <group name="address_information">
                   <group string="Customer Information" attrs="{'readonly': True}">

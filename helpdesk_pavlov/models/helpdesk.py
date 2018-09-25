@@ -10,8 +10,8 @@ class Helpdesk(models.Model):
     location_onsite = fields.Char(string="Location On-Site")
     linked_nodes = fields.Text(string="Linked Nodes")
 
-    origin = fields.Many2one('helpdesk.origin', string="Origin", required=True)
     topic = fields.Many2one('helpdesk.topic', string="Topic", required=True)
+    parent_ticket = fields.Many2one('helpdesk.ticket', string="Parent Ticket")
     parent_location = fields.Many2one(related='partner_id.parent_id', string="Parent Location")
     customer_type = fields.Selection(related='partner_id.company_type', string="Customer Type")
 
