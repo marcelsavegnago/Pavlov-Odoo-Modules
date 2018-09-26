@@ -5,3 +5,4 @@ class HelpdeskTopic(models.Model):
 
 #General
     name = fields.Char(string="Topic", required=True)
+    ticket_type_id = fields.Many2one('helpdesk.ticket.type', string="Ticket Type", required=True)

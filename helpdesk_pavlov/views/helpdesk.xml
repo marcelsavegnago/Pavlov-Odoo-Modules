@@ -29,7 +29,7 @@
             <field name="source_id" attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="after">
-            <field name="topic" widget="selection"/>
+            <field name="topic" widget="selection" domain="[('ticket_type_id', '=', ticket_type_id)]"/>
             <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
             <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
           </xpath>
