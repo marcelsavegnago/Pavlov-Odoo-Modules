@@ -19,7 +19,7 @@
       <field name="name">Helpdesk Topic Form</field>
       <field name="model">helpdesk.topic</field>
       <field name="arch" type="xml">
-        <form string="Helpdesk topic">
+        <form string="Helpdesk Topic">
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Name" />

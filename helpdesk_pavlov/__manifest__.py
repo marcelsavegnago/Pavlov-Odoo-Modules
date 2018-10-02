@@ -26,8 +26,9 @@
         #'views/helpdesk_origin.xml',
         'views/helpdesk.xml',
         'views/helpdesk_topic.xml',
-        #'security/security.xml',
-        #'security/ir.model.access.csv',
+        'views/helpdesk_closecode.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

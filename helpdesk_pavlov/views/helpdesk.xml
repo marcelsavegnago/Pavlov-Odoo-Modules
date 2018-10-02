@@ -37,9 +37,12 @@
             <field name="description" string="Description" placeholder="Description of the ticket..." attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='description']" position="after">
-              <field name="resolution" placeholder="Resolution of the ticket..." attrs="{'required':[('close_date','!=', False)]}"/>
-              <field name="close_date" string="Close Date" attrs="{'readonly': True}"/>
-              <field name="review_reason" placeholder="Ticket Review Reason..."/>
+              <group string="Resolution Details">
+                <field name="resolution" placeholder="Resolution of the ticket..." attrs="{'required':[('close_date','!=', False)]}"/>
+                <field name="close_code" placeholder="Close Code of the ticket..."/>
+                <field name="close_date" string="Close Date" attrs="{'readonly': True}"/>
+                <field name="review_reason" placeholder="Ticket Review Reason..."/>
+              </group>
               <group name="address_information">
                   <group string="Customer Information" attrs="{'readonly': True}">
                     <div class="o_address_format">
@@ -74,5 +77,4 @@
       </data>
     </field>
   </record>
-
 </odoo>

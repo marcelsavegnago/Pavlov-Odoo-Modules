@@ -41,4 +41,5 @@ class Helpdesk(models.Model):
     parent_location_website = fields.Char(related='parent_location.website', string="Website")
 
     resolution = fields.Text(string="Resolution")
+    close_code = fields.Many2one('helpdesk.closecode', string="Close Code")
     review_reason = fields.Char(string="Ticket Review Reason")
