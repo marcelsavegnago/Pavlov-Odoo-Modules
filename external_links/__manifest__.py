@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk - Pavlov Customizations",
+    'name': "External Links",
 
     'summary': """
-        Pavlov Media Helpdesk Customizations""",
+        Links to External sites or systems""",
 
     'description': """
-        This module adds Pavlov Media specific customizations to the Helpdesk model.
+        This module adds the ability to organize links to external sites or systems within Odoo.
     """,
 
     'author': "Pavlov Media",
@@ -15,21 +15,17 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Helpdesk',
+    'category': 'Extra Tools',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'helpdesk'],
+    'depends': ['base',],
 
     # always loaded
     'data': [
-        #'views/helpdesk_origin.xml',
-        'views/helpdesk.xml',
-        'views/helpdesk_scope.xml',
-        'views/helpdesk_closecode.xml',
-        'views\helpdesk_ticket_type.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
+        'views/link.xml',
+        #'security/security.xml',
+        #'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

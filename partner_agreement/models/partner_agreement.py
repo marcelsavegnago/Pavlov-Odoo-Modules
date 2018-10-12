@@ -24,7 +24,7 @@ class Agreement(models.Model):
      special_terms = fields.Text(string="Special Terms", help="Any terms that you have agreed to and want to track on the agreement/contract.", track_visibility='onchange')
      contract_value = fields.Monetary(compute='_compute_contract_value', string="Contract Value", help="Total value of the contract over ther entire term.", store=True)
      contract_id = fields.Char(string="ID", help="ID used for internal contract tracking.", track_visibility='onchange')
-     total_company_mrc = fields.Monetary('Company MRC', currency_field='currency_id', help="Total company monthly recurring costs.", compute='_compute_company_mrc')
+     total_company_mrc = fields.Monetary('Company MRC', currency_field='currency_id', help="Total company monthly recurring costs.")#, compute='_compute_company_mrc')
      total_customer_mrc = fields.Monetary('Customer MRC', currency_field='currency_id', help="Total custemer monthly recurring costs.")
      total_company_nrc = fields.Monetary('Company NRC', currency_field='currency_id', help="Total company non-recurring costs.")
      total_customer_nrc = fields.Monetary('Customer NRC', currency_field='currency_id', help="Total custemer non-monthly recurring costs.")

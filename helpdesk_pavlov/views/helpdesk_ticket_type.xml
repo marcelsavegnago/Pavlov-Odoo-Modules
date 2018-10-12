@@ -1,0 +1,15 @@
+<odoo>
+
+  <record model="ir.ui.view" id="helpdesk_ticket_type_list">
+  <!--  <field name="name">partner.bandwidth_change</field> -->
+    <field name="model">helpdesk.ticket.type</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_type_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="scope_ids" widget="many2many_tags"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

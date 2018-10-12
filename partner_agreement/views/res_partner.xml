@@ -8,7 +8,7 @@
           <xpath expr="//page[@name='internal_notes']" position="after">
               <page name="agreement" string="Agreements">
                 <group colspan="2" col="2">
-                  <field name="name" string="Agreements" context="{'default_account': active_id}"/>
+                  <field name="agreements" string="Agreements" />
                 </group>
               </page>
           </xpath>
