@@ -43,3 +43,13 @@ class Helpdesk(models.Model):
     resolution = fields.Text(string="Resolution")
     close_code = fields.Many2one('helpdesk.closecode', string="Close Code")
     review_reason = fields.Char(string="Ticket Review Reason")
+
+    track_created_email = fields.Boolean(string="Ticket Created Email")
+    track_monitoring_email = fields.Boolean(string="Ticket Monitoring Email")
+    track_outagereleated_email = fields.Boolean(string="Ticket Related to Outage Email")
+    track_closed_email = fields.Boolean(string="Ticket Closed Email")
+
+    @api.onchange('ticket_type_id')
+    def _onchange_priority(self):
+        #if self.ticket_type_id.default_priority:
+            self.priority = self.ticket_type_id.default_priority

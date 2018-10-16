@@ -26,8 +26,8 @@
               <h1><field name="name" /></h1>
             </div>
             <group>
-              <field name="ticket_type_id"/>
-              <field name="ticket_scope" domain="[('ticket_type_id', '=', ticket_type_id)]"/>
+              <field name="ticket_scope"/>
+              <field name="ticket_type_id" domain="[('scope_ids', '=', ticket_scope)]"/>
             </group>
           </sheet>
         </form>

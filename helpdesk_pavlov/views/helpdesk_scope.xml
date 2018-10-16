@@ -34,7 +34,6 @@
               <h1><field name="name" /></h1>
             </div>
             <group>
-             <!--<field name="ticket_type_ids" widget="many2many_tags"/>-->
              <field name="user_ids" widget="many2many_tags"/>
            </group>
           </sheet>
@@ -51,10 +50,10 @@
 
     <!-- Menu Items -->
     <menuitem
-      name="Ticket Scopes"
+      name="Ticket Scope"
       id="helpdesk_scope_menu_1"
       parent="helpdesk.helpdesk_menu_config"
-      sequence="2"
+      sequence="1"
       action="helpdesk_action_scope"/>
 
   </data>
