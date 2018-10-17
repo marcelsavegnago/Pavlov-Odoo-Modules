@@ -55,7 +55,7 @@
           <templates>
             <t t-name="kanban-box">
               <div class="oe_kanban_card">
-                <img t-att-src="kanban_image('external_links.link', 'logo', record.id.value)" t-att-title="record.id.value" style="margin-right: 10px;" width="90" height="90" class="oe_kanban_avatar pull-left"/>
+                <img t-att-src="kanban_image('external_links.link', 'logo', record.id.value)" t-att-title="record.id.value" style="margin-right: 10px;" width="80" height="80" class="oe_kanban_avatar pull-left"/>
                 <a type="open">
                   <div class="o_dropdown_kanban dropdown" name="dropdown_menu">
                     <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
@@ -82,6 +82,19 @@
             </t>
           </templates>
         </kanban>
+      </field>
+    </record>
+
+    <!-- Search View -->
+    <record model="ir.ui.view" id="link_search_view">
+      <field name="name">Link Search</field>
+      <field name="model">external_links.link</field>
+      <field name="arch" type="xml">
+        <search>
+          <!-- This field will show up on the quick search -->
+          <field name="name"/>
+          <field name="categories"/>
+        </search>
       </field>
     </record>
 
