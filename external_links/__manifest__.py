@@ -23,9 +23,10 @@
 
     # always loaded
     'data': [
-        'views/link.xml',
+        'views/external_links.xml',
+        'views/link_categories.xml',
         #'security/security.xml',
-        #'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,5 +1,4 @@
 <odoo>
-
   <record model="ir.ui.view" id="helpdesk_ticket_form">
     <field name="model">helpdesk.ticket</field>
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
@@ -79,6 +78,21 @@
                   </group>
                 </group>
           </xpath>
+      </data>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="helpdesk_ticket_list_view">
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='priority']" position="replace">
+            <field name="priority" widget="priority"/>
+        </xpath>
+        <xpath expr="//field[@name='name']" position="before">
+            <field name="team_id"/>
+        </xpath>
       </data>
     </field>
   </record>

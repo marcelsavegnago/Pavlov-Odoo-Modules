@@ -1,0 +1,109 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <!-- List View-->
+    <record model="ir.ui.view" id="link_list_view">
+      <field name="name">Link List</field>
+      <field name="model">external_links.link</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name"/>
+          <field name="url" widget="url"/>
+          <button string="Open URL" type="object" name="openURL" class="oe_highlight" attrs="{'invisible': [('url', '=', False)]}"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="link_form_view">
+      <field name="name">Link Form</field>
+      <field name="model">external_links.link</field>
+      <field name="arch" type="xml">
+        <form string="Links Form">
+          <sheet>
+            <field name="logo" widget="image" class="oe_avatar"/>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="url" widget="url"/>
+              <field name="categories" widget="many2many_tags"/>
+              <field name="description"/>
+              <field name="vpn"/>
+            </group>
+            <group>
+              <button string="Test URL" type="object" name="openURL" class="oe_highlight" attrs="{'invisible': [('url', '=', False)]}"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record model="ir.ui.view" id="link_kanban_view">
+      <field name="name">Link Kanban</field>
+      <field name="model">external_links.link</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <field name="id"/>
+          <field name="name"/>
+          <field name="url"/>
+          <field name="logo"/>
+          <field name="vpn"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_card">
+                <img t-att-src="kanban_image('external_links.link', 'logo', record.id.value)" t-att-title="record.id.value" style="margin-right: 10px;" width="90" height="90" class="oe_kanban_avatar pull-left"/>
+                <a type="open">
+                  <div class="o_dropdown_kanban dropdown" name="dropdown_menu">
+                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#">
+                      <span class="fa fa-bars fa-lg"/>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" name="dropdown_menu2">
+                      <t t-if="widget.editable">
+                        <li name="edit_menu">
+                          <a type="edit">Edit</a>
+                        </li>
+                      </t>
+                    </ul>
+                  </div>
+                  <strong><field name="name"/></strong>
+                  <field name="categories"/>
+                  <button string="Open URL" type="object" name="openURL" class="oe_highlight" attrs="{'invisible': [('url', '=', False)]}">
+                    <span>Open URL</span>
+                  </button>
+                  <div>
+                    <t t-if="record.vpn.raw_value == true">*Local/VPN Required</t>
+                  </div>
+                </a>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <!-- actions opening views on models-->
+    <record model="ir.actions.act_window" id="external_links.action_window">
+      <field name="name">External Links</field>
+      <field name="res_model">external_links.link</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+        <menuitem name="External Links" id="external_link_menu_root" web_icon="external_links,static/description/icon.png" sequence="51"/>
+
+        <!-- menu categories -->
+        <menuitem
+          name="Links"
+          id="external_link_menu_1"
+          parent="external_link_menu_root"
+          sequence="10"
+          action="external_links.action_window"/>
+
+
+
+  </data>
+</odoo>
