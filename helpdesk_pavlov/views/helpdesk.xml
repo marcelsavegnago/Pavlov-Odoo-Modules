@@ -25,7 +25,7 @@
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="before">
             <field name="source_id" attrs="{'required': True}"/>
-            <field name="scope" widget="selection" domain="[('user_ids', '=', uid)]"/>
+            <field name="scope" widget="selection"/>
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="after">
             <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
@@ -87,10 +87,10 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='priority']" position="replace">
+        <xpath expr="//field[@name='priority']" position="replace">  <!-- v12 DOESN'T HAVE PRIORITY IN VIEW -->
             <field name="priority" widget="priority"/>
         </xpath>
-        <xpath expr="//field[@name='name']" position="before">
+        <xpath expr="//field[@name='name']" position="before"> <!-- v12 CHAGNED TO display_name -->
             <field name="team_id"/>
         </xpath>
       </data>

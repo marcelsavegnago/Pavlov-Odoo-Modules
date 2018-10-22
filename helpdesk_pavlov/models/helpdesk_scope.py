@@ -7,7 +7,7 @@ class HelpdeskScope(models.Model):
 #General
     name = fields.Char(string="Scope", required=True)
     scope_sequence = fields.Integer(string="Sequence")
-    user_ids = fields.Many2many('res.users', string="Allowed Users", required=True)
+    description = fields.Text(string="Description")
 
     @api.model
     def create(self, vals):
