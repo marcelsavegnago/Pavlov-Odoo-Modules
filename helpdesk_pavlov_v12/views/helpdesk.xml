@@ -5,10 +5,17 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
+        <xpath expr="//field[@name='ticket_type_id']" position="replace">
+          <field name="ticket_type_id" attrs="{'required': True}" domain="[('scope_ids', '=', scope)]"/> <!-- Add Attr and Domain to Ticket Type Field -->
+        </xpath>
         <xpath expr="//field[@name='team_id']" position="before">
           <field name="id" string="Ticket #" attrs="{'readonly': True}"/>
         </xpath>
         <xpath expr="//field[@name='priority']" position="after">
+          <field name="source"/>
+          <field name="scope" widget="selection"/>
+          <xpath expr="//field[@name='ticket_type_id']" position="move"/> <!-- Move Ticket Type Field -->
+          <xpath expr="//field[@name='tag_ids']" position="move"/> <!-- Move Tags Field -->
           <field name="parent_ticket" attrs="{'invisible':[('customer_type','=','company')]}" domain="[('close_date', '=', False),('partner_id', '=', parent_location)]"/>
         </xpath>
           <xpath expr="//field[@name='partner_id']" position="before">
@@ -17,16 +24,9 @@
           <xpath expr="//field[@name='partner_id']" position="replace">
             <field name="partner_id" string="Partner" attrs="{'required': True}"/>
           </xpath>
-          <xpath expr="//field[@name='ticket_type_id']" position="replace">
-            <field name="ticket_type_id" string="Ticket Type" attrs="{'required': True}" domain="[('scope_ids', '=', scope)]"/>
-          </xpath>
           <xpath expr="//field[@name='partner_id']" position="after">
             <field name="customer_type" invisible="1"/>
             <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
-          </xpath>
-          <xpath expr="//field[@name='ticket_type_id']" position="before">
-            <field name="source_id" attrs="{'required': True}"/>
-            <field name="scope" widget="selection"/>
           </xpath>
           <xpath expr="//field[@name='ticket_type_id']" position="after">
             <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>

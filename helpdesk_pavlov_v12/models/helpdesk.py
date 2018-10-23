@@ -9,6 +9,7 @@ class Helpdesk(models.Model):
     sitecode = fields.Char(string="Site Code")
     location_onsite = fields.Char(string="Location On-Site")
     linked_nodes = fields.Text(string="Linked Nodes")
+    source = fields.Many2one('helpdesk.source', string="Source", required=True)
 
     scope = fields.Many2one('helpdesk.scope', string="Scope", required=True)
     parent_ticket = fields.Many2one('helpdesk.ticket', string="Parent Ticket")
