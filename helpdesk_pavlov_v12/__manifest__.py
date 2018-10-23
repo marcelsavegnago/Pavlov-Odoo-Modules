@@ -23,12 +23,12 @@
 
     # always loaded
     'data': [
-        #'views/helpdesk_origin.xml',
         'views/helpdesk.xml',
         'views/helpdesk_scope.xml',
         'views/helpdesk_closecode.xml',
         'views/helpdesk_ticket_type.xml',
         'views/helpdesk_source.xml',
+        'views/helpdesk_ticket_stage.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],

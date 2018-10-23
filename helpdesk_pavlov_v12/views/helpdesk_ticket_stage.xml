@@ -1,0 +1,18 @@
+<odoo>
+  <!-- Update the Stage List -->
+  <record model="ir.ui.view" id="helpdesk_stage_list_view">
+    <field name="model">helpdesk.stage</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_stage_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='is_close']" position="before">
+            <field name="team_ids" widget="many2many_tags"/>
+            <field name="template_id"/>
+        </xpath>
+        <xpath expr="//field[@name='is_close']" position="after">
+            <field name="id"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

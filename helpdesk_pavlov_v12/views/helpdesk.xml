@@ -28,7 +28,7 @@
             <field name="customer_type" invisible="1"/>
             <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
           </xpath>
-          <xpath expr="//field[@name='ticket_type_id']" position="after">
+          <xpath expr="//field[@name='task_id']" position="after">
             <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
             <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
           </xpath>
