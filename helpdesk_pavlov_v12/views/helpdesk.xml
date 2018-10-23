@@ -1,4 +1,5 @@
 <odoo>
+
   <record model="ir.ui.view" id="helpdesk_ticket_form">
     <field name="model">helpdesk.ticket</field>
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
@@ -87,10 +88,10 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='priority']" position="replace">  <!-- v12 DOESN'T HAVE PRIORITY IN VIEW -->
+        <xpath expr="//field[@name='user_id']" position="replace">  <!-- v12 DOESN'T HAVE PRIORITY IN VIEW -->
             <field name="priority" widget="priority"/>
         </xpath>
-        <xpath expr="//field[@name='name']" position="before"> <!-- v12 CHAGNED TO display_name -->
+        <xpath expr="//field[@name='display_name']" position="before"> <!-- v12 CHAGNED TO display_name -->
             <field name="team_id"/>
         </xpath>
       </data>
@@ -116,4 +117,20 @@
       </data>
     </field>
   </record>
+
+  <!-- Actions opening views on models -->
+  <record model="ir.actions.act_window" id="helpdesk_action_contacts">
+    <field name="name">Contacts</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">tree,kanban,form</field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Contacts"
+    id="helpdesk_contacts_menu_1"
+    parent="helpdesk.menu_helpdesk_root"
+    sequence="15"
+    action="helpdesk_action_contacts"/>
+
 </odoo>
