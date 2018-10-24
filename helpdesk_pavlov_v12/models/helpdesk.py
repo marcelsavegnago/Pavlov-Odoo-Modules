@@ -1,7 +1,6 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, tools, _
 
 class Helpdesk(models.Model):
-
     _inherit = 'helpdesk.ticket'
 
 #General
@@ -10,6 +9,7 @@ class Helpdesk(models.Model):
     location_onsite = fields.Char(string="Location On-Site")
     linked_nodes = fields.Text(string="Linked Nodes")
     source = fields.Many2one('helpdesk.source', string="Source", required=True)
+    parent_location_tickets = fields.Integer('Location Tickets', compute='_compute_parent_location_tickets')
 
     scope = fields.Many2one('helpdesk.scope', string="Scope", required=True)
     parent_ticket = fields.Many2one('helpdesk.ticket', string="Parent Ticket")
@@ -54,3 +54,23 @@ class Helpdesk(models.Model):
     def _onchange_priority(self):
         #if self.ticket_type_id.default_priority:
             self.priority = self.ticket_type_id.default_priority
+
+    @api.depends('parent_location')
+    def _compute_parent_location_tickets(self):
+        for ticket in self:
+            ticket_data = self.env['helpdesk.ticket'].read_group([
+                ('partner_id', '=', ticket.parent_location.id),
+                ('stage_id.is_close', '=', False)
+            ], ['partner_id'], ['partner_id'])
+            if ticket_data:
+                ticket.parent_location_tickets = ticket_data[0]['partner_id_count']
+
+    @api.multi
+    def open_parent_location_tickets(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'name': _('Location Tickets'),
+            'res_model': 'helpdesk.ticket',
+            'view_mode': 'kanban,tree,form,pivot,graph',
+            'context': {'search_default_is_open': True, 'search_default_partner_id': self.parent_location.id}
+        }

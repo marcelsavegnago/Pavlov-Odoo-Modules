@@ -5,6 +5,14 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
+        <!--<xpath expr="//field[@name='partner_tickets']" position="after">
+          <field name="parent_location_tickets" invisible="1"/>
+        </xpath>-->
+        <xpath expr="//button[@name='open_customer_tickets']" position="before">
+          <button class="oe_stat_button" name="open_parent_location_tickets" icon="fa-ticket" type="object" attrs="{'invisible': ['|', ('parent_location_tickets', '=', False), ('parent_location_tickets', '&lt;=', 1)]}">
+            <field name="parent_location_tickets" string="Location Tickets" widget="statinfo" />
+          </button>
+        </xpath>
         <xpath expr="//field[@name='ticket_type_id']" position="replace">
           <field name="ticket_type_id" attrs="{'required': True}" domain="[('scope_ids', '=', scope)]"/> <!-- Add Attr and Domain to Ticket Type Field -->
         </xpath>
