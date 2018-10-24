@@ -1,12 +1,15 @@
 <odoo>
 
-  <record model="ir.ui.view" id="helpdesk_ticket_form">
+  <record model="ir.ui.view" id="helpdesk_inherit_ticket_form">
     <field name="model">helpdesk.ticket</field>
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
         <xpath expr="//field[@name='ticket_type_id']" position="replace">
           <field name="ticket_type_id" attrs="{'required': True}" domain="[('scope_ids', '=', scope)]"/> <!-- Add Attr and Domain to Ticket Type Field -->
+        </xpath>
+        <xpath expr="//field[@name='description']" position="replace">
+          <field name="description" string="Description" placeholder="Description of the ticket..." attrs="{'required': True}"/>
         </xpath>
         <xpath expr="//field[@name='team_id']" position="before">
           <field name="id" string="Ticket #" attrs="{'readonly': True}"/>
@@ -28,12 +31,9 @@
             <field name="customer_type" invisible="1"/>
             <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
           </xpath>
-          <xpath expr="//field[@name='task_id']" position="after">
+          <xpath expr="//field[@name='tag_ids']" position="after">
             <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
             <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
-          </xpath>
-          <xpath expr="//field[@name='description']" position="replace">
-            <field name="description" string="Description" placeholder="Description of the ticket..." attrs="{'required': True}"/>
           </xpath>
           <xpath expr="//field[@name='description']" position="after">
               <group string="Resolution Details">
