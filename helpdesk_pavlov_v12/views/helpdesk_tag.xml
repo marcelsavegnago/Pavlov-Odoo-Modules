@@ -1,0 +1,16 @@
+<odoo>
+  <!-- Update the List View -->
+  <record model="ir.ui.view" id="helpdesk_tags_list_view">
+    <field name="model">helpdesk.tag</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_tag_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="documents_folder"/>
+          <field name="documents" widget="many2many_tags" domain="[('folder_id', '=', documents_folder)]"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

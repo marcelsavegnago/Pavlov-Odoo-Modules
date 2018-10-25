@@ -29,6 +29,7 @@
         'views/helpdesk_ticket_type.xml',
         'views/helpdesk_source.xml',
         'views/helpdesk_ticket_stage.xml',
+        'views/helpdesk_tag.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],
