@@ -53,7 +53,6 @@ class Helpdesk(models.Model):
 
     @api.onchange('ticket_type_id')
     def _onchange_priority(self):
-        #if self.ticket_type_id.default_priority:
             self.priority = self.ticket_type_id.default_priority
 
     @api.depends('parent_location')

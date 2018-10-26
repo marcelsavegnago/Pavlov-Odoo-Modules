@@ -5,9 +5,6 @@
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
     <field name="arch" type="xml">
       <data>
-        <!--<xpath expr="//field[@name='partner_tickets']" position="after">
-          <field name="parent_location_tickets" invisible="1"/>
-        </xpath>-->
         <xpath expr="//button[@name='open_customer_tickets']" position="before">
           <button class="oe_stat_button" name="open_parent_location_tickets" icon="fa-ticket" type="object" attrs="{'invisible': ['|', ('parent_location_tickets', '=', False), ('parent_location_tickets', '&lt;=', 1)]}">
             <field name="parent_location_tickets" string="Location Tickets" widget="statinfo" />
@@ -29,189 +26,129 @@
           <xpath expr="//field[@name='tag_ids']" position="move"/> <!-- Move Tags Field -->
           <field name="parent_ticket" attrs="{'invisible':[('customer_type','=','company')]}" domain="[('close_date', '=', False),('partner_id', '=', parent_location)]"/>
         </xpath>
-          <xpath expr="//field[@name='partner_id']" position="before">
-            <field name="sitecode"/>
-          </xpath>
-          <xpath expr="//field[@name='partner_id']" position="replace">
-            <field name="partner_id" string="Partner" attrs="{'required': True}"/>
-          </xpath>
-          <xpath expr="//field[@name='partner_id']" position="after">
-            <field name="customer_type" invisible="1"/>
-            <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
-          </xpath>
-          <xpath expr="//field[@name='tag_ids']" position="after">
-            <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
-            <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
-          </xpath>
-          <xpath expr="//field[@name='description']" position="after">
-              <group string="Resolution Details">
-                <field name="resolution" placeholder="Resolution of the ticket..." attrs="{'required':[('close_date','!=', False)]}"/>
-                <field name="close_code" placeholder="Close Code of the ticket..." domain="[('ticket_type_id', '=', ticket_type_id)]"/>
-                <field name="close_date" string="Close Date" attrs="{'readonly': True}"/>
-                <field name="review_reason" placeholder="Ticket Review Reason..."/>
-              </group>
-              <group name="address_information">
-                  <group string="Customer Information" attrs="{'readonly': True}">
-                    <div class="o_address_format">
-                      <field name="partner_id"/>
-                        <field name="customer_street" placeholder="Street..." class="o_address_street"/>
-                        <field name="customer_street2" placeholder="Street 2..." class="o_address_street"/>
-                        <field name="customer_city" placeholder="City" class="o_address_city"/>
-                        <field name="customer_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
-                        <field name="customer_zip" placeholder="ZIP" class="o_address_zip"/>
-                        <field name="customer_website" class="o_address_website" widget="url"/>
-                    </div>
-                    <field name="customer_phone" widget="phone"/>
-                    <field name="customer_mobile" widget="phone"/>
-                    <field name="customer_email" widget="email"/>
-                  </group>
-                  <group string="Parent Location Information" attrs="{'invisible':[('parent_location','=',False)]}">
-                    <div class="o_address_format">
-                        <field name="parent_location"/>
-                        <field name="parent_location_street" class="o_address_street"/>
-                        <field name="parent_location_street2" class="o_address_street"/>
-                        <field name="parent_location_city" class="o_address_city"/>
-                        <field name="parent_location_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
-                        <field name="parent_location_zip" class="o_address_zip"/>
-                        <field name="parent_location_website" class="o_address_website" widget="url"/>
-                    </div>
-                    <field name="parent_location_phone" string="Phone" widget="phone"/>
-                    <field name="parent_location_mobile" string="Mobile" widget="phone"/>
-                    <field name="parent_location_email" string="Email" widget="email"/>
-                  </group>
-                  <group string="Tracking" invisible="1">
-                    <field name="track_created_email"/>
-                    <field name="track_monitoring_email"/>
-                    <field name="track_outagereleated_email"/>
-                    <field name="track_closed_email"/>
-                  </group>
-                </group>
-                <!-- SHOW KNOWLEDGEBASE DOCUMENTS -->
-                <div>
-                  <field name="kb_documents">
-                    <kanban>
-                  <field name="id"/>
-                  <field name="mimetype"/>
-                  <field name="type"/>
-                  <field name="datas_fname"/>
-                  <field name="create_uid"/>
-                  <field name="url"/>
-                  <field name="type"/>
-                  <field name="create_date"/>
-                  <field name="active"/>
-                  <field name="name"/>
-                  <field name="res_model_name"/>
-                  <field name="res_name"/>
-                  <templates>
-                      <t t-name="kanban-box">
-                          <div class="oe_kanban_global_area o_kanban_attachment oe_kanban_global_click">
-                              <div class="o_kanban_image">
-                                  <div class="o_kanban_image_wrapper">
-                                      <t t-set="webimage" t-value="new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
-                                      <div t-if="record.type.raw_value == 'url'" class="o_url_image fa fa-link fa-3x text-muted"/>
-                                      <img t-elif="webimage" t-attf-src="/web/image/#{record.id.raw_value}?field=thumbnail" width="100" height="100" alt="Document" class="o_attachment_image"/>
-                                      <div t-else="!webimage" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
-                                  </div>
-                              </div>
-                              <div class="o_kanban_details">
-                                  <div class="o_kanban_details_wrapper">
-                                      <div t-att-title="record.datas_fname.raw_value" class="o_kanban_record_title">
-                                          <t t-if="record.type.raw_value == 'url'">
-                                              <field name="name" class="o_text_overflow"/>
-                                          </t>
-                                          <t t-else="">
-                                              <field name="datas_fname" class="o_text_overflow"/>
-                                          </t>
-                                      </div>
-                                      <div class="o_kanban_record_body">
-                                          <t t-if="record.res_model_name.raw_value">
-                                              <strong><field name="res_model_name"/></strong>
-                                              <t t-if="record.res_name.raw_value">
-                                                  <span t-att-title="record.res_name.raw_value">: <field name="res_name"/></span>
-                                              </t>
-                                          </t>
-                                          <t t-elif="record.type.raw_value == 'url'">
-                                              <span class="o_document_url"><i class="fa fa-globe"/> <field name="url" widget="url"/></span>
-                                          </t>
-                                          <samp t-else="" class="text-muted"> </samp>
-                                      </div>
-                                      <div class="o_kanban_record_bottom">
-                                          <time class="oe_kanban_bottom_left">
-                                              <field name="create_date" widget="date"/>
-                                          </time>
-                                          <div class="oe_kanban_bottom_right">
-                                              <img t-att-src="kanban_image('res.users', 'image_small', record.create_uid.raw_value)" t-att-data-member_id="record.create_uid.raw_value" t-att-alt="record.create_uid.raw_value" width="32" height="32" class="oe_kanban_avatar"/>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
+        <xpath expr="//field[@name='partner_id']" position="before">
+          <field name="sitecode"/>
+        </xpath>
+        <xpath expr="//field[@name='partner_id']" position="replace">
+          <field name="partner_id" string="Partner" attrs="{'required': True}"/>
+        </xpath>
+        <xpath expr="//field[@name='partner_id']" position="after">
+          <field name="customer_type" invisible="1"/>
+          <field name="parent_location" attrs="{'invisible':[('customer_type','=','company')], 'readonly': True}"/>
+        </xpath>
+        <xpath expr="//field[@name='tag_ids']" position="after">
+          <field name="location_onsite" placeholder="Specific location related to this ticket..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
+          <field name="linked_nodes" placeholder="Linked nodes from monitoring system..." attrs="{'invisible':[('customer_type','!=','company')]}"/>
+        </xpath>
+        <xpath expr="//field[@name='description']" position="after">
+          <group string="Resolution Details">
+            <field name="resolution" placeholder="Resolution of the ticket..." attrs="{'required':[('close_date','!=', False)]}"/>
+            <field name="close_code" placeholder="Close Code of the ticket..." domain="[('ticket_type_id', '=', ticket_type_id)]"/>
+            <field name="close_date" string="Close Date" attrs="{'readonly': True}"/>
+            <field name="review_reason" placeholder="Ticket Review Reason..."/>
+          </group>
+          <group name="address_information">
+            <group string="Customer Information" attrs="{'readonly': True}">
+              <div class="o_address_format">
+                <field name="partner_id"/>
+                <field name="customer_street" placeholder="Street..." class="o_address_street"/>
+                <field name="customer_street2" placeholder="Street 2..." class="o_address_street"/>
+                <field name="customer_city" placeholder="City" class="o_address_city"/>
+                <field name="customer_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                <field name="customer_zip" placeholder="ZIP" class="o_address_zip"/>
+                <field name="customer_website" class="o_address_website" widget="url"/>
+              </div>
+              <field name="customer_phone" widget="phone"/>
+              <field name="customer_mobile" widget="phone"/>
+              <field name="customer_email" widget="email"/>
+            </group>
+            <group string="Parent Location Information" attrs="{'invisible':[('parent_location','=',False)]}">
+              <div class="o_address_format">
+                <field name="parent_location"/>
+                <field name="parent_location_street" class="o_address_street"/>
+                <field name="parent_location_street2" class="o_address_street"/>
+                <field name="parent_location_city" class="o_address_city"/>
+                <field name="parent_location_state" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}"/>
+                <field name="parent_location_zip" class="o_address_zip"/>
+                <field name="parent_location_website" class="o_address_website" widget="url"/>
+              </div>
+              <field name="parent_location_phone" string="Phone" widget="phone"/>
+              <field name="parent_location_mobile" string="Mobile" widget="phone"/>
+              <field name="parent_location_email" string="Email" widget="email"/>
+            </group>
+            <group string="Tracking" invisible="1">
+              <field name="track_created_email"/>
+              <field name="track_monitoring_email"/>
+              <field name="track_outagereleated_email"/>
+              <field name="track_closed_email"/>
+            </group>
+          </group>
+          <!-- KB DOCUMENTS -->
+          <group>
+            <field name="kb_documents" nolabel="1">
+              <kanban>
+                <field name="id"/>
+                <field name="mimetype"/>
+                <field name="type"/>
+                <field name="datas_fname"/>
+                <field name="create_uid"/>
+                <field name="url"/>
+                <field name="type"/>
+                <field name="create_date"/>
+                <field name="active"/>
+                <field name="name"/>
+                <field name="res_model_name"/>
+                <field name="res_name"/>
+                <templates>
+                  <t t-name="kanban-box">
+                    <div class="oe_kanban_global_area o_kanban_attachment oe_kanban_global_click">
+                      <div class="o_kanban_image">
+                        <div class="o_kanban_image_wrapper">
+                          <t t-set="webimage" t-value="new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
+                          <div t-if="record.type.raw_value == 'url'" class="o_url_image fa fa-link fa-3x text-muted"/>
+                          <img t-elif="webimage" t-attf-src="/web/image/#{record.id.raw_value}?field=thumbnail" width="100" height="100" alt="Document" class="o_attachment_image"/>
+                          <div t-else="!webimage" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
+                        </div>
+                      </div>
+                      <div class="o_kanban_details">
+                        <div class="o_kanban_details_wrapper">
+                          <div t-att-title="record.datas_fname.raw_value" class="o_kanban_record_title">
+                            <t t-if="record.type.raw_value == 'url'">
+                              <field name="name" class="o_text_overflow"/>
+                            </t>
+                            <t t-else="">
+                              <field name="datas_fname" class="o_text_overflow"/>
+                            </t>
                           </div>
-                      </t>
-                  </templates>
+                          <div class="o_kanban_record_body">
+                            <t t-if="record.res_model_name.raw_value">
+                              <strong><field name="res_model_name"/></strong>
+                              <t t-if="record.res_name.raw_value">
+                                <span t-att-title="record.res_name.raw_value">: <field name="res_name"/></span>
+                              </t>
+                            </t>
+                            <t t-elif="record.type.raw_value == 'url'">
+                              <span class="o_document_url"><i class="fa fa-globe"/> <field name="url" widget="url"/></span>
+                            </t>
+                            <samp t-else="" class="text-muted"> </samp>
+                          </div>
+                          <div class="o_kanban_record_bottom">
+                            <time class="oe_kanban_bottom_left">
+                              <field name="create_date" widget="date"/>
+                            </time>
+                            <div class="oe_kanban_bottom_right">
+                              <img t-att-src="kanban_image('res.users', 'image_small', record.create_uid.raw_value)" t-att-data-member_id="record.create_uid.raw_value" t-att-alt="record.create_uid.raw_value" width="32" height="32" class="oe_kanban_avatar"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </t>
+                </templates>
               </kanban>
-                    <!--<kanban>
-                      <field name="id"/>
-                      <field name="mimetype"/>
-                      <field name="type"/>
-                      <field name="datas_fname"/>
-                      <field name="create_uid"/>
-                      <field name="url"/>
-                      <field name="type"/>
-                      <field name="create_date"/>
-                      <field name="active"/>
-                      <field name="name"/>
-                      <field name="res_model_name"/>
-                      <field name="res_name"/>
-                      <templates>
-                        <t t-name="kanban-box">
-                          <div class="oe_kanban_global_area o_kanban_attachment oe_kanban_global_click">
-                            <div class="o_kanban_image">
-                              <div class="o_kanban_image_wrapper">
-                                <t t-set="webimage" t-value="new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
-                                <div t-if="record.type.raw_value == 'url'" class="o_url_image fa fa-link fa-3x text-muted"/>
-                                <img t-elif="webimage" t-attf-src="/web/image/#{record.id.raw_value}?field=thumbnail" width="100" height="100" alt="Document" class="o_attachment_image"/>
-                                <div t-else="!webimage" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
-                              </div>
-                            </div>
-                            <div class="o_kanban_details">
-                              <div class="o_kanban_details_wrapper">
-                                <div t-att-title="record.datas_fname.raw_value" class="o_kanban_record_title">
-                                  <t t-if="record.type.raw_value == 'url'">
-                                    <field name="name" class="o_text_overflow"/>
-                                  </t>
-                                  <t t-else="">
-                                    <field name="datas_fname" class="o_text_overflow"/>
-                                  </t>
-                                </div>
-                                <div class="o_kanban_record_body">
-                                  <t t-if="record.res_model_name.raw_value">
-                                    <strong><field name="res_model_name"/></strong>
-                                    <t t-if="record.res_name.raw_value">
-                                      <span t-att-title="record.res_name.raw_value">: <field name="res_name"/></span>
-                                    </t>
-                                  </t>
-                                  <t t-elif="record.type.raw_value == 'url'">
-                                    <span class="o_document_url"><i class="fa fa-globe"/> <field name="url" widget="url"/></span>
-                                  </t>
-                                  <samp t-else="" class="text-muted"> </samp>
-                                </div>
-                                <div class="o_kanban_record_bottom">
-                                  <time class="oe_kanban_bottom_left">
-                                    <field name="create_date" widget="date"/>
-                                  </time>
-                                  <div class="oe_kanban_bottom_right">
-                                    <img t-att-src="kanban_image('res.users', 'image_small', record.create_uid.raw_value)" t-att-data-member_id="record.create_uid.raw_value" t-att-alt="record.create_uid.raw_value" width="32" height="32" class="oe_kanban_avatar"/>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </t>
-                      </templates>
-                    </kanban>-->
-                  </field>
-                </div>
-          </xpath>
+            </field>
+          </group>
+        </xpath>
       </data>
     </field>
   </record>
@@ -222,10 +159,10 @@
     <field name="arch" type="xml">
       <data>
         <xpath expr="//field[@name='user_id']" position="replace">  <!-- v12 DOESN'T HAVE PRIORITY IN VIEW -->
-            <field name="priority" widget="priority"/>
+          <field name="priority" widget="priority"/>
         </xpath>
         <xpath expr="//field[@name='display_name']" position="before"> <!-- v12 CHAGNED TO display_name -->
-            <field name="team_id"/>
+          <field name="team_id"/>
         </xpath>
       </data>
     </field>
@@ -237,9 +174,9 @@
     <field name="arch" type="xml">
       <data>
         <xpath expr="//field[@name='priority']" position="after">
-            <field name="parent_location"/>
-            <field name="customer_type"/>
-            <field name="ticket_type_id"/>
+          <field name="parent_location"/>
+          <field name="customer_type"/>
+          <field name="ticket_type_id"/>
         </xpath>
         <xpath expr="//field[@name='partner_id']" position="after">
           <div>
@@ -266,4 +203,4 @@
     sequence="15"
     action="helpdesk_action_contacts"/>
 
-</odoo>
+  </odoo>
