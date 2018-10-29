@@ -1,0 +1,49 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="helpdesk_inherit_ticket_pebbles_form">
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//button[@name='assign_ticket_to_self']" position="after">
+          <button name="open_myaccount_url" string="Mimic MyAccount" type="object" class="oe_highlight" groups="helpdesk.group_helpdesk_user" attrs="{'invisible': [('myaccount_id', '=', False)]}"/>
+        </xpath>
+        <xpath expr="//field[@name='customer_email']" position="after">
+            <field name="myaccount_id" string="Test ID"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Actions Items -->
+  <record model="ir.actions.act_url" id="helpdesk_action_new_ccg_contact_from_web">
+      <field name="name">NEW: CCGFiber</field>
+      <field name="url">https://myaccount.ccgfiber.com</field>
+      <field name="target">new</field>
+  </record>
+  <record model="ir.actions.act_url" id="helpdesk_action_new_pavlovmedia_contact_from_web">
+      <field name="name">NEW: Pavlov Media</field>
+      <field name="url">https://myaccount.pavlovmedia.net</field>
+      <field name="target">new</field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Create Customer"
+    id="helpdesk_create_contacts_menu_1"
+    parent="helpdesk.menu_helpdesk_root"
+    sequence="15"/>
+    <menuitem
+      name="Create CCG Contact"
+      id="helpdesk_new_ccg_contact_menu_1"
+      parent="helpdesk_create_contacts_menu_1"
+      sequence="20"
+      action="helpdesk_action_new_ccg_contact_from_web"/>
+    <menuitem
+      name="Create Pavlo Media Contact"
+      id="helpdesk_new_pavlovmedia_contact_menu_1"
+      parent="helpdesk_create_contacts_menu_1"
+      sequence="30"
+      action="helpdesk_action_new_pavlovmedia_contact_from_web"/>
+
+</odoo>

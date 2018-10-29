@@ -1,13 +1,12 @@
 <odoo>
-
-  <record model="ir.ui.view" id="helpdesk_ticket_type_list">
+  <!-- List View -->
+  <record model="ir.ui.view" id="helpdesk_inherit_ticket_type_list_pebbles_view">
     <field name="model">helpdesk.ticket.type</field>
     <field name="inherit_id" ref="helpdesk.helpdesk_ticket_type_view_tree"/>
     <field name="arch" type="xml">
       <data>
         <xpath expr="//field[@name='name']" position="after">
-          <field name="scope_ids" widget="many2many_tags"/>
-          <field name="default_priority" widget="priority"/>
+          <field name="myproperties_show"/>
         </xpath>
       </data>
     </field>

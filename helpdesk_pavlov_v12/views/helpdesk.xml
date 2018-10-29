@@ -200,7 +200,13 @@
     name="Contacts"
     id="helpdesk_contacts_menu_1"
     parent="helpdesk.menu_helpdesk_root"
-    sequence="15"
-    action="helpdesk_action_contacts"/>
+    sequence="15"/>
+
+    <menuitem
+      name="Contacts"
+      id="helpdesk_contacts_submenu_1"
+      parent="helpdesk_contacts_menu_1"
+      sequence="10"
+      action="helpdesk_action_contacts"/>
 
   </odoo>

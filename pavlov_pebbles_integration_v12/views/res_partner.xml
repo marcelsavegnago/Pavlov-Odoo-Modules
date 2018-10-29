@@ -1,0 +1,34 @@
+<odoo>
+
+  <!-- Actions Items -->
+  <record model="ir.actions.act_url" id="res_partner_action_new_ccg_contact_from_web">
+      <field name="name">NEW: CCGFiber</field>
+      <field name="url">https://myaccount.ccgfiber.com</field>
+      <field name="target">new</field>
+  </record>
+  <record model="ir.actions.act_url" id="res_partner_action_new_pavlovmedia_contact_from_web">
+      <field name="name">NEW: Pavlov Media</field>
+      <field name="url">https://myaccount.pavlovmedia.net</field>
+      <field name="target">new</field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Create New Contact"
+    id="res_partner_new_contact_menu_1"
+    parent="contacts.menu_contacts"
+    sequence="2"/>
+    <menuitem
+      name="Create CCG Contact"
+      id="res_partner_new_ccg_contact_menu_1"
+      parent="res_partner_new_contact_menu_1"
+      sequence="10"
+      action="res_partner_action_new_ccg_contact_from_web"/>
+    <menuitem
+      name="Create Pavlo Media Contact"
+      id="res_partner_new_pavlovmedia_contact_menu_1"
+      parent="res_partner_new_contact_menu_1"
+      sequence="20"
+      action="res_partner_action_new_pavlovmedia_contact_from_web"/>
+
+</odoo>
