@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk - Pavlov Customizations",
+    'name': "Helpdesk - KB Documents",
 
     'summary': """
-        Pavlov Media Helpdesk Customizations""",
+        Adds related KB Documents to Ticket Tags""",
 
     'description': """
-        This module adds Pavlov Media specific customizations to the Helpdesk model.
+        This module adds related Knowledgebase Documents to the Helpdesk model by linking them to the Ticket Tags.
     """,
 
     'author': "Pavlov Media",
@@ -24,13 +24,9 @@
     # always loaded
     'data': [
         'views/helpdesk.xml',
-        'views/helpdesk_scope.xml',
-        'views/helpdesk_closecode.xml',
-        'views/helpdesk_ticket_type.xml',
-        'views/helpdesk_source.xml',
-        'views/helpdesk_ticket_stage.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
+        'views/helpdesk_tag.xml',
+        #'security/security.xml',
+        #'security/ir.model.access.csv',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -10,7 +10,6 @@ class Helpdesk(models.Model):
     linked_nodes = fields.Text(string="Linked Nodes")
     source = fields.Many2one('helpdesk.source', string="Source", required=True)
     parent_location_tickets = fields.Integer('Location Tickets', compute='_compute_parent_location_tickets')
-    kb_documents = fields.Many2many('ir.attachment', related="tag_ids.documents", string="KB Documents", store=False)
 
     scope = fields.Many2one('helpdesk.scope', string="Scope", required=True)
     parent_ticket = fields.Many2one('helpdesk.ticket', string="Parent Ticket")
