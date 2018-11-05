@@ -3,9 +3,12 @@ from odoo import models, fields, api
 class Helpdesk(models.Model):
     _inherit = 'helpdesk.ticket'
 
-#General
-    kb_documents = fields.Many2many('ir.attachment', related="tag_ids.documents", string="KB Documents", store=False)
+    #General
+    kb_documents = fields.Many2many('ir.attachment', string="KB Documents")
 
-    #@api.onchange('tag_ids')
-    #def _onchange_tag_ids(self):
-    #        self.priority = self.ticket_type_id.default_priority
+    @api.onchange('tag_ids')
+    def on_change_tag_ids(self):
+        self.kb_documents = [(6, 0, [])]
+        for record in self:
+            for i in record.tag_ids:
+                record.kb_documents = record.kb_documents + i.documents

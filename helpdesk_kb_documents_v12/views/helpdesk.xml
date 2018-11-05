@@ -7,7 +7,7 @@
         <xpath expr="///sheet" position="after">
           <div>
             <strong><center>Related Knowledgbase Documents</center></strong>
-            <field name="kb_documents" nolabel="1">
+            <field name="kb_documents" nolabel="1" readonly="1">
               <kanban>
                 <field name="id"/>
                 <field name="mimetype"/>
