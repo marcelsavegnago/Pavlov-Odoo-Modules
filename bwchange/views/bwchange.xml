@@ -1,0 +1,187 @@
+<odoo>
+  <data>
+    <!-- List View -->
+    <record model="ir.ui.view" id="view_bwchange_list">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">bwchange.change</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="partner_id"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="view_bwchange_form">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">bwchange.change</field>
+      <field name="arch" type="xml">
+        <form string="Bandwidth Change Form">
+          <header>
+            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="partner_id"/>
+              <field name="priority" widget="priority" />
+              <field name="description" string="Description"/>
+            </group>
+            <separator string="Property Circuit Details" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="actual_transport" string="Actual Transport (Mbps)" />
+                <field name="circuit_paid_by" string="Circuit Paid By" widget="selection" />
+                <field name="sold_transport" string="Sold Transport Speed/DIA Download (OffNet Mbps)" />
+                <field name="dia_upload" string="DIA Upload (OffNet Mbps)" />
+                <field name="tesseractive_service" string="Tesseractive Service?" />
+                <field name="tesseractiv_speed" string="Tesseractiv Speed (OnNet Mbps) *If Applicable" attrs="{'invisible': [('tesseractive_service', '=', False)]}"/>
+                <field name="websnap" string="Websnap?" />
+                <field name="circuit_landdate" string="Circuit Land Date" />
+                <field name="circuit_id" string="Circuit ID" />
+              </group>
+            <separator string="Current MDF Equipment (Filled by NOC)" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="router" string="Router" widget="selection" />
+                <field name="mikrotik" string="MikroTik" widget="selection" />
+                <field name="distro_switch" string="Distrution Switch (Between Buildings)" widget="selection" />
+                <field name="user_switch" string="Site User Switch Port Speed" widget="selection" />
+                <field name="core_switch" string="Internal Core Switch (Site Backbone)" widget="selection" />
+                <field name="trunked" string="Trunked?" />
+                <field name="verified_by" string="Verified By" />
+                <field name="verified_date" string ="Verified Date" />
+              </group>
+            <separator string="User/Unit Experience (Contracted Info)" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="actual_transport" string="Actual Transport (Mbps)" />
+                <field name="websnap_download" string="Websnap Down (Mbps)" attrs="{'invisible': [('websnap', '=', False)]}"/>
+                <field name="package_download" string="User/Unit Package Down (Mbps)" />
+                <field name="package_upload" string="User/Unit Package Up (Mbps)" />
+                <field name="unregistered_tesseractiv" string="Unreg Tesserativ (Mbps)" attrs="{'invisible': [('tesseractive_service', '=', False)]}"/>
+                <field name="unregistered_websnap" string="Unreg WebSnap (Mbps)" attrs="{'invisible': [('websnap', '=', False)]}"/>
+                <field name="unregistered_download" string="Unreg Down (Mbps)" />
+                <field name="unregistered_upload" string="Unreg Up (Mbps)" />
+              </group>
+              <group>
+                <field name="reason_for_change" string="Reason for Package Change" />
+              </group>
+            <separator string="Contract Information" colspan="2" />
+              <group colspan="2" col="4">
+                <field name="contract_signed_date" string="Contract Signed Date" />
+              </group>
+            <notebook>
+              <page string="Instructions">
+                This is where example instructions can go. Hard coded currently but more time can be spent on making this more dynamic if needed.
+                <br/>
+                1. Do This
+                <br/>
+                2. Then do This
+                <br/>
+                3. Finish by doing this
+                <br/>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Search View -->
+    <record model="ir.ui.view" id="bwchange_search_view">
+      <field name="name">Bandwidth Changes</field>
+      <field name="model">bwchange.change</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="description"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- KanBan View -->
+    <record model="ir.ui.view" id="bwchange_kanban_view">
+        <field name="name">Bandwidth Changes</field>
+        <field name="model">bwchange.change</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="stage">
+                <field name="color"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                                t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
+                                              oe_kanban_global_click_edit oe_semantic_html_override
+                                              oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker"
+                                                data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                <field name="state"/>
+                                <br/>
+                                Partner:
+                                <field name="partner_id"/>
+                                <br/>
+                                Circuit Land Date:
+                                <field name="circuit_landdate"/>
+                                <br/>
+                            </div>
+                            <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                    <field name="priority" widget="priority" groups="base.group_user"/>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="bwchange_action_window">
+      <field name="name">Bandwidth Changes</field>
+      <field name="res_model">bwchange.change</field>
+      <field name="view_mode">kanban,tree,form</field>
+    </record>
+
+<!-- ########################### MENU ITEMS ############################### -->
+    <!-- Top menu item -->
+    <menuitem
+      name="BW Changes"
+      id="bwchange_menu_root"
+      web_icon="bwchange,static/description/icon.png"
+      sequence="51"/>
+
+    <!-- menu categories -->
+    <menuitem
+      name="Bandwidth Changes"
+      id="bwchange_menu_1"
+      parent="bwchange_menu_root"
+      sequence="10"
+      action="bwchange_action_window"/>
+
+    <menuitem
+      name="Configuration"
+      id="bwchange_configuration_menu"
+      sequence="20"
+      parent="bwchange_menu_root"/>
+
+  </data>
+</odoo>

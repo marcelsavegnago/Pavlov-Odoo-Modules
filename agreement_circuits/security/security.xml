@@ -1,9 +1,0 @@
-<odoo>
-  <!-- This holds the security groups -->
-  <record id="group_manager" model="res.groups">
-      <field name="name">Entitlement / Manager</field>
-  </record>
-  <record id="group_user" model="res.groups">
-    <field name="name">Entitlement / User</field>
-  </record>
-</odoo>

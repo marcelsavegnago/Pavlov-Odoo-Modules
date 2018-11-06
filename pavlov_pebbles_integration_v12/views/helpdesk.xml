@@ -8,7 +8,7 @@
         <xpath expr="//button[@name='assign_ticket_to_self']" position="after">
           <button name="open_myaccount_url" string="Mimic MyAccount" type="object" class="oe_highlight" groups="helpdesk.group_helpdesk_user" attrs="{'invisible': [('myaccount_id', '=', False)]}"/>
         </xpath>
-        <xpath expr="//field[@name='customer_email']" position="after">
+        <xpath expr="//field[@name='company_id']" position="after">
             <field name="myaccount_id" string="Test ID"/>
         </xpath>
       </data>
