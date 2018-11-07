@@ -48,7 +48,7 @@
               <group colspan="2" col="4">
                 <field name="router" string="Router" widget="selection" />
                 <field name="mikrotik" string="MikroTik" widget="selection" />
-                <field name="distro_switch" string="Distrution Switch (Between Buildings)" widget="selection" />
+                <field name="distro_switch" string="Distro Switch (Between Buildings)" widget="selection" />
                 <field name="user_switch" string="Site User Switch Port Speed" widget="selection" />
                 <field name="core_switch" string="Internal Core Switch (Site Backbone)" widget="selection" />
                 <field name="trunked" string="Trunked?" />
@@ -113,7 +113,7 @@
                     <t t-name="kanban-box">
                         <div
                                 t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}}
-                                              oe_kanban_global_click_edit oe_semantic_html_override
+                                              oe_kanban_global_click oe_semantic_html_override
                                               oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
                             <div class="oe_dropdown_kanban">
                                 <!-- dropdown menu -->
@@ -182,6 +182,8 @@
       id="bwchange_configuration_menu"
       sequence="20"
       parent="bwchange_menu_root"/>
+
+
 
   </data>
 </odoo>
