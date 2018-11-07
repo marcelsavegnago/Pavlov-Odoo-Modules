@@ -17,6 +17,7 @@
           <field name="stage_sequence" widget="handle" groups="base.group_no_one"/>
           <field name="name"/>
           <field name="description"/>
+          <field name="default_state" required="1"/>
           <field name="id" attrs="{'readonly': True}"/>
         </tree>
       </field>
@@ -35,6 +36,7 @@
             </div>
             <group>
               <field name="description"/>
+              <field name="default_state"/>
             </group>
           </sheet>
         </form>

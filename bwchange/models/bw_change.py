@@ -2,9 +2,10 @@ from odoo import models, fields, api
 
 class BandwidthChange(models.Model):
      _name = 'bwchange.change'
+     _inherit = ['mail.thread']
 
      #General
-     state = fields.Selection([('new', 'New'),('progress', 'In progress'),('finished', 'Done')],default='new',track_visibility='always')
+     state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], related='stage.default_state', rack_visibility='always', store=True)
      priority = fields.Selection([('low', 'Low'),('medium', 'Medium'),('high', 'High'),('urgent', 'Urgent')],default='low')
      name = fields.Char(string="Title", required=True)
      partner_id = fields.Many2one('res.partner', string="Partner")
@@ -48,4 +49,4 @@ class BandwidthChange(models.Model):
          stage_ids = self.env['bwchange.stage'].search([])
          return stage_ids
 
-     stage = fields.Many2one('bwchange.stage', string="Stage", group_expand='_read_group_stage_ids', help="Select the current stage of the agreement.")
+     stage = fields.Many2one('bwchange.stage', string="Stage", group_expand='_read_group_stage_ids', help="Select the current stage of the Bandwidth Change.")

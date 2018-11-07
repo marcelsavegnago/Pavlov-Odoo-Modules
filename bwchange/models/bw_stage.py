@@ -8,6 +8,7 @@ class BWChangeStage(models.Model):
     name = fields.Char(string="Stage", required=True)
     stage_sequence = fields.Integer(string="Sequence")
     description = fields.Text(string="Description")
+    default_state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], string="Default State")
 
     @api.model
     def create(self, vals):
