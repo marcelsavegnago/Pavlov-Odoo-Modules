@@ -91,18 +91,6 @@
             <group colspan="2" col="4">
               <field name="contract_signed_date" string="Contract Signed Date" />
             </group>
-            <notebook>
-              <page string="Instructions">
-                This is where example instructions can go. Hard coded currently but more time can be spent on making this more dynamic if needed.
-                <br/>
-                1. Do This
-                <br/>
-                2. Then do This
-                <br/>
-                3. Finish by doing this
-                <br/>
-              </page>
-            </notebook>
           </sheet>
           <div class="oe_chatter">
             <field name="message_follower_ids" widget="mail_followers"/>
@@ -120,6 +108,22 @@
         <search>
           <field name="name"/>
           <field name="description"/>
+          <field name="partner_id"/>
+          <field name="user_id"/>
+          <field name="state"/>
+          <filter string="My BW Changes" domain="[('user_id','=',uid)]" name="my_bwchanges"/>
+          <separator/>
+          <filter string="Unassigned" domain="[('user_id','=',False)]" name="unassigned_bwchanges"/>
+          <separator/>
+          <filter string="Draft" domain="[('state','=','draft')]" name="open_bwchanges"/>
+          <filter string="Active" domain="[('state','=','active')]" name="active_bwchanges"/>
+          <filter string="Inactive" domain="[('state','=','inactive')]" name="inactive_bwchanges"/>
+          <group expand="0" string="Group By">
+              <filter string="Assignee" name="assigned_to" context="{'group_by':'user_id'}"/>
+              <filter string="Partner" name="partner_id" context="{'group_by':'partner_id'}"/>
+              <filter string="Stage" name="stage" context="{'group_by':'stage'}"/>
+              <filter string="State" name="state" context="{'group_by':'state'}"/>
+          </group>
         </search>
       </field>
     </record>
@@ -170,7 +174,6 @@
                   <t t-if="record.circuit_landdate.value">
                     <div>Circuit Landed Date: <field name="circuit_landdate"/></div>
                   </t>
-
                 </div>
                 <div class="o_kanban_record_bottom">
                   <div class="oe_kanban_bottom_left">
@@ -215,8 +218,6 @@
           id="bwchange_configuration_menu"
           sequence="20"
           parent="bwchange_menu_root"/>
-
-
 
         </data>
       </odoo>
