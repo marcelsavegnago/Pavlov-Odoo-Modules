@@ -5,6 +5,7 @@ class BandwidthChange(models.Model):
      _inherit = ['mail.thread']
 
      #General
+     spacer = fields.Char()
      state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], related='stage.default_state', rack_visibility='always', store=True)
      priority = fields.Selection([('low', 'Low'),('medium', 'Medium'),('high', 'High'),('urgent', 'Urgent')],default='low')
      name = fields.Char(string="Title", required=True)
@@ -29,8 +30,10 @@ class BandwidthChange(models.Model):
      core_switch = fields.Many2one('bwchange.speed', string="Internal Core Switch (Site Backbone)")
      user_switch = fields.Many2one('bwchange.speed', string="Site User Switch Port Speed")
      trunked = fields.Boolean(string="Trunked?")
+     needs_update = fields.Boolean(string="Needs Update?")
      verified_by = fields.Many2one('res.users', string="Verified By")
      verified_date = fields.Date(string ="Verified Date")
+     additional_information = fields.Text(string="Additional Information")
      #User/Unit Experience (Contracted Info)
      websnap_download = fields.Float(string="Websnap Download Speed (Mbps)", store=True)
      package_download = fields.Float(string="User/Unit Package Download Speed (Mbps)", store=True)

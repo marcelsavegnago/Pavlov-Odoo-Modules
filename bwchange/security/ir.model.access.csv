@@ -3,10 +3,10 @@ access_bwchange_stage_user,BW Change Stage User,model_bwchange_stage,bwchange.bw
 access_bwchange_owner_users,BW Change Owner User,model_bwchange_owner,bwchange.bwchange_group_user,1,0,0,0
 access_bwchange_change_users,BW Change Change User,model_bwchange_change,bwchange.bwchange_group_user,1,1,1,0
 access_bwchange_speed_users,BW Change Speed User,model_bwchange_speed,bwchange.bwchange_group_user,1,0,0,0
-access_bwchange_stage_manager,BW Change Stage Manager,model_bwchange_stage,bwchange.bwchange_group_manager,1,1,1,0
-access_bwchange_owner_manager,BW Change Owner Manager,model_bwchange_owner,bwchange.bwchange_group_manager,1,1,1,0
-access_bwchange_change_manager,BW Change Change Manager,model_bwchange_change,bwchange.bwchange_group_manager,1,1,1,0
-access_bwchange_speed_manager,BW Change Speed Manager,model_bwchange_speed,bwchange.bwchange_group_manager,1,1,1,0
+access_bwchange_stage_manager,BW Change Stage Manager,model_bwchange_stage,bwchange.bwchange_group_manager,1,1,1,1
+access_bwchange_owner_manager,BW Change Owner Manager,model_bwchange_owner,bwchange.bwchange_group_manager,1,1,1,1
+access_bwchange_change_manager,BW Change Change Manager,model_bwchange_change,bwchange.bwchange_group_manager,1,1,1,1
+access_bwchange_speed_manager,BW Change Speed Manager,model_bwchange_speed,bwchange.bwchange_group_manager,1,1,1,1
 access_bwchange_stage_readonly,BW Change Stage Read Only,model_bwchange_stage,bwchange.bwchange_group_readonly,1,0,0,0
 access_bwchange_owner_readonly,BW Change Owner Read Only,model_bwchange_owner,bwchange.bwchange_group_readonly,1,0,0,0
 access_bwchange_change_readonly,BW Change Change Read Only,model_bwchange_change,bwchange.bwchange_group_readonly,1,0,0,0
