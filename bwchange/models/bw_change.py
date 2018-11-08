@@ -13,6 +13,8 @@ class BandwidthChange(models.Model):
      eta = fields.Date(string="ETA", required=False)
      description = fields.Text(string="Description", required=False)
      color = fields.Integer()
+     user_id = fields.Many2one('res.users', string="Assigned To")
+     eta = fields.Date(string="ETA")
      #Property Circuit Details (Based on Deployment)
      actual_transport = fields.Float(string="Actual Transport Speed (Mbps)", store=True)
      circuit_paid_by = fields.Many2one ('bwchange.owner',string="Circuit Paid By")
