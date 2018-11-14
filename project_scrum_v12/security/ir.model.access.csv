@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+project_scrum_sprint_user,Project Sprint User,model_project_scrum_sprint,project.group_project_user,1,0,0,0
+project_scrum_team_user,Project Scrum Team User,model_project_scrum_team,project.group_project_user,1,0,0,0
+project_scrum_label_user,Project Scrum Label User,model_project_scrum_label,project.group_project_user,1,0,0,0
+project_scrum_component_user,Project Scrum Component User,model_project_scrum_component,project.group_project_user,1,0,0,0
+project_scrum_release_user,Project Scrum Release User,model_project_scrum_release,project.group_project_user,1,0,0,0
+project_scrum_issuetype_user,Project Scrum Issue Type User,model_project_scrum_issuetype,project.group_project_user,1,0,0,0
+project_scrum_source_user,Project Scrum Source User,model_project_scrum_source,project.group_project_user,1,0,0,0
+project_scrum_sprint_manager,Project Sprint Manager,model_project_scrum_sprint,project.group_project_manager,1,1,1,1
+project_scrum_team_manager,Project Scrum Team Manager,model_project_scrum_team,project.group_project_manager,1,1,1,1
+project_scrum_label_manager,Project Scrum Label Manager,model_project_scrum_label,project.group_project_manager,1,1,1,1
+project_scrum_component_manager,Project Scrum Component Manager,model_project_scrum_component,project.group_project_manager,1,1,1,1
+project_scrum_release_manager,Project Scrum Release Manager,model_project_scrum_release,project.group_project_manager,1,1,1,1
+project_scrum_issuetype_manager,Project Scrum Issue Type Manager,model_project_scrum_issuetype,project.group_project_manager,1,1,1,1
+project_scrum_source_manager,Project Scrum Source Manager,model_project_scrum_source,project.group_project_manager,1,1,1,1

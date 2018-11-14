@@ -1,0 +1,84 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="project_scrum_sprints_list_view">
+      <field name="name">Sprint List</field>
+      <field name="model">project.scrum_sprint</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="state"/>
+          <field name="name"/>
+          <field name="projects" widget="many2many_tags"/>
+          <field name="scrum_teams" widget="many2many_tags"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="project_tasks"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="project_scrum_sprint_form_view">
+      <field name="name">Sprint Form</field>
+      <field name="model">project.scrum_sprint</field>
+      <field name="arch" type="xml">
+        <form string="Sprint Form">
+          <header>
+            <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name"/>
+              <h1><field name="name"/></h1>
+            </div>
+            <group>
+              <field name="goal"/>
+              <field name="projects" widget="many2many_tags" domain="[('use_scrum','=',True)]"/>
+              <field name="scrum_teams" widget="many2many_tags"/>
+              <field name="start_date"/>
+              <field name="end_date"/>
+            </group>
+            <group string="Project Tasks">
+             <field name="project_tasks" nolabel="1" widget="many2many" domain="[('project_id','in',projects),('sprint_id','=',False)]">
+               <tree string="Project Tasks" editable="Top">
+                 <field name="name"/>
+                 <field name="project_id"/>
+                 <field name="user_id"/>
+                 <field name="story_point_estimate" sum="Total Points"/>
+                 <field name="planned_hours" sum="Total Planned Hrs"/>
+                 <field name="effective_hours" sum="Total Effective Hours"/>
+                 <field name="remaining_hours" sum="Total Remaining Hrs"/>
+                 <field name="stage_id"/>
+                 <field name="tag_ids" widget="many2many_tags"/>
+                 <field name="progress" widget="progressbar"/>
+                 <button name="open_rec" string="Open" type="object"/>
+               </tree>
+             </field>
+           </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="project_scrum_sprint_action_window">
+      <field name="name">Sprints</field>
+      <field name="res_model">project.scrum_sprint</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Scrum"
+      id="project_scrum_main_menu"
+      parent="project.menu_main_pm"
+      sequence="80"/>
+      <menuitem
+        name="Sprints"
+        id="project_scrum_sprint_main_menu"
+        parent="project_scrum_main_menu"
+        sequence="10"
+        action="project_scrum_sprint_action_window"/>
+
+  </data>
+</odoo>

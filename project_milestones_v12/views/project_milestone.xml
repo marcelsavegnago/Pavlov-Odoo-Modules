@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="milestones_list_view">
+      <field name="name">Milestones List</field>
+      <field name="model">project.milestone</field>
+      <field name="arch" type="xml">
+        <tree default_order='target_date'>
+          <field name="name"/>
+          <field name="project_id"/>
+          <field name="target_date"/>
+          <field name="actual_date"/>
+          <field name="project_tasks"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="milestones_form_view">
+      <field name="name">Milestones Form</field>
+      <field name="model">project.milestone</field>
+      <field name="arch" type="xml">
+        <form string="Milestone Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="target_date" string="Target Date"/>
+              <field name="actual_date" string="Actual Date"/>
+              <field name="percent_complete" string="Percent Complete"/>
+              <field name="project_id" string="Project"/>
+              <field name="project_tasks" string="Project Tasks"/>
+              <field name="fold" string="KanBan Folded?"/>
+              <field name="sequence" string="KanBan Sequence"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_milestone_search_form" model="ir.ui.view">
+      <field name="name">project.milestone.search.form</field>
+      <field name="model">project.milestone</field>
+      <field name="arch" type="xml">
+        <search>
+        <field name="name"/>
+        <field name="project_id"/>
+        <group expand="0" string="Group By">
+            <filter string="Project" name="group_by_project" context="{'group_by':'project_id'}"/>
+        </group>
+      </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="project_milestones_action_window">
+      <field name="name">Milestones</field>
+      <field name="res_model">project.milestone</field>
+      <field name="context">{'group_by': 'project_id'}</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Milestones"
+      id="project_milestones_menu"
+      parent="project.menu_main_pm"
+      sequence="80"
+      action="project_milestones_action_window"/>
+
+  </data>
+</odoo>

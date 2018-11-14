@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <!-- List View-->
+    <record model="ir.ui.view" id="project_scrum_release_list_view">
+      <field name="name">Scrum Release List</field>
+      <field name="model">project.scrum_release</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="project_scrum_release_form_view">
+      <field name="name">Scrum Release Form</field>
+      <field name="model">project.scrum_release</field>
+      <field name="arch" type="xml">
+        <form string="Scrum Release Form">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="description"/>
+                <field name="start_date"/>
+                <field name="release_date"/>
+                <field name="project_tasks"/>
+                <field name="status"/>
+                <field name="progress"/>
+                <field name="release_notes"/>
+                <field name="project_id"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="project_scrum_release_action_window">
+      <field name="name">Scrum Release</field>
+      <field name="res_model">project.scrum_release</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Releases"
+      id="project_scrum_release_menu"
+      parent="project_scrum_main_menu"
+      sequence="20"
+      action="project_scrum_release_action_window"/>
+
+  </data>
+</odoo>
