@@ -7,6 +7,11 @@ class ProjectScrumLabel(models.Model):
      name = fields.Char(string="Name", required=True)
      description = fields.Char(string="Description")
      label_sequence = fields.Integer(string="Sequence")
+     color = fields.Integer(string='Color Index')
+
+     _sql_constraints = [
+         ('name_uniq', 'unique (name)', "Tag name already exists!"),
+     ]
 
      @api.model
      def create(self, vals):

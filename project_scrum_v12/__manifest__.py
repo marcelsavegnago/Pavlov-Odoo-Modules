@@ -23,17 +23,19 @@
 
     # always loaded
     'data': [
+        'views/project.xml',
         'views/project_scrum_sprint.xml',
-        'views/project_scrum_component.xml',
+        'views/project_scrum_category.xml',
         'views/project_scrum_issuetype.xml',
         'views/project_scrum_label.xml',
+        'views/project_scrum_point.xml',
         'views/project_scrum_release.xml',
         'views/project_scrum_source.xml',
-        'views/project.xml',
         'views/project_task.xml',
         'views/project_scrum_team.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

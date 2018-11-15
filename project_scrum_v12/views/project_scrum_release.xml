@@ -18,20 +18,37 @@
       <field name="model">project.scrum_release</field>
       <field name="arch" type="xml">
         <form string="Scrum Release Form">
+          <header>
+            <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
+          </header>
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Name" />
               <h1><field name="name" /></h1>
             </div>
+            <group colspan="2" col="4">
+              <field name="project_id"/>
+              <field name="start_date"/>
+              <field name="color" invisible="1"/>
+              <field name="release_date"/>
+              </group>
             <group>
               <field name="description"/>
-                <field name="start_date"/>
-                <field name="release_date"/>
-                <field name="project_tasks"/>
-                <field name="status"/>
-                <field name="progress"/>
-                <field name="release_notes"/>
-                <field name="project_id"/>
+              <field name="release_notes"/>
+            </group>
+            <group string="Associated Tasks">
+              <tree>
+                 <field name="project_tasks" widget="many2many">
+                    <field name="issue_type"/>
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="story_point_estimate"/>
+                    <field name="sprint_id"/>
+                    <field name="stage_id"/>
+                    <field name="progress" widget="progressbar"/>
+                    <button name="open_rec" string="Open" type="object"/>
+                  </field>
+              </tree>
             </group>
           </sheet>
         </form>

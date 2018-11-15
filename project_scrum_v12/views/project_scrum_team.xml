@@ -42,7 +42,7 @@
     <menuitem
       name="Scrum Teams"
       id="scrum_team_configuration_menu"
-      parent="project_scrum_main_menu"
+      parent="scrum_configuration_section_menu"
       sequence="30"
       action="project_scrum_team_action_window"/>
 

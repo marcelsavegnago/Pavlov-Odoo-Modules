@@ -32,7 +32,7 @@
     <menuitem
       name="Issue Types"
       id="project_scrum_issuetypes_menu"
-      parent="project_scrum_main_menu"
+      parent="scrum_configuration_section_menu"
       sequence="40"
       action="project_scrum_issuetype_action"/>
 

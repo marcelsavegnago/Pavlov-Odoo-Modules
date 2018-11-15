@@ -72,4 +72,10 @@
     </field>
   </record>
 
+  <!-- Menu Items -->
+  <menuitem
+    name="Scrum"
+    id="scrum_configuration_section_menu"
+    parent="project.menu_project_config"
+    sequence="20"/>
 </odoo>

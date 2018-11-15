@@ -3,12 +3,12 @@ from odoo import models, fields, api
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    story_point_estimate = fields.Integer(string="Story Points")
-    fix_versions = fields.Many2many('project.scrum_release', string="Fix Versions")
-    affects_versions = fields.Many2many('project.scrum_release', string="Fix Versions")
+    story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
+    fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Versions")
+    affects_versions = fields.Many2many('project.scrum_release', relation='affectver_task_rel',string="Affects Versions")
     acceptance_criteria = fields.Text(string="Acceptance Criteria")
-    components = fields.Many2many('project.scrum_component', string="Components")
-    blocking_tasks = fields.One2many('project.project_task','id',string="Blocking Tasks")
+    categories = fields.Many2many('project.scrum_category', string="Categories")
+    blocking_tasks = fields.Many2many('project.task', relation='blocking_tasks_rel', column1='task1', column2='task2',string="Blocking Tasks")
     source = fields.Many2one('project.scrum_source', string="Source")
     issue_type = fields.Many2one('project.scrum_issuetype', string="Issue Type")
     labels = fields.Many2many('project.scrum_label', string="Labels")

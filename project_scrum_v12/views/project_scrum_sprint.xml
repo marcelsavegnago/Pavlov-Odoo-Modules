@@ -6,7 +6,7 @@
       <field name="model">project.scrum_sprint</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
-          <field name="state"/>
+          <field name="status"/>
           <field name="name"/>
           <field name="projects" widget="many2many_tags"/>
           <field name="scrum_teams" widget="many2many_tags"/>
@@ -24,23 +24,26 @@
       <field name="arch" type="xml">
         <form string="Sprint Form">
           <header>
-            <field name="state" widget="statusbar" options="{'clickable': '1'}"/>
+            <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
           </header>
           <sheet>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" string="Name"/>
               <h1><field name="name"/></h1>
             </div>
+            <group colspan="2" col="4">
+              <field name="projects" widget="many2many_tags" domain="[('use_scrum','=',True)]"/>
+              <field name="start_date"/>
+              <field name="scrum_teams" widget="many2many_tags"/>
+              <field name="end_date"/>
+            </group>
             <group>
               <field name="goal"/>
-              <field name="projects" widget="many2many_tags" domain="[('use_scrum','=',True)]"/>
-              <field name="scrum_teams" widget="many2many_tags"/>
-              <field name="start_date"/>
-              <field name="end_date"/>
             </group>
             <group string="Project Tasks">
              <field name="project_tasks" nolabel="1" widget="many2many" domain="[('project_id','in',projects),('sprint_id','=',False)]">
                <tree string="Project Tasks" editable="Top">
+                 <field name="issue_type"/>
                  <field name="name"/>
                  <field name="project_id"/>
                  <field name="user_id"/>
