@@ -4,6 +4,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
+    story_number = fields.Char(string="Story Number")
     fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Versions")
     affects_versions = fields.Many2many('project.scrum_release', relation='affectver_task_rel',string="Affects Versions")
     acceptance_criteria = fields.Text(string="Acceptance Criteria")
@@ -14,7 +15,7 @@ class ProjectTask(models.Model):
     labels = fields.Many2many('project.scrum_label', string="Labels")
     use_scrum = fields.Boolean(string="Use Scrum", related='project_id.use_scrum')
 
-    @api.multi
+    #USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):
         return {
           'view_type': 'form',
@@ -26,6 +27,13 @@ class ProjectTask(models.Model):
           'flags': {'form': {'action_buttons': True}}
         }
 
+    #USED TO SET STORY NUMBER (WITH PREFIX) AND UPDATE NEXT NUMBER ON PROJECT
+    @api.onchange('name')
+    def onchange_set_story_number(self):
+        if self.story_number == False:
+            self.story_number = self.project_id.label_tasks + str(self.project_id.next_task_number)
+
+    #USED FOR GROUP BY SPRINTS
     @api.model
     def _read_group_sprint_ids(self, sprints, domain, order):
         # write the domain

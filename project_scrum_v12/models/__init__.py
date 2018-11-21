@@ -8,3 +8,4 @@ from . import project_scrum_release
 from . import project_scrum_source
 from . import project_scrum_team
 from . import project_scrum_sprint
+from . import project_task_type

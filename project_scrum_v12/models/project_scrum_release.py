@@ -1,14 +1,40 @@
 from odoo import models, fields, api
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 class ProjectScrumRelease(models.Model):
      _name = 'project.scrum_release'
 
-     name = fields.Char(string="Team Name", required=True)
+     name = fields.Char(string="Release Name", required=True)
      description = fields.Text(string="Description")
-     start_date = fields.Date(string="Start Date")
      release_date = fields.Date(string="Release Date")
      project_tasks = fields.Many2many('project.task', relation='fixedversion_task_rel', column1='version_id', column2='task_id', string="Project Tasks")
      status = fields.Selection([('unreleased','Unreleased'),('released','Released')], string="status", default="unreleased")
      release_notes = fields.Text(string="Release Notes")
-     project_id = fields.Many2one('project.project', string="Project")
+     project_id = fields.Many2one('project.project', string="Project", required=True)
      color = fields.Integer(string='Color Index')
+
+     @api.multi
+     def release_version_and_new(self):
+         version_start = date.today()
+         self.release_date = date.today()
+         project = self.project_id
+         self.color = 10
+         new_version = self.env['project.scrum_release'].create({'name': "new", 'color': 4, 'project_id': self.project_id.id})
+         notes = self.release_notes
+         for record in self.project_tasks:
+             if record.stage_id.is_closed == False:
+                record.fix_versions = new_version
+             else:
+                notes = notes + str(record.name)
+         self.release_notes = notes
+         self.status = 'released'
+
+         return {
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'project.scrum_release',
+            'target': 'current',
+            'res_id': new_version.id,
+            'type': 'ir.actions.act_window'
+         }

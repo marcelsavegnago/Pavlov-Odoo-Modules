@@ -1,6 +1,5 @@
 from odoo import models, fields, api
 
-#Main Bandwidth Change Records Model
 class ProjectMilestone(models.Model):
      _name = 'project.milestone'
 

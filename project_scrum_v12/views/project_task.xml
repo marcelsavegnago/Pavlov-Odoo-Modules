@@ -34,6 +34,7 @@
             <field name="categories" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
             <field name="sprint_id"/>
             <field name="labels" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+            <field name="story_number"/>
           </group>
           <group attrs="{'invisible':[('use_scrum','=', False)]}">
             <field name="blocking_tasks" widget="many2many">
@@ -70,6 +71,9 @@
             <t t-if="record.story_point_estimate.raw_value">
              <span class="o_value">(<field name="story_point_estimate"/>)</span>
            </t>
+           <div>
+              <field name="fix_versions" widget="many2many_tags" options="{'color_field': 'color'}"/>
+           </div>
         </xpath>
       </data>
     </field>

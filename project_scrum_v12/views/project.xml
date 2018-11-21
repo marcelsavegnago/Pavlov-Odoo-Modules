@@ -22,6 +22,9 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
+        <xpath expr="//field[@name='sequence']" position="after">
+            <field name="next_task_number"/>
+        </xpath>
         <xpath expr="//div[@name='options_active']" position="inside">
           <div>
             <field name="use_scrum" class="oe_inline" string="Use sprints"/>
@@ -49,6 +52,7 @@
       <data>
         <field name="user_id" position="after">
           <field name="use_scrum"/>
+          <field name="next_task_number"/>
         </field>
       </data>
     </field>
@@ -64,8 +68,8 @@
         <xpath expr="//div[@class='o_primary']" position="after">
           <field name="use_scrum" invisible="1"/>
           <t t-if="record.use_scrum.raw_value">
-            <span class="o_label">Sprints: </span>
-            <span class="o_value"><field name="sprints"/></span>
+            <span class="o_label">Scrum Enabled</span>
+            <!--<span class="o_value"><field name="sprints"/></span>-->
           </t>
         </xpath>
       </data>

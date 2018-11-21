@@ -7,6 +7,7 @@
 
     'description': """
         This module adds Scrum & Sprints to the Project model.
+        Depends: Projects, Timesheets, Employees
     """,
 
     'author': "Pavlov Media",
@@ -19,10 +20,11 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'project'],
+    'depends': ['base', 'project', 'timesheet_grid', 'hr'],
 
     # always loaded
     'data': [
+        'report/sprint_capacity_report.xml',
         'views/project.xml',
         'views/project_scrum_sprint.xml',
         'views/project_scrum_category.xml',
@@ -33,6 +35,7 @@
         'views/project_scrum_source.xml',
         'views/project_task.xml',
         'views/project_scrum_team.xml',
+        'views/project_task_type.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/data.xml',

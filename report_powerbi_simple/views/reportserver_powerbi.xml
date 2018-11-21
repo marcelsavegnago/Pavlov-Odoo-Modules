@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+
+    <record id="reportserver_powerbi_url_action" model="ir.actions.act_url">
+      <field name="name">Power BI Report Server</field>
+      <field name="type">ir.actions.act_url</field>
+      <field name="target">new</field>
+      <field name="url">https://ssrs-cmi-001.pavlovmedia.corp/reports/browse/</field>
+    </record>
+
+    <!-- Top menu / dashboard icon -->
+    <menuitem name="Report Server" id="reportserver_powerbi_menu_root" web_icon="report_powerbi,static/description/icon.png" action="reportserver_powerbi_url_action"/>
+
+  </data>
+</odoo>
