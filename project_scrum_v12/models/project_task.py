@@ -14,6 +14,7 @@ class ProjectTask(models.Model):
     issue_type = fields.Many2one('project.scrum_issuetype', string="Issue Type")
     labels = fields.Many2many('project.scrum_label', string="Labels")
     use_scrum = fields.Boolean(string="Use Scrum", related='project_id.use_scrum')
+    issue_type_image = fields.Binary(string="Issue Type Image", related='issue_type.issue_type_image')
 
     #USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):

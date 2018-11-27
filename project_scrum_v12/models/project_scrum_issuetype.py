@@ -8,6 +8,7 @@ class ProjectScrumIssueType(models.Model):
      description = fields.Char(string="Description")
      issuetype_sequence = fields.Integer(string="Sequence")
      color = fields.Integer(string='Color Index')
+     issue_type_image = fields.Binary(string="Issue Type Image")
 
      _sql_constraints = [
          ('name_uniq', 'unique (name)', "Tag name already exists!"),
