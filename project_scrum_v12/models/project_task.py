@@ -4,7 +4,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
-    story_number = fields.Char(string="Story Number")
+    task_number = fields.Char(string="Task Number")
     fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Versions")
     affects_versions = fields.Many2many('project.scrum_release', relation='affectver_task_rel',string="Affects Versions")
     acceptance_criteria = fields.Text(string="Acceptance Criteria")
@@ -27,12 +27,6 @@ class ProjectTask(models.Model):
           'flags': {'form': {'action_buttons': True}}
         }
 
-    #USED TO SET STORY NUMBER (WITH PREFIX) AND UPDATE NEXT NUMBER ON PROJECT
-    @api.onchange('name')
-    def onchange_set_story_number(self):
-        if self.story_number == False:
-            self.story_number = self.project_id.label_tasks + str(self.project_id.next_task_number)
-
     #USED FOR GROUP BY SPRINTS
     @api.model
     def _read_group_sprint_ids(self, sprints, domain, order):
@@ -46,3 +40,14 @@ class ProjectTask(models.Model):
             return sprints.search(search_domain, order=order)
 
     sprint_id = fields.Many2one('project.scrum_sprint', string="Sprint", group_expand='_read_group_sprint_ids')
+
+    #USED TO SET STORY NUMBER (WITH PREFIX) AND UPDATE NEXT NUMBER ON PROJECT
+    @api.model
+    def create(self, values):
+        # Override the original create function for the res.partner model
+        record = super(ProjectTask, self).create(values)
+        record['task_number'] = record.project_id.label_tasks + '-' + str(record.project_id.next_task_number)
+        next_num = record.project_id.next_task_number + 1
+        record.project_id.write({'next_task_number': next_num})
+
+        return record
