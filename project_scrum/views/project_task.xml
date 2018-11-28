@@ -35,8 +35,9 @@
             <field name="affects_versions" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" domain="[('project_id','=', project_id),('status','=','released')]"/>
             <field name="story_point_estimate" widget="selection"/>
             <field name="categories" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
-            <field name="sprint_id"/>
+            <field name="sprint_id" widget="selection" domain="[('status','!=', 'closed')]"/>
             <field name="labels" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+            <field name="reporter"/>
           </group>
           <group attrs="{'invisible':[('use_scrum','=', False)]}">
             <field name="blocking_tasks" widget="many2many">

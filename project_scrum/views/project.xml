@@ -1,7 +1,7 @@
 <odoo>
   <!-- List View-->
-  <record id="view_sprint_view_project_list" model="ir.ui.view">
-    <field name="name">project.project.sprint.tree</field>
+  <record id="view_scrum_view_project_list" model="ir.ui.view">
+    <field name="name">project.project.scrum.tree</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project"/>
     <field name="type">tree</field>
@@ -15,8 +15,8 @@
   </record>
 
   <!-- Form View -->
-  <record id="view_sprint_edit_project_form" model="ir.ui.view">
-    <field name="name">project.project.sprint.form</field>
+  <record id="view_scrum_edit_project_form" model="ir.ui.view">
+    <field name="name">project.project.scrum.form</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="type">form</field>
@@ -34,7 +34,12 @@
         <xpath expr="//page[@name='settings']" position="after">
           <page name="sprints" string="Sprints" attrs="{'invisible':[('use_scrum','=', False)]}">
             <group>
-              <field name="sprints" string="Sprints" context="{'project_id': active_id}"/>
+              <field name="sprints" string="Sprints" context="{'project_id': active_id}" nolabel="1"/>
+            </group>
+          </page>
+          <page name="releases" string="Releases" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group>
+              <field name="releases" string="Releases" domain="[('project_id', '=', active_id)]" context="{'project_id': active_id}" nolabel="1"/>
             </group>
           </page>
         </xpath>
@@ -43,8 +48,8 @@
   </record>
 
   <!-- Simplified Form View -->
-  <record id="view_sprint_edit_project_simple" model="ir.ui.view">
-    <field name="name">project.project.sprint.simpleform</field>
+  <record id="view_scrum_edit_project_simple" model="ir.ui.view">
+    <field name="name">project.project.scrum.simpleform</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
     <field name="type">form</field>
@@ -59,8 +64,8 @@
   </record>
 
   <!-- Kanban View -->
-  <record id="view_project_sprint_kanban" model="ir.ui.view">
-    <field name="name">project.project.sprint.kanban</field>
+  <record id="view_project_scrum_kanban" model="ir.ui.view">
+    <field name="name">project.project.scrum.kanban</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project_kanban"/>
     <field name="arch" type="xml">
@@ -69,7 +74,6 @@
           <field name="use_scrum" invisible="1"/>
           <t t-if="record.use_scrum.raw_value">
             <span class="o_label">Scrum Enabled</span>
-            <!--<span class="o_value"><field name="sprints"/></span>-->
           </t>
         </xpath>
       </data>

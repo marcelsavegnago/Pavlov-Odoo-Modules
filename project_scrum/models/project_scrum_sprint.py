@@ -43,4 +43,13 @@ class ProjectSprint(models.Model):
 
      def close_sprint(self):
          if self.status != 'closed':
+             for record in self.project_tasks:
+                 if record.stage_id.is_closed == False:
+                     record.sprint_id = False
              self.status = 'closed'
+    #         message = "This is a test message."
+    #         mess= {
+    #            'title': ('TEST'),
+    #            'message' : message
+    #            }
+    #         return {'warning': mess}

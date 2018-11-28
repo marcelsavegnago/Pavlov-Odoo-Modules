@@ -25,8 +25,8 @@
       <field name="arch" type="xml">
         <form string="Sprint Form">
           <header>
-            <button name="close_and_create_sprint" type="object" string="Close and New" attrs="{'invisible':['|',('status','=','closed'),('status','=','planning')]}"/>
-            <button name="close_sprint" type="object" string="Close" attrs="{'invisible':['|',('status','=','closed'),('status','=','planning')]}"/>
+            <button name="close_and_create_sprint" type="object" string="Close and New" attrs="{'invisible':['|',('status','=','closed'),('status','=','planning')]}" confirm="WARNING!!! Any Task not not in a 'Completed' Stage will be removed from the Sprint and moved to the newly created Sprint. Do you want to continue?"/>
+            <button name="close_sprint" type="object" string="Close" attrs="{'invisible':['|',('status','=','closed'),('status','=','planning')]}" confirm="WARNING!!! Any Task not not in a 'Completed' Stage will be removed from this Sprint. Do you want to continue?"/>
             <field name="status" widget="statusbar" options="{'clickable': '1'}"/>
           </header>
           <sheet>
@@ -82,7 +82,7 @@
       parent="project.menu_main_pm"
       sequence="80"/>
       <menuitem
-        name="Sprints"
+        name="All Sprints"
         id="project_scrum_sprint_main_menu"
         parent="project_scrum_main_menu"
         sequence="10"

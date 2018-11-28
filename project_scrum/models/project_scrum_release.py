@@ -21,12 +21,18 @@ class ProjectScrumRelease(models.Model):
          project = self.project_id
          self.color = 10
          new_version = self.env['project.scrum_release'].create({'name': "new", 'color': 4, 'project_id': self.project_id.id})
-         notes = self.release_notes
+
+         if self.release_notes:
+             notes = self.release_notes + "\n" + self.name + " Release Notes"
+         else:
+             notes = self.name + " Release Notes"
+
          for record in self.project_tasks:
              if record.stage_id.is_closed == False:
                 record.fix_versions = new_version
              else:
-                notes = notes + str(record.name)
+                    notes = notes + "\n" + "  (" + record.issue_type.name + ") " + record.name
+
          self.release_notes = notes
          self.status = 'released'
 

@@ -31,7 +31,7 @@
         <xpath expr="//page[@name='settings']" position="after">
           <page name="milestones" string="Milestones" attrs="{'invisible':[('use_milestones','=', False)]}">
             <group>
-              <field name="milestones" string="Milestones" context="{'project_id': active_id}"/>
+              <field name="milestones" string="Milestones" context="{'project_id': active_id}" nolabel="1"/>
             </group>
           </page>
         </xpath>

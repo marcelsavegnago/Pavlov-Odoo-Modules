@@ -5,8 +5,8 @@ class ProjectTask(models.Model):
 
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
     task_number = fields.Char(string="Task Number")
-    fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Versions")
-    affects_versions = fields.Many2many('project.scrum_release', relation='affectver_task_rel',string="Affects Versions")
+    fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Version/s")
+    affects_versions = fields.Many2many('project.scrum_release', relation='affectver_task_rel',string="Affects Version/s")
     acceptance_criteria = fields.Text(string="Acceptance Criteria")
     categories = fields.Many2many('project.scrum_category', string="Categories")
     blocking_tasks = fields.Many2many('project.task', relation='blocking_tasks_rel', column1='task1', column2='task2',string="Blocking Tasks")
@@ -15,6 +15,7 @@ class ProjectTask(models.Model):
     labels = fields.Many2many('project.scrum_label', string="Labels")
     use_scrum = fields.Boolean(string="Use Scrum", related='project_id.use_scrum')
     issue_type_image = fields.Binary(string="Issue Type Image", related='issue_type.issue_type_image')
+    reporter = fields.Many2one('res.user', string="Reporter")
 
     #USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):

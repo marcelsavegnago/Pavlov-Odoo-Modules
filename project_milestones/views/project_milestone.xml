@@ -68,8 +68,14 @@
       name="Milestones"
       id="project_milestones_menu"
       parent="project.menu_main_pm"
-      sequence="80"
-      action="project_milestones_action_window"/>
+      sequence="80"/>
+
+      <menuitem
+        name="All Milestones"
+        id="project_all_milestones_menu"
+        parent="project_milestones_menu"
+        sequence="10"
+        action="project_milestones_action_window"/>
 
   </data>
 </odoo>
