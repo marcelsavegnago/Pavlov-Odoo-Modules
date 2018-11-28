@@ -1,7 +1,7 @@
 <odoo>
   <!-- List View -->
-  <record id="view_task_sprint_tree" model="ir.ui.view">
-    <field name="name">project.task.sprint.tree</field>
+  <record id="view_task_scrum_tree" model="ir.ui.view">
+    <field name="name">project.task.scrum.tree</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_tree2"/>
     <field eval="2" name="priority"/>
@@ -12,8 +12,8 @@
   </record>
 
   <!-- Form View -->
-  <record id="view_task_sprint_form" model="ir.ui.view">
-    <field name="name">project.task.sprint.form</field>
+  <record id="view_task_scrum_form" model="ir.ui.view">
+    <field name="name">project.task.scrum.form</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_form2"/>
     <field eval="2" name="priority"/>
@@ -59,8 +59,8 @@
   </record>
 
   <!-- Kanban View -->
-  <record id="view_task_sprint_kanban" model="ir.ui.view">
-    <field name="name">project.task.sprint.kanban</field>
+  <record id="view_task_scrum_kanban" model="ir.ui.view">
+    <field name="name">project.task.scrum.kanban</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_kanban"/>
     <field name="arch" type="xml">
@@ -70,6 +70,7 @@
           <field name="task_number" invisible="1"/>
           <field name="story_point_estimate" invisible="1"/>
           <field name="issue_type" invisible="1"/>
+          <field name="subtask_count" invisible="1"/>
             <t t-if="record.sprint_id.raw_value">
               <span class="o_value"><field name="sprint_id"/></span>
             </t>
@@ -83,6 +84,11 @@
         <xpath expr="//div/field[@name='priority']" position="before">
           <t t-if="record.task_number.raw_value">
            <span class="o_value"><field name="task_number"/></span>
+           <t t-if="record.subtask_count.raw_value > 0">
+             <a class="o_project_kanban_box" name="action_subtask" type="object">
+               <span class="o_value">(<t t-esc="record.subtask_count.value"/>)</span>
+             </a>
+           </t>
            <t t-if="record.issue_type.raw_value">
              <img t-att-src="kanban_image('project.scrum_issuetype', 'issue_type_image', record.issue_type.raw_value)" t-att-title="record.issue_type.value" t-att-alt="record.issue_type.value" width="18" height="18" class="oe_kanban_avatar"/>
            </t>
@@ -93,8 +99,8 @@
   </record>
 
   <!-- Search View -->
-  <record id="view_task_sprint_search_form" model="ir.ui.view">
-    <field name="name">project.task.sprint.search.form</field>
+  <record id="view_task_scrum_search_form" model="ir.ui.view">
+    <field name="name">project.task.scrum.search.form</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_search_form"/>
     <field name="arch" type="xml">
@@ -102,6 +108,10 @@
         <field name="sprint_id"/>
         <field name="task_number"/>
       </field>
+      <filter name="unassigned" position="after">
+        <filter string="Parent Tasks" name="task" domain="[('parent_id', '=', False)]"/>
+        <filter string="Sub Tasks" name="task" domain="[('parent_id', '!=', False)]"/>
+      </filter>
       <filter name="project" position="before">
         <filter string="Sprints" name="sprint" context="{'group_by':'sprint_id'}"/>
       </filter>

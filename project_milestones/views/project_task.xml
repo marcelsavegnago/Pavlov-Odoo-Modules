@@ -22,7 +22,7 @@
       <data>
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="use_milestones" invisible="1"/>
-          <field name="milestone_id" string="Milestone" domain="[('project_id', '=', project_id)]" context="{'project_id': project_id}" attrs="{'invisible':[('use_milestones','=', False)]}"/> <!--  V12 Change: default_project to project_id -->
+          <field name="milestone_id" string="Milestone" domain="[('project_id', '=', project_id)]" context="{'project_id': project_id}" attrs="{'invisible':[('use_milestones','=', False)]}"/>
         </xpath>
       </data>
     </field>
