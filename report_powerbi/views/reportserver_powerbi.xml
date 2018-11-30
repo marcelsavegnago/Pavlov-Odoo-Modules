@@ -1,60 +1,15 @@
 <odoo>
   <data>
-    <!-- List View-->
-    <record model="ir.ui.view" id="report_powerbi_list_view">
-      <field name="name">PowerBI List</field>
-      <field name="model">reportserver.powerbi</field>
-      <field name="arch" type="xml">
-        <tree>
-          <field name="powerbi_url"/>
-        </tree>
-      </field>
+
+    <record id="reportserver_powerbi_url_action" model="ir.actions.act_url">
+      <field name="name">Power BI Report Server</field>
+      <field name="type">ir.actions.act_url</field>
+      <field name="target">new</field>
+      <field name="url">https://ssrs-cmi-001.pavlovmedia.corp/reports/browse/</field>
     </record>
 
-    <!-- Form View -->
-    <record model="ir.ui.view" id="report_powerbi_form_view">
-      <field name="name">PowerBI Form</field>
-      <field name="model">reportserver.powerbi</field>
-      <field name="arch" type="xml">
-        <form string="Embedded Webpage" version="7.0" edit="false" create="false">
-    <div class="embed-responsive embed-responsive-4by3">
-        <iframe class="embed-responsive-item"
-                src="https://www.google.com" >
-        </iframe>
-    </div>
-</form>
-      <!--  <form string="Embedded Webpage" version="7.0" edit="false" create="false">
-          <center>
-            <iframe src="https://www.google.com" marginwidth="0" marginheight="0" frameborder="no"  style="height: 100%; width: 100%; border-width:0px;">
-            </iframe>
-          </center>
-        </form>-->
-      </field>
-    </record>
-    <!-- <form string="Embedded Webpage" version="7.0" edit="false" create="false">
-    <div class="embed-responsive embed-responsive-4by3">
-    <iframe class="embed-responsive-item"
-    src="https://www.odoo.com/documentation" >
-  </iframe>
-</div>
-</form>-->
+    <!-- Top menu / dashboard icon -->
+    <menuitem name="Report Server" id="reportserver_powerbi_menu_root" web_icon="report_powerbi,static/description/icon.png" action="reportserver_powerbi_url_action"/>
 
-<!-- actions opening views on models -->
-<record model="ir.actions.act_window" id="reportserver_powerbi_action_window">
-  <field name="name">PowebBI</field>
-  <field name="res_model">reportserver.powerbi</field>
-  <field name="view_mode">form</field>
-</record>
-
-<!--    <record id="reportserver_powerbi_action" model="ir.actions.act_url">
-<field name="name">Power BI Report Server</field>
-<field name="type">ir.actions.act_url</field>
-<field name="target">new</field>
-<field name="url"></field>
-</record>-->
-
-<!-- Top menu / dashboard icon -->
-<menuitem name="Report Server" id="reportserver_powerbi_menu_root" web_icon="report_powerbi,static/description/icon.png" action="reportserver_powerbi_action_window"/>
-<menuitem name="Report Server" id="reportserver_powerbi_main_menu" parent="reportserver_powerbi_menu_root" action="reportserver_powerbi_action_window"/>
-</data>
+  </data>
 </odoo>

@@ -14,7 +14,8 @@
       <field name="model">project.scrum_point</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="point_sequence" widget="handle"/>
+          <field name="point_sequence"
+                 widget="handle"/>
           <field name="name"/>
           <field name="description"/>
         </tree>

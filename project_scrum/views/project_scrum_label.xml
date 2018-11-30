@@ -14,7 +14,8 @@
       <field name="model">project.scrum_label</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="label_sequence" widget="handle"/>
+          <field name="label_sequence"
+                 widget="handle"/>
           <field name="name"/>
           <field name="description"/>
         </tree>

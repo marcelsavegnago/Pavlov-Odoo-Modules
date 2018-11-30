@@ -3,100 +3,28 @@
     id="sprint_capacity_document"
     model="project.scrum_sprint"
     string="Sprint Capacity Document"
-    name="project_scrum.sprint_capacity_document"
-    file="project_scrum.sprint_capacity_document"
+    name="project_scrum.report_sprint_capacity_document"
+    file="project_scrum.report_sprint_capacity_document"
     report_type="qweb-pdf"/>
 
     <report
       id="sprint_capacity_document_preview"
       model="project.scrum_sprint"
       string="Sprint Capacity Document Preview"
-      name="project_scrum.sprint_capacity_document"
-      file="project_scrum.sprint_capacity_document"
+      name="project_scrum.report_sprint_capacity_document"
+      file="project_scrum.report_sprint_capacity_document"
       report_type="qweb-html"/>
 
       <template id="report_sprint_capacity_document">
-        <t t-name="project_scrum.report_sprint_capacity_document">
-          <t t-name="project_scrum.report_sprint_capacity_document">
-            <t t-call="web.html_container">
-              <t t-foreach="docs" t-as="doc">
-                <t t-call="web.external_layout">
-                  <div class="page">
-                    <div align="center">
-                      <h3>Sprint Capacity Report</h3>
-                    </div>
-                <!--    <br></br>
-                    <h4><b>Site Name/Site Code:<span t-field="docs.partner_id"/></b></h4>
-                    <br></br>
-
-                    <h5><b>Property Circuit Details</b></h5>
-                    <div class="row" >
-                      <div class="col-6" style="border-style:solid;">
-                        <span>Actual Transport Speed: </span>
-                        <b><span t-field="docs.actual_transport" t-options='{"widget": "integer"}'/></b>
-                      </div>
-                      <div class="col-6" style="border-style:solid; border-left:none;">
-                        <span>Circuit Land Date: </span>
-                        <b><span t-field="docs.circuit_landdate"/></b>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-6" style="border-style:solid; border-top:none;">
-                        <span>Circuit paid by: </span>
-                        <b><span t-field="docs.circuit_paid_by"/></b>
-                      </div>
-                      <div class="col-6" style="border-style:solid; border-top:none; border-left:none;">
-                        <span>Circuit ID:</span>
-                        <b><span t-field="docs.circuit_id"/></b>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-6" style="border-style:solid; border-top:none;">
-                        <span>Sold Transport Speed/DIA Download (OffNet):</span>
-                        <b><span t-field="docs.sold_transport" t-options='{"widget": "integer"}'/></b>
-                      </div>
-                      <div class="col-6" style="border-style:solid; border-top:none; border-left:none;">
-                        <span>DIA Upload (OffNet):</span>
-                        <b><span t-field="docs.dia_upload" t-options='{"widget": "integer"}'/></b>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-6" style="border-style:solid; border-top:none;">
-                        <span>Tesseractive Service:</span>
-                        <t t-if="doc.tesseractive_service">
-                          <input type="checkbox" id="checkbox104_tesseractive_service" checked="checked"/>
-                        </t>
-                        <t t-if="not doc.tesseractive_service">
-                          <input type="checkbox" id="checkbox105_tesseractive_service"  />
-                        </t>
-                      </div>
-                      <div class="col-6" style="border-style:solid; border-top:none; border-left:none;">
-                        <span>Tesseractiv Speed (OnNet):</span>
-                        <b><span t-field="docs.tesseractiv_speed" t-options='{"widget": "integer"}'/></b>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12" style="border-style:solid; border-top:none;">
-                        <span>Site User Switch Port Speed:</span>
-                        <b><span t-field="docs.user_switch"/></b>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-12" style="border-style:solid; border-top:none;">
-                        <span>WebSnap?</span>
-                        <t t-if="doc.websnap">
-                          <input type="checkbox" id="checkbox104_websnap" checked="checked"/>
-                        </t>
-                        <t t-if="not doc.websnap">
-                          <input type="checkbox" id="checkbox105_websnap"  />
-                        </t>
-                      </div>
-                    </div>-->
-                  </div>
-                </t>
+        <t t-name="report_sprint_capacity_document">
+          <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+              <t t-call="web.internal_layout">
+                <div class="page"/>
               </t>
             </t>
           </t>
         </t>
       </template>
-    </odoo>
+
+</odoo>

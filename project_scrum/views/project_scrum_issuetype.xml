@@ -14,10 +14,16 @@
       <field name="model">project.scrum_issuetype</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="issuetype_sequence" widget="handle" groups="base.group_no_one"/>
+          <field name="issuetype_sequence"
+                 widget="handle"
+                 groups="base.group_no_one"/>
           <field name="name"/>
           <field name="description"/>
-          <field name="issue_type_image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [50, 50]}" readonly="0"/>
+          <field name="issue_type_image"
+                 widget="image"
+                 class="oe_avatar"
+                 options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [50, 50]}"
+                 readonly="0"/>
         </tree>
       </field>
     </record>

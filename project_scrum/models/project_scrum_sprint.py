@@ -21,6 +21,22 @@ class ProjectSprint(models.Model):
          ('name_uniq', 'unique (name)', "Tag name already exists!"),
      ]
 
+     #When adding/removing tasks or changing start/end dates to a sprint, update the start/end dates on the tasks to match sprint for forecasting
+     @api.onchange('project_tasks', 'start_date', 'end_date')
+     def on_change_project_tasks(self):
+         for record in self.project_tasks:
+             if record.date_start != self.start_date:
+                 record.write({'date_start': self.start_date})
+             if record.date_end != self.end_date:
+                 record.write({'date_end': self.end_date})
+             if record.date_end != self.end_date:
+                 record.write({'date_deadline': self.end_date})
+             if record.forecasts:
+                 # Get EmployeeID from the user_id
+                 for each_forecast in record.forecasts:
+                     each_forecast.write({'start_date': record.date_start, 'end_date': record.date_end})
+
+
      @api.multi
      def close_and_create_sprint(self):
          sprintid = self.id + 1
@@ -47,9 +63,3 @@ class ProjectSprint(models.Model):
                  if record.stage_id.is_closed == False:
                      record.sprint_id = False
              self.status = 'closed'
-    #         message = "This is a test message."
-    #         mess= {
-    #            'title': ('TEST'),
-    #            'message' : message
-    #            }
-    #         return {'warning': mess}

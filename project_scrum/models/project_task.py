@@ -17,6 +17,8 @@ class ProjectTask(models.Model):
     issue_type_image = fields.Binary(string="Issue Type Image", related='issue_type.issue_type_image')
     reporter = fields.Many2one('res.user', string="Reporter")
 
+    forecasts = fields.One2many('project.forecast', 'task_id', string="Forecasts")
+
     #USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):
         return {
@@ -52,4 +54,33 @@ class ProjectTask(models.Model):
         next_num = record.project_id.next_task_number + 1
         record.project_id.write({'next_task_number': next_num})
 
+        # Get EmployeeID from the user_id
+        if record.allow_forecast:
+            employee_id = self.env['hr.employee'].search([('user_id','=',record.user_id.id)])
+            if employee_id.id:
+                # Set EmployeeID field and if estimate already exists, create forecast record
+                if record.planned_hours:
+                    #Create Forecast record if planned hours is populated
+                    self.env['project.forecast'].create({'employee_id': employee_id.id, 'project_id': record.project_id.id, 'task_id': record.id, 'resource_hours': record.planned_hours, 'start_date': record.date_start, 'end_date': record.date_end})
+
         return record
+
+    #Create Forecast if planned_hours or user_id changes *Only if user_id AND planned_hours is populated
+    @api.onchange('planned_hours', 'user_id')
+    def on_change_planned_hours(self):
+        # Check to make sure Task is Assigned AND has Planned Hours
+        if self.user_id and self.planned_hours and self.allow_forecast:
+            # Get EmployeeID from the user_id
+            employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
+
+            # If there is a employee record for the user_id, then a forecast record can be created...
+            if employee_id.id:
+                self.env['project.forecast'].create({'employee_id': employee_id.id, 'project_id': self.project_id.id, 'resource_hours': self.planned_hours, 'task_id': self._origin.id, 'start_date': self._origin.date_start, 'end_date': self._origin.date_end})
+
+    @api.onchange('date_start', 'date_end')
+    def on_change_dates(self):
+        # Check to make sure there are forecasts and if so, update them
+        if self.forecasts:
+            # Get EmployeeID from the user_id
+            for record in self.forecasts:
+                record.write({'start_date': self.date_start, 'end_date': self.date_end})

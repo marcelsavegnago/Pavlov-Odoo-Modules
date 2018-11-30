@@ -7,7 +7,8 @@
       <field name="arch" type="xml">
         <tree default_order='name'>
           <field name="name"/>
-          <field name="user_ids" widget="many2many_tags"/>
+          <field name="user_ids"
+                 widget="many2many_tags"/>
         </tree>
       </field>
     </record>
@@ -24,7 +25,8 @@
               <h1><field name="name"/></h1>
             </div>
             <group>
-              <field name="user_ids" widget="many2many_tags"/>
+              <field name="user_ids"
+                     widget="many2many_tags"/>
             </group>
           </sheet>
         </form>

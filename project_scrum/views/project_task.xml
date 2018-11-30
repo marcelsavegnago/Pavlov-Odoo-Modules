@@ -25,6 +25,7 @@
         </xpath>
         <xpath expr="//notebook" position="before">
           <field name="use_scrum" invisible="1"/>
+          <field name="allow_forecast" invisible="1"/>
           <group attrs="{'invisible':[('use_scrum','=', False)]}">
             <field name="acceptance_criteria"/>
           </group>
@@ -53,6 +54,33 @@
               </tree>
             </field>
           </group>
+
+        </xpath>
+        <xpath expr="//page[@name='extra_info']" position = "before">
+          <page name="forecasts" string="Forecasts" attrs="{'invisible':[('allow_forecast','=', False)]}">
+            <group colspan="2" col="4">
+              <field name="date_start"
+                     widget="date"/>
+              <field name="date_end"
+                     widget="date"/>
+            </group>
+            <group attrs="{'invisible':[('allow_forecast','=', False)]}">
+              <field name="forecasts"
+                     nolabel="1"
+                     context="{'default_task_id': active_id, 'default_resource_hours': planned_hours}">
+                <tree>
+                  <field name="employee_id"/>
+                  <field name="start_date"
+                         widget="date"/>
+                  <field name="end_date"
+                         widget="date"/>
+                  <field name="resource_hours"/>
+                  <field name="time"/>
+                  <field name="effective_hours"/>
+                </tree>
+              </field>
+            </group>
+          </page>
         </xpath>
       </data>
     </field>

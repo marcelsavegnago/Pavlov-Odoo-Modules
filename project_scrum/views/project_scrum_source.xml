@@ -14,7 +14,9 @@
       <field name="model">project.scrum_source</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="source_sequence" widget="handle" groups="base.group_no_one"/>
+          <field name="source_sequence"
+                 widget="handle"
+                 groups="base.group_no_one"/>
           <field name="name"/>
           <field name="description"/>
         </tree>

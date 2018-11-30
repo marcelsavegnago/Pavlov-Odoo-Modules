@@ -24,7 +24,6 @@
     # always loaded
     'data': [
         'views/reportserver_powerbi.xml',
-        'views/reportserver_powerbi_settings.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],
