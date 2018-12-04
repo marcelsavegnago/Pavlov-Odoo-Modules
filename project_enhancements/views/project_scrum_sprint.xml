@@ -111,15 +111,20 @@
     <!-- Menu Items -->
     <menuitem
       name="Scrum"
-      id="project_scrum_main_menu"
-      parent="project.menu_main_pm"
-      sequence="80"/>
+      id="scrum_configuration_section_menu"
+      parent="project.menu_project_config"
+      sequence="20"/>
       <menuitem
-        name="All Sprints"
-        id="project_scrum_sprint_main_menu"
-        parent="project_scrum_main_menu"
-        sequence="10"
-        action="project_scrum_sprint_action_window"/>
+        name="Scrum"
+        id="project_scrum_main_menu"
+        parent="project.menu_main_pm"
+        sequence="80"/>
+        <menuitem
+          name="All Sprints"
+          id="project_scrum_sprint_main_menu"
+         parent="project_scrum_main_menu"
+         sequence="10"
+         action="project_scrum_sprint_action_window"/>
 
   </data>
 </odoo>

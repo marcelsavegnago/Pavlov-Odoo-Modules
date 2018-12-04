@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
+# SCRUM
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
     task_number = fields.Char(string="Task Number")
     fix_versions = fields.Many2many('project.scrum_release', relation='fixedversion_task_rel', column1='task_id', column2='version_id', string="Fix Version/s")
@@ -19,7 +20,7 @@ class ProjectTask(models.Model):
 
     forecasts = fields.One2many('project.forecast', 'task_id', string="Forecasts")
 
-    #USED IN THE LIST VIEWS ON FORMS
+    # USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):
         return {
           'view_type': 'form',
@@ -84,3 +85,7 @@ class ProjectTask(models.Model):
             # Get EmployeeID from the user_id
             for record in self.forecasts:
                 record.write({'start_date': self.date_start, 'end_date': self.date_end})
+
+# MILESTONES
+    milestone_id = fields.Many2one('project.milestone', string="Milestones")
+    use_milestones = fields.Boolean(string="Use Milestones", related='project_id.use_milestones')

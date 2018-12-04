@@ -15,3 +15,4 @@ project_scrum_release_manager,Project Scrum Release Manager,model_project_scrum_
 project_scrum_issuetype_manager,Project Scrum Issue Type Manager,model_project_scrum_issuetype,project.group_project_manager,1,1,1,1
 project_scrum_source_manager,Project Scrum Source Manager,model_project_scrum_source,project.group_project_manager,1,1,1,1
 project_scrum_point_manager,Project Scrum Point Manager,model_project_scrum_point,project.group_project_manager,1,1,1,1
+project_milestone_user,Project Milestone User,model_project_milestone,project.group_project_user,1,1,1,1

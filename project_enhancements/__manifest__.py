@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Project Scrum",
+    'name': "Project Enhancements",
 
     'summary': """
-        Project Scrum""",
+        Project Milestones, Scrum, Templates""",
 
     'description': """
-        This module adds Scrum & Sprints to the Project model.
-        Depends: Projects, Timesheets, Employees
+        This module adds Milestons, Scrum & Sprints and Templates to the Project model.
+        Depends: Projects, Timesheets, Employees, Forecasts
     """,
 
     'author': "Pavlov Media",
@@ -26,6 +26,7 @@
     'data': [
         'report/sprint_capacity_report.xml',
         'views/project.xml',
+        'views/project_milestone.xml',
         'views/project_scrum_sprint.xml',
         'views/project_scrum_category.xml',
         'views/project_scrum_issuetype.xml',

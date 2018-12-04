@@ -1,0 +1,213 @@
+<odoo>
+  <!-- List View-->
+  <record id="view_enhancement_view_project_list" model="ir.ui.view">
+    <field name="name">project.project.enhancement.tree</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="type">tree</field>
+    <field name="field_parent">child_ids</field>
+    <field name="arch" type="xml">
+      <field name="user_id" position="after">
+        <field name="milestones"/>
+        <field name="sprints"/>
+      </field>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="view_enhancement_edit_project_form" model="ir.ui.view">
+    <field name="name">project.project.enhancement.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <field name="label_tasks" position="replace">
+          <field name="label_tasks" required="1"/>
+        </field>
+        <xpath expr="//header" position="after">
+          <button string="Create Project From Template"
+                  type="object"
+                  name="create_project_from_template"
+                  class="oe_highlight"
+                  attrs="{'invisible': [('is_template', '=', False)]}"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="shift_task_dates"/>
+          <field name="date_start"
+                 widget="date"/>
+          <field name="date"
+                 string="End Date"
+                 widget="date"/>
+        </xpath>
+        <xpath expr="//field[@name='sequence']" position="after">
+          <field name="next_task_number"/>
+          <field name="is_template"/>
+        </xpath>
+        <xpath expr="//div[@name='options_active']" position="inside">
+          <div>
+            <field name="use_milestones" class="oe_inline" string="Use Milestones"/>
+            <label for="use_milestones"/>
+          </div>
+          <div>
+            <field name="use_scrum" class="oe_inline" string="Use sprints"/>
+            <label for="use_scrum"/>
+          </div>
+        </xpath>
+        <xpath expr="//page[@name='settings']" position="after">
+          <page name="milestones" string="Milestones" attrs="{'invisible':[('use_milestones','=', False)]}">
+            <group>
+              <field name="milestones"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]"/>
+            </group>
+          </page>
+          <page name="sprints" string="Sprints" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group>
+              <field name="sprints"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]"/>
+            </group>
+          </page>
+          <page name="releases" string="Releases" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group>
+              <field name="releases"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]"/>
+            </group>
+          </page>
+          <page name="tasks" string="Tasks">
+            <group>
+              <field name="task_ids"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]">
+                <tree editable="top">
+                  <field name="project_id" invisible="1"/>
+                  <field name="task_number"/>
+                  <field name="name"/>
+                  <field name="user_id"/>
+                  <field name="stage_id"/>
+                  <field name="date_start"
+                         widget="date"/>
+                  <field name="date_end"
+                         widget="date"/>
+                  <field name="planned_hours" sum="Total Planned Hrs"/>
+                  <field name="remaining_hours" sum="Total Remaining"/>
+                  <field name="progress"
+                         widget="progressbar"/>
+                  <button name="open_rec"
+                          string="Open"
+                          type="object"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record id="view_enhancement_edit_project_simple" model="ir.ui.view">
+    <field name="name">project.project.enhancement.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <field name="user_id" position="after">
+          <field name="use_milestones"/>
+          <field name="use_scrum"/>
+          <field name="next_task_number"/>
+        </field>
+        <xpath expr="//footer" position="before">
+          <group>
+            <field name="label_tasks"
+                   string="Name of the tasks:"
+                   required="1"/>
+            <field name="user_id"/>
+            <field name="privacy_visibility"
+                   widget="radio"/>
+          </group>
+          <group>
+            <field name="date_start"
+                   widget="date"/>
+            <field name="date"
+                   string="End Date"
+                   widget="date"/>
+          </group>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Kanban View -->
+  <record id="view_project_enhancement_kanban" model="ir.ui.view">
+    <field name="name">project.project.enhancement.kanban</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_kanban"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//div[@class='o_primary']" position="after">
+          <field name="use_scrum" invisible="1"/>
+          <t t-if="record.use_scrum.raw_value">
+            <span class="o_label">Scrum Enabled</span>
+          </t>
+          <field name="use_milestones" invisible="1"/>
+          <t t-if="record.use_milestones.raw_value">
+            <span class="o_label">Milestones: </span>
+            <span class="o_value"><field name="milestones"/></span>
+          </t>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Search View -->
+  <record id="project_template_search_view" model="ir.ui.view">
+    <field name="name">project.template.filter</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_project_filter"/>
+    <field name="arch" type="xml">
+      <filter name="inactive" position="before">
+        <filter string="Templates"
+                name="templates"
+                domain="[('is_template', '=', True)]"/>
+        <filter string="Non-Templates"
+                name="projects"
+                domain="[('is_template', '=', False)]"/>
+        <separator/>
+      </filter>
+    </field>
+  </record>
+<!-- ############################# TEMPLATES ########################################### -->
+
+  <!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="project_template_action_window">
+    <field name="name">Templates</field>
+    <field name="res_model">project.project</field>
+    <field name="view_mode">tree,form</field>
+    <field name="context">{"search_default_templates":1}</field>
+  </record>
+
+  <record model="ir.actions.act_window" id="project.open_view_project_all">
+    <field name="name">Projects</field>
+    <field name="res_model">project.project</field>
+    <field name="view_id" ref="project.view_project_kanban"/>
+    <field name="view_mode">kanban,form</field>
+    <field name="context">{"search_default_projects":1}</field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Templates"
+    id="project_template_menu"
+    parent="project.menu_main_pm"
+    sequence="1"
+    action="project_template_action_window"/>
+
+</odoo>

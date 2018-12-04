@@ -3,16 +3,16 @@
     id="sprint_capacity_document"
     model="project.scrum_sprint"
     string="Sprint Capacity Document"
-    name="project_scrum.report_sprint_capacity_document"
-    file="project_scrum.report_sprint_capacity_document"
+    name="project_enhancements.report_sprint_capacity_document"
+    file="project_enhancements.report_sprint_capacity_document"
     report_type="qweb-pdf"/>
 
     <report
       id="sprint_capacity_document_preview"
       model="project.scrum_sprint"
       string="Sprint Capacity Document Preview"
-      name="project_scrum.report_sprint_capacity_document"
-      file="project_scrum.report_sprint_capacity_document"
+      name="project_enhancements.report_sprint_capacity_document"
+      file="project_enhancements.report_sprint_capacity_document"
       report_type="qweb-html"/>
 
       <template id="report_sprint_capacity_document">

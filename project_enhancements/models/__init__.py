@@ -1,5 +1,6 @@
 from . import project
 from . import project_task
+from . import project_milestone
 from . import project_scrum_category
 from . import project_scrum_issuetype
 from . import project_scrum_label
