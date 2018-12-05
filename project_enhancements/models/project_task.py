@@ -32,7 +32,7 @@ class ProjectTask(models.Model):
           'flags': {'form': {'action_buttons': True}}
         }
 
-    #USED FOR GROUP BY SPRINTS
+    # USED FOR GROUP BY SPRINTS
     @api.model
     def _read_group_sprint_ids(self, sprints, domain, order):
         # write the domain
@@ -46,7 +46,7 @@ class ProjectTask(models.Model):
 
     sprint_id = fields.Many2one('project.scrum_sprint', string="Sprint", group_expand='_read_group_sprint_ids')
 
-    #USED TO SET STORY NUMBER (WITH PREFIX) AND UPDATE NEXT NUMBER ON PROJECT
+    # USED TO SET STORY NUMBER (WITH PREFIX) AND UPDATE NEXT NUMBER ON PROJECT
     @api.model
     def create(self, values):
         # Override the original create function for the res.partner model
@@ -55,36 +55,27 @@ class ProjectTask(models.Model):
         next_num = record.project_id.next_task_number + 1
         record.project_id.write({'next_task_number': next_num})
 
-        # Get EmployeeID from the user_id
-        if record.allow_forecast:
-            employee_id = self.env['hr.employee'].search([('user_id','=',record.user_id.id)])
-            if employee_id.id:
-                # Set EmployeeID field and if estimate already exists, create forecast record
-                if record.planned_hours:
-                    #Create Forecast record if planned hours is populated
-                    self.env['project.forecast'].create({'employee_id': employee_id.id, 'project_id': record.project_id.id, 'task_id': record.id, 'resource_hours': record.planned_hours, 'start_date': record.date_start, 'end_date': record.date_end})
-
         return record
 
-    #Create Forecast if planned_hours or user_id changes *Only if user_id AND planned_hours is populated
-    @api.onchange('planned_hours', 'user_id')
-    def on_change_planned_hours(self):
-        # Check to make sure Task is Assigned AND has Planned Hours
-        if self.user_id and self.planned_hours and self.allow_forecast:
-            # Get EmployeeID from the user_id
-            employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
-
-            # If there is a employee record for the user_id, then a forecast record can be created...
-            if employee_id.id:
-                self.env['project.forecast'].create({'employee_id': employee_id.id, 'project_id': self.project_id.id, 'resource_hours': self.planned_hours, 'task_id': self._origin.id, 'start_date': self._origin.date_start, 'end_date': self._origin.date_end})
-
-    @api.onchange('date_start', 'date_end')
-    def on_change_dates(self):
-        # Check to make sure there are forecasts and if so, update them
+    # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET
+    @api.onchange('date_start', 'date_end', 'sprint_id', 'planned_hours')
+    def on_change_task_forecast(self):
+        # If Task already has Forecasts related
         if self.forecasts:
-            # Get EmployeeID from the user_id
-            for record in self.forecasts:
-                record.write({'start_date': self.date_start, 'end_date': self.date_end})
+            if self.date_start and self.date_end and self.planned_hours and self.user_id and self.allow_forecast:
+                # Check if there is an employee record associated with the user_id
+                employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
+                # If there is a employee record for the user_id, then each forecast record can be updated
+                if employee_id.id:
+                    for record in self.forecasts: # MAYBE NEED and employee.id == employee_id (to only update forecasts related to the assigned user)
+                        record.write({'start_date': self.date_start, 'end_date': self.date_end, 'sprint_id': self.sprint_id.id, 'resource_hours': self.planned_hours, 'employee_id': employee_id.id})
+        else:
+            if self.date_start and self.date_end and self.planned_hours and self.user_id and self.allow_forecast:
+                # Check if there is an employee record associated with the user_id
+                employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
+                # If there is a employee record for the user_id, then a forecast record can be created...
+                if employee_id.id:
+                    self.env['project.forecast'].create({'sprint_id': self.sprint_id.id, 'employee_id': employee_id.id, 'project_id': self.project_id.id, 'resource_hours': self.planned_hours, 'task_id': self._origin.id, 'start_date': self.date_start, 'end_date': self.date_end})
 
 # MILESTONES
     milestone_id = fields.Many2one('project.milestone', string="Milestones")

@@ -37,6 +37,7 @@
         'views/project_task.xml',
         'views/project_scrum_team.xml',
         'views/project_task_type.xml',
+        'views/project_forecast.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/data.xml',

@@ -53,6 +53,8 @@ class Project(models.Model):
         if self.is_template == True:
             if "(TEMPLATE)" not in self.name:
                 self.name = self.name + " (TEMPLATE)"
+            if self.user_id:
+                self.user_id = False
 
     # SHIFT TASK DATES WHEN DATES CHANGE ON PROJECT
     @api.onchange('date_start')

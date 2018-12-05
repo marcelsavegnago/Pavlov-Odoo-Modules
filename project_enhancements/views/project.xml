@@ -22,6 +22,11 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
+        <field name="user_id" position="replace">
+          <field name="user_id"
+                 string="Project Manager"
+                 attrs="{'readonly':[('active','=',False)], 'invisible':[('is_template','=',True)]}"/>
+        </field>
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
@@ -184,6 +189,7 @@
       </filter>
     </field>
   </record>
+
 <!-- ############################# TEMPLATES ########################################### -->
 
   <!-- actions opening views on models -->
