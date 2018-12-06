@@ -8,6 +8,8 @@
     <field name="field_parent">child_ids</field>
     <field name="arch" type="xml">
       <field name="user_id" position="after">
+        <field name="project_status"/>
+        <field name="department"/>
         <field name="milestones"/>
         <field name="sprints"/>
       </field>
@@ -22,6 +24,12 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
+        <xpath expr="//button[@name='132']" position="after">
+          <field name="project_status"
+                 widget="statusbar"
+                 options="{'clickable': '1'}"/>
+        </xpath>
+
         <field name="user_id" position="replace">
           <field name="user_id"
                  string="Project Manager"
@@ -38,6 +46,7 @@
                   attrs="{'invisible': [('is_template', '=', False)]}"/>
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
+          <field name="department"/>
           <field name="shift_task_dates"/>
           <field name="date_start"
                  widget="date"/>
@@ -135,6 +144,7 @@
                    string="Name of the tasks:"
                    required="1"/>
             <field name="user_id"/>
+            <field name="department"/>
             <field name="privacy_visibility"
                    widget="radio"/>
           </group>
@@ -158,15 +168,29 @@
     <field name="arch" type="xml">
       <data>
         <xpath expr="//div[@class='o_primary']" position="after">
-          <field name="use_scrum" invisible="1"/>
-          <t t-if="record.use_scrum.raw_value">
-            <span class="o_label">Scrum Enabled</span>
-          </t>
-          <field name="use_milestones" invisible="1"/>
-          <t t-if="record.use_milestones.raw_value">
-            <span class="o_label">Milestones: </span>
-            <span class="o_value"><field name="milestones"/></span>
-          </t>
+          <div>
+            <t t-if="record.department.raw_value">
+              <span class="o_value"><field name="department"/></span>
+            </t>
+            <t t-if="record.project_status.raw_value">
+              <span class="o_label"> (</span>
+              <span class="o_value"><field name="project_status"/></span>
+              <span class="o_label">)</span>
+            </t>
+          </div>
+          <div>
+            <field name="use_scrum" invisible="1"/>
+            <t t-if="record.use_scrum.raw_value">
+              <span class="o_label">Scrum Enabled</span>
+            </t>
+          </div>
+          <div>
+            <field name="use_milestones" invisible="1"/>
+            <t t-if="record.use_milestones.raw_value">
+              <span class="o_label">Milestones: </span>
+              <span class="o_value"><field name="milestones"/></span>
+            </t>
+          </div>
         </xpath>
       </data>
     </field>
@@ -186,6 +210,21 @@
                 name="projects"
                 domain="[('is_template', '=', False)]"/>
         <separator/>
+        <filter string="Milestones Enabled"
+                name="milestone_enabled"
+                domain="[('use_milestones', '=', True)]"/>
+        <filter string="Scrum Enabled"
+                name="scrum_enabled"
+                domain="[('use_scrum', '=', True)]"/>
+        <separator/>
+      </filter>
+      <filter name="Partner" position="after">
+        <filter string="Status"
+                name="Project Status"
+                context="{'group_by': 'project_status'}"/>
+        <filter string="Department"
+                name="department"
+                context="{'group_by': 'department'}"/>
       </filter>
     </field>
   </record>

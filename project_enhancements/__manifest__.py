@@ -25,6 +25,7 @@
     # always loaded
     'data': [
         'report/sprint_capacity_report.xml',
+        'views/project_status.xml',
         'views/project.xml',
         'views/project_milestone.xml',
         'views/project_scrum_sprint.xml',

@@ -7,6 +7,8 @@ class Project(models.Model):
 
 # GLOBAL ENHANCEMENTS
     next_task_number = fields.Integer(string="Next Task Number", default="1", copy=False)
+    project_status = fields.Many2one('project.status', string="Status")
+    department = fields.Many2one('hr.department', string="Department")
 
 # UPDATE TASK NUMBER LABELS IF THE MAIN LABEL CHANGED
     @api.onchange('label_tasks')
@@ -21,7 +23,7 @@ class Project(models.Model):
 
 # SCRUM
     sprints = fields.Many2many('project.scrum_sprint', relation='project_sprint_rel', column1='project_id', column2='sprint_id', string="Sprints", copy=False)
-    use_scrum = fields.Boolean(string="Use Scrum", copy=True)
+    use_scrum = fields.Boolean(string="Use Scrum", copy=True, context="{'default_use_scrum': use_scrum}")
     releases = fields.One2many('project.scrum_release', 'project_id', string="Releases", copy=False)
 
 # MILESTONES
@@ -44,7 +46,6 @@ class Project(models.Model):
             'res_id': new_project.id,
             'type': 'ir.actions.act_window'
         }
-
 
     # ADD "(TEMPLATE)" TO THE NAME WHEN PROJECT IS MARKED AS A TEMPLATE
     @api.onchange('is_template')
