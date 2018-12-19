@@ -24,7 +24,7 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//button[@name='132']" position="after">
+        <xpath expr="//header" position="inside">
           <field name="project_status"
                  widget="statusbar"
                  options="{'clickable': '1'}"/>
@@ -93,7 +93,63 @@
                      domain="[('project_id', '=', active_id)]"/>
             </group>
           </page>
-          <page name="tasks" string="Tasks">
+          <page name="tasks_with_milestones" string="Tasks" attrs="{'invisible':[('use_milestones','=', False)]}">
+            <group>
+              <field name="task_ids"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]">
+                <tree editable="top" default_order='date_start, date_end'>
+                  <field name="project_id" invisible="1"/>
+                  <field name="task_number"/>
+                  <field name="milestone_id"/>
+                  <field name="name"/>
+                  <field name="user_id"/>
+                  <field name="date_start"
+                         widget="date"/>
+                  <field name="date_end"
+                         widget="date"/>
+                  <field name="planned_hours" sum="Total Planned Hrs"/>
+                  <field name="remaining_hours" sum="Total Remaining"/>
+                  <field name="stage_id"/>
+                  <field name="progress"
+                         widget="progressbar"/>
+                  <button name="open_rec"
+                          string="Open"
+                          type="object"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+          <page name="tasks_with_scrum" string="Tasks" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group>
+              <field name="task_ids"
+                     context="{'project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]">
+                <tree editable="top">
+                  <field name="project_id" invisible="1"/>
+                  <field name="task_number"/>
+                  <field name="name"/>
+                  <field name="user_id"/>
+                  <field name="sprint_id"/>
+                  <field name="date_start"
+                         widget="date"/>
+                  <field name="date_end"
+                         widget="date"/>
+                  <field name="planned_hours" sum="Total Planned Hrs"/>
+                  <field name="remaining_hours" sum="Total Remaining"/>
+                  <field name="stage_id"/>
+                  <field name="progress"
+                         widget="progressbar"/>
+                  <button name="open_rec"
+                          string="Open"
+                          type="object"/>
+                </tree>
+              </field>
+            </group>
+          </page>
+          <page name="tasks" string="Tasks" attrs="{'invisible':['|', ('use_scrum','=', True), ('use_milestones','=', True)]}">
             <group>
               <field name="task_ids"
                      context="{'project_id': active_id}"
