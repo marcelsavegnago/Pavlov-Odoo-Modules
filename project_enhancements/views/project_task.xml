@@ -142,7 +142,7 @@
     </field>
   </record>
 
-  <!-- Quick Create View
+  <!-- Quick Create View -->
   <record id="project_enhancements_quick_create_task_form" model="ir.ui.view">
     <field name="name">project_enhancements_quick_create_task_form</field>
     <field name="model">project.task</field>
@@ -156,7 +156,7 @@
                widget="date"/>
       </field>
     </field>
-  </record>-->
+  </record>
 
   <!-- Search View -->
   <record id="view_task_scrum_search_form" model="ir.ui.view">

@@ -72,7 +72,7 @@
           <page name="milestones" string="Milestones" attrs="{'invisible':[('use_milestones','=', False)]}">
             <group>
               <field name="milestones"
-                     context="{'project_id': active_id}"
+                     context="{'default_project_id': active_id}"
                      nolabel="1"
                      domain="[('project_id', '=', active_id)]"/>
             </group>

@@ -11,5 +11,5 @@ class ProjectMilestone(models.Model):
 
      project_id = fields.Many2one('project.project', string="Project")
      project_tasks = fields.One2many('project.task', 'milestone_id', string="Project Tasks")
-     fold = fields.Boolean()
-     sequence = fields.Integer()
+     fold = fields.Boolean(string="KanBan Folded?")
+     sequence = fields.Integer(string="KanBan Sequence")

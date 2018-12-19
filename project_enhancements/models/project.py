@@ -21,6 +21,16 @@ class Project(models.Model):
                 new_task_number = new_task_number.replace(old_label, new_label)
                 record.write({'task_number': new_task_number})
 
+# UPDATE ANALYTIC ACCOUNT IF PROJECT NAME CHANGES
+    @api.onchange('name')
+    def on_change_name(self):
+        if self.analytic_account_id:
+            # ONLY CHANGE IF THE ANALYTIC ACCOUNT SHARES THE SAME NAME AS THE PROJECT NAME (COMPANY MAY WANT TO LINK PROJECTS TO CUSTOMERS AND WE WOULDN'T WANT TO CHANGE THAT)
+            if self._origin.name == self.analytic_account_id.name:
+                for record in self.analytic_account_id:
+                    record.write({'name': self.name})
+
+
 # SCRUM
     sprints = fields.Many2many('project.scrum_sprint', relation='project_sprint_rel', column1='project_id', column2='sprint_id', string="Sprints", copy=False)
     use_scrum = fields.Boolean(string="Use Scrum", copy=True, context="{'default_use_scrum': use_scrum}")

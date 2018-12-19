@@ -9,7 +9,6 @@
           <field name="name"/>
           <field name="project_id"/>
           <field name="target_date"/>
-          <field name="actual_date"/>
           <field name="project_tasks"/>
         </tree>
       </field>
@@ -27,13 +26,14 @@
               <h1><field name="name" /></h1>
             </div>
             <group>
-              <field name="target_date" string="Target Date"/>
-              <field name="actual_date" string="Actual Date"/>
-              <field name="percent_complete" string="Percent Complete"/>
-              <field name="project_id" string="Project"/>
-              <field name="project_tasks" string="Project Tasks"/>
-              <field name="fold" string="KanBan Folded?"/>
-              <field name="sequence" string="KanBan Sequence"/>
+              <field name="target_date"/>
+              <field name="actual_date"/>
+              <field name="percent_complete"/>
+              <field name="project_id"/>
+              <field name="project_tasks"
+                     context="{'default_project_id': project_id, 'default_date_end': target_date, 'default_milestone_id': active_id}"/>
+              <field name="fold"/>
+              <field name="sequence"/>
             </group>
           </sheet>
         </form>
