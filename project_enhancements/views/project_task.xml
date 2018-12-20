@@ -174,9 +174,19 @@
         <filter string="Sub Tasks" name="subtasks" domain="[('parent_id', '!=', False)]"/>
       </filter>
       <filter name="project" position="before">
-        <filter string="Milestones" name="milestones" context="{'group_by':'milestone_id'}"/>
+        <filter string="Milestones" name="milestones" context="{'group_by':'milestone_id', 'default_order':'sequence'}"/>
         <filter string="Sprints" name="sprints" context="{'group_by':'sprint_id'}"/>
       </filter>
+    </field>
+  </record>
+
+  <!-- Gantt View -->
+  <record id="view_task_enhancement_gantt" model="ir.ui.view">
+    <field name="name">project.task.enhancement.gantt</field>
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <gantt date_start="date_start" date_stop="date_end" progress="progress">
+      </gantt>
     </field>
   </record>
 

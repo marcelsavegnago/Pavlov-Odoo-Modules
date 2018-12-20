@@ -1,11 +1,21 @@
 <odoo>
   <data>
+    <!-- Sequences-->
+    <record id="seq_project_milestone" model="ir.sequence">
+      <field name="name">project_milestone_seq</field>
+      <field name="code">project.milestone</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
     <!-- List View-->
     <record model="ir.ui.view" id="milestones_list_view">
       <field name="name">Milestones List</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
-        <tree default_order='target_date'>
+        <tree default_order='sequence'>
+          <field name="sequence"
+                 widget="handle"/>
           <field name="name"/>
           <field name="project_id"/>
           <field name="target_date"/>
@@ -48,7 +58,7 @@
         <search>
         <field name="name"/>
         <field name="project_id"/>
-        <group expand="0" string="Group By">
+        <group expand="1" string="Group By">
             <filter string="Project" name="group_by_project" context="{'group_by':'project_id'}"/>
         </group>
       </search>
@@ -63,7 +73,7 @@
       <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Menu Items -->
+    <!-- Menu Items
     <menuitem
       name="Milestones"
       id="project_milestones_menu"
@@ -75,7 +85,7 @@
         id="project_all_milestones_menu"
         parent="project_milestones_menu"
         sequence="10"
-        action="project_milestones_action_window"/>
+        action="project_milestones_action_window"/>-->
 
   </data>
 </odoo>
