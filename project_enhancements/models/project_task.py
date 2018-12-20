@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
+    _order = 'date_start'
 
 # SCRUM
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")

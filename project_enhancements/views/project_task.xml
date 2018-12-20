@@ -6,8 +6,19 @@
     <field name="inherit_id" ref="project.view_task_tree2"/>
     <field eval="2" name="priority"/>
     <field name="arch" type="xml">
+      <xpath expr="//tree" position="attributes">
+	       <attribute name="editable">top</attribute>
+      </xpath>
+      <field name="name" position="before">
+        <button name="open_rec"
+                string="Open"
+                type="object"/>
+        <field name="task_number" readonly="1"/>
+      </field>
       <field name="user_id" position="after">
         <field name="milestone_id" invisible="1"/>
+        <field name="date_start"/>
+        <field name="date_end"/>
       </field>
     </field>
   </record>
