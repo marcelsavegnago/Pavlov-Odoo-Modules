@@ -38,12 +38,17 @@
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
-        <xpath expr="//header" position="after">
+        <xpath expr="//header" position="inside">
           <button string="Create Project From Template"
                   type="object"
                   name="create_project_from_template"
                   class="oe_highlight"
                   attrs="{'invisible': [('is_template', '=', False)]}"/>
+          <button string="Shift Project Task Dates"
+                  type="object"
+                  name="shift_dates"
+                  class="oe_highlight"
+                  attrs="{'invisible': ['|',('old_start_date', '=', False), ('shift_task_dates', '=', False)]}"/>
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="department"/>
@@ -57,6 +62,11 @@
         <xpath expr="//field[@name='sequence']" position="after">
           <field name="next_task_number"/>
           <field name="is_template"/>
+        </xpath>
+        <xpath expr="//field[@name='resource_calendar_id']" position="after">
+          <field name="old_start_date"
+                 string="OLD Start Date"
+                 widget="date"/>
         </xpath>
         <xpath expr="//div[@name='options_active']" position="inside">
           <div>
@@ -291,7 +301,7 @@
   <record model="ir.actions.act_window" id="project_template_action_window">
     <field name="name">Templates</field>
     <field name="res_model">project.project</field>
-    <field name="view_mode">tree,form</field>
+    <field name="view_mode">tree,form,kanban</field>
     <field name="context">{"search_default_templates":1}</field>
   </record>
 
@@ -299,7 +309,7 @@
     <field name="name">Projects</field>
     <field name="res_model">project.project</field>
     <field name="view_id" ref="project.view_project_kanban"/>
-    <field name="view_mode">kanban,form</field>
+    <field name="view_mode">kanban,form,tree</field>
     <field name="context">{"search_default_projects":1}</field>
   </record>
 

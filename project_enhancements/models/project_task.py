@@ -19,6 +19,10 @@ class ProjectTask(models.Model):
     issue_type_image = fields.Binary(string="Issue Type Image", related='issue_type.issue_type_image')
     reporter = fields.Many2one('res.user', string="Reporter")
 
+    date_start = fields.Date(copy=True)
+    date_end = fields.Date(copy=True)
+    date_deadline = fields.Date(copy=True)
+
     forecasts = fields.One2many('project.forecast', 'task_id', string="Forecasts")
 
     # USED IN THE LIST VIEWS ON FORMS
@@ -36,9 +40,6 @@ class ProjectTask(models.Model):
     # USED FOR GROUP BY SPRINTS
     @api.model
     def _read_group_sprint_ids(self, sprints, domain, order):
-        # write the domain
-        # - ('id', 'in', sprints.ids): add columns that should be present
-        # - OR ('team_ids', '=', team_id) if team_id: add team columns
         search_domain = [('id', 'in', sprints.ids)]
         if self.env.context.get('sprint_id'):
             search_domain = ['|', ('sprint_ids', 'in', self.env.context['sprint_id'])] + search_domain
@@ -81,3 +82,15 @@ class ProjectTask(models.Model):
 # MILESTONES
     milestone_id = fields.Many2one('project.milestone', string="Milestones")
     use_milestones = fields.Boolean(string="Use Milestones", related='project_id.use_milestones')
+
+    # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET
+#    @api.onchange('date_start', 'date_end')
+#    def on_change_project_dates(self):
+        # IF START DATE IS BEFORE PROJECT START, THEN RESET PROJECT START
+#        if self.date_start < self.project_id.date_start:
+#            for record in self.project_id:
+#                record.write({'date_start': self.date_start})
+        # IF START DATE IS AFTER PROJECT END, THEN RESET PROJECT START
+#        if self.date_end > self.project_id.date:
+#            for record in self.project_id:
+#                record.write({'date': self.date})

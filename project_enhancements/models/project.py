@@ -9,6 +9,7 @@ class Project(models.Model):
     next_task_number = fields.Integer(string="Next Task Number", default="1", copy=False)
     project_status = fields.Many2one('project.status', string="Status")
     department = fields.Many2one('hr.department', string="Department")
+    old_start_date = fields.Date(string='Old Start Date')
 
 # UPDATE TASK NUMBER LABELS IF THE MAIN LABEL CHANGED
     @api.onchange('label_tasks')
@@ -30,6 +31,50 @@ class Project(models.Model):
                 for record in self.analytic_account_id:
                     record.write({'name': self.name})
 
+# SET OLD DATA VALUES WHEN CHANGED *USED FOR DATE SHIFTING
+    @api.onchange('date_start')
+    def on_change_dates(self):
+        if self.old_start_date == False:
+            self.old_start_date = self._origin.date_start
+        if self.old_start_date == self.date_start:
+            self.old_start_date = False
+
+# SHIFT TASK DATES
+    def shift_dates(self):
+        # ONLY RUN IS SHIFT DATES IS TRUE
+        if self.shift_task_dates and (self.old_start_date != self.date_start):
+            original_start_dt = fields.Datetime.from_string(self.old_start_date)
+            new_start_dt = fields.Datetime.from_string(self.date_start)
+            difference = relativedelta(new_start_dt, original_start_dt)
+            years = difference.years
+            months = difference.months
+            days = difference.days
+
+            # SHIFT TASK DATES
+            for record in self.task_ids:
+                if record.date_start:
+                    record.write({'date_start': (record.date_start + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                else:
+                    record.write({'date_start': record.project_id.date_start})
+
+                if record.date_end:
+                    record.write({'date_end': (record.date_end + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                else:
+                    record.write({'date_end': record.project_id.date})
+
+                if record.date_end > record.project_id.date:
+                    record.project_id.write({'date': record.date_end})
+
+                if record.date_deadline:
+                    record.write({'date_deadline': (record.date_deadline + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                else:
+                    record.write({'date_deadline': record.project_id.date})
+
+                # SHIFT MILESTONE DATES
+            for record2 in self.milestones:
+                if record2.target_date:
+                    record2.write({'target_date': (record2.target_date + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+        self.old_start_date = False
 
 # SCRUM
     sprints = fields.Many2many('project.scrum_sprint', relation='project_sprint_rel', column1='project_id', column2='sprint_id', string="Sprints", copy=False)
@@ -46,8 +91,15 @@ class Project(models.Model):
 
     # CREATE A PROJECT FROM A TEMPLATE AND OPEN THE NEWLY CREATED PROJECT
     def create_project_from_template(self):
-        new_project = self.copy(default={'name': 'NEW PROJECT', 'active': True, 'date_start': False, 'date': False})
+        new_project = self.copy(default={'name': 'NEW PROJECT FROM TEMPLATE', 'active': True})
         new_project.next_task_number = self.next_task_number
+
+        # SINCE THE END DATE DOESN'T COPY OVER ON TASKS, POPULATE END DATES ON THE TASK
+        for record in new_project.tasks:
+            if record.date_start and record.date_end == False:
+                record.write({'date_end': (record.date_start + relativedelta(days =+ 7))})
+
+        # OPEN THE NEWLY CREATED PROJECT FORM
         return {
             'view_type': 'form',
             'view_mode': 'form',
@@ -55,6 +107,11 @@ class Project(models.Model):
             'target': 'current',
             'res_id': new_project.id,
             'type': 'ir.actions.act_window'
+        }
+        # FORCE PAGE REFRESH TO ALLOW FOR PROPER ONCHANGE EVENTS LIKE SHIFTING DATES
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
         }
 
     # ADD "(TEMPLATE)" TO THE NAME WHEN PROJECT IS MARKED AS A TEMPLATE
@@ -66,30 +123,6 @@ class Project(models.Model):
                 self.name = self.name + " (TEMPLATE)"
             if self.user_id:
                 self.user_id = False
-
-    # SHIFT TASK DATES WHEN DATES CHANGE ON PROJECT
-    @api.onchange('date_start')
-    def on_change_date_start(self):
-        if self.shift_task_dates:
-            if self.date_start:
-                original_start_dt = fields.Datetime.from_string(self._origin.date_start)
-                new_start_dt = fields.Datetime.from_string(self.date_start)
-                difference = relativedelta(new_start_dt, original_start_dt)
-                days = difference.days
-
-                for record in self.task_ids:
-                    if record.date_start:
-                        record.write({'date_start': (record.date_start + relativedelta(days =+ days))})
-                    else:
-                        record.write({'date_start': record.project_id.date_start})
-                    if record.date_end:
-                        record.write({'date_end': (record.date_end + relativedelta(days =+ days))})
-                    else:
-                        record.write({'date_end': record.project_id.date})
-                    if record.date_deadline:
-                        record.write({'date_deadline': (record.date_deadline + relativedelta(days =+ days))})
-                    else:
-                        record.write({'date_deadline': record.project_id.date})
-                for record2 in self.milestones:
-                    if record2.target_date:
-                        record2.write({'target_date': (record2.target_date + relativedelta(days =+ days))})
+        else:
+            if " (TEMPLATE)" in self.name:
+                self.name = self.name.replace(" (TEMPLATE)","")

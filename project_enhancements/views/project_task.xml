@@ -17,8 +17,8 @@
       </field>
       <field name="user_id" position="after">
         <field name="milestone_id" invisible="1"/>
-        <field name="date_start"/>
-        <field name="date_end"/>
+        <field name="date_start" widget="date"/>
+        <field name="date_end" widget="date"/>
       </field>
     </field>
   </record>
@@ -201,4 +201,10 @@
     </field>
   </record>
 
+  <!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="project.act_project_project_2_project_task_all">
+    <field name="name">Tasks</field>
+    <field name="res_model">project.task</field>
+    <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity,gantt</field>
+  </record>
 </odoo>
