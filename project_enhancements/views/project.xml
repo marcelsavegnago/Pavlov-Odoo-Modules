@@ -104,6 +104,17 @@
             </group>
           </page>
           <page name="tasks_with_milestones" string="Tasks" attrs="{'invisible':[('use_milestones','=', False)]}">
+            <group colspan="2" col="6">
+              <field name="total_planned_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_effective_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_remaining_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+            </group>
             <group>
               <field name="task_ids"
                      context="{'project_id': active_id}"
@@ -132,6 +143,17 @@
             </group>
           </page>
           <page name="tasks_with_scrum" string="Tasks" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group colspan="2" col="6">
+              <field name="total_planned_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_effective_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_remaining_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+            </group>
             <group>
               <field name="task_ids"
                      context="{'project_id': active_id}"
@@ -160,6 +182,17 @@
             </group>
           </page>
           <page name="tasks" string="Tasks" attrs="{'invisible':['|', ('use_scrum','=', True), ('use_milestones','=', True)]}">
+            <group colspan="2" col="6">
+              <field name="total_planned_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_effective_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_remaining_hours"
+                     widget="float_time"
+                     attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+           </group>
             <group>
               <field name="task_ids"
                      context="{'project_id': active_id}"
@@ -211,6 +244,8 @@
                    required="1"/>
             <field name="user_id"/>
             <field name="department"/>
+            <field name="project_status"
+                   required = "1"/>
             <field name="privacy_visibility"
                    widget="radio"/>
           </group>
@@ -251,11 +286,28 @@
             </t>
           </div>
           <div>
-            <field name="use_milestones" invisible="1"/>
+            <field name="use_milestones"
+                   invisible="1"/>
             <t t-if="record.use_milestones.raw_value">
               <span class="o_label">Milestones: </span>
               <span class="o_value"><field name="milestones"/></span>
             </t>
+          </div>
+          <div>
+            <field name="is_template"
+                   invisible="1"/>
+            <a type="button">
+              <button name="create_project_from_template" type="object" class="oe_highlight" attrs="{'invisible': [('is_template', '=', False)]}">
+                <span>Create Project From Template</span>
+              </button>
+            </a>
+          </div>
+          <div>
+            <small>
+              <t t-if="record.allow_timesheets.raw_value">
+                <span class="o_value"><field name="total_planned_hours"/>  |  <field name="total_effective_hours"/>  |  <field name="total_remaining_hours"/></span>
+              </t>
+            </small>
           </div>
         </xpath>
       </data>
@@ -283,6 +335,13 @@
                 name="scrum_enabled"
                 domain="[('use_scrum', '=', True)]"/>
         <separator/>
+        <filter string="Not Closed"
+          name="not_closed"
+          domain="['|',('project_status.is_closed', '=', False),('project_status', '=', False)]"/>
+        <filter string="Closed"
+          name="is_closed"
+          domain="[('project_status.is_closed', '=', True)]"/>
+        <separator/>
       </filter>
       <filter name="Partner" position="after">
         <filter string="Status"
@@ -301,8 +360,9 @@
   <record model="ir.actions.act_window" id="project_template_action_window">
     <field name="name">Templates</field>
     <field name="res_model">project.project</field>
-    <field name="view_mode">tree,form,kanban</field>
-    <field name="context">{"search_default_templates":1}</field>
+    <field name="view_id" ref="project.view_project_kanban"/>
+    <field name="view_mode">kanban,form,tree</field>
+    <field name="context">{"search_default_templates":1, "search_default_not_closed":1}</field>
   </record>
 
   <record model="ir.actions.act_window" id="project.open_view_project_all">
@@ -310,7 +370,7 @@
     <field name="res_model">project.project</field>
     <field name="view_id" ref="project.view_project_kanban"/>
     <field name="view_mode">kanban,form,tree</field>
-    <field name="context">{"search_default_projects":1}</field>
+    <field name="context">{"search_default_projects":1, "search_default_not_closed":1}</field>
   </record>
 
   <!-- Menu Items -->

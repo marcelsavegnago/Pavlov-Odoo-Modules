@@ -6,6 +6,7 @@ class ProjectStatus(models.Model):
      name = fields.Char(string="Name", required=True)
      description = fields.Char(string="Description")
      status_sequence = fields.Integer(string="Sequence")
+     is_closed = fields.Boolean(string="Is Closed Status")
 
      @api.model
      def create(self, vals):

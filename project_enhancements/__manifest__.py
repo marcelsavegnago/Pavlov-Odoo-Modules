@@ -3,7 +3,7 @@
     'name': "Project Enhancements",
 
     'summary': """
-        Project Milestones, Scrum, Templates""",
+        Project Milestones, Scrum, Templates, Task date shifting""",
 
     'description': """
         This module adds Milestons, Scrum & Sprints and Templates to the Project model.

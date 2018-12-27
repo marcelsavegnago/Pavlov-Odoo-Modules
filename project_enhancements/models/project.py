@@ -11,6 +11,50 @@ class Project(models.Model):
     department = fields.Many2one('hr.department', string="Department")
     old_start_date = fields.Date(string='Old Start Date')
 
+# NEW COMPUTE FIELDS
+    total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True)
+    total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True)
+    total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True)
+
+    @api.depends('task_ids.planned_hours')
+    def _compute_total_planned_hours(self):
+        for record in self:
+            if record.allow_timesheets and record.task_ids:
+                tasks = record.env['project.task'].search([('project_id', '=', record.id)])
+                planned_total = 0.0
+                for task_record in tasks:
+                    planned_total += task_record.planned_hours
+                record.update({'total_planned_hours': planned_total})
+
+    @api.depends('task_ids.effective_hours')
+    def _compute_total_effective_hours(self):
+        for record in self:
+            if record.allow_timesheets and record.task_ids:
+                effective_total = 0.0
+                timesheets = record.env['account.analytic.line'].search([('project_id', '=', record.id)])
+                for timesheet_record in timesheets:
+                    effective_total += timesheet_record.unit_amount
+                record.update({'total_effective_hours': effective_total})
+
+    @api.depends('total_planned_hours','total_effective_hours')
+    def _compute_total_remaining_hours(self):
+        for record in self:
+            if record.allow_timesheets and record.task_ids:
+                hours_planned_total = 0.0
+                hours_effective_total = 0.0
+                hours_remaining_total = 0.0
+                tasks = record.env['project.task'].search([('project_id', '=', record.id)])
+                timesheets = record.env['account.analytic.line'].search([('project_id', '=', record.id)])
+
+                for task_record in tasks:
+                    hours_planned_total += task_record.planned_hours
+
+                for timesheet_record in timesheets:
+                    hours_effective_total += timesheet_record.unit_amount
+
+                hours_remaining_total = hours_planned_total - hours_effective_total
+                record.update({'total_remaining_hours': hours_remaining_total })
+
 # UPDATE TASK NUMBER LABELS IF THE MAIN LABEL CHANGED
     @api.onchange('label_tasks')
     def on_change_label_tasks(self):
@@ -39,9 +83,9 @@ class Project(models.Model):
         if self.old_start_date == self.date_start:
             self.old_start_date = False
 
-# SHIFT TASK DATES
+# SHIFT TASK AND MILESTONE DATES
     def shift_dates(self):
-        # ONLY RUN IS SHIFT DATES IS TRUE
+        # ONLY RUN IS SHIFT DATES OPTION IS TRUE
         if self.shift_task_dates and (self.old_start_date != self.date_start):
             original_start_dt = fields.Datetime.from_string(self.old_start_date)
             new_start_dt = fields.Datetime.from_string(self.date_start)
@@ -52,28 +96,31 @@ class Project(models.Model):
 
             # SHIFT TASK DATES
             for record in self.task_ids:
-                if record.date_start:
-                    record.write({'date_start': (record.date_start + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
-                else:
-                    record.write({'date_start': record.project_id.date_start})
+                if record.active and (record.stage_id.is_closed != True):
+                    if record.date_start:
+                        record.write({'date_start': (record.date_start + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                    else:
+                        record.write({'date_start': record.project_id.date_start})
 
-                if record.date_end:
-                    record.write({'date_end': (record.date_end + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
-                else:
-                    record.write({'date_end': record.project_id.date})
+                    if record.date_end:
+                        record.write({'date_end': (record.date_end + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                    else:
+                        record.write({'date_end': record.project_id.date})
 
-                if record.date_end > record.project_id.date:
-                    record.project_id.write({'date': record.date_end})
+                    if record.date_end > record.project_id.date:
+                        record.project_id.write({'date': record.date_end})
 
-                if record.date_deadline:
-                    record.write({'date_deadline': (record.date_deadline + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
-                else:
-                    record.write({'date_deadline': record.project_id.date})
+                    if record.date_deadline:
+                        record.write({'date_deadline': (record.date_deadline + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                    else:
+                        record.write({'date_deadline': record.project_id.date})
 
-                # SHIFT MILESTONE DATES
-            for record2 in self.milestones:
-                if record2.target_date:
-                    record2.write({'target_date': (record2.target_date + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+            # SHIFT MILESTONE DATES
+            if self.use_milestones:
+                for record2 in self.milestones:
+                    if record2.target_date:
+                        record2.write({'target_date': (record2.target_date + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+
         self.old_start_date = False
 
 # SCRUM
@@ -91,7 +138,10 @@ class Project(models.Model):
 
     # CREATE A PROJECT FROM A TEMPLATE AND OPEN THE NEWLY CREATED PROJECT
     def create_project_from_template(self):
-        new_project = self.copy(default={'name': 'NEW PROJECT FROM TEMPLATE', 'active': True})
+        if " (TEMPLATE)" in self.name:
+            new_name = self.name.replace(" (TEMPLATE)"," (COPY)")
+
+        new_project = self.copy(default={'name': new_name, 'active': True, 'total_planned_hours': 0.0})
         new_project.next_task_number = self.next_task_number
 
         # SINCE THE END DATE DOESN'T COPY OVER ON TASKS, POPULATE END DATES ON THE TASK

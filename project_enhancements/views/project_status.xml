@@ -19,6 +19,7 @@
                  groups="base.group_no_one"/>
           <field name="name"/>
           <field name="description"/>
+          <field name="is_closed"/>
         </tree>
       </field>
     </record>
