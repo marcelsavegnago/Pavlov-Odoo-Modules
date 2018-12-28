@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
-    _order = 'date_start'
+    _order = 'priority desc, date_start, date_end, sequence, date_start, id desc'
 
 # SCRUM
     story_point_estimate = fields.Many2one('project.scrum_point', string="Story Points")
@@ -19,8 +19,8 @@ class ProjectTask(models.Model):
     issue_type_image = fields.Binary(string="Issue Type Image", related='issue_type.issue_type_image')
     reporter = fields.Many2one('res.user', string="Reporter")
 
-    date_start = fields.Date(copy=True)
-    date_end = fields.Date(copy=True)
+    date_start = fields.Datetime(copy=True)
+    date_end = fields.Datetime(copy=True)
     date_deadline = fields.Date(copy=True)
 
     forecasts = fields.One2many('project.forecast', 'task_id', string="Forecasts")
