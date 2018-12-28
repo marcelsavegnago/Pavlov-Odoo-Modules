@@ -58,16 +58,16 @@
                  string="End Date"
                  widget="date"/>
         </xpath>
-        <xpath expr="//field[@name='sequence']" position="before">
-          <field name="shift_task_dates"/>
-          <field name="allow_auto_forecast"
-                 attrs="{'invisible':[('allow_forecast','=', False)]}"/>
+        <xpath expr="//group[@name='misc']" position="before">
+          <group string="Additional Settings" colspan="2" col="4">
+            <field name="shift_task_dates"/>
+            <field name="next_task_number"/>
+            <field name="allow_auto_forecast"
+                   attrs="{'invisible':[('allow_forecast','=', False)]}"/>
+            <field name="is_template"/>
+          </group>
         </xpath>
         <xpath expr="//field[@name='sequence']" position="after">
-          <field name="next_task_number"/>
-          <field name="is_template"/>
-        </xpath>
-        <xpath expr="//field[@name='resource_calendar_id']" position="after">
           <field name="old_start_date"
                  string="OLD Start Date"
                  widget="date"/>

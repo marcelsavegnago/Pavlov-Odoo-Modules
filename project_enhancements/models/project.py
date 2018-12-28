@@ -6,16 +6,16 @@ class Project(models.Model):
     _inherit = 'project.project'
 
 # GLOBAL ENHANCEMENTS
-    next_task_number = fields.Integer(string="Next Task Number", default="1", copy=False)
-    project_status = fields.Many2one('project.status', string="Status")
-    department = fields.Many2one('hr.department', string="Department")
-    old_start_date = fields.Date(string='Old Start Date')
-    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts")
+    next_task_number = fields.Integer(string="Next Task Number", default="1", copy=False, help="Each Project can have it's own task numbers and get added to the Task Label.")
+    project_status = fields.Many2one('project.status', string="Status", help="Project status options are global status, configured in the Configuration menu.")
+    department = fields.Many2one('hr.department', string="Department", help="The department that this Project is related to.")
+    old_start_date = fields.Date(string='Old Start Date', help="Used by the Shift Dates function. When the Projects start date changes, the old date is populated in this field then is used when the 'Shift Dates' button is pushed.")
+    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts", help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
 
 # NEW COMPUTE FIELDS
-    total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True)
-    total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True)
-    total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True)
+    total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True, help="Total planned hours from all related Project Tasks.")
+    total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True, help="Total spent hours from all related Project Tasks.")
+    total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True, help="Total remaining hours from all related Project Tasks.")
 
     # COMPUTE PLANNED HOURS
     @api.depends('task_ids.planned_hours')

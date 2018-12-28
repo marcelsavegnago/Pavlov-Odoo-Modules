@@ -18,6 +18,7 @@
                  widget="handle"/>
           <field name="name"/>
           <field name="description"/>
+          <field name="point_value"/>
         </tree>
       </field>
     </record>

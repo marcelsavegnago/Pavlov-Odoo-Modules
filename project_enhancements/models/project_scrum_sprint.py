@@ -7,21 +7,32 @@ class ProjectSprint(models.Model):
 
 #General
      name = fields.Char(string="Sprint Name", required=True)
-     goal = fields.Char(string="Sprint Goal")
-     start_date = fields.Date(string="Start Date", required=True)
-     end_date = fields.Date(string="End Date", required=True)
-     percent_complete = fields.Integer(string="Percent Complete")
+     goal = fields.Char(string="Sprint Goal", help="Add a general 'Goal' to the sprint to help the teams understand the focus of this Sprint.")
+     start_date = fields.Date(string="Start Date", required=True, help="When the Sprint officially starts.")
+     end_date = fields.Date(string="End Date", required=True, help="When the Sprint officially ends.")
+     percent_complete = fields.Integer(string="Percent Complete", help="Percentage of completed Tasks vs incomplete Tasks.")
      status = fields.Selection([('planning', 'Planning'),('active', 'Active'),('review','Review'),('closed','Closed')], default="planning")
+     total_points = fields.Integer(string="Total Points", compute="_compute_task_points", help="Computed total of all Points from Tasks.")
 
-     project_tasks = fields.One2many('project.task', 'sprint_id', string="Project Tasks")
-     scrum_teams = fields.Many2many('project.scrum_team', string="Scrum Teams")
-     projects = fields.Many2many('project.project', relation='project_sprint_rel', column1='sprint_id', column2='project_id', string="Projects", required=True)
-     forecasts = fields.One2many('project.forecast', 'sprint_id', string="Forecasts")
+     project_tasks = fields.One2many('project.task', 'sprint_id', string="Project Tasks", help="List of Tasks associated to this Sprint.")
+     scrum_teams = fields.Many2many('project.scrum_team', string="Scrum Teams", help="List the scrum Teams that are participating in this Sprint.")
+     projects = fields.Many2many('project.project', relation='project_sprint_rel', column1='sprint_id', column2='project_id', string="Projects", required=True, help="List the Projects that are being included in this Sprint.")
+     forecasts = fields.One2many('project.forecast', 'sprint_id', string="Forecasts", help="Lists all the Forecasts from related Tasks.")
 
      _sql_constraints = [
          ('name_uniq', 'unique (name)', "Tag name already exists!"),
          ('check_start_date_lower_end_date', 'CHECK(end_date >= start_date)', 'Sprint End Date should be greater or equal to its Start Date'),
      ]
+
+     # COMPUTE TOTAL POINTS
+     @api.depends('project_tasks.story_point_estimate')
+     def _compute_task_points(self):
+         for record in self:
+             point_total = 0
+             tasks = record.env['project.task'].search([('sprint_id', '=', record.id)])
+             for task_record in tasks:
+                 point_total += task_record.story_point_estimate.point_value
+             record.update({'total_points': point_total})
 
      # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET IF A TASK, START/END DATES CHANGE
      @api.onchange('project_tasks', 'start_date', 'end_date')

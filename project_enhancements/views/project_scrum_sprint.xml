@@ -92,6 +92,9 @@
                   </tree>
                 </field>
               </group>
+              <group>
+                <field name="total_points"/>
+              </group>
             </page>
             <page name="forecasts" string="Forecasts">
               <field name="forecasts"

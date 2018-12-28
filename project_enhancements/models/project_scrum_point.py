@@ -5,8 +5,9 @@ class ProjectScrumPoint(models.Model):
      _order = 'point_sequence'
 
      name = fields.Char(string="Name", required=True)
-     description = fields.Char(string="Description")
+     description = fields.Char(string="Description", help="Describe what the pointing means to help assist users.")
      point_sequence = fields.Integer(string="Sequence")
+     point_value = fields.Integer(string="Value", help="Integer value of the scrum point, to be used with compute functions")
      color = fields.Integer(string='Color Index')
 
      _sql_constraints = [

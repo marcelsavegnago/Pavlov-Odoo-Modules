@@ -4,36 +4,43 @@
     <record id="project_scrum_point_1" model="project.scrum_point">
       <field name="name">1</field>
       <field name="description">XXS</field>
+      <field name="point_value">1</field>
       <field name="point_sequence">1</field>
     </record>
     <record id="project_scrum_point_2" model="project.scrum_point">
       <field name="name">2</field>
       <field name="description">XS</field>
+      <field name="point_value">2</field>
       <field name="point_sequence">2</field>
     </record>
     <record id="project_scrum_point_3" model="project.scrum_point">
       <field name="name">3</field>
       <field name="description">S</field>
+      <field name="point_value">3</field>
       <field name="point_sequence">3</field>
     </record>
     <record id="project_scrum_point_5" model="project.scrum_point">
       <field name="name">5</field>
       <field name="description">M</field>
+      <field name="point_value">5</field>
       <field name="point_sequence">4</field>
     </record>
     <record id="project_scrum_point_8" model="project.scrum_point">
       <field name="name">8</field>
       <field name="description">L</field>
+      <field name="point_value">8</field>
       <field name="point_sequence">5</field>
     </record>
     <record id="project_scrum_point_13" model="project.scrum_point">
       <field name="name">13</field>
       <field name="description">XL</field>
+      <field name="point_value">13</field>
       <field name="point_sequence">6</field>
     </record>
     <record id="project_scrum_point_21" model="project.scrum_point">
       <field name="name">21</field>
       <field name="description">XXL</field>
+      <field name="point_value">21</field>
       <field name="point_sequence">7</field>
     </record>
 

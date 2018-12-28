@@ -6,11 +6,11 @@ class ProjectScrumRelease(models.Model):
      _name = 'project.scrum_release'
 
      name = fields.Char(string="Release Name", required=True)
-     description = fields.Text(string="Description")
-     release_date = fields.Date(string="Release Date")
-     project_tasks = fields.Many2many('project.task', relation='fixedversion_task_rel', column1='version_id', column2='task_id', string="Project Tasks")
+     description = fields.Text(string="Description", help="Provides and area for text describing the release.")
+     release_date = fields.Date(string="Release Date", help="The official date the release was put into production.")
+     project_tasks = fields.Many2many('project.task', relation='fixedversion_task_rel', column1='version_id', column2='task_id', string="Project Tasks", help="List the completed Project Tasks that were included in the Release.")
      status = fields.Selection([('unreleased','Unreleased'),('released','Released')], string="status", default="unreleased")
-     release_notes = fields.Text(string="Release Notes")
+     release_notes = fields.Text(string="Release Notes", help="Auto populates when the release is completed using the Tasks. If text exists, the auto populated notes get appended to this field.")
      project_id = fields.Many2one('project.project', string="Project", required=True)
      color = fields.Integer(string='Color Index')
 
