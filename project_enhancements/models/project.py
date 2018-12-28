@@ -10,12 +10,14 @@ class Project(models.Model):
     project_status = fields.Many2one('project.status', string="Status")
     department = fields.Many2one('hr.department', string="Department")
     old_start_date = fields.Date(string='Old Start Date')
+    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts")
 
 # NEW COMPUTE FIELDS
     total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True)
     total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True)
     total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True)
 
+    # COMPUTE PLANNED HOURS
     @api.depends('task_ids.planned_hours')
     def _compute_total_planned_hours(self):
         for record in self:
@@ -26,6 +28,7 @@ class Project(models.Model):
                     planned_total += task_record.planned_hours
                 record.update({'total_planned_hours': planned_total})
 
+    # COMPUTE EFFECTIVE HOURS
     @api.depends('task_ids.effective_hours')
     def _compute_total_effective_hours(self):
         for record in self:
@@ -36,6 +39,7 @@ class Project(models.Model):
                     effective_total += timesheet_record.unit_amount
                 record.update({'total_effective_hours': effective_total})
 
+    # COMPUTE REMAINING HOURS
     @api.depends('total_planned_hours','total_effective_hours')
     def _compute_total_remaining_hours(self):
         for record in self:
@@ -55,7 +59,7 @@ class Project(models.Model):
                 hours_remaining_total = hours_planned_total - hours_effective_total
                 record.update({'total_remaining_hours': hours_remaining_total })
 
-# UPDATE TASK NUMBER LABELS IF THE MAIN LABEL CHANGED
+    # UPDATE TASK NUMBER LABELS IF THE MAIN LABEL CHANGED
     @api.onchange('label_tasks')
     def on_change_label_tasks(self):
         if self._origin.label_tasks:
@@ -66,7 +70,7 @@ class Project(models.Model):
                 new_task_number = new_task_number.replace(old_label, new_label)
                 record.write({'task_number': new_task_number})
 
-# UPDATE ANALYTIC ACCOUNT IF PROJECT NAME CHANGES
+    # UPDATE ANALYTIC ACCOUNT IF PROJECT NAME CHANGES
     @api.onchange('name')
     def on_change_name(self):
         if self.analytic_account_id:
@@ -75,7 +79,7 @@ class Project(models.Model):
                 for record in self.analytic_account_id:
                     record.write({'name': self.name})
 
-# SET OLD DATA VALUES WHEN CHANGED *USED FOR DATE SHIFTING
+    # SET OLD DATA VALUES WHEN CHANGED *USED FOR DATE SHIFTING
     @api.onchange('date_start')
     def on_change_dates(self):
         if self.old_start_date == False:
@@ -83,7 +87,7 @@ class Project(models.Model):
         if self.old_start_date == self.date_start:
             self.old_start_date = False
 
-# SHIFT TASK AND MILESTONE DATES
+    # SHIFT TASK AND MILESTONE DATES
     def shift_dates(self):
         # ONLY RUN IS SHIFT DATES OPTION IS TRUE
         if self.shift_task_dates and (self.old_start_date != self.date_start):

@@ -52,12 +52,16 @@
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
           <field name="department"/>
-          <field name="shift_task_dates"/>
           <field name="date_start"
                  widget="date"/>
           <field name="date"
                  string="End Date"
                  widget="date"/>
+        </xpath>
+        <xpath expr="//field[@name='sequence']" position="before">
+          <field name="shift_task_dates"/>
+          <field name="allow_auto_forecast"
+                 attrs="{'invisible':[('allow_forecast','=', False)]}"/>
         </xpath>
         <xpath expr="//field[@name='sequence']" position="after">
           <field name="next_task_number"/>
