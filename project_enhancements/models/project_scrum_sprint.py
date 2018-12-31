@@ -10,7 +10,7 @@ class ProjectSprint(models.Model):
      goal = fields.Char(string="Sprint Goal", help="Add a general 'Goal' to the sprint to help the teams understand the focus of this Sprint.")
      start_date = fields.Date(string="Start Date", required=True, help="When the Sprint officially starts.")
      end_date = fields.Date(string="End Date", required=True, help="When the Sprint officially ends.")
-     percent_complete = fields.Integer(string="Percent Complete", help="Percentage of completed Tasks vs incomplete Tasks.")
+     progress = fields.Float(string="Percent Complete", compute="_compute_sprint_progress", store=True, help="Percentage of completed Tasks vs incomplete Tasks.")
      status = fields.Selection([('planning', 'Planning'),('active', 'Active'),('review','Review'),('closed','Closed')], default="planning")
      total_points = fields.Integer(string="Total Points", compute="_compute_task_points", help="Computed total of all Points from Tasks.")
 
@@ -33,6 +33,21 @@ class ProjectSprint(models.Model):
              for task_record in tasks:
                  point_total += task_record.story_point_estimate.point_value
              record.update({'total_points': point_total})
+
+     # COMPUTE SPRINT PROGRESS
+     @api.depends('project_tasks.stage_id')
+     def _compute_sprint_progress(self):
+         total_tasks_count = 0.0
+         closed_tasks_count = 0.0
+         for record in self:
+             for task_record in record.project_tasks:
+                 total_tasks_count += 1
+                 if (task_record.stage_id.is_closed == True):
+                     closed_tasks_count += 1
+             if (total_tasks_count > 0):
+                 record.progress = (closed_tasks_count / total_tasks_count) * 100
+             else:
+                 record.progress = 0.0
 
      # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET IF A TASK, START/END DATES CHANGE
      @api.onchange('project_tasks', 'start_date', 'end_date')

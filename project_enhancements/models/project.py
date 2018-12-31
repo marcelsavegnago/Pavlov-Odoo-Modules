@@ -13,9 +13,25 @@ class Project(models.Model):
     allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts", help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
 
 # NEW COMPUTE FIELDS
+    progress = fields.Float(string="Progress", compute="_compute_project_progress", store=True, help="Percentage of completed Tasks vs incomplete Tasks.")
     total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True, help="Total planned hours from all related Project Tasks.")
     total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True, help="Total spent hours from all related Project Tasks.")
     total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True, help="Total remaining hours from all related Project Tasks.")
+
+    # COMPUTE PROJECT PROGRESS
+    @api.depends('task_ids.stage_id')
+    def _compute_project_progress(self):
+        total_tasks_count = 0.0
+        closed_tasks_count = 0.0
+        for record in self:
+            for task_record in record.task_ids:
+                total_tasks_count += 1
+                if (task_record.stage_id.is_closed == True):
+                    closed_tasks_count += 1
+            if (total_tasks_count > 0):
+                record.progress = (closed_tasks_count / total_tasks_count) * 100
+            else:
+                record.progress = 0.0
 
     # COMPUTE PLANNED HOURS
     @api.depends('task_ids.planned_hours')

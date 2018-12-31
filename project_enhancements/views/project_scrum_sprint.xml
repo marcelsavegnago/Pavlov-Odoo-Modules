@@ -17,6 +17,8 @@
           <field name="start_date"/>
           <field name="end_date"/>
           <field name="project_tasks"/>
+          <field name="progress"
+                 widget="progressbar"/>
           <field name="id"/>
         </tree>
       </field>
@@ -64,6 +66,10 @@
             </group>
             <notebook>
               <page name="tasks" string="Tasks">
+                <group>
+                  <field name="progress"
+                         widget="progressbar"/>
+                </group>
                 <group string="Project Tasks">
                   <field name="project_tasks"
                          nolabel="1"

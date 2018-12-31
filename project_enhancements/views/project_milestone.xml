@@ -20,6 +20,8 @@
           <field name="project_id"/>
           <field name="target_date"/>
           <field name="project_tasks"/>
+          <field name="progress"
+                 widget="progressbar"/>
         </tree>
       </field>
     </record>
@@ -38,7 +40,8 @@
             <group>
               <field name="target_date"/>
               <field name="actual_date"/>
-              <field name="percent_complete"/>
+              <field name="progress"
+                     widget="progressbar"/>
               <field name="project_id"/>
               <field name="project_tasks"
                      context="{'default_project_id': project_id, 'default_date_end': target_date, 'default_milestone_id': active_id}"/>
