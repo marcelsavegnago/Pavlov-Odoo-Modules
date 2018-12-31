@@ -33,7 +33,7 @@
 
     <!-- Menu Items -->
     <menuitem
-      name="Project Statuses"
+      name="Statuses"
       id="project_status_menu"
       parent="project.menu_project_config"
       sequence="15"

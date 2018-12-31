@@ -10,7 +10,7 @@ class ProjectSprint(models.Model):
      goal = fields.Char(string="Sprint Goal", help="Add a general 'Goal' to the sprint to help the teams understand the focus of this Sprint.")
      start_date = fields.Date(string="Start Date", required=True, help="When the Sprint officially starts.")
      end_date = fields.Date(string="End Date", required=True, help="When the Sprint officially ends.")
-     progress = fields.Float(string="Percent Complete", compute="_compute_sprint_progress", store=True, help="Percentage of completed Tasks vs incomplete Tasks.")
+     progress = fields.Float(string="Percent Complete", compute="_compute_sprint_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
      status = fields.Selection([('planning', 'Planning'),('active', 'Active'),('review','Review'),('closed','Closed')], default="planning")
      total_points = fields.Integer(string="Total Points", compute="_compute_task_points", help="Computed total of all Points from Tasks.")
 

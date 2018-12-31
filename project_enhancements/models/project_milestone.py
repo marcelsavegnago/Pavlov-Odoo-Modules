@@ -7,8 +7,7 @@ class ProjectMilestone(models.Model):
 #General
      name = fields.Char(string="Title", required=True)
      target_date = fields.Date(string="Target Date", required=False, help="An estimated date for when the Milestone is planned to be completed.")
-     actual_date = fields.Date(string="Actual Date", required=False, help="The actual date for when the Milestone is completed.")
-     progress = fields.Float(string="Progress", compute="_compute_milestone_progress", store=True, help="Percentage of completed Tasks vs incomplete Tasks.")
+     progress = fields.Float(string="Progress", compute="_compute_milestone_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
 
      project_id = fields.Many2one('project.project', string="Project")
      project_tasks = fields.One2many('project.task', 'milestone_id', string="Project Tasks")

@@ -39,14 +39,12 @@
             </div>
             <group>
               <field name="target_date"/>
-              <field name="actual_date"/>
               <field name="progress"
                      widget="progressbar"/>
               <field name="project_id"/>
               <field name="project_tasks"
                      context="{'default_project_id': project_id, 'default_date_end': target_date, 'default_milestone_id': active_id}"/>
               <field name="fold"/>
-              <field name="sequence"/>
             </group>
           </sheet>
         </form>

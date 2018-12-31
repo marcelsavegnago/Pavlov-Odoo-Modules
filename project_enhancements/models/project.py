@@ -13,7 +13,7 @@ class Project(models.Model):
     allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts", help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
 
 # NEW COMPUTE FIELDS
-    progress = fields.Float(string="Progress", compute="_compute_project_progress", store=True, help="Percentage of completed Tasks vs incomplete Tasks.")
+    progress = fields.Float(string="Progress", compute="_compute_project_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
     total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True, help="Total planned hours from all related Project Tasks.")
     total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True, help="Total spent hours from all related Project Tasks.")
     total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True, help="Total remaining hours from all related Project Tasks.")
