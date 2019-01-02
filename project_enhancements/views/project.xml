@@ -8,8 +8,10 @@
     <field name="field_parent">child_ids</field>
     <field name="arch" type="xml">
       <field name="user_id" position="after">
-        <field name="project_status"/>
+        <field name="project_type"
+               widget="selection"/>
         <field name="department"/>
+        <field name="project_status"/>
         <field name="milestones"/>
         <field name="sprints"/>
       </field>
@@ -33,12 +35,29 @@
                  widget="statusbar"
                  options="{'clickable': '1'}"/>
         </xpath>
-
         <field name="user_id" position="replace">
           <field name="user_id"
                  string="Project Manager"
                  attrs="{'readonly':[('active','=',False)], 'invisible':[('is_template','=',True)]}"/>
         </field>
+        <field name="partner_id" position="replace">
+          <field name="partner_id"
+                 attrs="{'invisible':[('is_template','=',True)]}"/>
+        </field>
+        <xpath expr="//page[@name='emails']" position="replace">
+          <page name="emails" string="Emails" attrs="{'invisible': ['|',('alias_domain', '=', False),('is_template', '=', True)]}">
+            <group name="group_alias">
+              <label for="alias_name" string="Email Alias"/>
+              <div name="alias_def">
+                <field name="alias_id" class="oe_read_only oe_inline" string="Email Alias" required="0"/>
+                <div class="oe_edit_only oe_inline" name="edit_alias" style="display: inline;">
+                  <field name="alias_name" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1"/>
+                </div>
+              </div>
+              <field name="alias_contact" class="oe_inline oe_edit_only" string="Accept Emails From"/>
+            </group>
+          </page>
+        </xpath>
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
@@ -55,6 +74,8 @@
                   attrs="{'invisible': ['|',('old_start_date', '=', False), ('shift_task_dates', '=', False)]}"/>
         </xpath>
         <xpath expr="//field[@name='user_id']" position="after">
+          <field name="project_type"
+                 widget="selection"/>
           <field name="department"/>
           <field name="date_start"
                  widget="date"/>
@@ -151,6 +172,8 @@
                    required="1"/>
             <field name="next_task_number"/>
             <field name="user_id"/>
+            <field name="project_type"
+                   widget="selection"/>
             <field name="department"/>
             <field name="project_status"
                    required = "1"/>
@@ -253,6 +276,9 @@
         <separator/>
       </filter>
       <filter name="Partner" position="after">
+        <filter string="Types"
+                name="Project Types"
+                context="{'group_by': 'project_type'}"/>
         <filter string="Status"
                 name="Project Status"
                 context="{'group_by': 'project_status'}"/>

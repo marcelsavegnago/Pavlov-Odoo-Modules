@@ -70,6 +70,13 @@ class ProjectSprint(models.Model):
                      employee_id = self.env['hr.employee'].search([('user_id', '=', record.user_id.id)])
                      if employee_id.id:
                          self.env['project.forecast'].create({'sprint_id': record.sprint_id.id, 'employee_id': employee_id.id, 'project_id': record.project_id.id, 'resource_hours': record.planned_hours, 'task_id': record.id, 'start_date': record.date_start, 'end_date': record.date_end})
+     # START BUTTON
+     def start_sprint(self):
+         self.status = 'active'
+
+     # REVIEW BUTTON
+     def review_sprint(self):
+         self.status = 'review'
 
      # CLOSE AND CREATE BUTTON
      @api.multi

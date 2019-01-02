@@ -11,6 +11,7 @@ class Project(models.Model):
     department = fields.Many2one('hr.department', string="Department", help="The department that this Project is related to.")
     old_start_date = fields.Date(string='Old Start Date', help="Used by the Shift Dates function. When the Projects start date changes, the old date is populated in this field then is used when the 'Shift Dates' button is pushed.")
     allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts", help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
+    project_type = fields.Many2one('project.type', string="Project Type", help="The type of Project", required=True)
 
 # NEW COMPUTE FIELDS
     progress = fields.Float(string="Progress", compute="_compute_project_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
@@ -163,6 +164,11 @@ class Project(models.Model):
 
         new_project = self.copy(default={'name': new_name, 'active': True, 'total_planned_hours': 0.0})
         new_project.next_task_number = self.next_task_number
+        if new_project.subtask_project_id != new_project.id:
+            new_project.subtask_project_id = new_project.id
+        # Clear Email Alias if it was set in the Template
+        if new_project.alias_name:
+            new_project.alias_name = False
 
         # SINCE THE END DATE DOESN'T COPY OVER ON TASKS, POPULATE END DATES ON THE TASK
         for record in new_project.tasks:
@@ -193,6 +199,11 @@ class Project(models.Model):
                 self.name = self.name + " (TEMPLATE)"
             if self.user_id:
                 self.user_id = False
+            if self.partner_id:
+                self.partner_id = False
+            if self.alias_name:
+                self.alias_name = False
+
         else:
             if " (TEMPLATE)" in self.name:
                 self.name = self.name.replace(" (TEMPLATE)","")
