@@ -194,16 +194,17 @@ class Project(models.Model):
     @api.onchange('is_template')
     def on_change_is_template(self):
         # Add "(TEMPLATE)" to the Name if is_template == true
-        if self.is_template == True:
-            if "(TEMPLATE)" not in self.name:
-                self.name = self.name + " (TEMPLATE)"
-            if self.user_id:
-                self.user_id = False
-            if self.partner_id:
-                self.partner_id = False
-            if self.alias_name:
-                self.alias_name = False
+        if self.name:
+            if self.is_template == True:
+                if "(TEMPLATE)" not in self.name:
+                    self.name = self.name + " (TEMPLATE)"
+                if self.user_id:
+                    self.user_id = False
+                if self.partner_id:
+                    self.partner_id = False
+                if self.alias_name:
+                    self.alias_name = False
 
-        else:
-            if " (TEMPLATE)" in self.name:
-                self.name = self.name.replace(" (TEMPLATE)","")
+            else:
+                if " (TEMPLATE)" in self.name:
+                    self.name = self.name.replace(" (TEMPLATE)","")
