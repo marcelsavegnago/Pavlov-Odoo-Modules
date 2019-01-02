@@ -111,6 +111,12 @@
                      domain="[('project_id', '=', active_id)]"/>
             </group>
           </page>
+          <page name="tasks" string="Tasks">
+            <group>
+              <field name="task_ids"
+                     nolabel="1"/>
+            </group>
+          </page>
           <page name="performance" string="Performance">
             <group colspan="2" col="2">
               <field name="total_planned_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
@@ -137,17 +143,18 @@
         <field name="user_id" position="after">
           <field name="use_milestones"/>
           <field name="use_scrum"/>
-          <field name="next_task_number"/>
-        </field>
+          </field>
         <xpath expr="//footer" position="before">
           <group>
             <field name="label_tasks"
                    string="Name of the tasks:"
                    required="1"/>
+            <field name="next_task_number"/>
             <field name="user_id"/>
             <field name="department"/>
             <field name="project_status"
                    required = "1"/>
+            <field name="partner_id"/>
             <field name="privacy_visibility"
                    widget="radio"/>
           </group>
