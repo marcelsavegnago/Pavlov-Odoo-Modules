@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Pavlov Bandwidth Change",
+    'name': "Bandwidth Change",
 
     'summary': """
-        Bandwidth Changes for Pavlov Media""",
+        Bandwidth Changes""",
 
     'description': """
-        Bandwidth Changes module for Pavlov Media
+        Bandwidth Changes module used for Pavlov Media to track when circuit changes happen, the information associated with those changes and to assist with the Bandwidth Change process.
     """,
 
-    'author': "Pavlov Media",
+    'author': "Patrick Wilson: Pavlov Media",
     'website': "http://www.pavlovmedia.com",
 
     # Categories can be used to filter modules in modules listing
