@@ -1,16 +1,15 @@
 <odoo>
-  <data>
     <!-- Sequences-->
-    <record id="seq_project_scrum_source" model="ir.sequence">
-      <field name="name">project_scrum_source_seq</field>
+    <record model="ir.sequence" id="project_scrum_source_seq">
+      <field name="name">Project Scrum Source Sequence</field>
       <field name="code">project.scrum_source</field>
       <field name="prefix">0</field>
       <field name="padding">1</field>
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="project_scrum_source_list_view">
-      <field name="name">Scrum Source List View</field>
+    <record model="ir.ui.view" id="project_scrum_source_view_list">
+      <field name="name">Project Scrum Source List</field>
       <field name="model">project.scrum_source</field>
       <field name="arch" type="xml">
         <tree editable="top">
@@ -25,7 +24,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_source_action">
-      <field name="name">Scrum Sources</field>
+      <field name="name">Project Scrum Source Action</field>
       <field name="res_model">project.scrum_source</field>
       <field name="view_mode">tree</field>
     </record>
@@ -33,10 +32,8 @@
     <!-- Menu Items -->
     <menuitem
       name="Sources"
-      id="project_scrum_sources_menu_1"
+      id="project_scrum_source_menu"
       parent="scrum_configuration_section_menu"
       sequence="70"
       action="project_scrum_source_action"/>
-
-  </data>
 </odoo>

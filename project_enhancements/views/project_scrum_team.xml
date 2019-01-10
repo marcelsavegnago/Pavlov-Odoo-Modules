@@ -1,8 +1,7 @@
 <odoo>
-  <data>
     <!-- List View-->
-    <record model="ir.ui.view" id="project_scrum_team_list_view">
-      <field name="name">Scrum Team List</field>
+    <record model="ir.ui.view" id="project_scrum_team_view_list">
+      <field name="name">Project Scrum Team List</field>
       <field name="model">project.scrum_team</field>
       <field name="arch" type="xml">
         <tree default_order='name'>
@@ -14,8 +13,8 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="project_scrum_team_form_view">
-      <field name="name">Scrum Team Form</field>
+    <record model="ir.ui.view" id="project_scrum_team_view_form">
+      <field name="name">Project Scrum Team Form</field>
       <field name="model">project.scrum_team</field>
       <field name="arch" type="xml">
         <form string="Scrum Team Form">
@@ -34,8 +33,8 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="project_scrum_team_action_window">
-      <field name="name">Scrum Team</field>
+    <record model="ir.actions.act_window" id="project_scrum_team_action">
+      <field name="name">Project Scrum Team Action</field>
       <field name="res_model">project.scrum_team</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -46,7 +45,5 @@
       id="scrum_team_configuration_menu"
       parent="scrum_configuration_section_menu"
       sequence="30"
-      action="project_scrum_team_action_window"/>
-
-  </data>
+      action="project_scrum_team_action"/>
 </odoo>

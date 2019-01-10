@@ -1,7 +1,6 @@
 <odoo>
-  <data>
     <!-- List View -->
-    <record model="ir.ui.view" id="view_bwchange_list">
+    <record model="ir.ui.view" id="bwchange_change_view_list">
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
@@ -17,20 +16,31 @@
           <field name="contract_signed_date"/>
           <field name="verified_by"/>
           <field name="verified_date"/>
+          <field name="filename" invisible="1" />
+          <field name="final_document" filename="filename"/>
         </tree>
       </field>
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="view_bwchange_form">
+    <record model="ir.ui.view" id="bwchange_change_view__form">
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
         <form string="Bandwidth Change Form">
           <header>
-            <button name="%(bwchange_document_preview)d" string="Preview" type="action" class="oe_highlight"/>
-            <button name="%(bwchange_document)d" string="Print" type="action" class="oe_highlight"/>
-            <field name="state" widget="statusbar" clickable="True" options="{'fold_field': 'fold'}" />
+            <button name="%(bwchange_document_preview)d"
+                    string="Preview"
+                    type="action"
+                    class="oe_highlight"/>
+            <button name="%(bwchange_document)d"
+                    string="Print"
+                    type="action"
+                    class="oe_highlight"/>
+            <field name="stage"
+                   widget="statusbar"
+                   clickable="True"
+                   options="{'fold_field': 'fold'}" />
           </header>
           <sheet>
             <div class="oe_title">
@@ -40,46 +50,67 @@
             <group colspan="2" col="4">
               <field name="partner_id"/>
               <field name="user_id"/>
-              <field name="priority" widget="priority"/>
+              <field name="priority"
+                     widget="priority"/>
               <field name="eta"/>
             </group>
             <group>
               <field name="description"/>
             </group>
-            <group colspan="2" col="4" string="Property Circuit Details">
-              <field name="actual_transport" widget="integer"/>
+            <group colspan="2" col="4" string="Circuit Details">
+              <field name="actual_transport"
+                     widget="integer"/>
               <field name="circuit_landdate"/>
-              <field name="circuit_paid_by" widget="selection"/>
+              <field name="circuit_paid_by"
+                     widget="selection"/>
               <field name="circuit_id"/>
-              <field name="sold_transport" widget="integer"/>
-              <field name="dia_upload" widget="integer" />
+              <field name="sold_transport"
+                     widget="integer"/>
+              <field name="dia_upload"
+                     widget="integer" />
               <field name="tesseractive_service"/>
-              <field name="tesseractiv_speed" attrs="{'invisible': [('tesseractive_service', '=', False)]}" widget="integer"/>
+              <field name="tesseractiv_speed"
+                     attrs="{'invisible': [('tesseractive_service', '=', False)]}"
+                     widget="integer"/>
               <field name="websnap"/>
             </group>
-            <group colspan="2" col="4" string="Current MDF Equipment (Filled by NOC)">
-              <field name="router" widget="selection"/>
-              <field name="mikrotik" widget="selection"/>
-              <field name="core_switch" widget="selection"/>
-              <field name="distro_switch" widget="selection"/>
+            <group colspan="2" col="4" string="Current Equipment (Filled by NOC)">
+              <field name="router"
+                     widget="selection"/>
+              <field name="mikrotik"
+                     widget="selection"/>
+              <field name="core_switch"
+                     widget="selection"/>
+              <field name="distro_switch"
+                     widget="selection"/>
               <field name="user_switch"/>
-              <field name="spacer" nolabel="1" readonly="1"/>
               <field name="trunked"/>
-              <field name="verified_by"/>
+              <field name="qtree_type"/>
               <field name="needs_update"/>
+              <field name="verified_by"/>
               <field name="verified_date"/>
             </group>
             <group>
               <field name="additional_information"/>
             </group>
-            <group colspan="2" col="4" string="User/Unit Experience (Contracted Info)">
-              <field name="websnap_download" attrs="{'invisible': [('websnap', '=', False)]}" widget="integer"/>
-              <field name="package_download" widget="integer"/>
-              <field name="package_upload" widget="integer"/>
-              <field name="unregistered_tesseractiv" attrs="{'invisible': [('tesseractive_service', '=', False)]}" widget="integer"/>
-              <field name="unregistered_websnap" attrs="{'invisible': [('websnap', '=', False)]}" widget="integer"/>
-              <field name="unregistered_download" widget="integer"/>
-              <field name="unregistered_upload" widget="integer"/>
+            <group colspan="2" col="4" string="Experience (Contracted Info)">
+              <field name="package_download"
+                     widget="integer"/>
+              <field name="websnap_download"
+                     attrs="{'invisible': [('websnap', '=', False)]}"
+                    widget="integer"/>
+              <field name="package_upload"
+                     widget="integer"/>
+              <field name="unregistered_websnap"
+                     attrs="{'invisible': [('websnap', '=', False)]}"
+                    widget="integer"/>
+              <field name="unregistered_download"
+                     widget="integer"/>
+              <field name="unregistered_tesseractiv"
+                     attrs="{'invisible': [('tesseractive_service', '=', False)]}"
+                     widget="integer"/>
+              <field name="unregistered_upload"
+                     widget="integer"/>
             </group>
             <group>
               <field name="reason_for_change"/>
@@ -87,17 +118,27 @@
             <group colspan="2" col="4" string="Contract Information">
               <field name="contract_signed_date"/>
             </group>
+            <group colspan="2" col="2" string="Implentation Information">
+                <field name="implemented_by"/>
+                <field name="implementation_notes"/>
+            </group>
+            <field name="filename" invisible="1" />
+            <field name="final_document"
+                   filename="filename"
+                   widget="binary"/>
           </sheet>
           <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="message_ids" widget="mail_thread"/>
+            <field name="message_follower_ids"
+                   widget="mail_followers"/>
+            <field name="message_ids"
+                   widget="mail_thread"/>
           </div>
         </form>
       </field>
     </record>
 
     <!-- Search View -->
-    <record model="ir.ui.view" id="bwchange_search_view">
+    <record model="ir.ui.view" id="bwchange_change_view_search">
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
@@ -107,25 +148,43 @@
           <field name="partner_id"/>
           <field name="user_id"/>
           <field name="state"/>
-          <filter string="My BW Changes" domain="[('user_id','=',uid)]" name="my_bwchanges"/>
+          <filter string="My BW Changes"
+                  domain="[('user_id','=',uid)]"
+                  name="my_bwchanges"/>
           <separator/>
-          <filter string="Unassigned" domain="[('user_id','=',False)]" name="unassigned_bwchanges"/>
+          <filter string="Unassigned"
+                  domain="[('user_id','=',False)]"
+                  name="unassigned_bwchanges"/>
           <separator/>
-          <filter string="Draft" domain="[('state','=','draft')]" name="open_bwchanges"/>
-          <filter string="Active" domain="[('state','=','active')]" name="active_bwchanges"/>
-          <filter string="Inactive" domain="[('state','=','inactive')]" name="inactive_bwchanges"/>
+          <filter string="Draft"
+                  domain="[('state','=','draft')]"
+                  name="open_bwchanges"/>
+          <filter string="Active"
+                  domain="[('state','=','active')]"
+                  name="active_bwchanges"/>
+          <filter string="Inactive"
+                  domain="[('state','=','inactive')]"
+                  name="inactive_bwchanges"/>
           <group expand="0" string="Group By">
-              <filter string="Assignee" name="assigned_to" context="{'group_by':'user_id'}"/>
-              <filter string="Partner" name="partner_id" context="{'group_by':'partner_id'}"/>
-              <filter string="Stage" name="stage" context="{'group_by':'stage'}"/>
-              <filter string="State" name="state" context="{'group_by':'state'}"/>
+              <filter string="Assignee"
+                      name="assigned_to"
+                      context="{'group_by':'user_id'}"/>
+              <filter string="Partner"
+                      name="partner_id"
+                      context="{'group_by':'partner_id'}"/>
+              <filter string="Stage"
+                      name="stage"
+                      context="{'group_by':'stage'}"/>
+              <filter string="State"
+                      name="state"
+                      context="{'group_by':'state'}"/>
           </group>
         </search>
       </field>
     </record>
 
     <!-- KanBan View -->
-    <record model="ir.ui.view" id="bwchange_kanban_view">
+    <record model="ir.ui.view" id="bwchange_change_view_kanban">
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
@@ -148,11 +207,18 @@
                       </small>
                     </div>
                     <div class="o_dropdown_kanban dropdown" groups="base.group_user">
-                      <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                      <a role="button"
+                        class="dropdown-toggle o-no-caret btn"
+                        data-toggle="dropdown" href="#"
+                        aria-label="Dropdown menu"
+                        title="Dropdown menu">
                         <span class="fa fa-ellipsis-v"/>
                       </a>
                       <div class="dropdown-menu" role="menu">
-                        <a t-if="widget.editable" role="menuitem" type="edit" class="dropdown-item">Edit BW Change</a>
+                        <a t-if="widget.editable"
+                           role="menuitem"
+                           type="edit"
+                           class="dropdown-item">Edit BW Change</a>
                         <div role="separator" class="dropdown-divider"/>
                         <ul class="oe_kanban_colorpicker" data-field="color"/>
                       </div>
@@ -173,7 +239,9 @@
                 </div>
                 <div class="o_kanban_record_bottom">
                   <div class="oe_kanban_bottom_left">
-                    <field name="priority" widget="priority" groups="base.group_user"/>
+                    <field name="priority"
+                           widget="priority"
+                           groups="base.group_user"/>
                   </div>
                   <div class="oe_kanban_bottom_right">
                     <img t-att-src="kanban_image('res.users', 'image_small', record.user_id.raw_value)" t-att-title="record.user_id.value" t-att-alt="record.user_id.value" width="24" height="24" class="oe_kanban_avatar"/>
@@ -187,7 +255,7 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="bwchange_action_window">
+    <record model="ir.actions.act_window" id="bwchange_change_action">
       <field name="name">Bandwidth Changes</field>
       <field name="res_model">bwchange.change</field>
       <field name="view_mode">kanban,tree,form</field>
@@ -197,23 +265,21 @@
     <!-- Top menu item -->
     <menuitem
       name="BW Changes"
-      id="bwchange_menu_root"
+      id="bwchange_root_menu"
       web_icon="bwchange,static/description/icon.png"
       sequence="51"/>
 
       <!-- menu categories -->
       <menuitem
         name="Bandwidth Changes"
-        id="bwchange_menu_1"
-        parent="bwchange_menu_root"
+        id="bwchange_change_menu"
+        parent="bwchange_root_menu"
         sequence="10"
-        action="bwchange_action_window"/>
+        action="bwchange_change_action"/>
 
-        <menuitem
-          name="Configuration"
-          id="bwchange_configuration_menu"
-          sequence="20"
-          parent="bwchange_menu_root"/>
-
-        </data>
-      </odoo>
+      <menuitem
+        name="Configuration"
+        id="bwchange_change_configuration_menu"
+        sequence="20"
+        parent="bwchange_root_menu"/>
+</odoo>

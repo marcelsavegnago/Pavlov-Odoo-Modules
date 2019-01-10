@@ -1,16 +1,15 @@
 <odoo>
-  <data>
     <!-- Sequences-->
-    <record id="seq_project_milestone" model="ir.sequence">
-      <field name="name">project_milestone_seq</field>
+    <record model="ir.sequence" id="project_milestone_seq">
+      <field name="name">Project Milestone Sequence</field>
       <field name="code">project.milestone</field>
       <field name="prefix">0</field>
       <field name="padding">1</field>
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="milestones_list_view">
-      <field name="name">Milestones List</field>
+    <record model="ir.ui.view" id="project_milestones_view_list">
+      <field name="name">Project Milestone List</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
         <tree default_order='sequence'>
@@ -27,8 +26,8 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="milestones_form_view">
-      <field name="name">Milestones Form</field>
+    <record model="ir.ui.view" id="project_milestones_view_form">
+      <field name="name">Project Milestone Form</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
         <form string="Milestone Form">
@@ -52,8 +51,8 @@
     </record>
 
     <!-- Search View -->
-    <record id="view_milestone_search_form" model="ir.ui.view">
-      <field name="name">project.milestone.search.form</field>
+    <record model="ir.ui.view" id="project_milestone_view_search">
+      <field name="name">Project Milestone Search</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
         <search>
@@ -67,26 +66,10 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="project_milestones_action_window">
-      <field name="name">Milestones</field>
+    <record model="ir.actions.act_window" id="project_milestone_action">
+      <field name="name">Project Milestone Action</field>
       <field name="res_model">project.milestone</field>
       <field name="context">{'group_by': 'project_id'}</field>
       <field name="view_mode">tree,form</field>
     </record>
-
-    <!-- Menu Items
-    <menuitem
-      name="Milestones"
-      id="project_milestones_menu"
-      parent="project.menu_main_pm"
-      sequence="80"/>
-
-      <menuitem
-        name="All Milestones"
-        id="project_all_milestones_menu"
-        parent="project_milestones_menu"
-        sequence="10"
-        action="project_milestones_action_window"/>-->
-
-  </data>
 </odoo>

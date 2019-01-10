@@ -1,30 +1,32 @@
 <odoo>
-  <data>
     <!-- Sequences-->
-    <record id="seq_bwchange_owner" model="ir.sequence">
-      <field name="name">bwchange_owner_sequencer</field>
+    <record model="ir.sequence" id="bwchange_owner_seq">
+      <field name="name">BW Change Owner Sequence</field>
       <field name="code">bwchange.owner</field>
       <field name="prefix">0</field>
       <field name="padding">1</field>
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="bwchange_owner_list_view">
-      <field name="name">BW Change owner List View</field>
+    <record model="ir.ui.view" id="bwchange_owner_view_list">
+      <field name="name">BW Change Owner List View</field>
       <field name="model">bwchange.owner</field>
       <field name="arch" type="xml">
         <tree editable="top">
-          <field name="owner_sequence" widget="handle" groups="base.group_no_one"/>
+          <field name="owner_sequence"
+                 widget="handle"
+                groups="base.group_no_one"/>
           <field name="name"/>
           <field name="description"/>
-          <field name="id" attrs="{'readonly': True}"/>
+          <field name="id"
+                 attrs="{'readonly': True}"/>
         </tree>
       </field>
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="bwchange_owner_form_view">
-      <field name="name">BW Change owner Form</field>
+    <record model="ir.ui.view" id="bwchange_owner_view_form">
+      <field name="name">BW Change Owner Form</field>
       <field name="model">bwchange.owner</field>
       <field name="arch" type="xml">
         <form string="BW Change owner">
@@ -42,8 +44,8 @@
     </record>
 
     <!-- Actions opening views on models -->
-    <record model="ir.actions.act_window" id="bwchange_action_owner">
-      <field name="name">owners</field>
+    <record model="ir.actions.act_window" id="bwchange_owner_action">
+      <field name="name">BW Change Owner Action</field>
       <field name="res_model">bwchange.owner</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -52,9 +54,7 @@
     <menuitem
       name="Owners"
       id="bwchange_owner_menu"
-      parent="bwchange_configuration_menu"
-      action="bwchange_action_owner"
+      parent="bwchange_change_configuration_menu"
+      action="bwchange_owner_action"
       sequence="30"/>
-
-  </data>
 </odoo>

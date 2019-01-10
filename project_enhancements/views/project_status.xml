@@ -1,16 +1,15 @@
 <odoo>
-  <data>
     <!-- Sequences-->
-    <record id="seq_project_status" model="ir.sequence">
-      <field name="name">project_status_seq</field>
+    <record model="ir.sequence" id="project_status_seq">
+      <field name="name">Project Status Sequence</field>
       <field name="code">project.status</field>
       <field name="prefix">0</field>
       <field name="padding">1</field>
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="project_status_list_view">
-      <field name="name">Project Statuses List View</field>
+    <record model="ir.ui.view" id="project_status_view_list">
+      <field name="name">Project Status List</field>
       <field name="model">project.status</field>
       <field name="arch" type="xml">
         <tree editable="top">
@@ -26,7 +25,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_status_action">
-      <field name="name">Project Statuses</field>
+      <field name="name">Project Status Action</field>
       <field name="res_model">project.status</field>
       <field name="view_mode">tree</field>
     </record>
@@ -38,6 +37,4 @@
       parent="project.menu_project_config"
       sequence="15"
       action="project_status_action"/>
-
-  </data>
 </odoo>

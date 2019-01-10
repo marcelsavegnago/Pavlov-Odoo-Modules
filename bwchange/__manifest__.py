@@ -23,14 +23,16 @@
 
     # always loaded
     'data': [
-        'views/reports.xml',
+        'report/bwchange_reports.xml',
         'views/bwchange.xml',
         'views/bwchange_owner.xml',
         'views/bwchange_speed.xml',
         'views/bwchange_stage.xml',
+        'views/bwchange_qtreetype.xml',
         'views/res_partner.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
+        'data/bwchange_data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

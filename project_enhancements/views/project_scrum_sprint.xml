@@ -1,8 +1,7 @@
 <odoo>
-  <data>
     <!-- List View-->
-    <record model="ir.ui.view" id="project_scrum_sprints_list_view">
-      <field name="name">Sprint List</field>
+    <record model="ir.ui.view" id="project_scrum_sprint_view_list">
+      <field name="name">Project Scrum Sprint List</field>
       <field name="model">project.scrum_sprint</field>
       <field name="arch" type="xml">
         <tree default_order='start_date desc' decoration-success="status=='closed'">
@@ -25,8 +24,8 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="project_scrum_sprint_form_view">
-      <field name="name">Sprint Form</field>
+    <record model="ir.ui.view" id="project_scrum_sprint_view_form">
+      <field name="name">Project Scrum Sprint Form</field>
       <field name="model">project.scrum_sprint</field>
       <field name="arch" type="xml">
         <form string="Sprint Form">
@@ -128,7 +127,7 @@
               </field>
             </page>
           </notebook>
-           <button name="%(project_forecast_action_server_by_sprint)d"
+           <button name="%(project_forecast_sprint_action_server)d"
                    string="Show Capacity Forecast"
                    type="action"/>
           </sheet>
@@ -137,8 +136,8 @@
     </record>
 
     <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="project_scrum_sprint_action_window">
-      <field name="name">Sprints</field>
+    <record model="ir.actions.act_window" id="project_scrum_sprint_action">
+      <field name="name">Project Scrum Sprint Action</field>
       <field name="res_model">project.scrum_sprint</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -159,7 +158,5 @@
           id="project_scrum_sprint_main_menu"
          parent="project_scrum_main_menu"
          sequence="10"
-         action="project_scrum_sprint_action_window"/>
-
-  </data>
+         action="project_scrum_sprint_action"/>
 </odoo>

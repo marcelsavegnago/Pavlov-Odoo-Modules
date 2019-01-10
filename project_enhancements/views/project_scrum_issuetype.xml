@@ -1,16 +1,15 @@
 <odoo>
-  <data>
     <!-- Sequences-->
-    <record id="seq_project_scrum_issuetype" model="ir.sequence">
-      <field name="name">project_scrum_issuetype_seq</field>
+    <record model="ir.sequence" id="project_scrum_issuetype_seq">
+      <field name="name">Project Scrum Issue Type Sequence</field>
       <field name="code">project.scrum_issuetype</field>
       <field name="prefix">0</field>
       <field name="padding">1</field>
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="project_scrum_issuetype_list_view">
-      <field name="name">Scrum Label List View</field>
+    <record model="ir.ui.view" id="project_scrum_issuetype_view_list">
+      <field name="name">Project Scrum Issue Type List</field>
       <field name="model">project.scrum_issuetype</field>
       <field name="arch" type="xml">
         <tree editable="top">
@@ -30,7 +29,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_issuetype_action">
-      <field name="name">Issue Types</field>
+      <field name="name">Project Scrum Issue Type Action</field>
       <field name="res_model">project.scrum_issuetype</field>
       <field name="view_mode">tree</field>
     </record>
@@ -38,10 +37,8 @@
     <!-- Menu Items -->
     <menuitem
       name="Issue Types"
-      id="project_scrum_issuetypes_menu"
+      id="project_scrum_issuetype_menu"
       parent="scrum_configuration_section_menu"
       sequence="40"
       action="project_scrum_issuetype_action"/>
-
-  </data>
 </odoo>

@@ -1,6 +1,6 @@
 <odoo>
   <!-- List View-->
-  <record id="view_enhancement_view_project_list" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_enhancement_view_project_list">
     <field name="name">project.project.enhancement.tree</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project"/>
@@ -23,7 +23,7 @@
   </record>
 
   <!-- Form View -->
-  <record id="view_enhancement_edit_project_form" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_enhancement_edit_project_form">
     <field name="name">project.project.enhancement.form</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.edit_project"/>
@@ -119,10 +119,11 @@
           <page name="sprints" string="Sprints" attrs="{'invisible':[('use_scrum','=', False)]}">
             <group>
               <field name="sprints"
-                     context="{'project_id': active_id}"
                      nolabel="1"
-                     domain="[('project_id', '=', active_id)]"/>
+                     domain="[('project_id', '=', active_id)]"
+                     readonly="1"/>
             </group>
+            <a>*Sprints are managed via the 'Scrum/All Sprints' menu</a>
           </page>
           <page name="releases" string="Releases" attrs="{'invisible':[('use_scrum','=', False)]}">
             <group>
@@ -154,7 +155,7 @@
   </record>
 
   <!-- Simplified Form View -->
-  <record id="view_enhancement_edit_project_simple" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_enhancement_edit_project_simple">
     <field name="name">project.project.enhancement.simpleform</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
@@ -194,7 +195,7 @@
   </record>
 
   <!-- Kanban View -->
-  <record id="view_project_enhancement_kanban" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_project_enhancement_kanban">
     <field name="name">project.project.enhancement.kanban</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project_kanban"/>
@@ -247,7 +248,7 @@
   </record>
 
   <!-- Search View -->
-  <record id="project_enhancements_search_view" model="ir.ui.view">
+  <record model="ir.ui.view" id="project_enhancements_search_view">
     <field name="name">project.enhancements.filter</field>
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project_project_filter"/>

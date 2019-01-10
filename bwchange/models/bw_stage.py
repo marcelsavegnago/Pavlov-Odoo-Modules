@@ -8,7 +8,13 @@ class BWChangeStage(models.Model):
     name = fields.Char(string="Stage", required=True)
     stage_sequence = fields.Integer(string="Sequence")
     description = fields.Text(string="Description")
-    default_state = fields.Selection([('draft', 'Draft'),('active', 'Active'),('inactive', 'Inactive')], string="Default State")
+    default_state = fields.Selection([
+                                     ('draft', 'Draft'),
+                                     ('active', 'Active'),
+                                     ('inactive', 'Inactive')],
+                                     string="Default State")
+    fold = fields.Boolean(string="Folded")
+    is_close = fields.Boolean(string="Closing Kanban Stage")
 
     @api.model
     def create(self, vals):

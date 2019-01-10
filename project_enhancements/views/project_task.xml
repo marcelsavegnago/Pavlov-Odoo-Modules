@@ -1,6 +1,6 @@
 <odoo>
   <!-- List View -->
-  <record id="view_task_enhancement_tree" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_task_enhancement_tree" >
     <field name="name">project.task.enhancement.tree</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_tree2"/>
@@ -28,7 +28,7 @@
   </record>
 
   <!-- Form View -->
-  <record id="view_task_enhancement_form" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_task_enhancement_form" >
     <field name="name">project.task.enhancement.form</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_form2"/>
@@ -143,7 +143,7 @@
   </record>
 
   <!-- Kanban View -->
-  <record id="view_task_enhancement_kanban" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_task_enhancement_kanban">
     <field name="name">project.task.enhancement.kanban</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_kanban"/>
@@ -193,7 +193,7 @@
   </record>
 
   <!-- Quick Create View -->
-  <record id="project_enhancements_quick_create_task_form" model="ir.ui.view">
+  <record model="ir.ui.view" id="project_enhancements_quick_create_task_form">
     <field name="name">project_enhancements_quick_create_task_form</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.quick_create_task_form"/>
@@ -209,7 +209,7 @@
   </record>
 
   <!-- Search View -->
-  <record id="view_task_enhancement_search_form" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_task_enhancement_search_form">
     <field name="name">project.task.enhancement.search.form</field>
     <field name="model">project.task</field>
     <field name="inherit_id" ref="project.view_task_search_form"/>
@@ -231,7 +231,7 @@
   </record>
 
   <!-- Gantt View -->
-  <record id="view_task_enhancement_gantt" model="ir.ui.view">
+  <record model="ir.ui.view" id="view_task_enhancement_gantt">
     <field name="name">project.task.enhancement.gantt</field>
     <field name="model">project.task</field>
     <field name="arch" type="xml">

@@ -1,8 +1,27 @@
 <odoo>
-  <data>
+  <!-- grid view -->
+  <record model="ir.ui.view" id="project_forecast_sprint_view_grid">
+    <field name="name">Project Forecast Sprint Grid</field>
+    <field name="model">project.forecast</field>
+    <field name="arch" type="xml">
+      <grid string="Forecast by Sprint" adjustment="object" adjust_name="adjust_grid">
+        <field name="sprint_id" type="row" section="1"/>
+        <field name="project_id" type="row"/>
+        <field name="task_id" type="row"/>
+        <field name="employee_id" type="row"/>
+        <field name="start_date" type="col">
+          <range name="week" string="Week" span="week" step="day" invisible="context.get('forecast_hide_range_week')"/>
+          <range name="month" string="Month" span="month" step="week" invisible="context.get('forecast_hide_range_month')"/>
+          <range name="year" string="Year" span="year" step="month" invisible="context.get('forecast_hide_range_year')"/>
+        </field>
+        <field name="resource_time" type="measure"/>
+      </grid>
+    </field>
+  </record>
+
   <!-- search view -->
-  <record id="project_sprint_forecast_view_search" model="ir.ui.view">
-    <field name="name">project.sprint.forecast.search</field>
+  <record model="ir.ui.view" id="project_forecast_sprint_view_search">
+    <field name="name">Project Forecast Sprint Search</field>
     <field name="model">project.forecast</field>
     <field name="inherit_id" ref="project_forecast.project_forecast_view_search"/>
     <field name="arch" type="xml">
@@ -13,26 +32,8 @@
     </field>
   </record>
 
-  <record id="view_project_forecast_grid_by_sprint" model="ir.ui.view">
-      <field name="name">project.forecast.grid.by.sprint</field>
-      <field name="model">project.forecast</field>
-      <field name="arch" type="xml">
-          <grid string="Forecast by Sprint" adjustment="object" adjust_name="adjust_grid">
-              <field name="sprint_id" type="row" section="1"/>
-              <field name="project_id" type="row"/>
-              <field name="task_id" type="row"/>
-              <field name="employee_id" type="row"/>
-              <field name="start_date" type="col">
-                  <range name="week" string="Week" span="week" step="day" invisible="context.get('forecast_hide_range_week')"/>
-                  <range name="month" string="Month" span="month" step="week" invisible="context.get('forecast_hide_range_month')"/>
-                  <range name="year" string="Year" span="year" step="month" invisible="context.get('forecast_hide_range_year')"/>
-              </field>
-              <field name="resource_time" type="measure"/>
-          </grid>
-      </field>
-    </record>
-
-  <record id="project_forecast_action_by_sprint" model="ir.actions.act_window">
+  <!-- actions opening views on models -->
+  <record model="ir.actions.act_window" id="project_forecast_sprint_action">
       <field name="name">Forecast by sprint</field>
       <field name="res_model">project.forecast</field>
       <field name="view_mode">grid,gantt,tree,form</field>
@@ -42,25 +43,24 @@
       }</field>
   </record>
 
-  <record id="project_forecast_action_view_by_sprint" model="ir.actions.act_window.view">
+  <record model="ir.actions.act_window.view" id="project_forecast_sprint_view_action">
     <field name="view_mode">grid</field>
     <field name="sequence" eval="1"/>
-    <field name="view_id" ref="view_project_forecast_grid_by_sprint"/>
-    <field name="act_window_id" ref="project_forecast_action_by_sprint"/>
+    <field name="view_id" ref="project_forecast_sprint_view_grid"/>
+    <field name="act_window_id" ref="project_forecast_sprint_action"/>
   </record>
 
-  <record id="project_forecast_action_server_by_sprint" model="ir.actions.server">
+  <record model="ir.actions.server" id="project_forecast_sprint_action_server">
     <field name="name">Forecast: view by sprint</field>
     <field name="model_id" ref="project_forecast.model_project_forecast"/>
     <field name="state">code</field>
-    <field name="code">action = model.action_view_forecast('project_enhancements.project_forecast_action_by_sprint')</field>
+    <field name="code">action = model.action_view_forecast('project_enhancements.project_forecast_sprint_action')</field>
   </record>
 
   <!-- Menu Items -->
-  <menuitem id="project_forecast_group_by_sprint"
+  <menuitem id="project_forecast_sprint_menu"
       name="By Sprint"
       parent="project_forecast.project_forecast_menu"
       sequence="20"
-      action="project_forecast_action_server_by_sprint"/>
-  </data>
+      action="project_forecast_sprint_action_server"/>
 </odoo>
