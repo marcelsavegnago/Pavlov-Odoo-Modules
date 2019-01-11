@@ -9,7 +9,7 @@
         This module adds related Knowledgebase Documents to the Helpdesk model by linking them to the Ticket Tags.
     """,
 
-    'author': "Pavlov Media",
+    'author': "Patrick Wilson: Pavlov Media",
     'website': "http://www.pavlovmedia.com",
 
     # Categories can be used to filter modules in modules listing

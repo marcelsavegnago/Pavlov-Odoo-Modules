@@ -3,14 +3,14 @@
     'name': "Project Enhancements",
 
     'summary': """
-        Project Milestones, Scrum, Templates, Task date shifting""",
+        Project Milestones, Scrum, Templates, Task Date Shifting""",
 
     'description': """
-        This module adds Milestons, Scrum & Sprints and Templates to the Project model.
-        Depends: Projects, Timesheets, Employees, Forecasts
+        This module adds Milestones, Scrum (Sprints, Releases, etc) and Templates to the Project model.
+        Dependencies: Projects, Timesheets, Employees, Forecasts
     """,
 
-    'author': "Pavlov Media",
+    'author': "Patrick Wilson: Pavlov Media",
     'website': "http://www.pavlovmedia.com",
 
     # Categories can be used to filter modules in modules listing

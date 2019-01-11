@@ -4,7 +4,8 @@ class ProjectScrumIssueType(models.Model):
      _name = 'project.scrum_issuetype'
      _order = 'issuetype_sequence'
 
-     name = fields.Char(string="Name", required=True)
+     name = fields.Char(string="Name",
+                        required=True)
      description = fields.Char(string="Description")
      issuetype_sequence = fields.Integer(string="Sequence")
      color = fields.Integer(string='Color Index')

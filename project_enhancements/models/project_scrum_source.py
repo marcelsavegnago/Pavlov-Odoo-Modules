@@ -3,8 +3,10 @@ from odoo import models, fields, api
 class ProjectScrumSource(models.Model):
      _name = 'project.scrum_source'
 
-     name = fields.Char(string="Name", required=True)
-     description = fields.Char(string="Description", help="Provide a description of the Source to help users.")
+     name = fields.Char(string="Name",
+                        required=True)
+     description = fields.Char(string="Description",
+                               help="Provide a description of the Source to help users.")
      source_sequence = fields.Integer(string="Sequence")
      color = fields.Integer(string='Color Index')
 

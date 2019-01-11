@@ -4,7 +4,8 @@ class ProjectScrumLabel(models.Model):
      _name = 'project.scrum_label'
      _order = 'label_sequence'
 
-     name = fields.Char(string="Name", required=True)
+     name = fields.Char(string="Name",
+                        required=True)
      description = fields.Char(string="Description")
      label_sequence = fields.Integer(string="Sequence")
      color = fields.Integer(string='Color Index')

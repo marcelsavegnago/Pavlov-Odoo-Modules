@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Bandwidth Change",
+    'name': "Bandwidth Changes",
 
     'summary': """
         Bandwidth Changes""",

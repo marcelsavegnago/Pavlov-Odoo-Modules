@@ -5,10 +5,15 @@ class ProjectMilestone(models.Model):
      _order = 'sequence'
 
 #General
-     name = fields.Char(string="Title", required=True)
-     target_date = fields.Date(string="Target Date", required=False, help="An estimated date for when the Milestone is planned to be completed.")
-     progress = fields.Float(string="Progress", compute="_compute_milestone_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
-
+     name = fields.Char(string="Title",
+                        required=True)
+     target_date = fields.Date(string="Target Date",
+                               required=False,
+                               help="An estimated date for when the Milestone is planned to be completed.")
+     progress = fields.Float(string="Progress",
+                             compute="_compute_milestone_progress",
+                             store=True,
+                             help="Percentage of Completed Tasks vs Incomplete Tasks.")
      project_id = fields.Many2one('project.project', string="Project")
      project_tasks = fields.One2many('project.task', 'milestone_id', string="Project Tasks")
      fold = fields.Boolean(string="KanBan Folded?")

@@ -10,9 +10,21 @@
         <field name="task_id" type="row"/>
         <field name="employee_id" type="row"/>
         <field name="start_date" type="col">
-          <range name="week" string="Week" span="week" step="day" invisible="context.get('forecast_hide_range_week')"/>
-          <range name="month" string="Month" span="month" step="week" invisible="context.get('forecast_hide_range_month')"/>
-          <range name="year" string="Year" span="year" step="month" invisible="context.get('forecast_hide_range_year')"/>
+          <range name="week"
+                 string="Week"
+                 span="week"
+                 step="day"
+                 invisible="context.get('forecast_hide_range_week')"/>
+          <range name="month"
+                 string="Month"
+                 span="month"
+                 step="week"
+                 invisible="context.get('forecast_hide_range_month')"/>
+          <range name="year"
+                 string="Year"
+                 span="year"
+                 step="month"
+                 invisible="context.get('forecast_hide_range_year')"/>
         </field>
         <field name="resource_time" type="measure"/>
       </grid>
@@ -26,7 +38,8 @@
     <field name="inherit_id" ref="project_forecast.project_forecast_view_search"/>
     <field name="arch" type="xml">
         <filter name="group_by_task_id" position="after">
-          <filter name="group_by_sprint_id" string="Sprint"
+          <filter name="group_by_sprint_id"
+                  string="Sprint"
                   context="{'group_by': 'sprint_id'}"/>
         </filter>
     </field>
@@ -38,9 +51,9 @@
       <field name="res_model">project.forecast</field>
       <field name="view_mode">grid,gantt,tree,form</field>
       <field name="context">{
-          'search_default_future': 1,
-          'group_by': ['sprint_id', 'employee_id'],
-      }</field>
+                             'search_default_future': 1,
+                             'group_by': ['sprint_id', 'employee_id'],}
+      </field>
   </record>
 
   <record model="ir.actions.act_window.view" id="project_forecast_sprint_view_action">

@@ -19,7 +19,7 @@
       <field name="speed_sequence">0</field>
     </record>
     <record id="bwchange_speed_1g" model="bwchange.speed">
-      <field name="name">10/1001000</field>
+      <field name="name">10/100/1000</field>
       <field name="description">Speeds are upt to 1 Gbps</field>
       <field name="speed_sequence">1</field>
     </record>

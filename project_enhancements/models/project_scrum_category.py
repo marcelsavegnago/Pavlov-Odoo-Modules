@@ -3,7 +3,8 @@ from odoo import models, fields, api
 class ProjectScrumCategory(models.Model):
      _name = 'project.scrum_category'
 
-     name = fields.Char(string="Name", required=True)
+     name = fields.Char(string="Name",
+                        required=True)
      description = fields.Char(string="Description")
      category_sequence = fields.Integer(string="Sequence")
      color = fields.Integer(string='Color Index')

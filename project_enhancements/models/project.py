@@ -6,18 +6,42 @@ class Project(models.Model):
     _inherit = 'project.project'
 
 # GLOBAL ENHANCEMENTS
-    next_task_number = fields.Integer(string="Next Task Number", default="1", copy=False, help="Each Project can have it's own task numbers and get added to the Task Label.")
-    project_status = fields.Many2one('project.status', string="Status", help="Project status options are global status, configured in the Configuration menu.")
-    department = fields.Many2one('hr.department', string="Department", help="The department that this Project is related to.")
-    old_start_date = fields.Date(string='Old Start Date', help="Used by the Shift Dates function. When the Projects start date changes, the old date is populated in this field then is used when the 'Shift Dates' button is pushed.")
-    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts", help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
-    project_type = fields.Many2one('project.type', string="Project Type", help="The type of Project", required=True)
+    next_task_number = fields.Integer(string="Next Task Number",
+                                      default="1",
+                                      copy=False,
+                                      help="Each Project can have it's own task numbers and get added to the Task Label.")
+    project_status = fields.Many2one('project.status',
+                                      string="Status",
+                                      help="Project status options are global status, configured in the Configuration menu.")
+    department = fields.Many2one('hr.department',
+                                 string="Department",
+                                 help="The department that this Project is related to.")
+    old_start_date = fields.Date(string='Old Start Date',
+                                 help="Used by the Shift Dates function. When the Projects start date changes, the old date is populated in this field then is used when the 'Shift Dates' button is pushed.")
+    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts",
+                                         help="Enables the ability for forecasts to be auto created on Project Tasks. Requires the Task to be assigned, start/end dates and planned hours.")
+    project_type = fields.Many2one('project.type',
+                                   string="Project Type",
+                                   help="The type of Project",
+                                   required=True)
 
 # NEW COMPUTE FIELDS
-    progress = fields.Float(string="Progress", compute="_compute_project_progress", store=True, help="Percentage of Completed Tasks vs Incomplete Tasks.")
-    total_planned_hours = fields.Float(string="Total Planned Hours", compute='_compute_total_planned_hours', store=True, help="Total planned hours from all related Project Tasks.")
-    total_effective_hours = fields.Float(string="Total Spent Hours", compute='_compute_total_effective_hours', store=True, help="Total spent hours from all related Project Tasks.")
-    total_remaining_hours = fields.Float(string="Total Remaining Hours", compute='_compute_total_remaining_hours', store=True, help="Total remaining hours from all related Project Tasks.")
+    progress = fields.Float(string="Progress",
+                            compute="_compute_project_progress",
+                            store=True,
+                            help="Percentage of Completed Tasks vs Incomplete Tasks.")
+    total_planned_hours = fields.Float(string="Total Planned Hours",
+                                       compute='_compute_total_planned_hours',
+                                       store=True,
+                                       help="Total planned hours from all related Project Tasks.")
+    total_effective_hours = fields.Float(string="Total Spent Hours",
+                                         compute='_compute_total_effective_hours',
+                                         store=True,
+                                         help="Total spent hours from all related Project Tasks.")
+    total_remaining_hours = fields.Float(string="Total Remaining Hours",
+                                         compute='_compute_total_remaining_hours',
+                                         store=True,
+                                         help="Total remaining hours from all related Project Tasks.")
 
     # COMPUTE PROJECT PROGRESS
     @api.depends('task_ids.stage_id')
@@ -145,17 +169,33 @@ class Project(models.Model):
         self.old_start_date = False
 
 # SCRUM
-    sprints = fields.Many2many('project.scrum_sprint', relation='project_sprint_rel', column1='project_id', column2='sprint_id', string="Sprints", copy=False)
-    use_scrum = fields.Boolean(string="Use Scrum", copy=True, context="{'default_use_scrum': use_scrum}")
-    releases = fields.One2many('project.scrum_release', 'project_id', string="Releases", copy=False)
+    sprints = fields.Many2many('project.scrum_sprint',
+                               relation='project_sprint_rel',
+                               column1='project_id',
+                               column2='sprint_id',
+                               string="Sprints",
+                               copy=False)
+    use_scrum = fields.Boolean(string="Use Scrum",
+                               copy=True,
+                               context="{'default_use_scrum': use_scrum}")
+    releases = fields.One2many('project.scrum_release',
+                               'project_id',
+                               string="Releases",
+                               copy=False)
 
 # MILESTONES
-    milestones = fields.One2many('project.milestone', 'project_id', string="Milestones", copy=True)
-    use_milestones = fields.Boolean(string="Use Milestones", copy=True)
+    milestones = fields.One2many('project.milestone', 'project_id',
+                                 string="Milestones",
+                                 copy=True)
+    use_milestones = fields.Boolean(string="Use Milestones",
+                                    copy=True)
 
 # TEMPLATE
-    is_template = fields.Boolean(string="Is Template", copy=False)
-    shift_task_dates = fields.Boolean(string="Shift Task Dates?", default=True, help="If checked, when you change the start date of a project, the dates on the Tasks will shift the number of days you change the start date of the Project. If the Project start dates were originally empty, the Start/End dates on the tasks will be set to the Project Start/End Dates unless they were previously set on the Tasks.")
+    is_template = fields.Boolean(string="Is Template",
+                                 copy=False)
+    shift_task_dates = fields.Boolean(string="Shift Task Dates?",
+                                      default=True,
+                                      help="If checked, when you change the start date of a project, the dates on the Tasks will shift the number of days you change the start date of the Project. If the Project start dates were originally empty, the Start/End dates on the tasks will be set to the Project Start/End Dates unless they were previously set on the Tasks.")
 
     # CREATE A PROJECT FROM A TEMPLATE AND OPEN THE NEWLY CREATED PROJECT
     def create_project_from_template(self):
@@ -177,12 +217,12 @@ class Project(models.Model):
 
         # OPEN THE NEWLY CREATED PROJECT FORM
         return {
-            'view_type': 'form',
-            'view_mode': 'form',
-            'res_model': 'project.project',
-            'target': 'current',
-            'res_id': new_project.id,
-            'type': 'ir.actions.act_window'
+                'view_type': 'form',
+                'view_mode': 'form',
+                'res_model': 'project.project',
+                'target': 'current',
+                'res_id': new_project.id,
+                'type': 'ir.actions.act_window'
         }
         # FORCE PAGE REFRESH TO ALLOW FOR PROPER ONCHANGE EVENTS LIKE SHIFTING DATES
         return {
