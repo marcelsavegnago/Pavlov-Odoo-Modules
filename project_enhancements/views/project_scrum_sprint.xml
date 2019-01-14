@@ -10,6 +10,9 @@
           <field name="projects"
                  widget="many2many_tags"
                  options="{'color_field': 'color'}"/>
+          <field name="epics"
+                 widget="many2many_tags"
+                 options="{'color_field': 'color'}"/>
           <field name="scrum_teams"
                  widget="many2many_tags"
                  options="{'color_field': 'color'}"/>
@@ -67,6 +70,10 @@
                      widget="many2many_tags"
                      options="{'color_field': 'color'}"/>
               <field name="end_date"/>
+              <field name="epics"
+                     widget="many2many_tags"
+                     options="{'color_field': 'color'}"
+                     domain="[('project_id','in', projects)]"/>
             </group>
             <group>
               <field name="goal"/>
@@ -137,7 +144,7 @@
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_sprint_action">
-      <field name="name">Project Scrum Sprint Action</field>
+      <field name="name">Project Sprints</field>
       <field name="res_model">project.scrum_sprint</field>
       <field name="view_mode">tree,form</field>
     </record>

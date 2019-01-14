@@ -24,7 +24,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_source_action">
-      <field name="name">Project Scrum Source Action</field>
+      <field name="name">Project Sources</field>
       <field name="res_model">project.scrum_source</field>
       <field name="view_mode">tree</field>
     </record>

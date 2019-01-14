@@ -43,6 +43,12 @@ class ProjectSprint(models.Model):
                                  string="Projects",
                                  required=True,
                                  help="List the Projects that are being included in this Sprint.")
+     epics = fields.Many2many('project.scrum_epic',
+                              relation='project_epic_rel',
+                              column1='sprint_id',
+                              column2='epic_id',
+                              string="Epics",
+                              help="List the Epics that are being included in this Sprint.")
      forecasts = fields.One2many('project.forecast',
                                  'sprint_id',
                                  string="Forecasts",

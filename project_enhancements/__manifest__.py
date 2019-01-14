@@ -37,6 +37,7 @@
         'views/project_scrum_point.xml',
         'views/project_scrum_release.xml',
         'views/project_scrum_source.xml',
+        'views/project_scrum_epic.xml',
         'views/project_task.xml',
         'views/project_scrum_team.xml',
         'views/project_task_type.xml',

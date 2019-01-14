@@ -34,7 +34,7 @@
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_team_action">
-      <field name="name">Project Scrum Team Action</field>
+      <field name="name">Project Scrum Teams</field>
       <field name="res_model">project.scrum_team</field>
       <field name="view_mode">tree,form</field>
     </record>

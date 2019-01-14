@@ -24,7 +24,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_type_action">
-      <field name="name">Project Type Action</field>
+      <field name="name">Project Types</field>
       <field name="res_model">project.type</field>
       <field name="view_mode">tree</field>
     </record>

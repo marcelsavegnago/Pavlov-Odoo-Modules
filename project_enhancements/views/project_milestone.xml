@@ -8,7 +8,7 @@
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="project_milestones_view_list">
+    <record model="ir.ui.view" id="project_milestone_view_list">
       <field name="name">Project Milestone List</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
@@ -26,7 +26,7 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="project_milestones_view_form">
+    <record model="ir.ui.view" id="project_milestone_view_form">
       <field name="name">Project Milestone Form</field>
       <field name="model">project.milestone</field>
       <field name="arch" type="xml">
@@ -67,7 +67,7 @@
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="project_milestone_action">
-      <field name="name">Project Milestone Action</field>
+      <field name="name">Project Milestones</field>
       <field name="res_model">project.milestone</field>
       <field name="context">{'group_by': 'project_id'}</field>
       <field name="view_mode">tree,form</field>

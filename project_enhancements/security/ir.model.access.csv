@@ -20,3 +20,5 @@ project_status_user,Project Status User,model_project_status,project.group_proje
 project_status_manager,Project Status Manager,model_project_status,project.group_project_manager,1,1,1,1
 project_type_user,Project Type User,model_project_type,project.group_project_user,1,0,0,0
 project_type_manager,Project Type Manager,model_project_type,project.group_project_manager,1,1,1,1
+project_epic_user,Project Epic User,model_project_scrum_epic,project.group_project_user,1,0,0,0
+project_epic_manager,Project Epic Manager,model_project_scrum_epic,project.group_project_manager,1,1,1,1

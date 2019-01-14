@@ -23,7 +23,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_label_action">
-      <field name="name">Project Scrum Label Action</field>
+      <field name="name">Project Labels</field>
       <field name="res_model">project.scrum_label</field>
       <field name="view_mode">tree</field>
     </record>

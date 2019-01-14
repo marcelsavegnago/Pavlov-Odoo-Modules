@@ -1,15 +1,24 @@
 <odoo>
+    <!-- Sequences-->
+    <record model="ir.sequence" id="bwchange_seq">
+      <field name="name">BW Change Sequence</field>
+      <field name="code">bwchange.change</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
     <!-- List View -->
     <record model="ir.ui.view" id="bwchange_change_view_list">
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
-        <tree default_order='stage, partner_id'>
-          <field name="stage"/>
-          <field name="state"/>
-          <field name="partner_id"/>
+        <tree default_order="create_date desc">
           <field name="name"/>
           <field name="description"/>
+          <field name="partner_id"/>
+          <field name="priority"
+                 widget="priority"/>
+          <field name="stage"/>
           <field name="create_date"/>
           <field name="user_id"/>
           <field name="circuit_id"/>
@@ -188,7 +197,9 @@
       <field name="name">Bandwidth Changes</field>
       <field name="model">bwchange.change</field>
       <field name="arch" type="xml">
-        <kanban default_group_by="stage">
+        <kanban default_order="priority desc, bwchange_sequence" default_group_by="stage">
+          <field name="priority"/>
+          <field name="bwchange_sequence"/>
           <field name="color"/>
           <field name="user_id"/>
           <field name="circuit_landdate"/>

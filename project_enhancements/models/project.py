@@ -182,6 +182,10 @@ class Project(models.Model):
                                'project_id',
                                string="Releases",
                                copy=False)
+    epics = fields.One2many('project.scrum_epic',
+                            'project_id',
+                            string="Epics",
+                            copy=True)
 
 # MILESTONES
     milestones = fields.One2many('project.milestone', 'project_id',

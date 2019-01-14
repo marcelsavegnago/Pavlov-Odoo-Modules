@@ -24,7 +24,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_category_action">
-      <field name="name">Project Scrum Category Action</field>
+      <field name="name">Project Categories</field>
       <field name="res_model">project.scrum_category</field>
       <field name="view_mode">tree</field>
     </record>

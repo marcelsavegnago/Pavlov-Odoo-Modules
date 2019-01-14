@@ -14,8 +14,11 @@ class ProjectMilestone(models.Model):
                              compute="_compute_milestone_progress",
                              store=True,
                              help="Percentage of Completed Tasks vs Incomplete Tasks.")
-     project_id = fields.Many2one('project.project', string="Project")
-     project_tasks = fields.One2many('project.task', 'milestone_id', string="Project Tasks")
+     project_id = fields.Many2one('project.project',
+                                  string="Project")
+     project_tasks = fields.One2many('project.task',
+                                     'milestone_id',
+                                     string="Project Tasks")
      fold = fields.Boolean(string="KanBan Folded?")
      sequence = fields.Integer(string="Sequence")
 

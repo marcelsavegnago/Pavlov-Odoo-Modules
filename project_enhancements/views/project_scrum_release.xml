@@ -92,7 +92,7 @@
 
     <!-- actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_release_action">
-      <field name="name">Project Scrum Action</field>
+      <field name="name">Project Releases</field>
       <field name="res_model">project.scrum_release</field>
       <field name="view_mode">tree,form</field>
     </record>

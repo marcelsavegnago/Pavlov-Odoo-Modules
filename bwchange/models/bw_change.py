@@ -3,6 +3,7 @@ from odoo import models, fields, api
 class BandwidthChange(models.Model):
      _name = 'bwchange.change'
      _inherit = ['mail.thread']
+     _order = 'bwchange_sequence'
 
      #General
      spacer = fields.Char()
@@ -70,6 +71,14 @@ class BandwidthChange(models.Model):
      #Finalized Document
      final_document = fields.Binary(string="Final Document")
      filename = fields.Char(string="Filename")
+
+     bwchange_sequence = fields.Integer(string="Sequence")
+     #Used for Sequencing
+     @api.model
+     def create(self, vals):
+         seq = self.env['ir.sequence'].next_by_code('bwchange.change') or '/'
+         vals['bwchange_sequence'] = seq
+         return super(BandwidthChange, self).create(vals)
 
      #Used for Kanban grouped_by view
      @api.model

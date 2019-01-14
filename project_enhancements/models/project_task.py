@@ -46,13 +46,11 @@ class ProjectTask(models.Model):
     issue_type_image = fields.Binary(string="Issue Type Image",
                                      related='issue_type.issue_type_image',
                                      help="The Issue Type image shows up on the kanban boards and Task to show a quick visualization of the type of issue.")
-    reporter = fields.Many2one('res.user', string="Reporter",
+    reporter = fields.Many2one('res.partner', string="Reporter",
                                help="Whomever reported the Task. Must be a user of the system.")
-
     date_start = fields.Datetime(copy=True)
     date_end = fields.Datetime(copy=True)
     date_deadline = fields.Date(copy=True)
-
     forecasts = fields.One2many('project.forecast',
                                 'task_id',
                                 string="Forecasts",
@@ -60,6 +58,8 @@ class ProjectTask(models.Model):
     allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts",
                                          related='project_id.allow_auto_forecast',
                                          help="Enables the ability for forecasts to be auto created on the Task. Related to the Project 'Allow Auto Forecasts' setting. Requires the Task to be assigned, start/end dates and planned hours.")
+    epic_id = fields.Many2one('project.scrum_epic',
+                           string="Epic")
 
     # USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):

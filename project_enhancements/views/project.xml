@@ -14,6 +14,7 @@
         <field name="project_status"/>
         <field name="milestones"/>
         <field name="sprints"/>
+        <field name="epics"/>
       </field>
       <field name="partner_id" position="after">
         <field name="progress"
@@ -111,6 +112,14 @@
           <page name="milestones" string="Milestones" attrs="{'invisible':[('use_milestones','=', False)]}">
             <group>
               <field name="milestones"
+                     context="{'default_project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]"/>
+            </group>
+          </page>
+          <page name="epics" string="Epics" attrs="{'invisible':[('use_scrum','=', False)]}">
+            <group>
+              <field name="epics"
                      context="{'default_project_id': active_id}"
                      nolabel="1"
                      domain="[('project_id', '=', active_id)]"/>

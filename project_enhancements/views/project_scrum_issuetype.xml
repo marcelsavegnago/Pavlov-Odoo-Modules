@@ -29,7 +29,7 @@
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="project_scrum_issuetype_action">
-      <field name="name">Project Scrum Issue Type Action</field>
+      <field name="name">Project Issue Types</field>
       <field name="res_model">project.scrum_issuetype</field>
       <field name="view_mode">tree</field>
     </record>
