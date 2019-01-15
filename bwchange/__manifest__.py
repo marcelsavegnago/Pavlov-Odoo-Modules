@@ -10,13 +10,13 @@
     """,
 
     'author': "Patrick Wilson: Pavlov Media",
-    'website': "http://www.pavlovmedia.com",
+    'website': "https://www.pavlovmedia.com",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
     'category': 'Bandwidth Changes',
-    'version': '0.1',
+    'version': '12.0.1.0.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base','mail'],
