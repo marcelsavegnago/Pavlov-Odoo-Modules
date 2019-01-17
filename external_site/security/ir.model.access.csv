@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_external_site_user,External Sites User,model_external_site,external_site.external_site_group_user,1,0,0,0
-access_external_site_manager,External Sites Manager,model_external_site,external_site.external_site_group_manager,1,1,1,1

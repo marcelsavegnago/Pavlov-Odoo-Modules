@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_intranet_user,Intranet User,model_server_intranet,intranet.intranet_group_user,1,0,0,0
+access_intranet_administrator,Intranet Administrator,model_server_intranet,intranet.intranet_group_administrator,1,1,1,1

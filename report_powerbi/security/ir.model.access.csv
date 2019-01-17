@@ -1,3 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_powerbi_user,PowerBI User,model_reportserver_powerbi,report_powerbi.powerbi_group_user,1,0,0,0
-access_powerbi_manager,PowerBI Manager,model_reportserver_powerbi,report_powerbi.powerbi_group_manager,1,1,1,1

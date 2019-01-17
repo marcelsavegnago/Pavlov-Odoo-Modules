@@ -1,0 +1,64 @@
+<odoo>
+    <!-- Sequences-->
+    <record model="ir.sequence" id="bwchange_stage_seq">
+      <field name="name">BW Change Stage Sequence</field>
+      <field name="code">bwchange.stage</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record model="ir.ui.view" id="bwchange_stage_view_list">
+      <field name="name">BW Change Stage List View</field>
+      <field name="model">bwchange.stage</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="stage_sequence"
+                 widget="handle"
+                 groups="base.group_no_one"/>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="fold"/>
+          <field name="default_state"
+                 required="1"/>
+          <field name="id"
+                 attrs="{'readonly': True}"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="bwchange_stage_view_form">
+      <field name="name">BW Change Stage Form</field>
+      <field name="model">bwchange.stage</field>
+      <field name="arch" type="xml">
+        <form string="BW Change Stage">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="description"/>
+              <field name="default_state"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="bwchange_stage_action">
+      <field name="name">Stages</field>
+      <field name="res_model">bwchange.stage</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Stages"
+      id="bwchange_stage_menu"
+      parent="bwchange_change_configuration_menu"
+      action="bwchange_stage_action"
+      sequence="10"/>
+</odoo>
