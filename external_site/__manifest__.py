@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Power BI Report Server",
+    'name': "External Sites on Main Menu",
 
     'summary': """
-        Power BI Report Server""",
+        Adds External Sites to the Main Menu""",
 
     'description': """
-        This module provides a link to a PowerBI server within Odoo.
+        This module provides an easy way to add links to external sites on the main menu.
     """,
 
     'author': "Pavlov Media",
@@ -15,7 +15,7 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Reports',
+    'category': 'Extra Tools',
     'version': '12.0.1.0.0',
 
     # any module necessary for this one to work correctly
@@ -25,8 +25,8 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/reportserver_powerbi.xml',
-        'views/res_config_view.xml',
+        'views/external_site.xml',
+#        'views/res_config_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
