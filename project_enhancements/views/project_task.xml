@@ -224,7 +224,7 @@
         <filter string="Parent Tasks" name="parenttasks" domain="[('parent_id', '=', False)]"/>
         <filter string="Sub Tasks" name="subtasks" domain="[('parent_id', '!=', False)]"/>
       </filter>
-      <filter name="company" position="after">
+      <filter name="stage" position="after">
         <separator/>
         <filter string="Milestones" name="milestones" context="{'group_by':'milestone_id', 'default_order':'sequence'}"/>
         <separator/>

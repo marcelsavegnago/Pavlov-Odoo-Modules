@@ -152,9 +152,6 @@ class Project(models.Model):
                     else:
                         record.write({'date_end': record.project_id.date})
 
-                    if record.date_end > record.project_id.date:
-                        record.project_id.write({'date': record.date_end})
-
                     if record.date_deadline:
                         record.write({'date_deadline': (record.date_deadline + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
                     else:
