@@ -31,10 +31,12 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//header" position="inside">
-          <field name="project_status"
-                 widget="statusbar"
-                 options="{'clickable': '1'}"/>
+        <xpath expr="//sheet" position="before">
+          <header>
+            <field name="project_status"
+                   widget="statusbar"
+                   clickable="True"/>
+          </header>
         </xpath>
         <field name="user_id" position="replace">
           <field name="user_id"
@@ -62,6 +64,20 @@
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
+        <xpath expr="//sheet" position="inside">
+          <header>
+            <button string="Create Project From Template"
+              type="object"
+              name="create_project_from_template"
+              class="oe_highlight"
+              attrs="{'invisible': [('is_template', '=', False)]}"/>
+            <button string="Shift Project Task Dates"
+              type="object"
+              name="shift_dates"
+              class="oe_highlight"
+              attrs="{'invisible': ['|',('old_start_date', '=', False), ('shift_task_dates', '=', False)]}"/>
+          </header>
+        </xpath>
         <xpath expr="//header" position="inside">
           <button string="Create Project From Template"
                   type="object"

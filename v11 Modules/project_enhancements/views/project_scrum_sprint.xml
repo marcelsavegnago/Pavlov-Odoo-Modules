@@ -124,16 +124,12 @@
                   <field name="sprint_id"/>
                   <field name="resource_hours" sum="Total Hrs"/>
                   <field name="time" sum="Total Allocated Hrs"/>
-                  <field name="effective_hours" sum="Effective Hrs"/>
                   <field name="start_date"/>
                   <field name="end_date"/>
                 </tree>
               </field>
             </page>
-          </notebook>
-           <button name="%(project_forecast_sprint_action_server)d"
-                   string="Show Capacity Forecast"
-                   type="action"/>
+           </notebook>
           </sheet>
         </form>
       </field>
