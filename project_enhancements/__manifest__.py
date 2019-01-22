@@ -3,10 +3,10 @@
     'name': "Project Enhancements",
 
     'summary': """
-        Project Milestones, Scrum, Templates, Task Date Shifting""",
+        Project Types, Status, Department and Progress""",
 
     'description': """
-        This module adds Milestones, Scrum (Sprints, Releases, etc) and Templates to the Project model.
+        This module adds Project Types, Status, Department and Progress to the Project model.
         Dependencies: Projects, Timesheets, Employees, Forecasts
     """,
 
@@ -28,19 +28,9 @@
         'views/project_status.xml',
         'views/project_type.xml',
         'views/project.xml',
-        'views/project_milestone.xml',
-        'views/project_forecast.xml',
-        'views/project_scrum_sprint.xml',
-        'views/project_scrum_category.xml',
-        'views/project_scrum_issuetype.xml',
-        'views/project_scrum_label.xml',
-        'views/project_scrum_point.xml',
-        'views/project_scrum_release.xml',
-        'views/project_scrum_source.xml',
-        'views/project_scrum_epic.xml',
         'views/project_task.xml',
-        'views/project_scrum_team.xml',
         'views/project_task_type.xml',
+        'views/res_config_settings_views.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
         'data/data.xml',

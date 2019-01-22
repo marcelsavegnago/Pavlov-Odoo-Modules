@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Field Service Location Tree View-->
+    <record id="fsm_location_tree_view" model="ir.ui.view">
+        <field name="name">fsm.location.tree</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <tree string="Locations">
+                <field name="ref"/>
+                <field name="name"/>
+                <field name="parent_id"/>
+                <field name="owner_id"/>
+                <field name="customer_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Field Service Location Form View-->
+    <record id="fsm_location_form_view" model="ir.ui.view">
+        <field name="name">fsm.location.form</field>
+        <field name="model">fsm.location</field>
+        <field name="arch" type="xml">
+            <form string="Location">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name" required="True"/></h1>
+                    <group>
+                        <group id="main-left">
+                            <field name="id" invisible="1"/>
+                            <field name="owner_id"/>
+                            <field name="customer_id"/>
+                            <field name="contact_id"/>
+                        </group>
+                        <group id="main-right">
+                            <field name="ref"/>
+                            <field name="parent_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Others" id="others-page">
+                            <group id="others">
+                                <group id="others-left"></group>
+                                <group id="others-right"></group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record model="ir.ui.view" id="fsm_location_view_search">
+      <field name="name">FSM Location Search</field>
+      <field name="model">fsm.location</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="owner_id"/>
+          <field name="customer_id"/>
+          <group expand="0" string="Group By">
+              <filter string="Owner"
+                      name="by_owner"
+                      context="{'partner_id':'owner_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="action_fsm_location" model="ir.actions.act_window">
+        <field name="name">Service Locations</field>
+        <field name="res_model">fsm.location</field>
+        <field name="view_id" ref="fsm_location_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Service Locations.
+            </p>
+        </field>
+    </record>
+
+        <!-- Main Menu -->
+        <menuitem id="fsm_location_root"
+                  name="Field Service"
+                  sequence="10"
+                  web_icon="fsm_location,static/description/icon.png"/>
+        <menuitem id="data"
+                  name="Master Data"
+                  sequence="30"
+                  parent="fsm_location_root"/>
+
+        <!-- Master Data Menu -->
+        <menuitem id="menu_fsm_fsm_location"
+                  name="Locations"
+                  action="action_fsm_location"
+                  parent="data"
+                  sequence="20"/>
+
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+  <!-- This holds the security groups -->
+  <record model="ir.module.category" id="module_fsm_location">
+    <field name="name">FSM Location</field>
+    <field name="description">User access level for FSM Locations</field>
+    <field name="sequence">3</field>
+  </record>
+
+  <record id="fsm_location_group_user" model="res.groups">
+    <field name="name">User</field>
+    <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+   </record>
+
+</odoo>

@@ -1,0 +1,94 @@
+<odoo>
+  <!-- List View-->
+  <record model="ir.ui.view" id="project_enhancement_milestone_view_list">
+    <field name="name">project.enhancement.milestone.tree</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="type">tree</field>
+    <field name="field_parent">child_ids</field>
+    <field name="arch" type="xml">
+      <field name="user_id" position="after">
+        <field name="milestones"/>
+      </field>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record model="ir.ui.view" id="project_enhancement_milestone_view_form">
+    <field name="name">project.enhancement.milestone.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//div[@name='options_active']" position="inside">
+          <div>
+            <field name="use_milestones" class="oe_inline" string="Use Milestones"/>
+            <label for="use_milestones"/>
+          </div>
+        </xpath>
+        <xpath expr="//page[@name='settings']" position="after">
+          <page name="milestones" string="Milestones" attrs="{'invisible':[('use_milestones','=', False)]}">
+            <group>
+              <field name="milestones"
+                     context="{'default_project_id': active_id}"
+                     nolabel="1"
+                     domain="[('project_id', '=', active_id)]"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record model="ir.ui.view" id="view_enhancement_milestone_edit_project_simple">
+    <field name="name">project.enhancement.milestone.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <field name="user_id" position="after">
+          <field name="use_milestones"/>
+        </field>
+      </data>
+    </field>
+  </record>
+
+  <!-- Kanban View -->
+  <record model="ir.ui.view" id="view_project_enhancement_milestone_kanban">
+    <field name="name">project.enhancement.milestone.kanban</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_kanban"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//div[@class='o_primary']" position="after">
+          <div>
+            <field name="use_milestones"
+                   invisible="1"/>
+            <t t-if="record.use_milestones.raw_value">
+              <span class="o_label">Milestones: </span>
+              <span class="o_value"><field name="milestones"/></span>
+            </t>
+          </div>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Search View -->
+  <record model="ir.ui.view" id="project_enhancements_milestone_search_view">
+    <field name="name">project.enhancements.milestone.filter</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_project_filter"/>
+    <field name="arch" type="xml">
+      <filter name="inactive" position="before">
+        <filter string="Milestones Enabled"
+                name="milestone_enabled"
+                domain="[('use_milestones', '=', True)]"/>
+      </filter>
+    </field>
+  </record>
+
+</odoo>
