@@ -68,5 +68,5 @@
                 src_model="fsm.location"
                 view_mode="form"
                 target="new"
-                context = "{'default_primary_location_id': active_id, 'default_owner_id': active_id.owner_id}"/>
+                context = "{'default_primary_location_id': active_id, 'default_owner_id': context.get('owner_id.id',False)}"/>
 </odoo>

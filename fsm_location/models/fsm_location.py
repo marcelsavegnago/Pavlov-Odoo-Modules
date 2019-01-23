@@ -23,3 +23,8 @@ class FSMLocation(models.Model):
 
     parent_id = fields.Many2one('fsm.location', string='Parent')
     notes = fields.Text(string="Notes")
+
+    @api.model
+    def create(self, vals):
+        vals.update({'fsm_location': True})
+        return super(FSMLocation, self).create(vals)

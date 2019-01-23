@@ -49,7 +49,7 @@
             </form>
         </field>
     </record>
-
+    
     <!-- Search View -->
     <record model="ir.ui.view" id="fsm_location_view_search">
       <field name="name">FSM Location Search</field>

@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[hasclass('settings')]" position="inside">
-                <div class="app_settings_block" data-string="Intranet Data-String" string="Intranet" data-key="server_intranet" groups="intranet.intranet_group_administrator">
+                <div class="app_settings_block" data-string="Intranet Data-String" string="Intranet" data-key="intranet" groups="intranet.intranet_group_administrator">
                     <h2>General Settings</h2>
                     <div class="row mt16 o_settings_container">
                         <div class="col-xs-12 col-md-6 o_setting_box">

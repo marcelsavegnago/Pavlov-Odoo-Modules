@@ -24,6 +24,7 @@
     # always loaded
     'data': [
         'views/fsm_location.xml',
+#        'views/res_partner.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],

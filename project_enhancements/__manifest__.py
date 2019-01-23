@@ -24,7 +24,6 @@
 
     # always loaded
     'data': [
-        'report/sprint_capacity_report.xml',
         'views/project_status.xml',
         'views/project_type.xml',
         'views/project.xml',
