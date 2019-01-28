@@ -67,7 +67,7 @@
     <field name="name">Forecast: view by sprint</field>
     <field name="model_id" ref="project_forecast.model_project_forecast"/>
     <field name="state">code</field>
-    <field name="code">action = model.action_view_forecast('project_enhancements.project_forecast_sprint_action')</field>
+    <field name="code">action = model.action_view_forecast('project_enhancements_scrum.project_forecast_sprint_action')</field>
   </record>
 
   <!-- Menu Items -->

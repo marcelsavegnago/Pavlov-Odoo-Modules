@@ -84,9 +84,10 @@
     <field name="inherit_id" ref="project.view_project_project_filter"/>
     <field name="arch" type="xml">
       <filter name="inactive" position="before">
-        <filter string="Milestones Enabled"
-                name="milestone_enabled"
+        <filter string="Milestone Projects"
+                name="milestone_projects"
                 domain="[('use_milestones', '=', True)]"/>
+        <separator/>
       </filter>
     </field>
   </record>

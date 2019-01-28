@@ -7,12 +7,6 @@
     <field name="type">tree</field>
     <field name="field_parent">child_ids</field>
     <field name="arch" type="xml">
-      <field name="user_id" position="after">
-        <field name="project_type"
-               widget="selection"/>
-        <field name="department"/>
-        <field name="project_status"/>
-      </field>
       <field name="partner_id" position="after">
         <field name="progress"
                widget="progressbar"/>
@@ -28,18 +22,10 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//header" position="inside">
-          <field name="project_status"
-                 widget="statusbar"
-                 options="{'clickable': '1'}"/>
-        </xpath>
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
         <xpath expr="//field[@name='user_id']" position="after">
-          <field name="project_type"
-                 widget="selection"/>
-          <field name="department"/>
           <field name="date_start"
                  widget="date"/>
           <field name="date"
@@ -82,11 +68,6 @@
                    string="Name of the tasks:"
                    required="1"/>
             <field name="user_id"/>
-            <field name="project_type"
-                   widget="selection"/>
-            <field name="department"/>
-            <field name="project_status"
-                   required = "1"/>
             <field name="partner_id"/>
             <field name="privacy_visibility"
                    widget="radio"/>
@@ -112,16 +93,6 @@
       <data>
         <xpath expr="//div[@class='o_primary']" position="after">
           <div>
-            <t t-if="record.department.raw_value">
-              <span class="o_value"><field name="department"/></span>
-            </t>
-            <t t-if="record.project_status.raw_value">
-              <span class="o_label"> (</span>
-              <span class="o_value"><field name="project_status"/></span>
-              <span class="o_label">)</span>
-            </t>
-          </div>
-          <div>
             <small>
               <t t-if="record.allow_timesheets.raw_value">
                 <span class="o_value"><field name="total_planned_hours"/>  |  <field name="total_effective_hours"/>  |  <field name="total_remaining_hours"/></span>
@@ -130,35 +101,6 @@
           </div>
         </xpath>
       </data>
-    </field>
-  </record>
-
-  <!-- Search View -->
-  <record model="ir.ui.view" id="project_enhancements_view_search">
-    <field name="name">project.enhancements.filter</field>
-    <field name="model">project.project</field>
-    <field name="inherit_id" ref="project.view_project_project_filter"/>
-    <field name="arch" type="xml">
-      <filter name="inactive" position="before">
-        <filter string="Not Closed"
-          name="not_closed"
-          domain="['|',('project_status.is_closed', '=', False),('project_status', '=', False)]"/>
-        <filter string="Closed"
-          name="is_closed"
-          domain="[('project_status.is_closed', '=', True)]"/>
-        <separator/>
-      </filter>
-      <filter name="Partner" position="after">
-        <filter string="Types"
-                name="Project Types"
-                context="{'group_by': 'project_type'}"/>
-        <filter string="Status"
-                name="Project Status"
-                context="{'group_by': 'project_status'}"/>
-        <filter string="Department"
-                name="department"
-                context="{'group_by': 'department'}"/>
-      </filter>
     </field>
   </record>
 

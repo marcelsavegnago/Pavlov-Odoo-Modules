@@ -5,18 +5,6 @@ from dateutil.relativedelta import relativedelta
 class Project(models.Model):
     _inherit = 'project.project'
 
-# GLOBAL ENHANCEMENTS
-    project_status = fields.Many2one('project.status',
-                                      string="Status",
-                                      help="Project status options are global status, configured in the Configuration menu.")
-    department = fields.Many2one('hr.department',
-                                 string="Department",
-                                 help="The department that this Project is related to.")
-    project_type = fields.Many2one('project.type',
-                                   string="Project Type",
-                                   help="The type of Project",
-                                   required=True)
-
 # NEW COMPUTE FIELDS
     progress = fields.Float(string="Progress",
                             compute="_compute_project_progress",

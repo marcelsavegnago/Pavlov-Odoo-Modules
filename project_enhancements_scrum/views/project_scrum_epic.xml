@@ -20,14 +20,11 @@
           <field name="priority"
                  widget="priority"/>
           <field name="affects_versions"
-                 widget="many2many_tags"
-                 options="{'no_create_edit': True}"/>
+            widget="many2many_tags"/>
           <field name="labels"
-                 widget="many2many_tags"
-                 options="{'no_create_edit': True}"/>
+            widget="many2many_tags"/>
           <field name="fix_versions"
-                 widget="many2many_tags"
-                 options="{'no_create_edit': True}"/>
+            widget="many2many_tags"/>
           <field name="project_tasks"/>
           <field name="progress"
                  widget="progressbar"/>
@@ -54,15 +51,15 @@
                      widget="priority"/>
               <field name="affects_versions"
                      widget="many2many_tags"
-                     domain="[('project_id','=', project_id),('status','=','released')]"
-                     options="{'color_field': 'color', 'no_create_edit': True}"/>
+                     options="{'color_field': 'color'}"
+                     domain="[('project_id','=', project_id),('status','=','released')]"/>
               <field name="labels"
                      widget="many2many_tags"
-                     options="{'color_field': 'color', 'no_create_edit': True}"/>
+                     options="{'color_field': 'color'}"/>
               <field name="fix_versions"
                      widget="many2many_tags"
-                     domain="[('project_id','=', project_id),('status','=','unreleased')]"
-                     options="{'color_field': 'color', 'no_create_edit': True}"/>
+                     options="{'color_field': 'color'}"
+                     domain="[('project_id','=', project_id),('status','=','unreleased')]"/>
             </group>
             <group>
               <field name="description"/>

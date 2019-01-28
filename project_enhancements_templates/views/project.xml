@@ -82,7 +82,9 @@
         <filter string="Non-Templates"
                 name="projects"
                 domain="[('is_template', '=', False)]"/>
+        <separator/>
       </filter>
+
     </field>
   </record>
 

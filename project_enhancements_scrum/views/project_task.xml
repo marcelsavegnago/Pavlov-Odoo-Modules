@@ -6,9 +6,6 @@
     <field name="inherit_id" ref="project.view_task_tree2"/>
     <field eval="2" name="priority"/>
     <field name="arch" type="xml">
-      <xpath expr="//tree" position="attributes">
-	       <attribute name="editable">top</attribute>
-      </xpath>
       <field name="name" position="before">
         <field name="task_number"
                readonly="1"/>
@@ -24,10 +21,6 @@
     <field eval="2" name="priority"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='date_deadline']" position = "before">
-          <field name="date_start"/>
-          <field name="date_end"/>
-        </xpath>
         <xpath expr="//field[@name='kanban_state']" position = "before">
           <field name="issue_type_image"
                  widget="image"
@@ -96,12 +89,6 @@
         </xpath>
         <xpath expr="//page[@name='extra_info']" position = "before">
           <page name="forecasts" string="Forecasts" attrs="{'invisible':[('allow_forecast','=', False)]}">
-            <group colspan="2" col="4">
-              <field name="date_start"
-                     widget="date"/>
-              <field name="date_end"
-                     widget="date"/>
-            </group>
             <group attrs="{'invisible':[('allow_forecast','=', False)]}">
               <field name="forecasts"
                      nolabel="1"
@@ -182,13 +169,11 @@
         <field name="sprint_id"/>
         <field name="epic_id"/>
       </field>
-      <filter name="unassigned" position="after">
-        <filter string="Parent Tasks" name="parenttasks" domain="[('parent_id', '=', False)]"/>
-        <filter string="Sub Tasks" name="subtasks" domain="[('parent_id', '!=', False)]"/>
-      </filter>
       <filter name="stage" position="after">
         <separator/>
-        <filter string="Epics" name="epics" context="{'group_by':'epic_id'}"/>
+        <filter string="Epics"
+                name="epics"
+                context="{'group_by':'epic_id'}"/>
       </filter>
     </field>
   </record>
@@ -198,7 +183,9 @@
     <field name="name">project.task.enhancement.scrum.gantt</field>
     <field name="model">project.task</field>
     <field name="arch" type="xml">
-      <gantt date_start="date_start" date_stop="date_end" progress="progress">
+      <gantt date_start="date_start"
+             date_stop="date_end"
+             progress="progress">
       </gantt>
     </field>
   </record>

@@ -3,10 +3,10 @@
     'name': "Project Enhancements",
 
     'summary': """
-        Project Types, Status, Department and Progress""",
+        Project Enhancements""",
 
     'description': """
-        This module adds Project Types, Status, Department and Progress to the Project model.
+        This module adds Project Progress and additional enhancement modules to the Project model.
         Dependencies: Projects, Timesheets, Employees, Forecasts
     """,
 
@@ -24,15 +24,13 @@
 
     # always loaded
     'data': [
-        'views/project_status.xml',
-        'views/project_type.xml',
         'views/project.xml',
         'views/project_task.xml',
         'views/project_task_type.xml',
         'views/res_config_settings_views.xml',
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'data/data.xml',
+#        'security/security.xml',
+#        'security/ir.model.access.csv',
+#        'data/data.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
