@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Project Enhancements - Task Date Shift",
+    'name': "Project Enhancements - Auto Forecasts",
 
     'summary': """
-        Project Task Date Shifting""",
+        Project Auto Forecasts""",
 
     'description': """
-        This module adds the ability to shift Task dates if when the Project Start Date changes.
-        Dependencies: Projects, Project Enhancements
+        This module adds Auto Forecasting to the Project model.
+        Dependencies: Projects, Project Enhancements, Timesheets, Employees, Forecasts
     """,
 
     'author': "Patrick Wilson: Pavlov Media",
@@ -22,11 +22,16 @@
     # any module necessary for this one to work correctly
     'depends': ['base',
                 'project',
+                'timesheet_grid',
+                'hr',
+                'project_forecast',
                 'project_enhancements'],
 
     # always loaded
     'data': [
+
         'views/project.xml',
+        'views/project_task.xml',
 #        'security/security.xml',
 #        'security/ir.model.access.csv',
     ],

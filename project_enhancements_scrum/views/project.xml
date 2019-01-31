@@ -27,7 +27,7 @@
         </field>
         <xpath expr="//div[@name='options_active']" position="inside">
           <div>
-            <field name="use_scrum" class="oe_inline" string="Use sprints"/>
+            <field name="use_scrum" class="oe_inline" string="Use scrum"/>
             <label for="use_scrum"/>
           </div>
         </xpath>
@@ -44,7 +44,7 @@
               <field name="epics"
                      context="{'default_project_id': active_id}"
                      nolabel="1"
-                     domain="[('project_id', '=', active_id)]"/>        
+                     domain="[('project_id', '=', active_id)]"/>
             </group>
           </page>
           <page name="sprints" string="Sprints" attrs="{'invisible':[('use_scrum','=', False)]}">

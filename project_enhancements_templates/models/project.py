@@ -24,10 +24,11 @@ class Project(models.Model):
         if new_project.alias_name:
             new_project.alias_name = False
 
-        # SINCE THE END DATE DOESN'T COPY OVER ON TASKS, POPULATE END DATES ON THE TASK
-        for record in new_project.tasks:
-            if record.date_start and record.date_end == False:
-                record.write({'date_end': (record.date_start + relativedelta(days =+ 1))})
+        # SINCE THE END DATE DOESN'T COPY OVER ON TASKS (Even when changed to copy=true), POPULATE END DATES ON THE TASK
+        for new_task_record in new_project.task_ids:
+            for old_task_record in self.task_ids:
+                if new_task_record.name == old_task_record.name:
+                    new_task_record.date_end = old_task_record.date_end
 
         # IF MILESTONES ARE BEING USED, LINK THE NEWLY CREATED TASKS TO THE NEWLY CREATED MILESTONES
         # Only do this if the milestone module is installed

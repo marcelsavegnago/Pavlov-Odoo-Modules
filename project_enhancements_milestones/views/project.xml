@@ -23,7 +23,7 @@
       <data>
         <xpath expr="//div[@name='options_active']" position="inside">
           <div>
-            <field name="use_milestones" class="oe_inline" string="Use Milestones"/>
+            <field name="use_milestones" class="oe_inline" string="Use milestones"/>
             <label for="use_milestones"/>
           </div>
         </xpath>

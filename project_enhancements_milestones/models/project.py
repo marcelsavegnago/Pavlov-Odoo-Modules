@@ -7,5 +7,5 @@ class Project(models.Model):
     milestones = fields.One2many('project.milestone', 'project_id',
                                  string="Milestones",
                                  copy=True)
-    use_milestones = fields.Boolean(string="Use Milestones",
+    use_milestones = fields.Boolean(string="Use milestones",
                                     copy=True)

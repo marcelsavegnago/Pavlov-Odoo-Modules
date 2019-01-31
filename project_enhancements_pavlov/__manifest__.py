@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Project Enhancements - Task Date Shift",
+    'name': "Project Enhancements - Pavlov Media",
 
     'summary': """
-        Project Task Date Shifting""",
+        Pavlov Media Project changes""",
 
     'description': """
-        This module adds the ability to shift Task dates if when the Project Start Date changes.
-        Dependencies: Projects, Project Enhancements
+        This module adds Project items specific to Pavlov Media
+        Dependencies: Projects
     """,
 
     'author': "Patrick Wilson: Pavlov Media",
@@ -20,9 +20,7 @@
     'version': '12.0.1.0.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base',
-                'project',
-                'project_enhancements'],
+    'depends': ['base', 'project', 'project_enhancements'],
 
     # always loaded
     'data': [
@@ -36,5 +34,5 @@
     ],
     'installable':True,
     'auto_install':False,
-    'application':False,
+    'application':True,
 }

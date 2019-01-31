@@ -9,9 +9,6 @@ class ProjectTask(models.Model):
                                  default=fields.Datetime.now,
                                  index=True,
                                  copy=True)
-    date_end = fields.Datetime(string='Ending Date',
-                               index=True,
-                               copy=True)
 
     # USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):

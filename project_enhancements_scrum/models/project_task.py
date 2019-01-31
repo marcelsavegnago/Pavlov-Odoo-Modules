@@ -48,30 +48,8 @@ class ProjectTask(models.Model):
                                      help="The Issue Type image shows up on the kanban boards and Task to show a quick visualization of the type of issue.")
     reporter = fields.Many2one('res.partner', string="Reporter",
                                help="Whomever reported the Task. Must be a user of the system.")
-    date_start = fields.Datetime(copy=True)
-    date_end = fields.Datetime(copy=True)
-    date_deadline = fields.Date(copy=True)
-    forecasts = fields.One2many('project.forecast',
-                                'task_id',
-                                string="Forecasts",
-                                help="List of Forecasts related to the Task.")
-    allow_auto_forecast = fields.Boolean(string="Allow Auto Forecasts",
-                                         related='project_id.allow_auto_forecast',
-                                         help="Enables the ability for forecasts to be auto created on the Task. Related to the Project 'Allow Auto Forecasts' setting. Requires the Task to be assigned, start/end dates and planned hours.")
     epic_id = fields.Many2one('project.scrum_epic',
                            string="Epic")
-
-    # USED IN THE LIST VIEWS ON FORMS
-    def open_rec(self):
-        return {
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'project.task',
-                'res_id': self.id,
-                'type': 'ir.actions.act_window',
-                'target': 'new',
-                'flags': {'form': {'action_buttons': True}}
-        }
 
     # USED FOR GROUP BY SPRINTS
     @api.model
@@ -96,35 +74,3 @@ class ProjectTask(models.Model):
         record.project_id.write({'next_task_number': next_num})
 
         return record
-
-    # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET
-    @api.onchange('date_start', 'date_end', 'sprint_id', 'planned_hours')
-    def on_change_task_forecast(self):
-        # Only perform this action if the project has 'Allow Auto Forecasts' enabled AND all the forecast required fields are filled in
-        if self.allow_auto_forecast and self.date_start and self.date_end and self.planned_hours and self.user_id:
-            # If Task already has Forecasts then update them
-            if self.forecasts:
-                # Check if there is an employee record associated with the user_id
-                employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
-                # If there is a employee record for the user_id, then each forecast record can be updated
-                if employee_id.id:
-                    for record in self.forecasts: # MAYBE NEED and employee.id == employee_id (to only update forecasts related to the assigned user)
-                        record.sudo().write({'start_date': self.date_start,
-                                             'end_date': self.date_end,
-                                             'sprint_id': self.sprint_id.id,
-                                             'resource_hours': self.planned_hours,
-                                             'employee_id': employee_id.id})
-
-            # If no forecasts exist then create it
-            else:
-                # Check if there is an employee record associated with the user_id
-                employee_id = self.env['hr.employee'].search([('user_id', '=', self.user_id.id)])
-                # If there is a employee record for the user_id, then a forecast record can be created...
-                if employee_id.id:
-                    self.env['project.forecast'].sudo().create({'sprint_id': self.sprint_id.id,
-                                                                'employee_id': employee_id.id,
-                                                                'project_id': self.project_id.id,
-                                                                'resource_hours': self.planned_hours,
-                                                                'task_id': self._origin.id,
-                                                                'start_date': self.date_start,
-                                                                'end_date': self.date_end})
