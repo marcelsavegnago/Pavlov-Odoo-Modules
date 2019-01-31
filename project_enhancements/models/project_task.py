@@ -1,8 +1,17 @@
 from odoo import models, fields, api
+from datetime import timedelta
 
 class ProjectTask(models.Model):
     _inherit = 'project.task'
     _order = 'priority desc, date_start, date_end, sequence, date_start, id desc'
+
+    date_start = fields.Datetime(string='Starting Date',
+                                 default=fields.Datetime.now,
+                                 index=True,
+                                 copy=True)
+    date_end = fields.Datetime(string='Ending Date',
+                               index=True,
+                               copy=True)
 
     # USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):

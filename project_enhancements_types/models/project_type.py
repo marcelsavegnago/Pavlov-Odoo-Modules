@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class ProjectType(models.Model):
      _name = 'project.type'
+     _order = 'type_sequence'
 
      name = fields.Char(string="Name",
                         required=True)

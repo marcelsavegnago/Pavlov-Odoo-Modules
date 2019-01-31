@@ -33,7 +33,15 @@
               <field name="milestones"
                      context="{'default_project_id': active_id}"
                      nolabel="1"
-                     domain="[('project_id', '=', active_id)]"/>
+                     domain="[('project_id', '=', active_id)]">
+                <tree>
+                  <field name="name"/>
+                  <field name="target_date"/>
+                  <field name="project_tasks"/>
+                  <field name="progress"
+                         widget="progressbar"/>
+                </tree>
+              </field>
             </group>
           </page>
         </xpath>

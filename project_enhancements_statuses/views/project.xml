@@ -24,7 +24,7 @@
         <xpath expr="//header" position="inside">
           <field name="project_status"
                  widget="statusbar"
-                 options="{'clickable': '1'}"/>
+                 options="{'clickable': '1', 'fold_field': 'fold'}"/>
         </xpath>
       </data>
     </field>

@@ -1,6 +1,4 @@
 from odoo import models, fields, api
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
 
 class Project(models.Model):
     _inherit = 'project.project'

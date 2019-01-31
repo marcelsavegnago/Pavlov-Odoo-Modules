@@ -14,10 +14,10 @@
       <field name="arch" type="xml">
         <tree editable="top">
           <field name="status_sequence"
-                 widget="handle"
-                 groups="base.group_no_one"/>
+                 widget="handle"/>
           <field name="name"/>
           <field name="description"/>
+          <field name="fold"/>
           <field name="is_closed"/>
         </tree>
       </field>

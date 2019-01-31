@@ -17,7 +17,7 @@ class Project(models.Model):
         new_project = self.copy(default={'name': new_name,
                                          'active': True,
                                          'total_planned_hours': 0.0})
-        new_project.next_task_number = self.next_task_number
+        #new_project.next_task_number = self.next_task_number
         if new_project.subtask_project_id != new_project.id:
             new_project.subtask_project_id = new_project.id
         # Clear Email Alias if it was set in the Template
@@ -27,7 +27,16 @@ class Project(models.Model):
         # SINCE THE END DATE DOESN'T COPY OVER ON TASKS, POPULATE END DATES ON THE TASK
         for record in new_project.tasks:
             if record.date_start and record.date_end == False:
-                record.write({'date_end': (record.date_start + relativedelta(days =+ 7))})
+                record.write({'date_end': (record.date_start + relativedelta(days =+ 1))})
+
+        # IF MILESTONES ARE BEING USED, LINK THE NEWLY CREATED TASKS TO THE NEWLY CREATED MILESTONES
+        # Only do this if the milestone module is installed
+        module = self.env['ir.module.module'].search([('name', '=', 'project_enhancements_milestones')])
+        if module and module.state == 'installed':
+            for new_task_record in new_project.task_ids:
+                for new_milestone_record in new_project.milestones:
+                    if new_task_record.milestone_id.name == new_milestone_record.name:
+                        new_task_record.milestone_id = new_milestone_record.id
 
         # OPEN THE NEWLY CREATED PROJECT FORM
         return {

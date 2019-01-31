@@ -2,6 +2,7 @@ from odoo import models, fields, api
 
 class ProjectStatus(models.Model):
      _name = 'project.status'
+     _order = 'status_sequence'
 
      name = fields.Char(string="Name",
                         required=True)
@@ -10,6 +11,7 @@ class ProjectStatus(models.Model):
      status_sequence = fields.Integer(string="Sequence")
      is_closed = fields.Boolean(string="Is Closed Status",
                                 help="Specify if this is a closing status. Used by views to help filter out closed items.")
+     fold = fields.Boolean(string="Folded")
 
      @api.model
      def create(self, vals):
