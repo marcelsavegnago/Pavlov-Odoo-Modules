@@ -1,0 +1,18 @@
+<odoo>
+  <!-- Add demo fields to existing view -->
+  <record model="ir.ui.view" id="res_partner_form">
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <data>
+          <xpath expr="//page[@name='internal_notes']" position="after">
+              <page name="sample" string="Sample" attrs="{'invisible': [('is_company','=',True)]}">
+                <group>
+                  <field name="sample_field"/>
+                </group>
+              </page>
+          </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

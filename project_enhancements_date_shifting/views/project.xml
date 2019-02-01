@@ -14,11 +14,12 @@
                   class="oe_highlight"
                   attrs="{'invisible': ['|',('old_start_date', '=', False), ('shift_task_dates', '=', False)]}"/>
         </xpath>
-        <xpath expr="//group[@name='misc']" position="before">
-          <group string="Shift Dates Settings" colspan="2" col="4">
-            <field name="shift_task_dates"/>
-          </group>
-        </xpath>
+        <div name="options_active" position="after">
+          <div>
+            <field name="shift_task_dates" class="oe_inline" string="Allow date shifting"/>
+            <label for="shift_task_dates"/>
+          </div>
+        </div>
         <xpath expr="//field[@name='sequence']" position="after">
           <field name="old_start_date"
                  string="OLD Start Date"

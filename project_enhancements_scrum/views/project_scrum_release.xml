@@ -6,7 +6,6 @@
       <field name="arch" type="xml">
         <tree default_order='release_date desc' decoration-success="status=='released'">
           <field name="status"/>
-            <field name="project_id"/>
           <field name="name"/>
           <field name="description"/>
           <field name="release_notes"/>
@@ -94,6 +93,7 @@
     <record model="ir.actions.act_window" id="project_scrum_release_action">
       <field name="name">Project Releases</field>
       <field name="res_model">project.scrum_release</field>
+      <field name="context">{'group_by': 'project_id'}</field>
       <field name="view_mode">tree,form</field>
     </record>
 

@@ -2,7 +2,7 @@ from odoo import models, fields, api
 
 class ProjectScrumEpic(models.Model):
      _name = 'project.scrum_epic'
-#     _order = 'epic_sequence'
+     _order = 'epic_sequence'
 
 #General
      name = fields.Char(string="Title",
@@ -14,7 +14,7 @@ class ProjectScrumEpic(models.Model):
                                   ('medium','Medium'),
                                   ('low','Low'),
                                   ('lowest','Lowest')],
-                                  string="priority",
+                                  string="Priority",
                                   required=False)
      progress = fields.Float(string="Progress",
                              compute="_compute_epic_progress",
@@ -63,15 +63,3 @@ class ProjectScrumEpic(models.Model):
                 record.progress = (closed_tasks_count / total_tasks_count) * 100
             else:
                 record.progress = 0.0
-
-     # USED IN THE LIST VIEWS ON FORMS
-     def open_epic_rec(self):
-         return {
-                 'view_type': 'form',
-                 'view_mode': 'form',
-                 'res_model': 'project.scrum_epic',
-                 'res_id': self.id,
-                 'type': 'ir.actions.act_window',
-                 'target': 'current',
-                 'flags': {'form': {'action_buttons': True}}
-         }

@@ -42,9 +42,9 @@
           <page name="epics" string="Epics" attrs="{'invisible':[('use_scrum','=', False)]}">
             <group>
               <field name="epics"
-                     context="{'default_project_id': active_id}"
                      nolabel="1"
-                     domain="[('project_id', '=', active_id)]"/>
+                     domain="[('project_id', '=', active_id)]"
+                     context="{'default_project_id': active_id}"/>
             </group>
           </page>
           <page name="sprints" string="Sprints" attrs="{'invisible':[('use_scrum','=', False)]}">
@@ -52,6 +52,7 @@
               <field name="sprints"
                      nolabel="1"
                      domain="[('project_id', '=', active_id)]"
+                     context="{'default_project_id': active_id}"
                      readonly="1"/>
             </group>
             <a>*Sprints are managed via the 'Scrum/All Sprints' menu</a>
@@ -59,9 +60,9 @@
           <page name="releases" string="Releases" attrs="{'invisible':[('use_scrum','=', False)]}">
             <group>
               <field name="releases"
-                     context="{'project_id': active_id}"
                      nolabel="1"
-                     domain="[('project_id', '=', active_id)]"/>
+                     domain="[('project_id', '=', active_id)]"
+                     context="{'default_project_id': active_id}"/>
             </group>
           </page>
         </xpath>
