@@ -10,6 +10,9 @@
         <xpath expr="//field[@name='user_id']" position="before">
           <field name="project_summary"/>
         </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="construction_manager"/>
+        </xpath>
         <xpath expr="//field[@name='privacy_visibility']" position="before">
           <field name="tag_ids"
                  widget="many2many_tags"

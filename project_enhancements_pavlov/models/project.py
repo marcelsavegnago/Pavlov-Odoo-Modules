@@ -21,3 +21,5 @@ class Project(models.Model):
                                           index=True,
                                           copy=False)
     tag_ids = fields.Many2many('project.tags', string="Tags")
+    construction_manager = fields.Many2one('res.users', 
+                                           string="Construction Manager")

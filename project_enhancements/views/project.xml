@@ -33,7 +33,7 @@
                  widget="date"/>
         </xpath>
         <xpath expr="//page[@name='settings']" position="after">
-          <page name="tasks" string="Tasks">
+          <!--<page name="tasks" string="Tasks">
             <group>
               <field name="task_ids"
                      nolabel="1"
@@ -50,7 +50,7 @@
                 </tree>
               </field>
             </group>
-          </page>
+          </page>-->
           <page name="performance" string="Performance">
             <group colspan="2" col="2">
               <field name="total_planned_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>

@@ -74,3 +74,10 @@ class ProjectTask(models.Model):
         record.project_id.write({'next_task_number': next_num})
 
         return record
+
+    # UPDATE FORECAST AUTOMATICALLY IF SPRINT CHANGES
+    @api.onchange('sprint_id', 'forecasts')
+    def on_change_task_sprint_forecast(self):
+        if self.forecasts:
+            for forecast_record in self.forecasts:
+                forecast_record.sudo().write({'sprint_id': self.sprint_id.id})

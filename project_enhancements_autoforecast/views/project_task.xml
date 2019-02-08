@@ -7,26 +7,21 @@
     <field eval="2" name="priority"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//page[@name='extra_info']" position = "before">
-          <field name="allow_forecast" invisible="1"/>
-          <page name="forecasts" string="Forecasts" attrs="{'invisible':[('allow_forecast','=', False)]}">
-            <group attrs="{'invisible':[('allow_forecast','=', False)]}">
-              <field name="forecasts"
-                     nolabel="1"
-                     context="{'default_task_id': active_id, 'default_resource_hours': planned_hours}">
-                <tree>
-                  <field name="employee_id"/>
-                  <field name="start_date"
-                         widget="date"/>
-                  <field name="end_date"
-                         widget="date"/>
-                  <field name="resource_hours"/>
-                  <field name="time"/>
-                  <field name="effective_hours"/>
-                </tree>
-              </field>
-            </group>
-          </page>
+        <xpath expr="//field[@name='forecasts']" position = "replace">
+          <field name="forecasts"
+                 nolabel="1"
+                 context="{'default_task_id': active_id, 'default_resource_hours': planned_hours, 'default_project_id': project_id}">
+            <tree create="false">
+              <field name="employee_id"/>
+              <field name="start_date"
+                     widget="date"/>
+              <field name="end_date"
+                     widget="date"/>
+              <field name="resource_hours"/>
+              <field name="time"/>
+              <field name="effective_hours"/>
+            </tree>
+          </field>
         </xpath>
       </data>
     </field>

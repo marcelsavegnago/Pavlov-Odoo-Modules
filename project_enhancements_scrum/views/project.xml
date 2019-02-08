@@ -34,8 +34,6 @@
         <xpath expr="//group[@name='misc']" position="before">
           <group string="Scrum Settings" colspan="2" col="4" attrs="{'invisible':[('use_scrum','=', False)]}">
             <field name="next_task_number"/>
-            <field name="allow_auto_forecast"
-                   attrs="{'invisible':[('allow_forecast','=', False)]}"/>
           </group>
         </xpath>
         <xpath expr="//page[@name='settings']" position="after">
