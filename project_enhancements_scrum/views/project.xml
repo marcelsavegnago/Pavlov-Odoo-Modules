@@ -88,25 +88,6 @@
     </field>
   </record>
 
-  <!-- Kanban View -->
-  <record model="ir.ui.view" id="project_enhancement_scrum_view_kanban">
-    <field name="name">project.enhancement.scrum.kanban</field>
-    <field name="model">project.project</field>
-    <field name="inherit_id" ref="project.view_project_kanban"/>
-    <field name="arch" type="xml">
-      <data>
-        <xpath expr="//div[@class='o_primary']" position="after">
-          <div>
-            <field name="use_scrum" invisible="1"/>
-            <t t-if="record.use_scrum.raw_value">
-              <span class="o_label">Scrum Enabled</span>
-            </t>
-          </div>
-        </xpath>
-      </data>
-    </field>
-  </record>
-
   <!-- Search View -->
   <record model="ir.ui.view" id="project_enhancement_scrum_view_search">
     <field name="name">project.enhancements.scrum.filter</field>

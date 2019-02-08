@@ -8,6 +8,11 @@ class ProjectTask(models.Model):
                                          related='project_id.allow_auto_forecast',
                                          help="Enables the ability for forecasts to be auto created on the Task. Related to the Project 'Allow Auto Forecasts' setting. Requires the Task to be assigned, start/end dates and planned hours.")
 
+    forecasts = fields.One2many('project.forecast',
+                                'task_id',
+                                string="Forecasts",
+                                help="List of Forecasts related to the Task.")
+                                
     # UPDATE OR CREATE FORECAST AUTOMATICALLY IF ALL REQUIRED VALUES ARE MET
     @api.onchange('date_start', 'date_end', 'planned_hours', 'user_id')
     def on_change_task_forecast(self):

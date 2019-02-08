@@ -9,11 +9,7 @@ class ProjectTask(models.Model):
                                  default=fields.Datetime.now,
                                  index=True,
                                  copy=True)
-    forecasts = fields.One2many('project.forecast',
-                                'task_id',
-                                string="Forecasts",
-                                help="List of Forecasts related to the Task.")
-                                
+
     # USED IN THE LIST VIEWS ON FORMS
     def open_rec(self):
         return {

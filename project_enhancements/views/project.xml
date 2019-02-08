@@ -8,6 +8,8 @@
     <field name="field_parent">child_ids</field>
     <field name="arch" type="xml">
       <field name="partner_id" position="after">
+        <field name="date_start"/>
+        <field name="date"/>
         <field name="progress"
                widget="progressbar"/>
       </field>
@@ -33,24 +35,6 @@
                  widget="date"/>
         </xpath>
         <xpath expr="//page[@name='settings']" position="after">
-          <!--<page name="tasks" string="Tasks">
-            <group>
-              <field name="task_ids"
-                     nolabel="1"
-                     context="{'default_project_id': active_id}">
-                <tree>
-                  <field name="name"/>
-                  <field name="user_id"/>
-                  <field name="date_start"/>
-                  <field name="date_end"/>
-                  <field name="planned_hours"/>
-                  <field name="progress"
-                         widget="progressbar"/>
-                  <button name="open_rec" string="Open" type="object"/>
-                </tree>
-              </field>
-            </group>
-          </page>-->
           <page name="performance" string="Performance">
             <group colspan="2" col="2">
               <field name="total_planned_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
@@ -59,7 +43,6 @@
             </group>
             <field name="progress"
                    widget="percentpie"/>
-
           </page>
         </xpath>
       </data>

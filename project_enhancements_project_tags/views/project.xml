@@ -1,0 +1,64 @@
+<odoo>
+  <!-- List View-->
+  <record model="ir.ui.view" id="project_enhancements_tags_view_list">
+    <field name="name">project.enhancement.tags.tree</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project_enhancements.project_enhancements_view_list"/>
+    <field name="type">tree</field>
+    <field name="field_parent">child_ids</field>
+    <field name="arch" type="xml">
+      <field name="date_start" position="before">
+        <field name="tag_ids"
+               widget="many2many_tags"/>
+      </field>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record model="ir.ui.view" id="project_enhancements_tags_view_form">
+    <field name="name">project.enhancement.tags.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='date_start']" position="before">
+          <field name="tag_ids"
+                 widget="many2many_tags"
+                 options="{'color_field': 'color'}"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record model="ir.ui.view" id="project_enhancements_tags_view_simple">
+    <field name="name">project.enhancement.tags.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='date_start']" position="before">
+          <field name="tag_ids"
+                 widget="many2many_tags"
+                 options="{'color_field': 'color'}"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Kanban View -->
+  <record model="ir.ui.view" id="project_enhancements_tags_view_kanban">
+    <field name="name">project.enhancement.tags.kanban</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_kanban"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//div[@class='o_primary']" position="after">
+          <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>
