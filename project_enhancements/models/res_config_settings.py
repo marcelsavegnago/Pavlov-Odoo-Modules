@@ -12,3 +12,4 @@ class ResConfigSettings(models.TransientModel):
     module_project_enhancements_departments = fields.Boolean(string="Department")
     module_project_enhancements_autoforecast = fields.Boolean(string="Auto Forecasts")
     module_project_enhancements_project_tags = fields.Boolean(string="Project Tags")
+    module_project_enhancements_taskchecklist = fields.Boolean(string="Task Checklists")

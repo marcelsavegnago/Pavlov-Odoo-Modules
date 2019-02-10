@@ -1,0 +1,27 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="view_task_enhancement_task_checklist_form" >
+    <field name="name">project.task.enhancement.task_checklist.form</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field eval="2" name="priority"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='description']" position="after">
+          <group string="Checklist">
+            <field name="checklist_ids"
+                   nolabel="1"
+                   domain="[('task_id', '=', active_id)]"
+                   context="{'default_task_id': active_id}"/>
+          </group>
+          <group>
+            <field name="checklist_progress"
+                   nolabel="1"
+                   widget="percentpie"/>
+          </group>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>
