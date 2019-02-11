@@ -7,6 +7,7 @@ class ProjectTaskChecklist(models.Model):
 #General
      name = fields.Char(string="Title",
                         required=True)
+     description = fields.Text(string="Description")
      is_complete = fields.Boolean(string="Completed")
      task_id = fields.Many2one('project.task',
                                 string="Task")

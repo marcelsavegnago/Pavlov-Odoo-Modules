@@ -35,7 +35,8 @@
               <h1><field name="name" /></h1>
             </div>
             <group colspan="2" col="4">
-              <field name="project_id"/>
+              <field name="project_id"
+                     domain="[('use_scrum','=',True)]"/>
               <field name="release_date"/>
               </group>
             <group>

@@ -7,18 +7,20 @@
     <field eval="2" name="priority"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//field[@name='description']" position="after">
-          <group string="Checklist">
-            <field name="checklist_ids"
-                   nolabel="1"
-                   domain="[('task_id', '=', active_id)]"
-                   context="{'default_task_id': active_id}"/>
-          </group>
-          <group>
-            <field name="checklist_progress"
-                   nolabel="1"
-                   widget="percentpie"/>
-          </group>
+        <xpath expr="//page[@name='description_page']" position="after">
+          <page name="checklist" string="Checklist">
+            <group>
+              <field name="checklist_ids"
+                     nolabel="1"
+                     domain="[('task_id', '=', active_id)]"
+                     context="{'default_task_id': active_id}"/>
+            </group>
+            <group>
+              <field name="checklist_progress"
+                     nolabel="1"
+                     widget="percentpie"/>
+            </group>
+          </page>
         </xpath>
       </data>
     </field>
