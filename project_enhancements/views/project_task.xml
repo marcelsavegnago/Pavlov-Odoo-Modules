@@ -29,20 +29,6 @@
     </field>
   </record>
 
-  <!-- Quick Create View -->
-  <record model="ir.ui.view" id="project_enhancement_task_view_quick_create_form">
-    <field name="name">project_enhancements_quick_create_task_form</field>
-    <field name="model">project.task</field>
-    <field name="inherit_id" ref="project.quick_create_task_form"/>
-    <field eval="2" name="priority"/>
-    <field name="arch" type="xml">
-      <field name="user_id" position="after">
-        <field name="date_start"/>
-        <field name="date_end"/>
-      </field>
-    </field>
-  </record>
-
   <!-- Search View -->
   <record model="ir.ui.view" id="project_enhancement_task_view_search">
     <field name="name">project.task.enhancement.search.form</field>
