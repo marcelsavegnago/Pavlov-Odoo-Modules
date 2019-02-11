@@ -1,0 +1,35 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="project_enhancement_autoforecast_view_form">
+    <field name="name">project.enhancement.autoforecast.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <div name="options_active" position="after">
+            <div>
+              <field name="allow_auto_forecast" class="oe_inline" string="Allow auto forecasts" attrs="{'invisible':[('allow_forecast','=', False)]}"/>
+              <label for="allow_auto_forecast" attrs="{'invisible':[('allow_forecast','=', False)]}"/>
+            </div>
+        </div>
+      </data>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record model="ir.ui.view" id="view_enhancement_edit_project_simple">
+    <field name="name">project.enhancement.autoforecast.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project_forecast.project_project_view_form_simplified_inherit_forecast"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <field name="allow_forecast" position="after">
+            <field name="allow_auto_forecast" attrs="{'invisible':[('allow_forecast','=', False)]}"/>
+        </field>
+      </data>
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,53 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="project_enhancements_pavlov_view_form">
+    <field name="name">project.enhancement.pavlov.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project_enhancements.project_enhancements_view_form"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="before">
+          <field name="project_summary"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="construction_manager"/>
+        </xpath>
+        <xpath expr="//field[@name='privacy_visibility']" position="before">
+          <field name="tag_ids"
+                 widget="many2many_tags"
+                 options="{'color_field': 'color'}"/>
+        </xpath>
+        <xpath expr="//page[@name='performance']" position="inside">
+          <group name="contract_info" string="Contract Information" col="4" colspan="2">
+            <field name="contract_live_date_data"/>
+            <field name="contract_end_date_data"/>
+            <field name="contract_live_date_video"/>
+            <field name="contract_end_date_video"/>
+            <field name="early_services_date"/>
+          </group>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record model="ir.ui.view" id="project_enhancements_pavlov_view_simple">
+    <field name="name">project.enhancement.pavlov.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='user_id']" position="before">
+          <field name="project_summary"/>
+        </xpath>
+        <xpath expr="//field[@name='privacy_visibility']" position="before">
+          <field name="tag_ids"
+                 widget="many2many_tags"
+                 options="{'color_field': 'color'}"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>
