@@ -34,11 +34,11 @@ class Project(models.Model):
             for record in self.task_ids:
                 if (record.active) and (record.stage_id.is_closed != True):
                     if record.date_start:
-                        record.write({'date_start': (record.date_start + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                        record.write({'date_start': (fields.Datetime.from_string(record.date_start) + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
                     if record.date_end:
-                        record.write({'date_end': (record.date_end + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                        record.write({'date_end': (fields.Datetime.from_string(record.date_end) + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
                     if record.date_deadline:
-                        record.write({'date_deadline': (record.date_deadline + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                        record.write({'date_deadline': (fields.Datetime.from_string(record.date_deadline) + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
 
             # SHIFT MILESTONE DATES
             # Only do this if the milestone module is installed
