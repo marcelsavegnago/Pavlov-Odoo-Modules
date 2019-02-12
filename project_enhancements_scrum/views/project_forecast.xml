@@ -12,19 +12,16 @@
         <field name="start_date" type="col">
           <range name="week"
                  string="Week"
-                 span="week"
-                 step="day"
-                 invisible="context.get('forecast_hide_range_week')"/>
+                 span="month"
+                 step="day"/>
           <range name="month"
                  string="Month"
                  span="month"
-                 step="week"
-                 invisible="context.get('forecast_hide_range_month')"/>
+                 step="week"/>
           <range name="year"
                  string="Year"
                  span="year"
-                 step="month"
-                 invisible="context.get('forecast_hide_range_year')"/>
+                 step="month"/>
         </field>
         <field name="resource_time" type="measure"/>
       </grid>
