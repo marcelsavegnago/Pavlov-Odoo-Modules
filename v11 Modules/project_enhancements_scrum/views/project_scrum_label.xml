@@ -1,0 +1,38 @@
+<odoo>
+    <!-- Sequences-->
+    <record model="ir.sequence" id="project_scrum_label_seq">
+      <field name="name">Project Scrum Label Sequence</field>
+      <field name="code">project.scrum_label</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record model="ir.ui.view" id="project_scrum_label_view_list">
+      <field name="name">Project Scrum Label List</field>
+      <field name="model">project.scrum_label</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="label_sequence"
+                 widget="handle"/>
+          <field name="name"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="project_scrum_label_action">
+      <field name="name">Project Labels</field>
+      <field name="res_model">project.scrum_label</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Labels"
+      id="project_scrum_label_menu"
+      parent="scrum_configuration_section_menu"
+      sequence="50"
+      action="project_scrum_label_action"/>
+</odoo>
