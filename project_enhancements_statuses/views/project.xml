@@ -72,7 +72,7 @@
     <field name="model">project.project</field>
     <field name="inherit_id" ref="project.view_project_project_filter"/>
     <field name="arch" type="xml">
-      <filter name="followed_by_me" position="after">
+      <filter name="partner_id" position="after">
         <separator/>
         <filter string="Not Closed"
                 name="not_closed"

@@ -24,7 +24,7 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//sheet" position="before">
+        <xpath expr="//sheet" position="before"> <!-- Header is missing from v11, added in v12 -->
           <header>
           </header>
         </xpath>
