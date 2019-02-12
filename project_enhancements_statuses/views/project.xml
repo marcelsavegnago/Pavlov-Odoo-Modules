@@ -73,6 +73,7 @@
     <field name="inherit_id" ref="project.view_project_project_filter"/>
     <field name="arch" type="xml">
       <filter name="partner_id" position="after">
+      <xpath expr="//field[@name='partner_id']" position="after">
         <separator/>
         <filter string="Not Closed"
                 name="not_closed"
@@ -80,7 +81,7 @@
         <filter string="Closed"
                 name="is_closed"
                 domain="[('project_status.is_closed', '=', True)]"/>
-      </filter>
+      </xpath>
       <filter name="Partner" position="after">
         <filter string="Status"
                 name="project_status"

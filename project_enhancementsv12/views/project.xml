@@ -24,10 +24,6 @@
     <field name="type">form</field>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//sheet" position="before"> <!-- Header is missing from v11, added in v12 -->
-          <header>
-          </header>
-        </xpath>
         <field name="label_tasks" position="replace">
           <field name="label_tasks" required="1"/>
         </field>
