@@ -47,6 +47,6 @@ class Project(models.Model):
                 if self.use_milestones:
                     for record2 in self.milestones:
                         if record2.target_date:
-                            record2.write({'target_date': (record2.target_date + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
+                            record2.write({'target_date': (fields.Datetime.from_string(record2.target_date) + relativedelta(years =+ years) + relativedelta(months =+ months) + relativedelta(days =+ days))})
 
         self.old_start_date = False
