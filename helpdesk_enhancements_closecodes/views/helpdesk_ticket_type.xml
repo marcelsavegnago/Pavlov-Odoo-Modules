@@ -1,0 +1,15 @@
+<odoo>
+
+  <record model="ir.ui.view" id="helpdesk_ticket_closecode_type_list">
+    <field name="model">helpdesk.ticket.type</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_type_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="enable_closecode"
+                 string="Enable Cause/Actions"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+</odoo>

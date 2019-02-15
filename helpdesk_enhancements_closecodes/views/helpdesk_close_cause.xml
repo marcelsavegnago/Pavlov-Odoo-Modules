@@ -1,0 +1,55 @@
+<odoo>
+    <!-- List View-->
+    <record model="ir.ui.view" id="helpdesk_close_cause_list_view">
+      <field name="name">Helpdesk Close Causes List View</field>
+      <field name="model">helpdesk.closecause</field>
+      <field name="arch" type="xml">
+        <tree default_order='name'>
+          <field name="name"/>
+          <field name="ticket_type_ids"
+                 widget="many2many_tags"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="helpdesk_close_cause_form_view">
+      <field name="name">Helpdesk Close Code Form</field>
+      <field name="model">helpdesk.closecause</field>
+      <field name="arch" type="xml">
+        <form string="Helpdesk Close Code">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="ticket_type_ids"
+                     widget="many2many_tags"/>
+            </group>
+            <group>
+              <field name="description"/>
+              <field name="actions_taken_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="helpdesk_action_close_cause">
+      <field name="name">Ticket Causes</field>
+      <field name="res_model">helpdesk.closecause</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Causes"
+      id="helpdesk_close_cause_menu_1"
+      parent="helpdesk_close_code_menu_1"
+      sequence="6"
+      action="helpdesk_action_close_cause"/>
+
+</odoo>

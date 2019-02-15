@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_helpdesk_close_action_user,Helpdesk Close Action User,model_helpdesk_closeaction,helpdesk.group_helpdesk_user,1,0,0,0
+access_helpdesk_close_action__manager,Helpdesk Close Action Manager,model_helpdesk_closeaction,helpdesk.group_helpdesk_manager,1,1,1,1
+access_helpdesk_close_cause_user,Helpdesk Close Cause User,model_helpdesk_closecause,helpdesk.group_helpdesk_user,1,0,0,0
+access_helpdesk_close_cause_manager,Helpdesk Close Cause Manager,model_helpdesk_closecause,helpdesk.group_helpdesk_manager,1,1,1,1

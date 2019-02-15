@@ -1,0 +1,55 @@
+<odoo>
+  <!-- List View-->
+  <record model="ir.ui.view" id="helpdesk_close_codes_list_view">
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_tickets_view_tree"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='stage_id']" position="after">
+          <field name="cause_id"/>
+          <field name="action_taken_id"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record model="ir.ui.view" id="helpdesk_close_codes_form">
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='description']" position="after">
+          <field name="related_info_required"
+                 invisible="1"/>
+          <field name="related_enable_closecodes"
+                 invisible="1"/>
+          <group colspan="2" col="4">
+            <field name="cause_id"
+                   placeholder="Cause of the issue..."
+                   domain="[('ticket_type_ids', '=', ticket_type_id)]"
+                   attrs="{'invisible': [('related_enable_closecodes','=', False)]}"
+                   options="{'no_create': True, 'no_create_edit':True}"/>
+            <field name="action_taken_id"
+                   placeholder="Action taken to resolve the issue..."
+                   attrs="{'invisible': [('related_enable_closecodes','=', False)],'required': [('cause_id','!=',False)]}"
+                   domain="[('cause_ids', '=', cause_id)]"
+                   options="{'no_create': True, 'no_create_edit':True}"/>
+          </group>
+          <group>
+            <field name="more_info"
+                   attrs="{'invisible': ['|',('action_taken_id','=', False),('related_info_required', '=', False)], 'required': [('related_info_required', '!=', False)]}"
+                   placeholder="The selected action taken requires more information here..."/>
+          </group>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Menu Items -->
+  <menuitem
+    name="Resolution"
+    id="helpdesk_close_code_menu_1"
+    parent="helpdesk.helpdesk_menu_config"
+    sequence="7"/>
+</odoo>
