@@ -26,11 +26,19 @@
             </div>
             <group>
               <field name="ticket_type_ids"
-                     widget="many2many_tags"/>
+                     widget="many2many_tags"
+                     domain="[('enable_closecode','!=',False)]"
+                     options="{'no_create': True, 'no_create_edit':True}"/>
             </group>
             <group>
               <field name="description"/>
-              <field name="actions_taken_ids"/>
+              <field name="actions_taken_ids">
+                <tree>
+                  <field name="name"/>
+                  <field name="description"/>
+                  <field name="info_required"/>
+                </tree>
+              </field>
             </group>
           </sheet>
         </form>
