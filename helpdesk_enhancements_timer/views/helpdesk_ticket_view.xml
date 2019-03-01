@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_task_form2_inherited_inherit" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.form.inherited</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='priority']" position="after">
+                <field name="start_date"/>
+                <field name="end_date"/>
+            </xpath>
+            <xpath expr="//field[@name='priority']" position="after">
+                <field name="timer_started" invisible="1"/>
+            </xpath>
+            <xpath expr="//form/header" position="inside">
+                <button name="start_timer" type="object"  string="Start Timer" class="oe_highlight" attrs="{'invisible': [('timer_started', '=', True)]}"/>
+                <button name="end_timer" type="object"  string="End Timer" class="oe_highlight" attrs="{'invisible': [('timer_started', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
