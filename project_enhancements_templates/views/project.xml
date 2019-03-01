@@ -54,7 +54,7 @@
     <field name="inherit_id" ref="project.view_project_kanban"/>
     <field name="arch" type="xml">
       <data>
-        <xpath expr="//div[@class='o_primary']" position="after">
+        <xpath expr="//div[@class='oe_kanban_content']" position="inside">
           <div>
             <field name="is_template"
                    invisible="1"/>

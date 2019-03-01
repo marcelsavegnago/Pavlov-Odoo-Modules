@@ -1,27 +1,30 @@
 <odoo>
-    <record id="view_task_entry" model="ir.ui.view">
-        <field name="name">task.entry</field>
-        <field name="model">task.entry</field>
-        <field name="arch" type="xml">
-            <form>
-                <group>
-                    <group>
-                        <field name="ticket_id"/>
-                        <field name="project_id"/>
-                        <field name="task_id"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                    </group>
-                    <group>
-                        <field name="duration" widget="float_time"/>
-                        <field name="description"/>
-                    </group>
-                </group>
-                <footer>
-                    <button string="Save Entry" class="btn-default" type="object" name="save_entry"/>
-                    <button string="Cancel" class="btn-default" special="cancel"/>
-                </footer>
-            </form>
-        </field>
-    </record>
+  <record id="view_task_entry" model="ir.ui.view">
+    <field name="name">task.entry</field>
+    <field name="model">task.entry</field>
+    <field name="arch" type="xml">
+      <form>
+        <group>
+          <group>
+            <field name="ticket_id"/>
+            <field name="project_id"/>
+            <field name="task_id"/>
+          </group>
+          <group>
+            <field name="start_date"/>
+            <field name="end_date"/>
+            <field name="duration" widget="float_time"/>
+          </group>
+        </group>
+        <group>
+          <field name="description"/>
+        </group>
+        <footer>
+          <button string="Save Entry" class="btn-default" type="object" name="save_entry"/>
+          <button string="Discard Timer" class="btn-default" type="object" name="discard_entry"/>
+          <button string="Cancel" class="btn-default" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
 </odoo>

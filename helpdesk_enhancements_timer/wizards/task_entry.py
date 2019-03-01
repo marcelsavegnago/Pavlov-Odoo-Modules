@@ -10,7 +10,7 @@ class TaskEntry(models.TransientModel):
 
     start_date = fields.Datetime(string="Start Date", readonly=True)
     end_date = fields.Datetime(string="End Date", readonly=True)
-    description = fields.Text(string="Description", required=True)
+    description = fields.Text(string="Description", required=True, default="Ticket Time Entry")
     duration = fields.Float('Duration', readonly=True)
     project_id = fields.Many2one('project.project', string="Project", readonly=True)
     task_id = fields.Many2one('project.task', string="Task", readonly=True)
@@ -22,8 +22,7 @@ class TaskEntry(models.TransientModel):
         s_date = context.get('start_date')
         e_date = context.get('end_date')
         diff = datetime.datetime.strptime(
-            e_date, "%Y-%m-%d %H:%M:%S") - datetime.datetime.strptime(
-            s_date, "%Y-%m-%d %H:%M:%S")
+            e_date, "%Y-%m-%d %H:%M:%S") - datetime.datetime.strptime(s_date, "%Y-%m-%d %H:%M:%S")
         duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
         final_output = round(duration, 2)
         res = super(TaskEntry, self).default_get(default_fields)
@@ -36,14 +35,6 @@ class TaskEntry(models.TransientModel):
 
     @api.multi
     def save_entry(self):
-    #    context = self._context
-    #    ticket_id = context.get('ticket_id', False)
-    #    ticket_record = self.env['helpdesk.ticket'].browse(ticket_id)
-    #    task_id = ticket_id.task_id
-    #    project_id = ticket_id.project_id
-#        task_id = context.get('task_id', False)
-#        task_record = self.env['project.task'].browse(task_id)
-#        project_id = task_record.project_id
         if self.project_id:
             if self.duration == 0.0:
                 raise Warning(_("You can't save entry for %s duration") % (
@@ -64,3 +55,8 @@ class TaskEntry(models.TransientModel):
                             'timer_started': False})
         else:
             raise Warning(_("Please link Project to this Task to save the entry"))
+
+    @api.multi
+    def discard_entry(self):
+        self.description = "Test"
+        self.ticket_id.write({'timer_started':False, 'start_date': False, 'end_date':False})

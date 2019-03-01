@@ -1,20 +1,44 @@
 <odoo>
-    <record id="view_task_form2_inherited_inherit" model="ir.ui.view">
-        <field name="name">helpdesk.ticket.form.inherited</field>
+    <!-- Form View -->
+    <record id="helpdesk_ticket_timer_form_view" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.timer.form.inherited</field>
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='priority']" position="after">
-                <field name="start_date"/>
-                <field name="end_date"/>
-            </xpath>
-            <xpath expr="//field[@name='priority']" position="after">
                 <field name="timer_started" invisible="1"/>
+                <field name="start_date" invisible="1"/>
+                <field name="end_date" invisible="1"/>
             </xpath>
             <xpath expr="//form/header" position="inside">
-                <button name="start_timer" type="object"  string="Start Timer" class="oe_highlight" attrs="{'invisible': [('timer_started', '=', True)]}"/>
-                <button name="end_timer" type="object"  string="End Timer" class="oe_highlight" attrs="{'invisible': [('timer_started', '=', False)]}"/>
+                <button name="start_timer"
+                        type="object"
+                        attrs="{'invisible': [('timer_started', '=', True)]}"
+                        icon="/helpdesk_enhancements_timer/static/buttons/start_timer_button.png"/>
+                <button name="end_timer"
+                        type="object"
+                        attrs="{'invisible': [('timer_started', '=', False)]}"
+                        icon="/helpdesk_enhancements_timer/static/buttons/stop_timer_button.png"/>
             </xpath>
         </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="helpdesk_ticket_timer_kanban_view" model="ir.ui.view">
+      <field name="name">helpdesk.ticket.timer.kanban.inherited</field>
+      <field name="model">helpdesk.ticket</field>
+      <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="timer_started" invisible="1"/>
+        </xpath>
+        <xpath expr="//div[@class='oe_kanban_bottom_right']" position="inside">
+          <div>
+            <t t-if="record.timer_started.raw_value == true">
+              <img src="/helpdesk_enhancements_timer/static/buttons/stop_timer_icon.png" width="18" height="18"/>
+            </t>
+          </div>
+        </xpath>
+      </field>
     </record>
 </odoo>
