@@ -24,7 +24,7 @@
     # always loaded
     'data': [
         'views/project_task_view.xml',
-        'wizards/timesheet_entry_view.xml'
+        'wizards/task_timesheet_entry_view.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
