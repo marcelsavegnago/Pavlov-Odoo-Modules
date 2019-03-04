@@ -10,18 +10,21 @@
         <field name="start_timer_date" invisible="1"/>
         <field name="end_timer_date" invisible="1"/>
       </xpath>
-      <xpath expr="//field[@name='priority']" position="before">
-        <button name="task_start_timer"
-                type="object"
-                attrs="{'invisible': ['|',('timer_started', '=', True)]}"
-                icon="/project_enhancements_timer/static/buttons/start_timer_icon.png"/>
-        <button name="task_end_timer"
-                type="object"
-                attrs="{'invisible': ['|',('timer_started', '=', False)]}"
-                icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
-          </xpath>
-        </field>
-      </record>
+      <xpath expr="//field[@name='kanban_state']" position="replace">
+        <div class="oe_right">
+          <field name="kanban_state" widget="state_selection"/>
+          <button name="task_start_timer"
+                  type="object"
+                  attrs="{'invisible': ['|',('timer_started', '=', True),('project_id', '=', False)]}"
+                  icon="/helpdesk_enhancements_timer/static/buttons/start_timer_icon.png"/>
+          <button name="task_end_timer"
+                  type="object"
+                  attrs="{'invisible': ['|',('timer_started', '=', False),('project_id', '=', False)]}"
+                  icon="/helpdesk_enhancements_timer/static/buttons/stop_timer_icon.png"/>
+        </div>
+      </xpath>
+    </field>
+   </record>
 
       <!-- Kanban View -->
       <record id="project_enhancements_timer_task_kanban_view" model="ir.ui.view">
