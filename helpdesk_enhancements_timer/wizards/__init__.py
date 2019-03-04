@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-from . import task_entry
+from . import timesheet_entry

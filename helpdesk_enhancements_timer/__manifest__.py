@@ -24,7 +24,7 @@
     # always loaded
     'data': [
         'views/helpdesk_ticket_view.xml',
-        'wizards/task_entry_view.xml'
+        'wizards/timesheet_entry_view.xml'
     ],
     # only loaded in demonstration mode
     'demo': [

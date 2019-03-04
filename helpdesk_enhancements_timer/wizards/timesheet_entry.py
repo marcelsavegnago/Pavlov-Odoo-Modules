@@ -4,9 +4,8 @@ import datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning
 
-
-class TaskEntry(models.TransientModel):
-    _name = "task.entry"
+class TimesheetEntry(models.TransientModel):
+    _name = "timesheet_entry"
 
     start_date = fields.Datetime(string="Start Date", readonly=True)
     end_date = fields.Datetime(string="End Date", readonly=True)
@@ -25,7 +24,7 @@ class TaskEntry(models.TransientModel):
             e_date, "%Y-%m-%d %H:%M:%S") - datetime.datetime.strptime(s_date, "%Y-%m-%d %H:%M:%S")
         duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
         final_output = round(duration, 2)
-        res = super(TaskEntry, self).default_get(default_fields)
+        res = super(TimesheetEntry, self).default_get(default_fields)
         res.update({
             'start_date': s_date,
             'end_date': e_date,
@@ -40,8 +39,6 @@ class TaskEntry(models.TransientModel):
                 raise Warning(_("You can't save entry for %s duration") % (
                     self.duration))
             vals = {'date': fields.Date.context_today(self),
-                    'start_date': self.start_date,
-                    'end_date': self.end_date,
                     'user_id': self.env.user.id,
                     'name': self.description,
                     'task_id': self.task_id.id,
