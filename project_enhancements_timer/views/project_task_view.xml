@@ -1,0 +1,42 @@
+<odoo>
+    <!-- Form View -->
+    <record id="project_enhancements_timer_form_view" model="ir.ui.view">
+        <field name="name">project.enhancements.timer.form.inherited</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='priority']" position="after">
+                <field name="timer_started" invisible="1"/>
+                <field name="start_timer_date" invisible="1"/>
+                <field name="end_timer_date" invisible="1"/>
+            </xpath>
+            <xpath expr="//form/header" position="inside">
+                <button name="start_timer"
+                        type="object"
+                        attrs="{'invisible': [('timer_started', '=', True)]}"
+                        icon="/project_enhancements_timer/static/buttons/start_timer_icon.png"/>
+                <button name="end_timer"
+                        type="object"
+                        attrs="{'invisible': [('timer_started', '=', False)]}"
+                        icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="project_enhancements_timer_kanban_view" model="ir.ui.view">
+      <field name="name">project.enhancements.timer.kanban.inherited</field>
+      <field name="model">project.task</field>
+      <field name="inherit_id" ref="project.view_task_kanban"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@class='oe_kanban_bottom_left']" position="inside">
+          <field name="timer_started" invisible="1"/>
+          <div>
+            <t t-if="record.timer_started.raw_value == true">
+              <img src="/project_enhancements_timer/static/buttons/start_timer_icon.png" width="18" height="18"/>
+            </t>
+          </div>
+        </xpath>
+      </field>
+    </record>
+</odoo>
