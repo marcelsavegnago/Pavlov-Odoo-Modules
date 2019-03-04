@@ -9,7 +9,7 @@ class TicketTimesheetEntry(models.TransientModel):
 
     start_timer_date = fields.Datetime(string="Start Date", readonly=True)
     end_timer_date = fields.Datetime(string="End Date", readonly=True)
-    description = fields.Text(string="Description", required=True, default="Time Worked on Ticket")
+    description = fields.Char(string="Description", required=True, default="Time Worked on Ticket")
     duration = fields.Float('Duration', readonly=False)
     project_id = fields.Many2one('project.project', string="Project", readonly=True)
     task_id = fields.Many2one('project.task', string="Task", readonly=True)
