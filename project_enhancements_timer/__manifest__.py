@@ -19,7 +19,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'project'],
+    'depends': ['base', 'project', 'project_timesheet_forecast'],
 
     # always loaded
     'data': [

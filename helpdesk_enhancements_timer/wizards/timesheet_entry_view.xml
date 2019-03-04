@@ -12,14 +12,16 @@
           </group>
           <group>
             <field name="duration" widget="float_time"/>
+            <field name="start_timer_date"/>
+            <field name="end_timer_date"/>
           </group>
         </group>
         <group>
           <field name="description"/>
         </group>
         <footer>
-          <button string="Save Entry" class="btn-default" type="object" name="save_entry"/>
-          <button string="Discard Timer" class="btn-default" type="object" name="discard_entry"/>
+          <button string="Save Entry" class="btn-default" type="object" name="ticket_save_entry"/>
+          <button string="Discard Timer" class="btn-default" type="object" name="ticket_discard_entry"/>
           <button string="Cancel" class="btn-default" special="cancel"/>
         </footer>
       </form>

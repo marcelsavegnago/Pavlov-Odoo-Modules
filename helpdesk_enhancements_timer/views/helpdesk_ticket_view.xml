@@ -7,17 +7,17 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='priority']" position="after">
                 <field name="timer_started" invisible="1"/>
-                <field name="start_date" invisible="1"/>
-                <field name="end_date" invisible="1"/>
+                <field name="start_timer_date" invisible="1"/>
+                <field name="end_timer_date" invisible="1"/>
             </xpath>
             <xpath expr="//form/header" position="inside">
-                <button name="start_timer"
+                <button name="ticket_start_timer"
                         type="object"
-                        attrs="{'invisible': [('timer_started', '=', True)]}"
+                        attrs="{'invisible': ['|',('timer_started', '=', True),('project_id', '=', False)]}"
                         icon="/helpdesk_enhancements_timer/static/buttons/start_timer_icon.png"/>
-                <button name="end_timer"
+                <button name="ticket_end_timer"
                         type="object"
-                        attrs="{'invisible': [('timer_started', '=', False)]}"
+                        attrs="{'invisible': ['|',('timer_started', '=', False),('project_id', '=', False)]}"
                         icon="/helpdesk_enhancements_timer/static/buttons/stop_timer_icon.png"/>
             </xpath>
         </field>
