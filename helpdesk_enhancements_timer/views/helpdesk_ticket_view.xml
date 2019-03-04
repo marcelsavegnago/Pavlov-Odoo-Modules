@@ -10,7 +10,7 @@
                 <field name="start_timer_date" invisible="1"/>
                 <field name="end_timer_date" invisible="1"/>
             </xpath>
-            <xpath expr="//form/header" position="inside">
+            <xpath expr="//field[@name='name']" position="before">
                 <button name="ticket_start_timer"
                         type="object"
                         attrs="{'invisible': ['|',('timer_started', '=', True),('project_id', '=', False)]}"

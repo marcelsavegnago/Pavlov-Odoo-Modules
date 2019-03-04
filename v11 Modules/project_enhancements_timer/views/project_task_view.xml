@@ -13,11 +13,11 @@
       <xpath expr="//field[@name='priority']" position="before">
         <button name="task_start_timer"
                 type="object"
-                attrs="{'invisible': ['|',('timer_started', '=', True)]}"
+                attrs="{'invisible': ['|',('timer_started', '=', True),('allow_timesheets', '=', False)]}"
                 icon="/project_enhancements_timer/static/buttons/start_timer_icon.png"/>
         <button name="task_end_timer"
                 type="object"
-                attrs="{'invisible': ['|',('timer_started', '=', False)]}"
+                attrs="{'invisible': ['|',('timer_started', '=', False),('allow_timesheets', '=', False)]}"
                 icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
           </xpath>
         </field>
