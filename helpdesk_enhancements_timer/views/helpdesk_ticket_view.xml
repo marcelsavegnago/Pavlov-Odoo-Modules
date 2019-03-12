@@ -7,8 +7,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='priority']" position="after">
                 <field name="timer_started" invisible="1"/>
-                <field name="start_timer_date" invisible="1"/>
-                <field name="end_timer_date" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='kanban_state']" position="replace">
               <div class="oe_right">
@@ -16,13 +14,29 @@
                 <button name="ticket_start_timer"
                         type="object"
                         attrs="{'invisible': ['|',('timer_started', '=', True),('project_id', '=', False)]}"
-                        icon="/helpdesk_enhancements_timer/static/buttons/start_timer_icon.png"/>
-                <button name="ticket_end_timer"
+                        icon="/project_enhancements_timer/static/buttons/start_timer_icon.png"/>
+                <button name="ticket_start_timer"
                         type="object"
                         attrs="{'invisible': ['|',('timer_started', '=', False),('project_id', '=', False)]}"
-                        icon="/helpdesk_enhancements_timer/static/buttons/stop_timer_icon.png"/>
+                        icon="/project_enhancements_timer/static/buttons/start_multiple_timer_icon.png"/>
+                <button name="ticket_end_timer"
+                        type="object"
+                        attrs="{'invisible': ['|',('timer_ids', '=', []),('project_id', '=', False)]}"
+                        icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
               </div>
             </xpath>
+            <xpath expr="//field[@name='description']" position="after">
+              <page name="timers" string="Timers" groups="base.group_no_one">
+                <group>
+                  <field name="timer_started"/>
+                </group>
+                <group>
+                  <field name="timer_ids"
+                    nolabel="1"
+                    context="{'default_task_id': active_id}"/>
+                  </group>
+                </page>
+              </xpath>
         </field>
     </record>
 

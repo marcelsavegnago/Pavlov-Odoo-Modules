@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk Enhancements - Timesheet Timer",
+    'name': "Helpdesk Enhancements - Timer",
 
     'summary': """
-        Helpdesk Enhancements - Timesheet Timer""",
+        Helpdesk Enhancements - Timer""",
 
     'description': """
         This module adds a Start/Stop Timer to the Helpdesk model.
@@ -19,12 +19,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'helpdesk', 'helpdesk_timesheet'],
+    'depends': ['base', 'helpdesk', 'helpdesk_timesheet', 'project_enhancements_timer'],
 
     # always loaded
     'data': [
         'views/helpdesk_ticket_view.xml',
-        'wizards/ticket_timesheet_entry_view.xml'
+        'views/timer.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

@@ -1,0 +1,20 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="timer_warning_view_form">
+    <field name="name">Timer Warning</field>
+    <field name="model">timer_warning</field>
+    <field name="arch" type="xml">
+      <form string="Warning!">
+        <sheet>
+          You can only have 1 timer running at one time. Please complete your current timer and try again.
+          <group>
+            <field name="timer_id"/>
+          </group>
+          <footer>
+            <button special="cancel" string="Ok"/>
+          </footer>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

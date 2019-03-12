@@ -12,6 +12,7 @@ class TaskTimesheetEntry(models.TransientModel):
     duration = fields.Float('Duration', readonly=False)
     project_id = fields.Many2one('project.project', string="Project", readonly=True)
     task_id = fields.Many2one('project.task', string="Task", readonly=True)
+    timer_id = fields.Many2one('timer.timer', string="Timer")
 
     @api.model
     def default_get(self, default_fields):
@@ -34,8 +35,7 @@ class TaskTimesheetEntry(models.TransientModel):
     def task_save_entry(self):
         if self.project_id:
             if self.duration == 0.0:
-                raise Warning(_("You can't save entry for %s duration") % (
-                    self.duration))
+                raise Warning(_("You can't save entry with %s duration") % (self.duration))
             vals = {'date': fields.Date.context_today(self),
                     'user_id': self.env.user.id,
                     'name': self.description,
@@ -45,14 +45,17 @@ class TaskTimesheetEntry(models.TransientModel):
                     'account_id': self.project_id.analytic_account_id.id
                     }
             analytic_line_rec = self.env['account.analytic.line'].create(vals)
-            self.task_id.write({'timesheet_ids': [(4, 0, [analytic_line_rec.id])],
-                            'timer_started': False,
-                            'start_timer_date': False,
-                            'end_timer_date':False})
+            self.task_id.write({'timesheet_ids': [(4, 0, [analytic_line_rec.id])]})
+            self.timer_id.unlink()
+            other_active_timers = self.env['timer.timer'].search_count([('task_id','=',self.task_id.id)])
+            if other_active_timers == 0:
+                self.task_id.write({'timer_started': False})
         else:
             raise Warning(_("Please link Project to this Task to save the entry"))
 
     @api.multi
     def task_discard_entry(self):
-        self.description = "Test"
-        self.task_id.write({'timer_started':False, 'start_timer_date': False, 'end_timer_date':False})
+        self.timer_id.unlink()
+        other_active_timers = self.env['timer.timer'].search_count([('task_id','=',self.task_id.id)])
+        if other_active_timers == 0:
+            self.task_id.write({'timer_started': False})

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Project Enhancements - Timesheet Timer",
+    'name': "Project Enhancements - Timer",
 
     'summary': """
-        Project Enhancements - Timesheet Timer""",
+        Project Enhancements - Timer""",
 
     'description': """
         This module adds a Start/Stop Timer to the Project Tasks model.
@@ -24,7 +24,11 @@
     # always loaded
     'data': [
         'views/project_task_view.xml',
-        'wizards/task_timesheet_entry_view.xml'
+        'views/timer.xml',
+        'wizards/task_timesheet_entry_view.xml',
+        'wizards/timer_warning.xml',
+        'security/security.xml',
+        'security/ir.model.access.csv'
     ],
     # only loaded in demonstration mode
     'demo': [

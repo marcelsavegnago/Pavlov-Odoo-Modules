@@ -4,15 +4,9 @@ import datetime
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning
 
-class TicketTimesheetEntry(models.TransientModel):
-    _name = "ticket_timesheet_entry"
+class TaskTimesheetEntry(models.TransientModel):
+    _inherit = "task_timesheet_entry"
 
-    start_timer_date = fields.Datetime(string="Start Date", readonly=True)
-    end_timer_date = fields.Datetime(string="End Date", readonly=True)
-    description = fields.Char(string="Description", required=True, default="Time Worked on Ticket")
-    duration = fields.Float('Duration', readonly=False)
-    project_id = fields.Many2one('project.project', string="Project", readonly=True)
-    task_id = fields.Many2one('project.task', string="Task", readonly=True)
     ticket_id = fields.Many2one('helpdesk.ticket',string="Ticket", readonly=True)
 
     @api.model
@@ -24,7 +18,7 @@ class TicketTimesheetEntry(models.TransientModel):
             ending_date, "%Y-%m-%d %H:%M:%S") - datetime.datetime.strptime(starting_date, "%Y-%m-%d %H:%M:%S")
         duration = float(diff.days) * 24 + (float(diff.seconds) / 3600)
         rounded_duration = round(duration, 2)
-        res = super(TicketTimesheetEntry, self).default_get(default_fields)
+        res = super(TaskTimesheetEntry, self).default_get(default_fields)
         res.update({
             'start_timer_date': starting_date,
             'end_timer_date': ending_date,
@@ -33,11 +27,13 @@ class TicketTimesheetEntry(models.TransientModel):
         return res
 
     @api.multi
-    def ticket_save_entry(self):
+    def task_save_entry(self):
         if self.project_id:
             if self.duration == 0.0:
                 raise Warning(_("You can't save entry for %s duration") % (
                     self.duration))
+            ticket = self.timer_id.ticket_id
+            task = self.timer_id.task_id
             vals = {'date': fields.Date.context_today(self),
                     'user_id': self.env.user.id,
                     'name': self.description,
@@ -45,17 +41,33 @@ class TicketTimesheetEntry(models.TransientModel):
                     'project_id': self.project_id.id,
                     'unit_amount': self.duration,
                     'account_id': self.project_id.analytic_account_id.id,
-                    'helpdesk_ticket_id': self.ticket_id.id
+                    'helpdesk_ticket_id': ticket.id
                     }
             analytic_line_rec = self.env['account.analytic.line'].create(vals)
-            self.ticket_id.write({'timesheet_ids': [(4, 0, [analytic_line_rec.id])],
-                            'timer_started': False,
-                            'start_timer_date': False,
-                            'end_timer_date':False})
+            self.ticket_id.write({'timesheet_ids': [(4, 0, [analytic_line_rec.id])]})
+
+            self.timer_id.unlink()
+            if ticket:
+                other_ticket_active_timers = self.env['timer.timer'].search_count([('ticket_id','=',ticket.id)])
+                if other_ticket_active_timers == 0:
+                    ticket.write({'timer_started': False})
+            if task:
+                other_task_active_timers = self.env['timer.timer'].search_count([('task_id','=',task.id)])
+                if other_task_active_timers == 0:
+                    task.write({'timer_started': False})
         else:
             raise Warning(_("Please link Project to this Task to save the entry"))
 
     @api.multi
-    def ticket_discard_entry(self):
-        self.description = "Test"
-        self.ticket_id.write({'timer_started':False, 'start_timer_date': False, 'end_timer_date':False})
+    def task_discard_entry(self):
+        ticket = self.timer_id.ticket_id
+        task = self.timer_id.task_id
+        self.timer_id.unlink()
+        if ticket:
+            other_ticket_active_timers = self.env['timer.timer'].search_count([('ticket_id','=',ticket.id)])
+            if other_ticket_active_timers == 0:
+                ticket.write({'timer_started': False})
+        if task:
+            other_task_active_timers = self.env['timer.timer'].search_count([('task_id','=',task.id)])
+            if other_task_active_timers == 0:
+                task.write({'timer_started': False})
