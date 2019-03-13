@@ -1,0 +1,25 @@
+<odoo>
+  <!-- Form View -->
+  <record model="ir.ui.view" id="helpdesk_timer_warning_view_form">
+    <field name="name">Helpdesk Timer Warning</field>
+    <field name="model">timer_warning</field>
+    <field name="inherit_id" ref="project_enhancements_timer.timer_warning_view_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='task_id']" position="after">
+        <field name="ticket_id" invisible="1"/>
+      </xpath>
+      <xpath expr="//button[@name='open_task']" position="replace">
+        <button name="open_ticket"
+                type="object"
+                class="oe_highlight"
+                string="Open Ticket"
+                attrs="{'invisible': [('ticket_id', '=', False)]}"/>
+        <button name="open_task"
+                type="object"
+                class="oe_highlight"
+                string="Open Task"
+                attrs="{'invisible': ['|',('task_id', '=', False),('ticket_id', '!=', False)]}"/>
+        </xpath>
+      </field>
+  </record>
+</odoo>

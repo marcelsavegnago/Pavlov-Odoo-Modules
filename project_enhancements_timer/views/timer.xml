@@ -46,5 +46,6 @@
       id="timer_menu"
       parent="project.menu_project_config"
       action="timer_action"
-      sequence="20"/>
+      sequence="50"
+      groups="project.group_project_manager"/>
 </odoo>

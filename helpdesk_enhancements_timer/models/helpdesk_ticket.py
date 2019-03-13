@@ -11,7 +11,9 @@ class HelpdeskTicket(models.Model):
         active_timers = self.env['timer.timer'].search([('user_id','=',self._uid)])
         if active_timers:
             context = dict(self.env.context)
-            context.update({'timer_id': active_timers.id})
+            context.update({'timer_id': active_timers.id,
+                            'task_id': active_timers.task_id.id,
+                            'ticket_id': active_timers.ticket_id.id})
             view_id = self.env.ref('project_enhancements_timer.timer_warning_view_form')
             return {
                     'view_id': view_id.ids,

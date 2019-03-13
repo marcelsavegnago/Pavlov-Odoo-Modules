@@ -8,10 +8,16 @@
         <sheet>
           You can only have 1 timer running at one time. Please complete your current timer and try again.
           <group>
-            <field name="timer_id"/>
+            <field name="timer_id" invisible="1"/>
+            <field name="task_id" invisible="1"/>
           </group>
           <footer>
-            <button special="cancel" string="Ok"/>
+            <button name="open_task"
+                    type="object"
+                    class="oe_highlight"
+                    string="Open Task"
+                    attrs="{'invisible': [('task_id', '=', False)]}"/>
+            <button special="cancel" string="Cancel"/>
           </footer>
         </sheet>
       </form>

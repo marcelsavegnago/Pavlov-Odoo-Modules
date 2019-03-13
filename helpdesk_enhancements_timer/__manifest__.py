@@ -25,6 +25,7 @@
     'data': [
         'views/helpdesk_ticket_view.xml',
         'views/timer.xml',
+        'wizards/timer_warning.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
