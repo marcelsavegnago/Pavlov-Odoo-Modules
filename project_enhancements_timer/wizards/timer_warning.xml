@@ -23,4 +23,19 @@
       </form>
     </field>
   </record>
+
+  <record model="ir.ui.view" id="timer_stop_warning_view_form">
+    <field name="name">Timer Stop Warning</field>
+    <field name="model">timer_warning</field>
+    <field name="arch" type="xml">
+      <form string="Warning!">
+        <sheet>
+          You don't have any active timers on this record.
+        </sheet>
+        <footer>
+          <button special="cancel" string="Cancel"/>
+        </footer>
+      </form>
+    </field>
+   </record>
 </odoo>
