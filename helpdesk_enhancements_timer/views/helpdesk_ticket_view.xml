@@ -5,10 +5,9 @@
         <field name="model">helpdesk.ticket</field>
         <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='priority']" position="after">
-                <field name="timer_started" invisible="1"/>
-            </xpath>
             <xpath expr="//field[@name='kanban_state']" position="replace">
+              <field name="timer_started" invisible="1"/>
+              <field name="timer_ids" invisible="1"/>
               <div class="oe_right">
                 <field name="kanban_state" widget="state_selection"/>
                 <button name="ticket_start_timer"
@@ -25,18 +24,6 @@
                         icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
               </div>
             </xpath>
-            <xpath expr="//field[@name='description']" position="after">
-              <page name="timers" string="Timers" groups="base.group_no_one">
-                <group>
-                  <field name="timer_started"/>
-                </group>
-                <group>
-                  <field name="timer_ids"
-                    nolabel="1"
-                    context="{'default_task_id': active_id}"/>
-                  </group>
-                </page>
-              </xpath>
         </field>
     </record>
 
@@ -65,7 +52,7 @@
       <field name="res_model">timer.timer</field>
       <field name="view_mode">tree,form</field>
     </record>
-    
+
     <!-- Menu Items -->
     <menuitem
       name="All Timers"

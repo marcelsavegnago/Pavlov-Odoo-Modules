@@ -6,6 +6,8 @@
     <field name="inherit_id" ref="project.view_task_form2"/>
     <field name="arch" type="xml">
       <xpath expr="//field[@name='kanban_state']" position="replace">
+        <field name="timer_ids" invisible="1"/>
+        <field name="timer_started" invisible="1"/>
         <div class="oe_right">
           <field name="kanban_state" widget="state_selection"/>
           <button name="task_start_timer"
@@ -21,18 +23,6 @@
                   attrs="{'invisible': ['|',('timer_ids', '=', [])]}"
                   icon="/project_enhancements_timer/static/buttons/stop_timer_icon.png"/>
         </div>
-      </xpath>
-      <xpath expr="//page[@name='extra_info']" position="after">
-        <page name="timers" string="Timers" groups="base.group_no_one">
-          <group>
-            <field name="timer_started"/>
-          </group>
-          <group>
-            <field name="timer_ids"
-                   nolabel="1"
-                   context="{'default_task_id': active_id}"/>
-          </group>
-        </page>
       </xpath>
     </field>
    </record>
