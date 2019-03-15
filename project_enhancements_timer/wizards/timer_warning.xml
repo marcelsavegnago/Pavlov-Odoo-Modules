@@ -1,6 +1,6 @@
 <odoo>
   <!-- Form View -->
-  <record model="ir.ui.view" id="timer_warning_view_form">
+  <record id="timer_warning_view_form" model="ir.ui.view">
     <field name="name">Timer Warning</field>
     <field name="model">timer_warning</field>
     <field name="arch" type="xml">
@@ -24,7 +24,7 @@
     </field>
   </record>
 
-  <record model="ir.ui.view" id="timer_stop_warning_view_form">
+  <record id="timer_stop_warning_view_form" model="ir.ui.view">
     <field name="name">Timer Stop Warning</field>
     <field name="model">timer_warning</field>
     <field name="arch" type="xml">

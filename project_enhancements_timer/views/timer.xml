@@ -1,6 +1,6 @@
 <odoo>
     <!-- List View-->
-    <record model="ir.ui.view" id="timer_view_list">
+    <record id="timer_view_list" model="ir.ui.view">
       <field name="name">Timer List View</field>
       <field name="model">timer.timer</field>
       <field name="arch" type="xml">
@@ -15,7 +15,7 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="timer_view_form">
+    <record id="timer_view_form" model="ir.ui.view">
       <field name="name">Timerd Form</field>
       <field name="model">timer.timer</field>
       <field name="arch" type="xml">
