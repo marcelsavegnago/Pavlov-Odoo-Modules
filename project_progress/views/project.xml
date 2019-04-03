@@ -1,0 +1,60 @@
+<odoo>
+  <!-- List View-->
+  <record id="project_enhancements_view_list" model="ir.ui.view">
+    <field name="name">project.enhancement.tree</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="type">tree</field>
+    <field name="field_parent">child_ids</field>
+    <field name="arch" type="xml">
+      <field name="partner_id" position="after">
+        <field name="progress"
+               widget="progressbar"/>
+      </field>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="project_enhancements_view_form" model="ir.ui.view">
+    <field name="name">project.enhancement.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//page[@name='settings']" position="after">
+          <page name="progress" string="Progress">
+            <group colspan="2" col="2">
+              <field name="total_planned_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_effective_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+              <field name="total_remaining_hours" widget="float_time" attrs="{'invisible':[('allow_timesheets','=', False)]}"/>
+            </group>
+            <field name="progress"
+                   widget="percentpie"/>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Kanban View -->
+  <record id="project_enhancements_view_kanban" model="ir.ui.view">
+    <field name="name">project.enhancement.kanban</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project_kanban"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//div[@class='o_primary']" position="after">
+          <div>
+            <small>
+              <t t-if="record.allow_timesheets.raw_value">
+                <span class="o_value"><field name="total_planned_hours"/>  |  <field name="total_effective_hours"/>  |  <field name="total_remaining_hours"/></span>
+              </t>
+            </small>
+          </div>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>
