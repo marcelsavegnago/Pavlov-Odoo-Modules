@@ -1,16 +1,15 @@
-# Copyright 2014 Joël Grand-Guillaume (Camptocamp)
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+# -*- coding: utf-8 -*-
 {
-    'name': "Project Department Categorization",
+    'name': "Project Auto Forecasts",
 
     'summary': """
-        Project Department Categorization""",
+        Project Auto Forecasts""",
 
     'description': """
-        This module adds Department to the Projects and Tasks.
+        This module adds Auto Forecasting to the Project model.
     """,
 
-    'author': "Camptocamp, Daniel Reis, Odoo Community Association (OCA)",
+    'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",
 
     # Categories can be used to filter modules in modules listing
@@ -21,11 +20,16 @@
     'license': 'AGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['project'],
+    'depends': ['project',
+                'timesheet_grid',
+                'hr',
+                'project_forecast'],
 
     # always loaded
     'data': [
+
         'views/project.xml',
+        'views/project_task.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

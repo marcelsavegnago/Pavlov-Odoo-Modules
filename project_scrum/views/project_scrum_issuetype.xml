@@ -1,0 +1,44 @@
+<odoo>
+    <!-- Sequences-->
+    <record id="project_scrum_issuetype_seq" model="ir.sequence">
+      <field name="name">Project Scrum Issue Type Sequence</field>
+      <field name="code">project.scrum_issuetype</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record id="project_scrum_issuetype_view_list" model="ir.ui.view">
+      <field name="name">Project Scrum Issue Type List</field>
+      <field name="model">project.scrum_issuetype</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="issuetype_sequence"
+                 widget="handle"
+                 groups="base.group_no_one"/>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="issue_type_image"
+                 widget="image"
+                 class="oe_avatar"
+                 options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [50, 50]}"
+                 readonly="0"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record id="project_scrum_issuetype_action" model="ir.actions.act_window">
+      <field name="name">Project Issue Types</field>
+      <field name="res_model">project.scrum_issuetype</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Issue Types"
+      id="project_scrum_issuetype_menu"
+      parent="scrum_configuration_section_menu"
+      sequence="40"
+      action="project_scrum_issuetype_action"/>
+</odoo>

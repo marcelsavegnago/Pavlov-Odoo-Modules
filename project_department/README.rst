@@ -42,6 +42,7 @@ Contributors
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Dave Burkholder <dave@thinkwelldesigns.com>
 * Artem Kostyuk <a.kostyuk@mobilunity.com>
+* Patrick Wilson <patrickraymondwilson@gmail.com>
 
 
 Maintainer

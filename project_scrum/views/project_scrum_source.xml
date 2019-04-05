@@ -1,0 +1,39 @@
+<odoo>
+    <!-- Sequences-->
+    <record id="project_scrum_source_seq" model="ir.sequence">
+      <field name="name">Project Scrum Source Sequence</field>
+      <field name="code">project.scrum_source</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record id="project_scrum_source_view_list" model="ir.ui.view">
+      <field name="name">Project Scrum Source List</field>
+      <field name="model">project.scrum_source</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="source_sequence"
+                 widget="handle"
+                 groups="base.group_no_one"/>
+          <field name="name"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record id="project_scrum_source_action" model="ir.actions.act_window">
+      <field name="name">Project Sources</field>
+      <field name="res_model">project.scrum_source</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Sources"
+      id="project_scrum_source_menu"
+      parent="scrum_configuration_section_menu"
+      sequence="70"
+      action="project_scrum_source_action"/>
+</odoo>
