@@ -35,6 +35,8 @@
                      nolabel="1"
                      domain="[('project_id', '=', active_id)]">
                 <tree>
+                  <field name="sequence"
+                         widget="handle"/>
                   <field name="name"/>
                   <field name="target_date"/>
                   <field name="project_tasks"/>
