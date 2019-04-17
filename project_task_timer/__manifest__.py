@@ -21,7 +21,8 @@
 
     # any module necessary for this one to work correctly
     'depends': ['project',
-                'hr_timesheet'],
+                'hr_timesheet',
+                'timesheet_grid'],
 
     # always loaded
     'data': [

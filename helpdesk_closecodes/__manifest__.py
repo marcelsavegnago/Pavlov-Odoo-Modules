@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Helpdesk Enhancements - Close Codes",
+    'name': "Helpdesk - Close Codes",
 
     'summary': """
-        Helpdesk Enhancements - Close Codes""",
+        Helpdesk - Close Codes""",
 
     'description': """
         This module adds close codes to the Helpdesk model.
