@@ -1,21 +1,12 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Milestones",
 
     'summary': """
         Project Milestones""",
 
-    'description': """
-        This module adds Project Milestones to the Projects.
-        *Requires Project Task Stage Closed OCA Module
-    """,
-
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
-    # for the full list
     'category': 'Project Management',
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',

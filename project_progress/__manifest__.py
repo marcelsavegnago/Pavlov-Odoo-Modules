@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Progress",
 
     'summary': """
         Project Progress""",
-
-    'description': """
-        This module adds Project Progress to the Projects.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

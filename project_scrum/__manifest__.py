@@ -1,14 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Scrum",
 
     'summary': """
         Project Scrum""",
-
-    'description': """
-        This module adds Scrum (Sprints, Releases, etc) to the Project model.
-        Dependencies: Projects, Project Enhancements, Timesheets, Employees, Forecasts
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

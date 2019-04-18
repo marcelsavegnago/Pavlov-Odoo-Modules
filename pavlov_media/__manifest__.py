@@ -1,83 +1,45 @@
-# Copyright (C) 2018 Open Source Integrators
-# License Proprietary. Do not copy, share nor distribute.
-
+# -*- coding: utf-8 -*-
 {
-    'name': 'Pavlov Media',
-    'summary': 'Pavlov Media Configuration and Data',
-    'version': '11.0.1.0.0',
-    'license': 'Other proprietary',
-    'author': 'Open Source Integrators',
-    'maintainer': 'Open Source Integrators',
-    'website': 'https://www.opensourceintegrators.com',
-    'depends': [
-        # Odoo and Enterprise Addons
-        'account_accountant',
-        'board',
-        'crm',
-        'delivery_fedex',
-        'delivery_ups',
-        'document',
-        'helpdesk',
-        'hr_attendance',
-        'hr_expense',
-        'hr_timesheet',
-        'mrp',
-        'project',
-        'purchase',
-        'sale_subscription',
-        'sales_team',
-        'stock_barcode',
-        # OCA Addons
-        'account_payment_credit_card',
-        'agreement_maintenance',
-        'agreement_mrp',
-        'agreement_project',
-        'agreement_repair',
-        'agreement_stock',
-        'auditlog',
-        'base_partner_sequence',
-        'fieldservice_account',
-        'fieldservice_agreement',
-        'fieldservice_delivery',
-        'fieldservice_distribution',
-        'fieldservice_maintenance',
-        'fieldservice_partner_multi_relation',
-        'fieldservice_repair',
-        'fieldservice_sale',
-        'fieldservice_skill',
-        'fieldservice_stock',
-        'fieldservice_substatus',
-        'l10n_us_form_1099',
-        'mass_editing',
-        'partner_fax',
-        'partner_time_to_pay',
-        'product_template_tags',
-        'stock_production_lot_warranty',
-        # OSI Addons
-        'agreement_helpdesk',
-        'agreement_rma',
-        'agreement_sale_subscription',
-        'fieldservice_googlemaps',
-        'fieldservice_helpdesk_stock',
-        'helpdesk_fieldservice_agreement',
-        'helpdesk_phone',
-        'helpdesk_resolution',
-        'helpdesk_scope',
-        'helpdesk_stock',
-        'helpdesk_ticket_parent',
-        'helpdesk_ticket_to_task',
-        'helpdesk_ticket_type_default_priority',
-        # Private Addons
-        'bwchange',
-        'intranet',
-        'pavlov_database_listeners',
-        'powerbi',
-    ],
+    'name': "Pavlov Media Customizations",
+
+    'summary': """
+        Pavlov Media Customizations""",
+
+    'description': """
+        This module contains customizations only for Pavlov Media.
+    """,
+
+    'author': "Patrick Wilson: Pavlov Media",
+    'website': "https://www.pavlovmedia.com",
+
+    # Categories can be used to filter modules in modules listing
+    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
+    # for the full list
+    'category': 'Extra Tool',
+    'version': '1.0',
+
+    # any module necessary for this one to work correctly
+    'depends': ['base',
+                'mail',
+                'fieldservice',
+                'helpdesk',
+                'helpdesk_scope',
+                ],
+
+    # always loaded
     'data': [
+        'views/res_partner.xml',
+        'views/fsm_location.xml',
+        'views/fsm_resident_type.xml',
+        'views/fsm_building_type.xml',
         'views/fsm_order.xml',
         'views/helpdesk_ticket.xml',
-        'views/res_partner.xml',
+        'security/ir.model.access.csv',
+        'data/building_type_data.xml',
+        'data/resident_type_data.xml',
     ],
-    'application': True,
-    'sequence': 0,
+
+    'installable':True,
+    'auto_install':False,
+    'application':True,
 }

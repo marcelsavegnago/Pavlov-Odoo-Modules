@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Task Timer",
 
     'summary': """
         Project Task Timer""",
-
-    'description': """
-        This module adds a Start/Stop Timer to the Project Tasks model.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

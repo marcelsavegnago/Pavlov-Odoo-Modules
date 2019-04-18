@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Templates",
 
     'summary': """
         Project Templates""",
-
-    'description': """
-        This module adds the ability to mark Projects as Templates and using those to create new Projects.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

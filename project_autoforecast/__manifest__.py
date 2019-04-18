@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Auto Forecasts",
 
     'summary': """
         Project Auto Forecasts""",
-
-    'description': """
-        This module adds Auto Forecasting to the Project model.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

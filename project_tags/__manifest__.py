@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Tags",
 
     'summary': """
         Project Tags""",
-
-    'description': """
-        This module adds Project Task Tags to the Projects.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

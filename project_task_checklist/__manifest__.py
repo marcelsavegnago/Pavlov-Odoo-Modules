@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Task Checklists",
 
     'summary': """
         Project Task Checklists""",
-
-    'description': """
-        This module adds checklists to projects tasks.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

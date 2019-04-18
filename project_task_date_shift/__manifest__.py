@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project Task Date Shift",
 
     'summary': """
         Project Task Date Shift""",
-
-    'description': """
-        This module adds the ability to shift all Task dates when the Projects dates change.
-    """,
 
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",

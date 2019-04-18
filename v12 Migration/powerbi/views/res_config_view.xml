@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="server_powerbi_settings_view">
+        <field name="name">PowerBI Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="PowerBI Data-String" string="PowerBI" data-key="powerbi" groups="powerbi.powerbi_group_administrator">
+                    <h2>General Settings</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="powerbi_url"/>
+                                <div class="text-muted">
+                                    Enter the PowerBI Server URL
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="powerbi_url" widget="url" class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

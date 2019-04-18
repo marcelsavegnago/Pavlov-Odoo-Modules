@@ -4,7 +4,6 @@
 from odoo import fields
 from odoo.addons.base_geoengine import geo_model
 
-
 class FSMOrder(geo_model.GeoModel):
     _inherit = 'fsm.order'
 
@@ -14,4 +13,4 @@ class FSMOrder(geo_model.GeoModel):
                              ('repair', 'Repair'),
                              ('rma', 'RMA'),
                              ('decommission', 'Decommission')],
-                            string='Type', required=True)
+                             string='Type', required=True)

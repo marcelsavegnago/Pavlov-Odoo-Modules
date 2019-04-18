@@ -6,10 +6,6 @@
     'summary': """
         Project Department Categorization""",
 
-    'description': """
-        This module adds Department to the Projects and Tasks.
-    """,
-
     'author': "Camptocamp, Daniel Reis, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",
 

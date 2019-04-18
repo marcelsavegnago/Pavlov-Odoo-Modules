@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
 {
     'name': "Project - Pavlov Media",
 
     'summary': """
         Pavlov Media Project changes""",
-
-    'description': """
-        This module adds Project items specific to Pavlov Media
-    """,
 
     'author': "Patrick Wilson: Pavlov Media",
     'website': "https://www.pavlovmedia.com",
