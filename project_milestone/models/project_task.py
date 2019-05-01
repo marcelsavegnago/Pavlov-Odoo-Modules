@@ -1,3 +1,5 @@
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import models, fields, api
 
 
@@ -8,11 +10,8 @@ class ProjectTask(models.Model):
                                    string="Milestones",
                                    group_expand='_read_group_milestone_ids',
                                    domain="[('project_id', '=', project_id)]")
-    use_milestones = fields.Boolean(string="Use Milestones",
-                                    related='project_id.use_milestones',
-                                    help="If enabled, then Milestones will be \
-                                          available. Related to the Project \
-                                          'Use Milestones' field.")
+    use_milestones = fields.Boolean(related='project_id.use_milestones',
+                                    help="Does this project use milestones?")
 
     @api.model
     def _read_group_milestone_ids(self, milestone_ids, domain, order):

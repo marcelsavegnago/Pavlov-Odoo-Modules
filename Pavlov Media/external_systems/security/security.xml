@@ -1,0 +1,55 @@
+<odoo>
+  <record id="group_category_external_systems" model="ir.module.category">
+    <field name="name">External Systems (Contacts)</field>
+    <field name="description">External Systems Integration (Research and Developement)</field>
+    <field name="sequence">100</field>
+  </record>
+
+  <record id="group_external_systems_contact_owner" model="res.groups">
+    <field name="name">External Systems: Contact Owner</field>
+    <field name="comment">Gives access to the External System Owner field on Contacts.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_contact_id" model="res.groups">
+    <field name="name">External Systems: Contact ID</field>
+    <field name="comment">Gives access to the External System ID field on Contacts.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_contact" model="res.groups">
+    <field name="name">External Systems: Contact</field>
+    <field name="comment">Gives access to the External System Flag field on Contacts.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+
+  <record id="group_external_systems_location_owner" model="res.groups">
+    <field name="name">External Systems: Location Owner</field>
+    <field name="comment">Gives access to the External System Owner field on Locations.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_location_id" model="res.groups">
+    <field name="name">External Systems: Location ID</field>
+    <field name="comment">Gives access to the External System ID field on Locations.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_location" model="res.groups">
+    <field name="name">External Systems: Locations</field>
+    <field name="comment">Gives access to the External System Flag field on Locations.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+
+  <record id="group_external_systems_product_owner" model="res.groups">
+    <field name="name">External Systems: Product Owner</field>
+    <field name="comment">Gives access to the External System Owner field on Products.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_product_id" model="res.groups">
+    <field name="name">External Systems: Product ID</field>
+    <field name="comment">Gives access to the External System ID field on Products.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+  <record id="group_external_systems_product" model="res.groups">
+    <field name="name">External Systems: Product</field>
+    <field name="comment">Gives access to the External System Flag field on Products.</field>
+    <field name="category_id" ref="external_systems.group_category_external_systems"/>
+  </record>
+</odoo>

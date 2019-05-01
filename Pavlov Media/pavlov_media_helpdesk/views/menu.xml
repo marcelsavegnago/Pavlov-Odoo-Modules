@@ -1,0 +1,44 @@
+<odoo>
+  <record id="action_helpdesk_fsm_location" model="ir.actions.act_window">
+        <field name="name">Service Locations</field>
+        <field name="res_model">fsm.location</field>
+        <field name="view_id" ref="fieldservice.fsm_location_tree_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="fieldservice.fsm_location_search_view"/>
+        <field name="context">{'search_default_service_locations':1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a Service Location.
+            </p>
+        </field>
+  </record>
+
+  <record id="action_helpdesk_partner" model="ir.actions.act_window">
+        <field name="name">Contacts</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_id" ref="base.view_partner_tree"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="context">{'search_default_type_person':1}</field>
+  </record>
+
+  <!-- Master Data Menu -->
+  <menuitem id="menu_helpdesk_master_data"
+            name="Master Data"
+            parent="helpdesk.menu_helpdesk_root"
+            sequence="15"/>
+    <!-- Contacts Menu -->
+    <menuitem id="menu_helpdesk_fsm_partners"
+              name="Contacts"
+              action="action_helpdesk_partner"
+              parent="menu_helpdesk_master_data"
+              sequence="15"/>
+    <!-- Locations Menu -->
+    <menuitem id="menu_helpdesk_fsm_location"
+              name="Locations"
+              action="action_helpdesk_fsm_location"
+              parent="menu_helpdesk_master_data"
+              sequence="20"/>
+</odoo>

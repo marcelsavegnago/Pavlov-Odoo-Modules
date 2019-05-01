@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Sequences-->
+    <record model="ir.sequence" id="bwchange_qtreetype_seq">
+        <field name="name">BW Change Q-Tree Type Sequence</field>
+        <field name="code">bwchange.qtreetype</field>
+        <field name="prefix">0</field>
+        <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record model="ir.ui.view" id="bwchange_qtreetype_view_list">
+        <field name="name">BW Change QTree Type List View</field>
+        <field name="model">bwchange.qtreetype</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="qtreetype_sequence"
+                       widget="handle"
+                       groups="base.group_no_one"/>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="id"
+                       attrs="{'readonly': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record model="ir.ui.view" id="bwchange_qtreetype_view_form">
+        <field name="name">BW Change Q-Tree Type Form</field>
+        <field name="model">bwchange.qtreetype</field>
+        <field name="arch" type="xml">
+            <form string="BW Change qtreetype">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Name" />
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record model="ir.actions.act_window" id="bwchange_qtreetype_action">
+        <field name="name">BW Change Q-Tree Type Action</field>
+        <field name="res_model">bwchange.qtreetype</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+            name="Q-Tree Types"
+            id="bwchange_qtreetype_menu"
+            parent="bwchange_change_configuration_menu"
+            action="bwchange_qtreetype_action"
+            sequence="40"/>
+
+</odoo>

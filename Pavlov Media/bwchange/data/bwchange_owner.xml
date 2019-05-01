@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <!-- OWNERS -->
+    <record id="bwchange_owner_company" model="bwchange.owner">
+        <field name="name">Company</field>
+        <field name="description">Company owned.</field>
+        <field name="owner_sequence">0</field>
+    </record>
+
+    <record id="bwchange_owner_customer" model="bwchange.owner">
+        <field name="name">Customer</field>
+        <field name="description">Customer owned.</field>
+        <field name="owner_sequence">1</field>
+    </record>
+
+</odoo>

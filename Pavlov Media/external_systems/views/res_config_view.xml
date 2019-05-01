@@ -1,0 +1,55 @@
+<odoo>
+
+    <record id="external_systems_settings_view" model="ir.ui.view">
+        <field name="name">External Systems Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block"
+                     data-string="external_systems"
+                     string="External Systems"
+                     data-key="external_systems"
+                     groups="external_systems.group_external_systems">
+                    <h2>General Settings</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="myaccount_url"/>
+                                <div class="text-muted">
+                                    Enter the Base MyAccount Server URL
+                                    (Example: https://myaccount.pavlovmedia.net)
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="myaccount_url"
+                                               widget="url"
+                                               class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="houston_url"/>
+                                <div class="text-muted">
+                                    Enter the Base Houston Server URL
+                                    (Example: https://houston.pavlovmedia.net)
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="houston_url"
+                                               widget="url"
+                                               class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

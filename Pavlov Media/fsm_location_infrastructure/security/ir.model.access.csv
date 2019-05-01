@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fsm_resident_type_fsm_user,fsm.resident_type.user,model_fsm_resident_type,fieldservice.group_fsm_user,1,0,0,0,
+access_fsm_resident_type_fsm_manager,fsm.resident_type.manager,model_fsm_resident_type,fieldservice.group_fsm_manager,1,1,1,1,
+access_fsm_construction_type_fsm_user,fsm.construction_type.user,model_fsm_construction_type,fieldservice.group_fsm_user,1,0,0,0,
+access_fsm_construction_type_fsm_manager,fsm.construction_type.manager,model_fsm_construction_type,fieldservice.group_fsm_manager,1,1,1,1,
+access_fsm_building_style_fsm_user,fsm.building_style.user,model_fsm_building_style,fieldservice.group_fsm_user,1,0,0,0,
+access_fsm_building_style_fsm_manager,fsm.building_style.manager,model_fsm_building_style,fieldservice.group_fsm_manager,1,1,1,1,

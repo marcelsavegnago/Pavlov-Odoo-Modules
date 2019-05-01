@@ -1,0 +1,33 @@
+<odoo>
+  <record id="external_systems_fsm_location_form_inherit" model="ir.ui.view">
+    <field name="model">fsm.location</field>
+    <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//header" position="inside">
+          <button name="open_location_in_houston"
+                  string="Open Houston"
+                  type="object"
+                  class="oe_highlight"
+                  attrs="{'invisible': [('external_systems_id', '=', False)]}"/>
+      </xpath>
+
+      <xpath expr="//page[@id='others-page']" position="after">
+        <page name="external_systems" string="External Systems Configurations"
+              groups="external_systems.group_external_systems_location,
+                      external_systems.group_external_systems_location_id,
+                      external_systems.group_external_systems_location_owner">
+          <group>
+            <field name="external_systems_flag"
+                   groups="external_systems.group_external_systems_location"/>
+            <field name="external_systems_id"
+                   attrs="{'required':[('external_systems_flag', '=', True)]}"
+                   groups="external_systems.group_external_systems_location_id"/>
+            <field name="owned_by"
+                   attrs="{'required':[('external_systems_flag', '=', True)]}"
+                   groups="external_systems.group_external_systems_location_owner"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

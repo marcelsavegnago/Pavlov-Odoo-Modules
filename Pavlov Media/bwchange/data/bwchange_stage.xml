@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <!-- STAGES -->
+    <record id="bwchange_stage_initiation" model="bwchange.stage">
+        <field name="name">Initiation</field>
+        <field name="description">Newly requested bandwidth change where the Bandwidth Change is being built and drafted.</field>
+        <field name="stage_sequence">0</field>
+        <field name="default_state">draft</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="bwchange_stage_noc_analysis" model="bwchange.stage">
+        <field name="name">NOC Analysis</field>
+        <field name="description">Bandwidth Change has been sent to NOC for analysis and verifications.</field>
+        <field name="stage_sequence">1</field>
+        <field name="default_state">draft</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="bwchange_stage_waiting_to_land" model="bwchange.stage">
+        <field name="name">Waiting to Land</field>
+        <field name="description">Bandwidth Change has been verified and is on hold, waiting for circuit to land.</field>
+        <field name="stage_sequence">2</field>
+        <field name="default_state">draft</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="bwchange_stage_signatures" model="bwchange.stage">
+        <field name="name">Out for Signatures</field>
+        <field name="description">Bandwidth Change form is out being finalized and signed by required management.</field>
+        <field name="stage_sequence">3</field>
+        <field name="default_state">draft</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="bwchange_stage_noc_implementation" model="bwchange.stage">
+        <field name="name">NOC Implementation</field>
+        <field name="description">Circuit has landed and sent to NOC to implement bandwidth changes.</field>
+        <field name="stage_sequence">4</field>
+        <field name="default_state">draft</field>
+        <field name="fold">False</field>
+        <field name="is_close">False</field>
+    </record>
+
+    <record id="bwchange_stage_complete" model="bwchange.stage">
+        <field name="name">Completed</field>
+        <field name="description">Bandwidth Change process is completed and the changes are active.</field>
+        <field name="stage_sequence">5</field>
+        <field name="default_state">active</field>
+        <field name="fold">True</field>
+        <field name="is_close">True</field>
+    </record>
+
+    <record id="bwchange_stage_canceled" model="bwchange.stage">
+        <field name="name">Canceled</field>
+        <field name="description">Bandwidth Change has been canceled.</field>
+        <field name="stage_sequence">6</field>
+        <field name="default_state">inactive</field>
+        <field name="fold">True</field>
+        <field name="is_close">True</field>
+    </record>
+
+</odoo>

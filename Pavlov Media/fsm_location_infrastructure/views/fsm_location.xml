@@ -1,0 +1,27 @@
+<odoo>
+  <record id="fsm_location_form_view" model="ir.ui.view">
+    <field name="model">fsm.location</field>
+    <field name="inherit_id" ref="fieldservice.fsm_location_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@id='others-page']" position="before">
+        <page name="infrastructure" string="Infrastructure">
+          <group name="infrastructure" string="Infrastructure">
+            <group>
+              <field name="building_style" widget="selection"/>
+              <field name="construction_type" widget="selection"/>
+              <field name="resident_type" widget="selection"/>
+            </group>
+            <group>
+              <field name="buildings"/>
+              <field name="units"/>
+              <field name="beds"/>
+              <field name="clubhouse_buildings"/>
+              <field name="maintenance_buildings"/>
+              <field name="retail_spaces"/>
+            </group>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

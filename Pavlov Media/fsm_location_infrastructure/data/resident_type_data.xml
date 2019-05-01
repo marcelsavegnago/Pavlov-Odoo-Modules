@@ -1,0 +1,34 @@
+<odoo>
+  <data noupdate="1">
+    <record id="fsm_resident_type_family" model="fsm.resident_type">
+      <field name="name">Family</field>
+      <field name="description">Family or standard, non-specialized living.</field>
+      <field name="owner_sequence">0</field>
+    </record>
+    <record id="fsm_resident_type_luxury" model="fsm.resident_type">
+      <field name="name">Luxury</field>
+      <field name="description">Luxury community.</field>
+      <field name="owner_sequence">1</field>
+    </record>
+    <record id="fsm_resident_type_student" model="fsm.resident_type">
+      <field name="name">Student</field>
+      <field name="description">Student housing.</field>
+      <field name="owner_sequence">2</field>
+    </record>
+    <record id="fsm_resident_type_military" model="fsm.resident_type">
+      <field name="name">Military</field>
+      <field name="description">Military community and families.</field>
+      <field name="owner_sequence">3</field>
+    </record>
+    <record id="fsm_resident_type_retirement" model="fsm.resident_type">
+      <field name="name">Retirement</field>
+      <field name="description">Retirement community.</field>
+      <field name="owner_sequence">4</field>
+    </record>
+    <record id="fsm_resident_type_retail" model="fsm.resident_type">
+      <field name="name">B2B Retail</field>
+      <field name="description">Business Customers.</field>
+      <field name="owner_sequence">5</field>
+    </record>
+  </data>
+</odoo>

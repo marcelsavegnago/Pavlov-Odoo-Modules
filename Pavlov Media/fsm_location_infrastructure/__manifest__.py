@@ -1,0 +1,25 @@
+{
+    'name': 'FSM Location Infrastructure',
+    'summary': "Adds Infrastructure fields to FSM Locations.",
+    'author': "Patrick Wilson, Odoo Community Association (OCA)",
+    'website': "https://github.com/OCA/partner-contact",
+    'category': 'Field Service',
+    'version': '12.0.1.0.0',
+    'license': 'AGPL-3',
+    'depends': [
+                'fieldservice',
+                ],
+    'data': [
+        'views/fsm_location.xml',
+        'views/fsm_resident_type.xml',
+        'views/fsm_construction_type.xml',
+        'views/fsm_building_style.xml',
+        'security/ir.model.access.csv',
+        'data/construction_type_data.xml',
+        'data/building_style_data.xml',
+        'data/resident_type_data.xml',
+    ],
+    'application': True,
+    'development_status': 'Beta',
+    'maintainers': ['patrickrwilson'],
+}

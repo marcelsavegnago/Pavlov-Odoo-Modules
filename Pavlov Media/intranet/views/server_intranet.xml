@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="action_make_testing" model="ir.actions.server">
+        <field name="name">Open Intranet URL</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_server_intranet"/>
+        <field name="state">code</field>
+        <field name="code">action = model.open_url()</field>
+    </record>
+
+    <!-- Top menu -->
+    <menuitem name="Intranet"
+              id="intranet_menu_root"
+              web_icon="intranet,static/description/icon.png"
+              groups="intranet.intranet_group_user"
+              sequence="309"
+              action="action_make_testing"/>
+
+</odoo>

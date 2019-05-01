@@ -1,31 +1,19 @@
+# Copyright 2019 Patrick Wilson <patrickraymondwilson@gmail.com>
+# License LGPLv3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.en.html).
+
 {
     'name': "Project Templates",
-
-    'summary': """
-        Project Templates""",
-
+    'summary': """Project Templates""",
     'author': "Patrick Wilson, Odoo Community Association (OCA)",
     'website': "https://github.com/OCA/project",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
-    # for the full list
     'category': 'Project Management',
     'version': '12.0.1.0.0',
     'license': 'AGPL-3',
-
-    # any module necessary for this one to work correctly
     'depends': ['project'],
-
-    # always loaded
     'data': [
         'views/project.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
     'application': False,
+    'development_status': 'Beta',
+    'maintainers': ['patrickrwilson'],
 }

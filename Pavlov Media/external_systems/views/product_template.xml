@@ -1,0 +1,35 @@
+<odoo>
+  <record id="external_systmes_template_product_form" model="ir.ui.view" >
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="//sheet" position="before">
+        <header>
+          <button name="open_product_in_houston"
+                  string="Open Houston"
+                  type="object"
+                  class="oe_highlight"
+                  attrs="{'invisible': [('external_systems_id', '=', False)]}"/>
+        </header>
+      </xpath>
+
+      <xpath expr="//page[@name='sales']" position="before">
+        <page name="external_systems" string="External Systems Configurations"
+              groups="external_systems.group_external_systems_product,
+                      external_systems.group_external_systems_product_id,
+                      external_systems.group_external_systems_product_owner">
+          <group>
+            <field name="external_systems_flag"
+                   groups="external_systems.group_external_systems_product"/>
+            <field name="external_systems_id"
+                   attrs="{'required':[('external_systems_flag', '=', True)]}"
+                   groups="external_systems.group_external_systems_product_id"/>
+            <field name="owned_by"
+                   attrs="{'required':[('external_systems_flag', '=', True)]}"
+                   groups="external_systems.group_external_systems_product_owner"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+</odoo>

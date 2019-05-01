@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Sequences-->
+    <record model="ir.sequence" id="bwchange_seq">
+        <field name="name">BW Change Sequence</field>
+        <field name="code">bwchange.change</field>
+        <field name="prefix">0</field>
+        <field name="padding">1</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <!-- QTREE TYPES -->
+    <record id="bwchange_qtreetype_light" model="bwchange.qtreetype">
+        <field name="name">Queue Tree Light</field>
+        <field name="description">Queue Tree Light</field>
+        <field name="owner_sequence">0</field>
+    </record>
+
+    <record id="bwchange_qtreetype_standard" model="bwchange.qtreetype">
+        <field name="name">Queue Tree Standard</field>
+        <field name="description">Queue Tree Standard</field>
+        <field name="owner_sequence">1</field>
+    </record>
+
+</odoo>

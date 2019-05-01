@@ -1,0 +1,55 @@
+<odoo>
+  <!-- List View -->
+  <record id="view_project" model="ir.ui.view">
+    <field name="name">project.pavlov.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.view_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="construction_manager"/>
+        </xpath>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="edit_project" model="ir.ui.view">
+    <field name="name">project.pavlov.form</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="project_summary"/>
+        </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="construction_manager"/>
+        </xpath>
+        <xpath expr="//page[@name='settings']" position="after">
+          <page name="contract_dates" string="Contract Dates">
+            <group name="contract_info" string="Contract Information" col="4" colspan="2">
+              <field name="contract_live_date_data"/>
+              <field name="contract_end_date_data"/>
+              <field name="contract_live_date_video"/>
+              <field name="contract_end_date_video"/>
+              <field name="early_services_date"/>
+            </group>
+          </page>
+        </xpath>
+    </field>
+  </record>
+
+  <!-- Simplified Form View -->
+  <record id="project_project_view_form_simplified" model="ir.ui.view">
+    <field name="name">project.pavlov.simpleform</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="after">
+          <field name="project_summary"/>
+          <field name="privacy_visibility" widget="radio"/>
+        </xpath>
+    </field>
+  </record>
+</odoo>

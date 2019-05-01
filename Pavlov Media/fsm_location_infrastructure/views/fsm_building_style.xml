@@ -1,0 +1,57 @@
+<odoo>
+    <!-- Sequences-->
+    <record id="fsm_building_style_seq" model="ir.sequence">
+      <field name="name">FSM Building Style Sequence</field>
+      <field name="code">fsm.building_style</field>
+      <field name="prefix">0</field>
+      <field name="padding">1</field>
+    </record>
+
+    <!-- List View-->
+    <record id="fsm_building_style_view_list" model="ir.ui.view">
+      <field name="name">FSM Building Style List View</field>
+      <field name="model">fsm.building_style</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="sequence"
+                 widget="handle"/>
+          <field name="name"/>
+          <field name="description"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="fsm_building_style_view_form" model="ir.ui.view">
+      <field name="name">FSM Building Style Form</field>
+      <field name="model">fsm.building_style</field>
+      <field name="arch" type="xml">
+        <form string="Building Style">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" string="Name" />
+              <h1><field name="name" /></h1>
+            </div>
+            <group>
+              <field name="description"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Actions opening views on models -->
+    <record id="fsm_building_style_action" model="ir.actions.act_window">
+      <field name="name">FSM Building Style Action</field>
+      <field name="res_model">fsm.building_style</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem
+      name="Building Styles"
+      id="fsm_building_style_menu"
+      parent="fieldservice.menu_fsm_config_location"
+      action="fsm_building_style_action"
+      sequence="102"/>
+</odoo>
