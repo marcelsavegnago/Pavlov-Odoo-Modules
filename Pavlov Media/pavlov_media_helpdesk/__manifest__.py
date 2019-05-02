@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Pavlov Media
+# Copyright (C) 2019 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
 
 {
@@ -22,7 +22,6 @@
         'views/helpdesk_ticket.xml',
         'views/menu.xml',
     ],
-    'application': True,
     'development_status': 'Beta',
     'maintainers': ['patrickrwilson'],
 }

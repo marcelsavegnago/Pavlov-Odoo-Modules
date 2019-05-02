@@ -1,8 +1,10 @@
-<?xml version="1.0"?>
+<!-- Copyright 2019 Pavlov Media
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
 <odoo>
 
     <!-- Sequences-->
-    <record model="ir.sequence" id="bwchange_speed_seq">
+    <record id="bwchange_speed_seq" model="ir.sequence">
         <field name="name">BW Change Speed Sequence</field>
         <field name="code">bwchange.speed</field>
         <field name="prefix">0</field>
@@ -10,7 +12,7 @@
     </record>
 
     <!-- List View-->
-    <record model="ir.ui.view" id="bwchange_speed_view_list">
+    <record id="bwchange_speed_view_list" model="ir.ui.view">
         <field name="name">BW Change Speed List View</field>
         <field name="model">bwchange.speed</field>
         <field name="arch" type="xml">
@@ -27,7 +29,7 @@
     </record>
 
     <!-- Form View -->
-    <record model="ir.ui.view" id="bwchange_speed_view_form">
+    <record id="bwchange_speed_view_form" model="ir.ui.view">
         <field name="name">BW Change Speed Form</field>
         <field name="model">bwchange.speed</field>
         <field name="arch" type="xml">
@@ -46,7 +48,7 @@
     </record>
 
     <!-- Actions opening views on models -->
-    <record model="ir.actions.act_window" id="bwchange_speed_action">
+    <record id="bwchange_speed_action" model="ir.actions.act_window">
         <field name="name">speeds</field>
         <field name="res_model">bwchange.speed</field>
         <field name="view_mode">tree,form</field>

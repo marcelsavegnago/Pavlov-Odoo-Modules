@@ -1,10 +1,14 @@
+# Copyright (C) 2019 Pavlov Media
+# License Proprietary. Do not copy, share nor distribute.
+
 from odoo import api, fields, models
+
 
 class Timer(models.Model):
     _name = "timer.timer"
 
-    name = fields.Char(string="Name")
-    active = fields.Boolean(string="Active", default=True)
+    name = fields.Char()
+    active = fields.Boolean(default=True)
     start_timer_date = fields.Datetime()
     end_timer_date = fields.Datetime()
     user_id = fields.Many2one('res.users', string="User")

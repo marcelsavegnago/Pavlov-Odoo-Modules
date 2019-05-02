@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Pavlov Media
+# Copyright (C) 2019 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
 
 {
@@ -17,9 +17,9 @@
     'data': [
         'views/fsm_location.xml',
         'views/fsm_order.xml',
+        'views/fsm_equipment.xml',
         'views/menu.xml',
     ],
-    'application': True,
     'development_status': 'Beta',
     'maintainers': ['patrickrwilson'],
 }

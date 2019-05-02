@@ -61,6 +61,7 @@
         'l10n_us_form_1099',
         'mass_editing',
         'partner_fax',
+        # 'partner_priority',
         # 'partner_time_to_pay',
         'product_template_tags',
         # 'stock_production_lot_warranty',

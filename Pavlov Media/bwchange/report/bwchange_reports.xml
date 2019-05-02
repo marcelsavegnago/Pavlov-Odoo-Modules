@@ -26,7 +26,7 @@
                   <h3>Bandwidth Configuration Change Request</h3>
                 </div>
                 <br></br>
-                <h4><b>Site Name/Site Code:<span t-field="docs.partner_id"/></b></h4>
+                <h4><b>Site Name/Site Code:  <span t-field="docs.location_id"/> - <span t-field="docs.location_id.ref"/></b></h4>
                 <br></br>
 
                 <h5><b>Property Circuit Details</b></h5>

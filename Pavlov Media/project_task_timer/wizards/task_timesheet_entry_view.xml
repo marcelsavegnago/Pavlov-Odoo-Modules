@@ -1,28 +1,31 @@
+<!-- Copyright (C) 2019 Pavlov Media
+    License Proprietary. Do not copy, share nor distribute.-->
+
 <odoo>
-  <record id="task_timesheet_entry_view_form" model="ir.ui.view">
-    <field name="name">task_timesheet_entry</field>
-    <field name="model">task_timesheet_entry</field>
-    <field name="arch" type="xml">
-      <form>
-        <group>
-          <group>
-            <field name="timer_id" invisible="1"/>
-            <field name="project_id"/>
-            <field name="task_id"/>
-          </group>
-          <group>
-            <field name="duration" widget="float_time"/>
-          </group>
-        </group>
-        <group>
-          <field name="description"/>
-        </group>
-        <footer>
-          <button string="Save Entry" class="btn-default" type="object" name="task_save_entry"/>
-          <button string="Discard Timer" class="btn-default" type="object" name="task_discard_entry"/>
-          <button string="Cancel" class="btn-default" special="cancel"/>
-        </footer>
-      </form>
-    </field>
-  </record>
+    <record id="task_timesheet_entry_view_form" model="ir.ui.view">
+      <field name="name">task_timesheet_entry</field>
+      <field name="model">task_timesheet_entry</field>
+      <field name="arch" type="xml">
+          <form>
+              <group>
+                  <group>
+                      <field name="timer_id" invisible="1"/>
+                      <field name="project_id"/>
+                      <field name="task_id"/>
+                  </group>
+                  <group>
+                      <field name="duration" widget="float_time"/>
+                  </group>
+              </group>
+              <group>
+                  <field name="description"/>
+              </group>
+              <footer>
+                  <button string="Save Entry" class="btn-default" type="object" name="task_save_entry"/>
+                  <button string="Discard Timer" class="btn-default" type="object" name="task_discard_entry"/>
+                  <button string="Cancel" class="btn-default" special="cancel"/>
+              </footer>
+          </form>
+        </field>
+    </record>
 </odoo>

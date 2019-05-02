@@ -1,5 +1,6 @@
-# Copyright (C) 2018 Open Source Integrators
+# Copyright (C) 2018 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
+
 {
     'name': "Helpdesk Timer",
     'summary': "Adds timer functionality to Helpdesk Tickets",
@@ -15,7 +16,4 @@
         'views/timer.xml',
         'wizards/timer_warning.xml',
     ],
-    'installable': True,
-    'auto_install': False,
-    'application': True,
 }

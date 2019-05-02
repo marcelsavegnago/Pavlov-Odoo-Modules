@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Pavlov Media
+# Copyright (C) 2019 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
 
 {
@@ -16,7 +16,6 @@
         'views/project.xml',
         'views/project_task.xml',
     ],
-    'application': True,
     'development_status': 'Beta',
     'maintainers': ['patrickrwilson'],
 }

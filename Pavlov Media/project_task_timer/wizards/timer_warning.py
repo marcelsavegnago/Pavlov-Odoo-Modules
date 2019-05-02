@@ -1,5 +1,9 @@
+# Copyright (C) 2019 Pavlov Media
+# License Proprietary. Do not copy, share nor distribute.
+
 from odoo import _, api, fields, models
 from odoo.exceptions import Warning
+
 
 class TimerWarning(models.TransientModel):
     _name = "timer_warning"

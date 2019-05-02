@@ -13,13 +13,13 @@
 
     <!-- List View-->
     <record id="helpdesk_timer_list_view" model="ir.ui.view">
-      <field name="name">Timer List View</field>
-      <field name="model">timer.timer</field>
-      <field name="inherit_id" ref="project_task_timer.timer_view_list"/>
-      <field name="arch" type="xml">
-        <xpath expr="//field[@name='task_id']" position="after">
-            <field name="ticket_id"/>
-        </xpath>
-      </field>
+        <field name="name">Timer List View</field>
+        <field name="model">timer.timer</field>
+        <field name="inherit_id" ref="project_task_timer.timer_view_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='task_id']" position="after">
+                <field name="ticket_id"/>
+            </xpath>
+        </field>
     </record>
 </odoo>

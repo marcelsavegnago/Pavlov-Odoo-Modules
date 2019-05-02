@@ -1,4 +1,4 @@
-# Copyright (C) 2018 Pavlov Media
+# Copyright (C) 2019 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
 
 from odoo import models, fields
@@ -7,12 +7,11 @@ from odoo import models, fields
 class Project(models.Model):
     _inherit = 'project.project'
 
-    project_summary = fields.Text(string="Project Summary")
+    project_summary = fields.Text()
     early_services_date = fields.Date(string="Early Services Live",
                                       index=True,
                                       copy=False)
-    contract_live_date_data = fields.Date(string="Contract Live Data",
-                                          index=True,
+    contract_live_date_data = fields.Date(index=True,
                                           copy=False)
     contract_live_date_video = fields.Date(string="Contract Live Video",
                                            index=True,
@@ -24,5 +23,4 @@ class Project(models.Model):
                                           index=True,
                                           copy=False)
     tag_ids = fields.Many2many('project.tags', string="Tags")
-    construction_manager = fields.Many2one('res.users',
-                                           string="Construction Manager")
+    construction_manager = fields.Many2one('res.users')

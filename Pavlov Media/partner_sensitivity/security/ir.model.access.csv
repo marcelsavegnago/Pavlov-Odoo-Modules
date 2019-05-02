@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_partner_sensitivity_user,partner.sensitivity.user,model_partner_sensitivity,base.group_user,1,1,1,1,

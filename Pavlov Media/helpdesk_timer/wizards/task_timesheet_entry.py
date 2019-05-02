@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+# Copyright (C) 2018 Pavlov Media
+# License Proprietary. Do not copy, share nor distribute.
+
 import datetime
 
 from odoo import _, api, fields, models
@@ -53,13 +55,15 @@ class TaskTimesheetEntry(models.TransientModel):
 
             self.timer_id.unlink()
             if ticket:
-                other_ticket_active_timers = self.env['timer.timer'].search_count([(
-                    'ticket_id', '=', ticket.id)])
+                other_ticket_active_timers = self.env[
+                    'timer.timer'].search_count([(
+                        'ticket_id', '=', ticket.id)])
                 if other_ticket_active_timers == 0:
                     ticket.write({'timer_started': False})
             if task:
-                other_task_active_timers = self.env['timer.timer'].search_count([(
-                    'task_id', '=', task.id)])
+                other_task_active_timers = self.env[
+                    'timer.timer'].search_count([(
+                        'task_id', '=', task.id)])
                 if other_task_active_timers == 0:
                     task.write({'timer_started': False})
         else:

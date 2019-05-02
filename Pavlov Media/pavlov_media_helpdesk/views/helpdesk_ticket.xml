@@ -1,3 +1,6 @@
+<!-- Copyright 2019 Pavlov Media
+     # License Proprietary. Do not copy, share nor distribute. -->
+
 <odoo>
 
     <!-- Rename fields -->
@@ -36,10 +39,10 @@
 
             <!-- Add partner mobile -->
             <field name="partner_phone" position="after">
-              <field name="partner_mobile"
-                     attrs="{'invisible': [('partner_id', '=', False)]}"
-                     readonly="1"
-                     widget="phone"/>
+                <field name="partner_mobile"
+                       attrs="{'invisible': [('partner_id', '=', False)]}"
+                       readonly="1"
+                       widget="phone"/>
             </field>
 
             <!-- Remove create/edit abilities to scope and make required -->
@@ -67,12 +70,12 @@
 
             <!-- Add partner tags -->
             <field name="sla_name" position="after">
-              <field name="partner_category_id"
-                     nolabel="1"
-                     attrs="{'invisible': [('partner_id', '=', False)]}"
-                     readonly="1"
-                     widget="many2many_tags"
-                     options="{'color_field': 'color'}"/>
+                <field name="partner_category_id"
+                       nolabel="1"
+                       attrs="{'invisible': [('partner_id', '=', False)]}"
+                       readonly="1"
+                       widget="many2many_tags"
+                       options="{'color_field': 'color'}"/>
             </field>
 
             <!-- Make Description required -->

@@ -1,51 +1,54 @@
+<!-- Copyright (C) 2019 Pavlov Media
+    License Proprietary. Do not copy, share nor distribute.-->
+
 <odoo>
     <!-- List View-->
     <record id="timer_view_list" model="ir.ui.view">
-      <field name="name">Timer List View</field>
-      <field name="model">timer.timer</field>
-      <field name="arch" type="xml">
-        <tree editable="top">
-          <field name="user_id"/>
-          <field name="start_timer_date"/>
-          <field name="end_timer_date" invisible="1"/>
-          <field name="project_id"/>
-          <field name="task_id"/>
-        </tree>
-      </field>
+        <field name="name">Timer List View</field>
+        <field name="model">timer.timer</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="user_id"/>
+                <field name="start_timer_date"/>
+                <field name="end_timer_date" invisible="1"/>
+                <field name="project_id"/>
+                <field name="task_id"/>
+            </tree>
+        </field>
     </record>
 
     <!-- Form View -->
     <record id="timer_view_form" model="ir.ui.view">
-      <field name="name">Timerd Form</field>
-      <field name="model">timer.timer</field>
-      <field name="arch" type="xml">
-        <form string="Timer">
-          <sheet>
-            <group>
-              <field name="user_id"/>
-              <field name="project_id"/>
-              <field name="task_id"/>
-              <field name="start_timer_date"/>
-              <field name="end_timer_date" invisible="1"/>
-            </group>
-          </sheet>
-        </form>
-      </field>
+        <field name="name">Timerd Form</field>
+        <field name="model">timer.timer</field>
+        <field name="arch" type="xml">
+            <form string="Timer">
+                <sheet>
+                    <group>
+                        <field name="user_id"/>
+                        <field name="project_id"/>
+                        <field name="task_id"/>
+                        <field name="start_timer_date"/>
+                        <field name="end_timer_date" invisible="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
     </record>
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="timer_action">
-      <field name="name">Timers</field>
-      <field name="res_model">timer.timer</field>
-      <field name="view_mode">tree,form</field>
+        <field name="name">Timers</field>
+        <field name="res_model">timer.timer</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu Items -->
     <menuitem
-      name="All Timers"
-      id="timer_menu"
-      parent="project.menu_project_config"
-      action="timer_action"
-      sequence="50"
-      groups="project.group_project_manager"/>
+        name="All Timers"
+        id="timer_menu"
+        parent="project.menu_project_config"
+        action="timer_action"
+        sequence="50"
+        groups="project.group_project_manager"/>
 </odoo>

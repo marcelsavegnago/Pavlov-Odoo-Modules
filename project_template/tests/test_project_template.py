@@ -11,7 +11,7 @@ class TestProjectTemplate(common.TransactionCase):
         super().setUp()
         test_project = self.env['project.project'].create({
             'name': 'TestProject'})
-        test_project_task = self.env['project.task'].create({
+        self.env['project.task'].create({
             'name': 'TestTask',
             'project_id': test_project.id})
 
@@ -22,3 +22,4 @@ class TestProjectTemplate(common.TransactionCase):
 
     # TEST 02: Create project from templates
     def test_create_project_from_template(self):
+        pass

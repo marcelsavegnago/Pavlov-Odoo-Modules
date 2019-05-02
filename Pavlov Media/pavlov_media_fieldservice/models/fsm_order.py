@@ -2,10 +2,9 @@
 # License Proprietary. Do not copy, share nor distribute.
 
 from odoo import fields
-from odoo.addons.base_geoengine import geo_model
 
 
-class FSMOrder(geo_model.GeoModel):
+class FSMOrder(models.Model):
     _inherit = 'fsm.order'
 
     type = fields.Selection([('installation', 'Installation'),

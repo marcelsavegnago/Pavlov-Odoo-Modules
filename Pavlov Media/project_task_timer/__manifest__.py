@@ -1,5 +1,6 @@
-# Copyright (C) 2018 Open Source Integrators
+# Copyright (C) 2019 Pavlov Media
 # License Proprietary. Do not copy, share nor distribute.
+
 {
     'name': "Project Task Timer",
     'summary': "Adds a timer to project tasks.",
@@ -17,7 +18,4 @@
         'wizards/timer_warning.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
 }

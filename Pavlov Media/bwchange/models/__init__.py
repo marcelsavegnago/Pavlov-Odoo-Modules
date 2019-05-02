@@ -8,4 +8,5 @@ from . import (
     bw_stage,
     res_partner,
     bw_qtreetype,
+    fsm_location,
 )

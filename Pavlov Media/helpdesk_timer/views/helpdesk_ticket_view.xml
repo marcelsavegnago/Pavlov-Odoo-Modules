@@ -29,36 +29,36 @@
 
     <!-- Kanban View -->
     <record id="helpdesk_ticket_timer_kanban_view" model="ir.ui.view">
-      <field name="name">helpdesk.ticket.timer.kanban.inherited</field>
-      <field name="model">helpdesk.ticket</field>
-      <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
-      <field name="arch" type="xml">
-        <xpath expr="//field[@name='user_id']" position="after">
-          <field name="timer_started" invisible="1"/>
-        </xpath>
-        <xpath expr="//div[@class='oe_kanban_bottom_right']" position="inside">
-          <div>
-            <t t-if="record.timer_started.raw_value == true">
-              <img src="/project_task_timer/static/buttons/start_multiple_timer_icon.png" width="26" height="18"/>
-            </t>
-          </div>
-        </xpath>
-      </field>
+        <field name="name">helpdesk.ticket.timer.kanban.inherited</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="timer_started" invisible="1"/>
+            </xpath>
+            <xpath expr="//div[@class='oe_kanban_bottom_right']" position="inside">
+                <div>
+                    <t t-if="record.timer_started.raw_value == true">
+                        <img src="/project_task_timer/static/buttons/start_multiple_timer_icon.png" width="26" height="18"/>
+                    </t>
+                </div>
+            </xpath>
+        </field>
     </record>
 
     <!-- Actions opening views on models -->
     <record model="ir.actions.act_window" id="timer_action">
-      <field name="name">Timers</field>
-      <field name="res_model">timer.timer</field>
-      <field name="view_mode">tree,form</field>
+        <field name="name">Timers</field>
+        <field name="res_model">timer.timer</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu Items -->
     <menuitem
-      name="All Timers"
-      id="timer_menu"
-      parent="helpdesk.helpdesk_menu_config"
-      action="timer_action"
-      sequence="50"
-      groups="helpdesk.group_helpdesk_manager"/>
+        name="All Timers"
+        id="timer_menu"
+        parent="helpdesk.helpdesk_menu_config"
+        action="timer_action"
+        sequence="50"
+        groups="helpdesk.group_helpdesk_manager"/>
 </odoo>

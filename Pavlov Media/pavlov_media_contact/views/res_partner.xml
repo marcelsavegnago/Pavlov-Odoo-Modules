@@ -1,112 +1,116 @@
+<!-- Copyright 2019 Pavlov Media
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
 <odoo>
-  <!-- Inherit res_partner List -->
-  <record id="pavlov_media_customizations_inherit_view_list" model="ir.ui.view">
-    <field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_tree"/>
-    <field name="arch" type="xml">
-        <!-- add columns to list -->
-        <field name="display_name" position="after">
-          <field name="category_id" widget="many2many_tags"/>
+    <!-- Inherit res_partner List -->
+    <record id="pavlov_media_customizations_inherit_view_list" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!-- add columns to list -->
+            <field name="display_name" position="after">
+                <field name="category_id" widget="many2many_tags"/>
+            </field>
+            <field name="email" position="after">
+                <field name="street"/>
+                <field name="street2"/>
+                <field name="city"/>
+                <field name="state_id"/>
+                <field name="zip"/>
+                <field name="ref"/>
+                <field name="partner_latitude"/>
+                <field name="partner_longitude"/>
+            </field>
         </field>
-        <field name="email" position="after">
-          <field name="street"/>
-          <field name="street2"/>
-          <field name="city"/>
-          <field name="state_id"/>
-          <field name="zip"/>
-          <field name="ref"/>
-          <field name="partner_latitude"/>
-          <field name="partner_longitude"/>
+    </record>
+
+    <!-- Inherit main res_partner form -->
+    <record id="pavlov_media_customizations_inherit_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Show the helpdesk ticket smart button if count is 0 -->
+            <button name="action_open_helpdesk_ticket" position="attributes">
+                <attribute name="attrs"/>
+            </button>
+
+            <!-- Change Placeholder value on parent_id -->
+            <field name="parent_id" position="attributes">
+                <attribute name="placeholder">Employee of...</attribute>
+            </field>
+
+            <!-- Add Service Location, Unit and Room to contact form -->
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="service_location_id"
+                       placeholder="Service Location..."
+                       string="Service Location"
+                       attrs="{'invisible':[('company_type','=','company')], 'required': [('category_id','=', 'Resident')]}"
+                       domain="[('category_id','like','Service Location')]"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="service_location_unit_id"
+                       placeholder="Unit..."
+                       class="o_address_street"
+                       attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)],
+                               'invisible':[('company_type','=','company')],
+                               'required':[('category_id','=','Resident')]}"
+                       domain="[('fsm_parent_id', '=', service_location_id),
+                                ('category_id','not like','Service Location')]"
+                       options="{'no_create': True, 'no_open': True}"/>
+                <field name="room"
+                       placeholder="Room..."
+                       attrs="{'invisible':[('company_type','=','company')]}"/>
+                <field name="spacer" string=" "/>
+            </xpath>
+
+            <!-- Require Phone Number -->
+            <field name="phone" position="replace">
+                <field name="phone"
+                       widget="phone"
+                       attrs="{'required': [('company_type','=','person')]}"/>
+            </field>
+
+            <!-- Require Email -->
+            <field name="email" position="replace">
+                <field name="email"
+                       widget="email"
+                       context="{'gravatar_image': True}"
+                       attrs="{'required': ['|',('user_ids','!=', []),('company_type','=','person')]}"/>
+            </field>
+
+            <!-- Require Tag -->
+            <field name="category_id" position="attributes">
+                <attribute name="required">True</attribute>
+            </field>
+
+            <!-- Move tags above address info -->
+            <field name="type" position="before">
+                <field name="category_id" position="move"/>
+            </field>
+
+            <!-- Move job position below title -->
+            <field name="title" position="before">
+                <field name="function" position="move"/>
+            </field>
+
+            <!-- Move tax id into sales section -->
+            <field name="ref" position="after">
+                <field name="vat" position="move"/>
+            </field>
         </field>
-    </field>
-  </record>
+    </record>
 
-  <!-- Inherit main res_partner form -->
-  <record id="pavlov_media_customizations_inherit_view_form" model="ir.ui.view">
-    <field name="model">res.partner</field>
-    <field name="inherit_id" ref="base.view_partner_form"/>
-    <field name="arch" type="xml">
-        <!-- Show the helpdesk ticket smart button if count is 0 -->
-        <button name="action_open_helpdesk_ticket" position="attributes">
-            <attribute name="attrs"/>
-        </button>
-
-        <!-- Change Placeholder value on parent_id -->
-        <field name="parent_id" position="attributes">
-           <attribute name="placeholder">Employee of...</attribute>
+    <!-- Inherit Field Service Form -->
+    <record id="pavlov_media_customizations_inherit_field_service_view_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="fieldservice.fsm_partner_fields"/>
+        <field name="arch" type="xml">
+            <!-- Remove service location field since it was added above -->
+            <xpath expr="//field[@name='service_location_id']" position="replace">
+            </xpath>
         </field>
+    </record>
 
-        <!-- Add Service Location, Unit and Room to contact form -->
-        <xpath expr="//field[@name='type']" position="after">
-          <field name="service_location_id"
-                 placeholder="Service Location..."
-                 string="Service Location"
-                 attrs="{'invisible':[('company_type','=','company')], 'required': [('category_id','=', 'Resident')]}"
-                 domain="[('category_id','like','Service Location')]"
-                 options="{'no_create': True, 'no_open': True}"/>
-          <field name="service_location_unit_id"
-                 placeholder="Unit..."
-                 class="o_address_street"
-                 attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)],
-                         'invisible':[('company_type','=','company')],
-                         'required':[('category_id','=','Resident')]}"
-                 domain="[('fsm_parent_id', '=', service_location_id),('category_id','not like','Service Location')]"
-                 options="{'no_create': True, 'no_open': True}"/>
-          <field name="room"
-                 placeholder="Room..."
-                 attrs="{'invisible':[('company_type','=','company')]}"/>
-          <field name="spacer" string=" "/>
-        </xpath>
-
-        <!-- Require Phone Number -->
-        <field name="phone" position="replace">
-           <field name="phone"
-                  widget="phone"
-                  attrs="{'required': [('company_type','=','person')]}"/>
-        </field>
-
-        <!-- Require Email -->
-        <field name="email" position="replace">
-           <field name="email"
-                  widget="email"
-                  context="{'gravatar_image': True}"
-                  attrs="{'required': ['|',('user_ids','!=', []),('company_type','=','person')]}"/>
-        </field>
-
-        <!-- Require Tag -->
-        <field name="category_id" position="attributes">
-           <attribute name="required">True</attribute>
-        </field>
-
-        <!-- Move tags above address info -->
-        <field name="type" position="before">
-            <field name="category_id" position="move"/>
-        </field>
-
-        <!-- Move job position below title -->
-        <field name="title" position="before">
-            <field name="function" position="move"/>
-        </field>
-
-        <!-- Move tax id into sales section -->
-        <field name="ref" position="after">
-            <field name="vat" position="move"/>
-        </field>
-    </field>
-  </record>
-
-  <!-- Inherit Field Service Form -->
-  <record id="pavlov_media_customizations_inherit_field_service_view_form" model="ir.ui.view">
-    <field name="model">res.partner</field>
-    <field name="inherit_id" ref="fieldservice.fsm_partner_fields"/>
-    <field name="arch" type="xml">
-        <!-- Remove service location field since it was added above -->
-        <xpath expr="//field[@name='service_location_id']" position="replace">
-        </xpath>
-    </field>
-  </record>
-
-  <record id="action_partner_fsm_location" model="ir.actions.act_window">
+    <record id="action_partner_fsm_location" model="ir.actions.act_window">
         <field name="name">Service Locations</field>
         <field name="res_model">fsm.location</field>
         <field name="view_id" ref="fieldservice.fsm_location_tree_view"/>
@@ -121,17 +125,16 @@
         </field>
     </record>
 
-  <!-- Menu -->
-  <menuitem id="menu_partner_fsm_location"
-            name="Locations"
-            action="action_partner_fsm_location"
-            parent="contacts.menu_contacts"
-            sequence="3"/>
+    <!-- Menu -->
+    <menuitem id="menu_partner_fsm_location"
+              name="Locations"
+              action="action_partner_fsm_location"
+              parent="contacts.menu_contacts"
+              sequence="3"/>
 
-  <menuitem id="contacts.res_partner_menu_config"
-            name="Configuration"
-            parent="contacts.menu_contacts"
-            groups="base.group_system"
-            sequence="10"/>
-
+    <menuitem id="contacts.res_partner_menu_config"
+              name="Configuration"
+              parent="contacts.menu_contacts"
+              groups="base.group_system"
+              sequence="10"/>
 </odoo>

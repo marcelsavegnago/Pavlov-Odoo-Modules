@@ -22,6 +22,7 @@ class BandwidthChange(models.Model):
                                  ('urgent', 'Urgent')], default='low')
     name = fields.Char(string="Title", required=True)
     partner_id = fields.Many2one('res.partner', string="Partner")
+    location_id = fields.Many2one('fsm.location', string="Service Location")
     eta = fields.Date(string="ETA", required=False)
     description = fields.Text(string="Description", required=False)
     color = fields.Integer()

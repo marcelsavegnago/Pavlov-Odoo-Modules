@@ -1,5 +1,8 @@
+<!-- Copyright 2019 Pavlov Media
+     # License Proprietary. Do not copy, share nor distribute. -->
+
 <odoo>
-  <record id="action_helpdesk_fsm_location" model="ir.actions.act_window">
+    <record id="action_helpdesk_fsm_location" model="ir.actions.act_window">
         <field name="name">Service Locations</field>
         <field name="res_model">fsm.location</field>
         <field name="view_id" ref="fieldservice.fsm_location_tree_view"/>
@@ -12,9 +15,9 @@
                 Create a Service Location.
             </p>
         </field>
-  </record>
+    </record>
 
-  <record id="action_helpdesk_partner" model="ir.actions.act_window">
+    <record id="action_helpdesk_partner" model="ir.actions.act_window">
         <field name="name">Contacts</field>
         <field name="res_model">res.partner</field>
         <field name="view_id" ref="base.view_partner_tree"/>
@@ -22,13 +25,13 @@
         <field name="view_mode">tree,form</field>
         <field name="search_view_id" ref="base.view_res_partner_filter"/>
         <field name="context">{'search_default_type_person':1}</field>
-  </record>
+    </record>
 
-  <!-- Master Data Menu -->
-  <menuitem id="menu_helpdesk_master_data"
-            name="Master Data"
-            parent="helpdesk.menu_helpdesk_root"
-            sequence="15"/>
+    <!-- Master Data Menu -->
+    <menuitem id="menu_helpdesk_master_data"
+              name="Master Data"
+              parent="helpdesk.menu_helpdesk_root"
+              sequence="15"/>
     <!-- Contacts Menu -->
     <menuitem id="menu_helpdesk_fsm_partners"
               name="Contacts"

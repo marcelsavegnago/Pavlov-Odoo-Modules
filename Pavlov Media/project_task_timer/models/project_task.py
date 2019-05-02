@@ -1,19 +1,25 @@
+# Copyright (C) 2019 Pavlov Media
+# License Proprietary. Do not copy, share nor distribute.
+
 from odoo import api, fields, models
+
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
     timer_ids = fields.One2many('timer.timer', 'task_id', string="Timers")
-    timer_started = fields.Boolean(string="Timer Started")
+    timer_started = fields.Boolean()
 
     @api.multi
     def task_start_timer(self):
-        active_timers = self.env['timer.timer'].search([('user_id','=',self._uid)])
+        active_timers = self.env['timer.timer'].search([(
+            'user_id', '=', self._uid)])
         if active_timers:
             context = dict(self.env.context)
             context.update({'timer_id': active_timers.id,
                             'task_id': active_timers.task_id.id})
-            view_id = self.env.ref('project_task_timer.timer_warning_view_form')
+            view_id = self.env.ref(
+                'project_task_timer.timer_warning_view_form')
             return {
                     'view_id': view_id.ids,
                     'view_type': 'form',
@@ -25,7 +31,7 @@ class ProjectTask(models.Model):
                     }
         else:
             self.write({'timer_started': True,
-                        'timer_ids':[ (0, 0, {
+                        'timer_ids': [(0, 0, {
                                     'name': self.name,
                                     'task_id': self.id,
                                     'project_id': self.project_id.id,
@@ -34,9 +40,11 @@ class ProjectTask(models.Model):
 
     @api.multi
     def task_end_timer(self):
-        active_timer = self.env['timer.timer'].search([('task_id','=',self.id),('user_id','=',self._uid)])
+        active_timer = self.env['timer.timer'].search([(
+            'task_id', '=', self.id), ('user_id', '=', self._uid)])
         if not active_timer:
-            stop_view_id = self.env.ref('project_task_timer.timer_stop_warning_view_form')
+            stop_view_id = self.env.ref(
+                'project_task_timer.timer_stop_warning_view_form')
             return {'view_id': stop_view_id.ids,
                     'view_type': 'form',
                     'view_mode': 'form',
@@ -52,7 +60,8 @@ class ProjectTask(models.Model):
                             'end_timer_date': active_timer.end_timer_date,
                             'default_project_id': active_timer.project_id.id,
                             'default_task_id': active_timer.task_id.id})
-            view_id = self.env.ref('project_task_timer.task_timesheet_entry_view_form')
+            view_id = self.env.ref(
+                'project_task_timer.task_timesheet_entry_view_form')
             return {
                     'view_id': view_id.ids,
                     'view_type': 'form',

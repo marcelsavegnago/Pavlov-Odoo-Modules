@@ -1,3 +1,6 @@
+<!-- Copyright 2019 Pavlov Media
+     # License Proprietary. Do not copy, share nor distribute. -->
+
 <odoo>
     <record id="fsm_order_view" model="ir.ui.view">
         <field name="name">fsm.order.form</field>
@@ -12,32 +15,32 @@
 
             <!-- Remove Create option on Location -->
             <field name="location_id" position="attributes">
-              <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
             </field>
 
             <!-- Remove Create option on Contact -->
             <field name="customer_id" position="attributes">
-              <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
             </field>
 
             <!-- Remove Create/Edit option on Assigned To -->
             <field name="person_id" position="attributes">
-              <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
             </field>
 
             <!-- Make Description Required -->
             <field name="description" position="attributes">
-              <attribute name="required">1</attribute>
+                <attribute name="required">1</attribute>
             </field>
 
             <!-- Make Description Required -->
             <field name="request_early" position="attributes">
-              <attribute name="required">1</attribute>
+                <attribute name="required">1</attribute>
             </field>
 
             <!-- Make Description Required -->
             <field name="request_late" position="attributes">
-              <attribute name="required">1</attribute>
+                <attribute name="required">1</attribute>
             </field>
         </field>
     </record>

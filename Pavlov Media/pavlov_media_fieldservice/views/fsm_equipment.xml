@@ -1,0 +1,17 @@
+<!-- Copyright 2019 Pavlov Media
+     # License Proprietary. Do not copy, share nor distribute. -->
+
+<odoo>
+    <record id="pavlov_media_fsm_equipment_inherit_view_form" model="ir.ui.view">
+        <field name="model">fsm.equipment</field>
+        <field name="inherit_id" ref="fieldservice.fsm_equipment_form_view"/>
+        <field name="arch" type="xml">
+            <!-- ADD node_id field-->
+            <field name="notes" position="after">
+                <group name="node_id">
+                    <field name="node_id"/>
+                </group>
+            </field>
+        </field>
+    </record>
+</odoo>
